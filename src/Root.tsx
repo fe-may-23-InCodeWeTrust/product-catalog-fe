@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter, Route, Routes, Navigate,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { App } from './App';
 import { AccessoriesPage } from './pages/AccessoriesPage/AccessoriesPage';
 import { CartPage } from './pages/CartPage/CartPage';
