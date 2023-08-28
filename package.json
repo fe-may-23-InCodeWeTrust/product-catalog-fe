@@ -24,11 +24,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "prepare": "husky install",
     "format": "prettier --write . --ignore-path .gitignore",
     "fix-style": "npm run format && npm run lint -- --fix",
-    "lint": "eslint ./src",
-    "deploy": "gh-pages -d build"
+    "lint": "eslint ./src"
   },
   "eslintConfig": {
     "extends": [
