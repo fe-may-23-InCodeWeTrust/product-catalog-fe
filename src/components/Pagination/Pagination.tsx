@@ -16,7 +16,9 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
     const buttons = [];
     const pagesToShow = 4;
     const start = Math.floor(Math.max(1, currentPage - (pagesToShow - 1) / 2));
-    const end = Math.floor(Math.min(totalPages, currentPage + (pagesToShow - 1) / 2));
+    const end = Math.floor(
+      Math.min(totalPages, currentPage + (pagesToShow - 1) / 2),
+    );
 
     for (let i = start; i <= end; i++) {
       buttons.push(
@@ -28,7 +30,7 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
           })}
         >
           {i}
-        </NavLink>
+        </NavLink>,
       );
     }
 
@@ -38,10 +40,7 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
   return (
     <div className="pagination">
       {currentPage > 1 && (
-        <NavLink
-          to={`?page=${currentPage - 1}`}
-          className='page-button left'
-        >
+        <NavLink to={`?page=${currentPage - 1}`} className="page-button left">
           {prevButton}
         </NavLink>
       )}
@@ -49,10 +48,7 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
       {getPageButtons()}
 
       {currentPage < totalPages && (
-        <NavLink
-          to={`?page=${currentPage + 1}`}
-          className='page-button right'
-        >
+        <NavLink to={`?page=${currentPage + 1}`} className="page-button right">
           {nextButton}
         </NavLink>
       )}
