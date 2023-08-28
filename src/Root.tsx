@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { App } from './App';
 import { AccessoriesPage } from './pages/AccessoriesPage/AccessoriesPage';
 import { CartPage } from './pages/CartPage/CartPage';
@@ -10,21 +10,32 @@ import { PhonesPage } from './pages/PhonesPage/PhonesPage';
 import { TabletsPage } from './pages/TabletsPage/TabletsPage';
 
 export const Root: React.FC = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<HomePage />} />
-        <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="phones" element={<PhonesPage />} />
-        <Route path="tablets" element={<TabletsPage />} />
-        <Route path="accessories" element={<AccessoriesPage />} />
-        <Route path="phones/:productId" element={<DetailsPage />} />
-        <Route path="tablets/:productId" element={<DetailsPage />} />
-        <Route path="accessories/:productId" element={<DetailsPage />} />
+
+        <Route path="phones">
+          <Route index element={<PhonesPage />} />
+          <Route path=":phoneId" element={<DetailsPage />} />
+        </Route>
+
+        <Route path="tablets">
+          <Route index element={<TabletsPage />} />
+          <Route path=":tabletId" element={<DetailsPage />} />
+        </Route>
+
+        <Route path="accessories">
+          <Route index element={<AccessoriesPage />} />
+          <Route path=":accessoryId" element={<DetailsPage />} />
+        </Route>
+
         <Route path="cart" element={<CartPage />} />
+
         <Route path="favorites" element={<FavoritesPage />} />
+
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Route>
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );
