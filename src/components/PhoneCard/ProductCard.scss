@@ -42,7 +42,7 @@
   }
 
   &__attribute {
-    color: #89939A;
+    color: #89939a;
   }
 
   &__title {
@@ -99,7 +99,7 @@
     }
 
     &:active {
-      background-color: #FFFFFF;
+      background-color: #ffffff;
     }
   }
 
@@ -107,7 +107,7 @@
     width: 40px;
     height: 40px;
     border-radius: 48px;
-    border: 0.50px #B4BDC3 solid;
+    border: 0.5px #b4bdc3 solid;
     background-image: url(../../assets/icons/heart.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -115,7 +115,7 @@
     cursor: pointer;
 
     &:hover {
-      border: 0.50px #0F0F11 solid;
+      border: 0.5px #0f0f11 solid;
     }
   }
 }
