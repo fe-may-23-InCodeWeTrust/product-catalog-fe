@@ -18,9 +18,11 @@ export const Root: React.FC = () => (
         <Route path="phones" element={<PhonesPage />} />
         <Route path="tablets" element={<TabletsPage />} />
         <Route path="accessories" element={<AccessoriesPage />} />
+        <Route path="phones/:productId" element={<DetailsPage />} />
+        <Route path="tablets/:productId" element={<DetailsPage />} />
+        <Route path="accessories/:productId" element={<DetailsPage />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="favorites" element={<FavoritesPage />} />
-        <Route path="product/:productId" element={<DetailsPage />} />
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Route>
     </Routes>
