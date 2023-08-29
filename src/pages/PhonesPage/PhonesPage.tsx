@@ -1,6 +1,6 @@
 import React from 'react';
 import './PhonesPage.scss';
-import '../../styles/_typography.scss'
+import '../../styles/_typography.scss';
 
 export const PhonesPage = () => {
   return (
