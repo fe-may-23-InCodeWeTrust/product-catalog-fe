@@ -1,13 +1,13 @@
 import React from 'react';
 import logoImage from '../../images/logo.svg';
 import BackToTop from '../../images/Back to top button.svg';
-import './Footer.scss'
+import './Footer.scss';
 
 export const Footer = () => {
   return (
     <div className="footer">
       <div>
-          <img src={logoImage} alt="logo"/>
+        <img src={logoImage} alt="logo" />
       </div>
       <div className="footer__nav">
         <div className="footer__list">
@@ -19,9 +19,9 @@ export const Footer = () => {
 
       <div>
         <button>
-          <img src={BackToTop} alt="Back to top"/>
+          <img src={BackToTop} alt="Back to top" />
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
