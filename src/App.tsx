@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Card } from './components/PhoneCard';
-import './styles/index.scss'
+import './styles/index.scss';
 
 export const App = () => {
   return (
@@ -12,4 +12,3 @@ export const App = () => {
     </div>
   );
 };
-
