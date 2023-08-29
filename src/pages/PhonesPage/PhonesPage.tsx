@@ -1,12 +1,11 @@
 import React from 'react';
 import './PhonesPage.scss';
+import '../../styles/_typography.scss'
 
 export const PhonesPage = () => {
   return (
     <>
-      <header>
-        Header
-      </header>
+      <header>Header</header>
 
       <main className="main">
         <div className="container">
@@ -14,23 +13,29 @@ export const PhonesPage = () => {
             <a href="#home" className="icon icon--home"></a>
 
             <a href="#" className="icon icon--arrow">
-              <p className="icon__text">Phones</p>
+              <p className="text-small icon__text">Phones</p>
             </a>
           </div>
 
           <div className="arcticle">
-            <p className="article--title">Mobile Phones</p>
+            <h1 className="article--title">Mobile phones</h1>
 
-            <p className="article--count-of-models">95 models</p>
+            <p className="text-button article--count-of-models">95 models</p>
           </div>
 
           <div className="select">
-            <p className="select__sortByCategoryText">Sort by</p>
+            <p className="text-small select__sortByCategoryText">Sort by</p>
 
-            <p className="select__sortByNumberText">Items on page</p>
+            <p className="text-small select__sortByNumberText">Items on page</p>
 
-            <select id="select__sortByCategory" name="sortByCategory" className="select__sortByCategory">
-              <option value="Please choose" disabled selected>Please choose</option>
+            <select
+              id="select__sortByCategory"
+              name="sortByCategory"
+              className="select__sortByCategory"
+            >
+              <option value="Please choose" disabled selected>
+                Please choose
+              </option>
 
               <option value="Newest">Newest</option>
 
@@ -39,8 +44,14 @@ export const PhonesPage = () => {
               <option value="Cheapest">Cheapest</option>
             </select>
 
-            <select id="select__sortByNumber" name="sortByNumber" className="select__sortByNumber">
-              <option value="Please choose" disabled selected>Please choose</option>
+            <select
+              id="select__sortByNumber"
+              name="sortByNumber"
+              className="select__sortByNumber"
+            >
+              <option value="Please choose" disabled selected>
+                Please choose
+              </option>
 
               <option value="16">16</option>
 
@@ -50,19 +61,13 @@ export const PhonesPage = () => {
             </select>
           </div>
 
-          <div className="phone_cards">
-            PHONES
-          </div>
+          <div className="phone_cards">PHONES</div>
 
-          <div className="pagination">
-            Pagination
-          </div>
+          <div className="pagination">Pagination</div>
         </div>
       </main>
 
-      <footer>
-        Footer
-      </footer>
+      <footer>Footer</footer>
     </>
   );
 };
