@@ -8,10 +8,8 @@
   color: $color-secondary;
   align-items: flex-start;
   gap: 32px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  border-top: 1px solid $color-elements;
+  margin-top: auto;
 
   @include onTablet {
     flex-direction: row;
@@ -81,6 +79,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:active {
+        border: 1px solid $color-primary;
+        background-color: $color-primary;
+
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+
+      &:hover {
+        border: 1px solid $color-primary;
+      }
     }
   }
 }
