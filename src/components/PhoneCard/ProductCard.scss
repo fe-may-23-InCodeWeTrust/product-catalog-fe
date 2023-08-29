@@ -1,0 +1,110 @@
+.phone-card {
+  width: 272px;
+  height: 100%;
+  border-radius: 8px;
+  border: 0.5px #e2e6e9 solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 32px;
+
+  &__image-container {
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__divider {
+    border-bottom: 1px solid #e2e6e9;
+  }
+
+  &__details {
+    display: flex;
+    gap: 8px;
+
+    justify-content: space-between;
+    font-size: 12px;
+  }
+
+  &__attribute {
+    color: #89939a;
+  }
+
+  &__title {
+    margin-top: 16px;
+    width: 200px;
+  }
+
+  &__price-block {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__price {
+    font-size: 22px;
+    line-height: 31px;
+    margin-right: 8px;
+  }
+
+  &__price-discount {
+    font-size: 22px;
+    line-height: 31px;
+    color: #89939a;
+    text-decoration: line-through;
+  }
+
+  &__actions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .product-buttons {
+    display: flex;
+  }
+
+  .add-to-cart {
+    height: 38px;
+    border: 0.5px solid #4219d0;
+    min-width: 160px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #4219d0;
+    flex-grow: 1;
+    border-radius: 48px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      color: #4219d0;
+      border: 0.5px solid #e2e6e9;
+    }
+  }
+
+  .add-to-favorites {
+    width: 40px;
+    height: 40px;
+    border-radius: 48px;
+    border: 0.5px #b4bdc3 solid;
+    background-image: url(../../assets/icons/heart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 8px;
+    cursor: pointer;
+
+    &:hover {
+      border: 0.5px #0f0f11 solid;
+    }
+  }
+}

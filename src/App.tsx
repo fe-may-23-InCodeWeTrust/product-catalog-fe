@@ -1,14 +1,14 @@
 import React from 'react';
 import { Footer } from './components/Footer/Footer';
+import { Outlet } from 'react-router-dom';
 
 export const App = () => {
   return (
-    <div>
-      <div>
-        <h2>Product catalog</h2>
-      </div>
-
-      <Footer />
-    </div>
+  <div>
+    <h1>App</h1>
+    <Outlet></Outlet>
+    <Footer />
+  </div>
   );
 };
+
