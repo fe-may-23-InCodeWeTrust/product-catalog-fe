@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 152px 32px 152px;
+  color: $color-secondary;
+  text-transform: uppercase;
+
+  &__nav {
+    display: flex;
+  }
+
+  &__list {
+    text-decoration: none;
+  }
+}
