@@ -1,7 +1,5 @@
 .phone-card {
-  width: 100%;
-  min-width: 230px;
-  max-width: 272px;
+  width: 272px;
   height: 100%;
   border-radius: 8px;
   border: 0.5px #e2e6e9 solid;
@@ -11,11 +9,7 @@
   gap: 8px;
   padding: 32px;
 
-  background-color: #ffffff;
-
   &__image-container {
-    width: 100%;
-    height: 130px;
     transition: transform 0.3s ease-in-out;
 
     &:hover {
@@ -25,7 +19,7 @@
 
   &__image {
     display: block;
-    margin: 0 auto;
+    width: 100%;
     height: 100%;
   }
 
@@ -37,7 +31,7 @@
     display: flex;
     gap: 8px;
 
-    justify-content: space-between;
+    justify-content: space-around;
     font-size: 12px;
   }
 
@@ -80,7 +74,7 @@
     display: flex;
   }
 
-  .addToCart {
+  .add-to-cart {
     height: 38px;
     border: 0.5px solid #4219d0;
     min-width: 160px;
@@ -95,15 +89,10 @@
     &:hover {
       color: #4219d0;
       border: 0.5px solid #e2e6e9;
-      background-color: #ffffff;
-    }
-
-    &:active {
-      background-color: #ffffff;
     }
   }
 
-  .addToWishlist {
+  .add-to-favorites {
     width: 40px;
     height: 40px;
     border-radius: 48px;

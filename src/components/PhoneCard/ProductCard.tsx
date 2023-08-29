@@ -39,11 +39,11 @@ export const Card: React.FC = () => {
       </div>
 
       <div className="phone-card__actions">
-        <button type="submit" className="addToCart text-button">
+        <button type="submit" className="add-to-cart text-button">
           Add to cart
         </button>
 
-        <button className="addToWishlist" type="submit"></button>
+        <button className="add-to-favorites" type="submit"></button>
       </div>
     </div>
   );
