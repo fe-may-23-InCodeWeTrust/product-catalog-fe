@@ -17,8 +17,8 @@ export const Card: React.FC = () => {
       </h3>
 
       <div className="phone-card__price-block">
-        <p className="phone-card__price h3">$799</p>
-        <p className="phone-card__price-discount">$999</p>
+        <p className="phone-card__price h2">$799</p>
+        <p className="phone-card__price-discount h2">$999</p>
       </div>
 
       <div className="phone-card__divider"></div>
