@@ -41,7 +41,10 @@ export const Card: React.FC = () => {
       </div>
 
       <div className={styles['phone-card__actions']}>
-        <button type="submit" className={`${styles['add-to-cart']} text-button`}>
+        <button
+          type="submit"
+          className={`${styles['add-to-cart']} text-button`}
+        >
           Add to cart
         </button>
 
