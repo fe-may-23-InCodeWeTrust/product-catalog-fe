@@ -1,3 +1,5 @@
+@import '../../styles/utils/index.scss';
+
 .phone-card {
   width: 272px;
   height: 100%;
@@ -36,7 +38,7 @@
   }
 
   &__attribute {
-    color: #89939a;
+    color: $color-secondary;
   }
 
   &__title {
@@ -52,15 +54,11 @@
   }
 
   &__price {
-    font-size: 22px;
-    line-height: 31px;
     margin-right: 8px;
   }
 
   &__price-discount {
-    font-size: 22px;
-    line-height: 31px;
-    color: #89939a;
+    color: $color-secondary;
     text-decoration: line-through;
   }
 
@@ -76,27 +74,28 @@
 
   .add-to-cart {
     height: 38px;
-    border: 0.5px solid #4219d0;
+    border: 0.5px solid $color-accent;
     min-width: 160px;
-    color: #ffffff;
+    color: $color-white;
     text-align: center;
-    background-color: #4219d0;
+    background-color: $color-accent;
     flex-grow: 1;
     border-radius: 48px;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-      color: #4219d0;
-      border: 0.5px solid #e2e6e9;
+      color: $color-accent;
+      background-color: $color-white;
+      border: 0.5px solid $color-elements;
     }
   }
 
   .add-to-favorites {
-    width: 40px;
+    flex-grow: 1;
     height: 40px;
     border-radius: 48px;
-    border: 0.5px #b4bdc3 solid;
+    border: 0.5px $color-icons solid;
     background-image: url(../../assets/icons/heart.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -104,7 +103,7 @@
     cursor: pointer;
 
     &:hover {
-      border: 0.5px #0f0f11 solid;
+      border: 0.5px $color-primary solid;
     }
   }
 }
