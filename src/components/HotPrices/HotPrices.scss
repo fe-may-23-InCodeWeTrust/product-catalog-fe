@@ -1,0 +1,61 @@
+@import 'src/styles';
+
+.price__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.title_price {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 140%;
+
+  @include onTablet {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
+}
+
+.button {
+  display: flex;
+
+  &__control {
+    border-radius: 50%;
+    border: 1px solid $color-secondary;
+    background-color: $color-white;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+      border: 1px solid $color-primary;
+      background-color: $color-primary;
+
+      svg {
+        path {
+          fill: white;
+        }
+      }
+    }
+
+    &:hover {
+      border: 1px solid $color-primary;
+    }
+
+    &:disabled {
+      border: 1px solid orangered;
+
+      svg {
+        path {
+          fill: orangered;
+        }
+      }
+    }
+  }
+}
