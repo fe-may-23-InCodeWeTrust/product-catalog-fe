@@ -30,7 +30,7 @@ export const PhonesPage = () => {
       borderRaduis: '8px',
       border: '0.5px solid #89939A',
       cursor: 'pointer',
-      fontSize: '10px',
+      fontSize: '14px',
     }),
     singleValue: (defaultStyles: object) => ({
       ...defaultStyles,
