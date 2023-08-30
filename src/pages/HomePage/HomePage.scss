@@ -1,0 +1,22 @@
+@import 'src/styles';
+
+.title {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 41px;
+  color: $color-primary;
+  padding: 24px 16px;
+  letter-spacing: -0.32px;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.48px;
+    padding: 32px 24px;
+  }
+
+  @include onDesktop {
+    padding: 56px 152px;
+  }
+}
