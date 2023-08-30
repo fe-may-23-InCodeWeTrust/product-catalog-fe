@@ -1,11 +1,11 @@
-import styles from './CartPage.module.scss';
+import './CartPage.scss';
 import React from 'react';
 
 export const CartPage = () => {
   const prevBtn = '<';
 
   return (
-    <div className="container">
+    <div className="cart_container">
       <div>
         <a href="#" className="back-btn">
           {prevBtn}&nbsp; Back

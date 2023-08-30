@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import './PhonesPage.scss';
 import Select from 'react-select';
@@ -17,10 +18,7 @@ const numbers = [
 
 export const PhonesPage = () => {
   const CustomStyle = {
-    option: (
-      defaultStyles: object,
-      { isFocused }: any,
-    ) => ({
+    option: (defaultStyles: object, { isFocused }: any) => ({
       ...defaultStyles,
       backgroundColor: isFocused ? '#FAFBFC' : '#fff',
       color: '#0f0f11',

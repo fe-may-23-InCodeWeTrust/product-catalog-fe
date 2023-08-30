@@ -1,4 +1,4 @@
-import styles from './DetailsPage.module.scss';
+import './DetailsPage.scss';
 import React from 'react';
 
 export const DetailsPage = () => {
