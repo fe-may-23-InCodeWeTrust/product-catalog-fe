@@ -1,6 +1,7 @@
 import React from 'react';
 import './PhonesPage.scss';
 import '../../styles/_typography.scss';
+import { Card } from '../../components/PhoneCard';
 
 export const PhonesPage = () => {
   return (
@@ -34,7 +35,7 @@ export const PhonesPage = () => {
               className="select__sortByCategory"
             >
               <option value="Please choose" disabled selected>
-                Please choose
+                Default
               </option>
 
               <option value="Newest">Newest</option>
@@ -50,7 +51,7 @@ export const PhonesPage = () => {
               className="select__sortByNumber"
             >
               <option value="Please choose" disabled selected>
-                Please choose
+                Default
               </option>
 
               <option value="16">16</option>
@@ -61,7 +62,12 @@ export const PhonesPage = () => {
             </select>
           </div>
 
-          <div className="phone_cards">PHONES</div>
+          <div className="phone_cards">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
 
           <div className="pagination">Pagination</div>
         </div>
