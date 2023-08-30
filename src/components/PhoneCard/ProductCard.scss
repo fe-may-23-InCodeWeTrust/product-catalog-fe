@@ -1,5 +1,9 @@
+@import '../../styles/utils/_variables.scss';
+@import '../../styles/utils/_mixins.scss';
+@import '../../styles/fonts';
+
 .phone-card {
-  width: 272px;
+  width: 288px;
   height: 100%;
   border-radius: 8px;
   border: 0.5px #e2e6e9 solid;
@@ -8,6 +12,10 @@
   justify-content: flex-start;
   gap: 8px;
   padding: 32px;
+
+  @include onTablet {
+    width: 272px;
+  }
 
   &__image-container {
     transition: transform 0.3s ease-in-out;
@@ -88,6 +96,7 @@
 
     &:hover {
       color: #4219d0;
+      background-color: $color-white;
       border: 0.5px solid #e2e6e9;
     }
   }
