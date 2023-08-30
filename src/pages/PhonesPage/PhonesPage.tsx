@@ -5,9 +5,6 @@ import { Card } from '../../components/PhoneCard';
 
 export const PhonesPage = () => {
   return (
-    <>
-      <header>Header</header>
-
       <main className="main">
         <div className="container">
           <div className="icons">
@@ -72,8 +69,5 @@ export const PhonesPage = () => {
           <div className="pagination">Pagination</div>
         </div>
       </main>
-
-      <footer>Footer</footer>
-    </>
   );
 };
