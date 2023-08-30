@@ -7,13 +7,9 @@ export const CartPage = () => {
   return (
     <div className="container">
       <div>
-        <a
-          href="#"
-          className="back-btn"
-        >
-          {prevBtn}&nbsp;
-          Back
-      </a>
+        <a href="#" className="back-btn">
+          {prevBtn}&nbsp; Back
+        </a>
       </div>
 
       <h2 className="title">Cart</h2>
@@ -28,14 +24,16 @@ export const CartPage = () => {
                 alt="iPhone"
                 className="good-img"
               />
-                <span className="cart-good__title">
-                  Apple iPhone 14 Pro 128GB Silver (MQ023)
-                </span>
+              <span className="cart-good__title">
+                Apple iPhone 14 Pro 128GB Silver (MQ023)
+              </span>
             </div>
 
             <div className="cart-good__price">
               <div className="count">
-                <button className="btn-round" disabled>-</button>
+                <button className="btn-round" disabled>
+                  -
+                </button>
                 <span className="quantity">1</span>
                 <button className="btn-round">+</button>
               </div>
@@ -52,14 +50,16 @@ export const CartPage = () => {
                 alt="iPhone"
                 className="good-img"
               />
-                <span className="cart-good__title">
-                  Apple iPhone 14 Pro 128GB Silver (MQ023)
-                </span>
+              <span className="cart-good__title">
+                Apple iPhone 14 Pro 128GB Silver (MQ023)
+              </span>
             </div>
 
             <div className="cart-good__price">
               <div className="count">
-                <button className="btn-round" disabled>-</button>
+                <button className="btn-round" disabled>
+                  -
+                </button>
                 <span className="quantity">1</span>
                 <button className="btn-round">+</button>
               </div>
@@ -76,14 +76,16 @@ export const CartPage = () => {
                 alt="iPhone"
                 className="good-img"
               />
-                <span className="cart-good__title">
-                  Apple iPhone 14 Pro 128GB Silver (MQ023)
-                </span>
+              <span className="cart-good__title">
+                Apple iPhone 14 Pro 128GB Silver (MQ023)
+              </span>
             </div>
 
             <div className="cart-good__price">
               <div className="count">
-                <button className="btn-round" disabled>-</button>
+                <button className="btn-round" disabled>
+                  -
+                </button>
                 <span className="quantity">1</span>
                 <button className="btn-round">+</button>
               </div>

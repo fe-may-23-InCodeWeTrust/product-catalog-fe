@@ -90,11 +90,11 @@
     align-items: center;
     width: 264px;
     margin-bottom: 20px;
-  
+
     @include onTablet {
       width: 344px;
     }
-  
+
     @include onDesktop {
       width: 480px;
       margin-bottom: 0;
@@ -103,11 +103,11 @@
 
   &__title {
     width: 92px;
-  
+
     @include onTablet {
       width: 196px;
     }
-  
+
     @include onDesktop {
       width: 356px;
     }
@@ -119,11 +119,11 @@
     justify-content: space-between;
     align-items: center;
     width: 264px;
-  
+
     @include onTablet {
       width: 176px;
     }
-  
+
     @include onDesktop {
       width: 176px;
     }
@@ -219,6 +219,6 @@
   transition: all 0.5s;
 
   &:hover {
-    opacity: .7;
+    opacity: 0.7;
   }
 }
