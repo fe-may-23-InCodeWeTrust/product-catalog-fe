@@ -4,10 +4,8 @@ import logo from '../../assets/icons/logo.svg';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
-  'nav__link',
-  { 'is-active': isActive },
-);
+const getLinkClass = ({ isActive }: { isActive: boolean }) =>
+  classNames('nav__link', { 'is-active': isActive });
 
 export const Header = () => (
   <div className="header">

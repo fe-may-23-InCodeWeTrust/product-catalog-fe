@@ -7,7 +7,7 @@ import './styles/index.scss';
 
 export const App = () => {
   return (
-    <div>
+    <div className='app'>
       <Header />
       <Outlet></Outlet>
       <Footer />
