@@ -1,0 +1,152 @@
+@import '../../styles/utils/';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 1px 0px 0px $color-elements;
+
+  &__left {
+    display: flex;
+  }
+}
+
+.left__logo {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  @include onTablet {
+    margin-right: 16px;
+  }
+
+  @include onDesktop {
+    margin-right: 24px;
+    padding: 0 24px;
+  }
+}
+
+.logo {
+  width: 64px;
+  height: 22px;
+
+  @include onDesktop {
+    width: 80px;
+    height: 28px;
+  }
+}
+
+.nav {
+  display: none;
+
+  &__list {
+    height: 100%;
+    line-height: 48px;
+  }
+
+  @include onTablet {
+    display: flex;
+    align-items: center;
+
+    &__list {
+      display: flex;
+      list-style: none;
+    }
+
+    &__item {
+      position: relative;
+    }
+
+    &__item:not(:last-child) {
+      margin-right: 32px;
+    }
+
+    &__link {
+      color: $color-secondary;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  @include onDesktop {
+    &__list {
+      line-height: 64px;
+    }
+
+    &__item:not(:last-child) {
+      margin-right: 64px;
+    }
+  }
+}
+
+.is-active {
+  @include onTablet {
+    color: $color-primary;
+  }
+}
+
+.is-active:after {
+  @include onTablet {
+    content: '';
+    height: 3px;
+    position: absolute;
+    background-color: $color-primary;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.icons {
+  display: flex;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -1px 0px 0px 0px $color-elements;
+
+  &__favourites-icon,
+  &__shopping_bag-icon,
+  &__menu-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__favourites-icon {
+    background-image: url('../../assets/icons/favourites.svg');
+  }
+
+  &__shopping_bag-icon {
+    background-image: url('../../assets/icons/shopping-bag.svg');
+  }
+
+  &__menu-icon {
+    background-image: url('../../assets/icons/menu.svg');
+  }
+}
+
+.menu-icon {
+  width: 48px;
+  height: 48px;
+
+  @include onTablet {
+    display: none;
+  }
+}
+
+.favourites-icon,
+.shopping_bag-icon {
+  display: none;
+
+  @include onTablet {
+    display: flex;
+    width: 48px;
+    height: 48px;
+  }
+
+  @include onDesktop {
+    width: 64px;
+    height: 64px;
+  }
+}
