@@ -1,0 +1,99 @@
+@import 'src/styles';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 16px;
+  color: $color-secondary;
+  align-items: flex-start;
+  gap: 32px;
+  border-top: 1px solid $color-elements;
+  margin-top: auto;
+
+  @include onTablet {
+    flex-direction: row;
+    align-items: center;
+    padding: 32px;
+  }
+
+  @include onDesktop {
+    padding: 32px 152px;
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: flex-start;
+    min-width: 89px;
+    min-height: 32px;
+  }
+
+  &__nav {
+    flex-direction: column;
+    justify-content: flex-start;
+    text-transform: uppercase;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    font-weight: 700;
+
+    @include onTablet {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 192px;
+      font-weight: 800;
+    }
+
+    @include onDesktop {
+      max-width: 380px;
+    }
+
+    &__item {
+      font-size: 12px;
+      line-height: 11px;
+    }
+  }
+
+  &__go-back {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+
+    @include onTablet {
+      width: fit-content;
+    }
+
+    &__label {
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 16px;
+    }
+
+    &__button {
+      border-radius: 50%;
+      border: 1px solid $color-secondary;
+      background-color: $color-white;
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:active {
+        border: 1px solid $color-primary;
+        background-color: $color-primary;
+
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+
+      &:hover {
+        border: 1px solid $color-primary;
+      }
+    }
+  }
+}
