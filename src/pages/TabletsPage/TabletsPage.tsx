@@ -1,4 +1,4 @@
-import styles from './TabletsPage.module.scss';
+import './TabletsPage.scss';
 import React from 'react';
 
 export const TabletsPage = () => {

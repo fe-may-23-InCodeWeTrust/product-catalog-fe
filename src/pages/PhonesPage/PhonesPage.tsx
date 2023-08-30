@@ -1,12 +1,12 @@
 import React from 'react';
 import './PhonesPage.scss';
-import Select from "react-select";
+import Select from 'react-select';
 import { Card } from '../../components/PhoneCard';
 
 const categories = [
-  { value: 'newest', label: 'Newest'},
-  { value: "popular", label: "Popular" },
-  { value: "cheapest", label: "Cheapest" },
+  { value: 'newest', label: 'Newest' },
+  { value: 'popular', label: 'Popular' },
+  { value: 'cheapest', label: 'Cheapest' },
 ];
 
 const numbers = [
@@ -17,25 +17,28 @@ const numbers = [
 
 export const PhonesPage = () => {
   const CustomStyle = {
-    option: (defaultStyles: object, { data, isDisabled, isFocused, isSelected }: any) => ({
+    option: (
+      defaultStyles: object,
+      { isFocused }: any,
+    ) => ({
       ...defaultStyles,
       backgroundColor: isFocused ? '#FAFBFC' : '#fff',
-      color: "#0f0f11",
+      color: '#0f0f11',
     }),
 
     control: (defaultStyles: object) => ({
       ...defaultStyles,
-      backgroundColor: "#fff",
-      borderRaduis: "8px",
-      border: "0.5px solid #89939A",
-      cursor: "pointer",
-      fontSize: "10px",
+      backgroundColor: '#fff',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '10px',
     }),
-    singleValue: (defaultStyles: object) => ({ 
-      ...defaultStyles, 
-      color: "#0f0f11",
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
     }),
-  }
+  };
 
   return (
     <main className="main">
@@ -60,7 +63,7 @@ export const PhonesPage = () => {
           <p className="text-small select__sortByNumberText">Items on page</p>
           <Select
             className="select__sortByCategory"
-            options={categories} 
+            options={categories}
             styles={CustomStyle}
             defaultValue={categories[0]}
           />
