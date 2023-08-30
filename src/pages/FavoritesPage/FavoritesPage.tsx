@@ -1,4 +1,4 @@
-import './FavoritesPage.scss';
+import styles from './FavoritesPage.module.scss';
 import React from 'react';
 
 export const FavoritesPage = () => {

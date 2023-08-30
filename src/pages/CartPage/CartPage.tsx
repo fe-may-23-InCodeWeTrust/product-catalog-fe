@@ -1,4 +1,4 @@
-import './CartPage.scss';
+import styles from './CartPage.module.scss';
 import React from 'react';
 
 export const CartPage = () => {

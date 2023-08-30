@@ -1,4 +1,4 @@
-import './HomePage.scss';
+import styles from './HomePage.module.scss';
 import React from 'react';
 
 export const HomePage = () => {
