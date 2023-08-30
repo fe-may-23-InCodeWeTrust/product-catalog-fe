@@ -1,12 +1,46 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import './PhonesPage.scss';
-import '../../styles/_typography.scss';
+import Select from 'react-select';
 import { Card } from '../../components/PhoneCard';
 
+const categories = [
+  { value: 'newest', label: 'Newest' },
+  { value: 'popular', label: 'Popular' },
+  { value: 'cheapest', label: 'Cheapest' },
+];
+
+const numbers = [
+  { value: 16, label: 16 },
+  { value: 24, label: 24 },
+  { value: 32, label: 32 },
+];
+
 export const PhonesPage = () => {
+  const CustomStyle = {
+    option: (defaultStyles: object, { isFocused }: any) => ({
+      ...defaultStyles,
+      backgroundColor: isFocused ? '#FAFBFC' : '#fff',
+      color: '#0f0f11',
+    }),
+
+    control: (defaultStyles: object) => ({
+      ...defaultStyles,
+      backgroundColor: '#fff',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '14px',
+    }),
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
+    }),
+  };
+
   return (
     <main className="main">
-      <div className="container">
+      <div className="pages_container">
         <div className="icons">
           <a href="#home" className="icon icon--home"></a>
 
@@ -25,38 +59,18 @@ export const PhonesPage = () => {
           <p className="text-small select__sortByCategoryText">Sort by</p>
 
           <p className="text-small select__sortByNumberText">Items on page</p>
-
-          <select
-            id="select__sortByCategory"
-            name="sortByCategory"
+          <Select
             className="select__sortByCategory"
-          >
-            <option value="Please choose" disabled selected>
-              Default
-            </option>
-
-            <option value="Newest">Newest</option>
-
-            <option value="Most Popular">Most Popular</option>
-
-            <option value="Cheapest">Cheapest</option>
-          </select>
-
-          <select
-            id="select__sortByNumber"
-            name="sortByNumber"
+            options={categories}
+            styles={CustomStyle}
+            defaultValue={categories[0]}
+          />
+          <Select
             className="select__sortByNumber"
-          >
-            <option value="Please choose" disabled selected>
-              Default
-            </option>
-
-            <option value="16">16</option>
-
-            <option value="24">24</option>
-
-            <option value="32">32</option>
-          </select>
+            options={numbers}
+            styles={CustomStyle}
+            defaultValue={numbers[0]}
+          />
         </div>
 
         <div className="phone_cards">
