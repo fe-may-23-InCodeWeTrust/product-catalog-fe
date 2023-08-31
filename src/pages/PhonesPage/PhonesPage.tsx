@@ -1,13 +1,45 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import styles from './PhonesPage.module.scss';
 import '../../styles/_typography.scss';
+import Select from 'react-select';
 import { Card } from '../../components/PhoneCard';
 
-export const PhonesPage = () => {
-  return (
-    <>
-      <header>Header</header>
+const categories = [
+  { value: 'newest', label: 'Newest' },
+  { value: 'popular', label: 'Popular' },
+  { value: 'cheapest', label: 'Cheapest' },
+];
 
+const numbers = [
+  { value: 16, label: 16 },
+  { value: 24, label: 24 },
+  { value: 32, label: 32 },
+];
+
+export const PhonesPage = () => {
+  const CustomStyle = {
+    option: (defaultStyles: object, { isFocused }: any) => ({
+      ...defaultStyles,
+      backgroundColor: isFocused ? '#FAFBFC' : '#fff',
+      color: '#0f0f11',
+    }),
+
+    control: (defaultStyles: object) => ({
+      ...defaultStyles,
+      backgroundColor: '#fff',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '14px',
+    }),
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
+    }),
+  };
+
+  return (
       <main className={styles["main"]}>
         <div className={styles["container"]}>
           <div className={styles["icons"]}>
@@ -24,57 +56,34 @@ export const PhonesPage = () => {
             <p className={`${styles['article--count-of-models']} text-small`}>95 models</p>
           </div>
 
-          <div className="select">
-            <p className="text-small select__sortByCategoryText">Sort by</p>
+          <div className={styles["select"]}>
+          <p className={`${styles['select__sortByCategoryText']} text-small`}>Sort by</p>
 
-            <p className="text-small select__sortByNumberText">Items on page</p>
-
-            <select
-              id="select__sortByCategory"
-              name="sortByCategory"
-              className="select__sortByCategory"
-            >
-              <option value="Please choose" disabled selected>
-                Default
-              </option>
-
-              <option value="Newest">Newest</option>
-
-              <option value="Most Popular">Most Popular</option>
-
-              <option value="Cheapest">Cheapest</option>
-            </select>
-
-            <select
-              id="select__sortByNumber"
-              name="sortByNumber"
-              className="select__sortByNumber"
-            >
-              <option value="Please choose" disabled selected>
-                Default
-              </option>
-
-              <option value="16">16</option>
-
-              <option value="24">24</option>
-
-              <option value="32">32</option>
-            </select>
-          </div>
-
-          <div className="phone_cards">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
-
-          <div className="pagination">Pagination</div>
+          <p className={`${styles['select__sortByNumberText']} text-small`}>Items on page</p>
+          <Select
+            className={styles["select__sortByCategory"]}
+            options={categories}
+            styles={CustomStyle}
+            defaultValue={categories[0]}
+          />
+          <Select
+            className={styles["select__sortByNumber"]}
+            options={numbers}
+            styles={CustomStyle}
+            defaultValue={numbers[0]}
+          />
         </div>
-      </main>
 
-      <footer>Footer</footer>
-    </>
+          <div className={styles["phone_cards"]}>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
+
+          <div className={styles["pagination"]}>Pagination</div>
+      </div>
+    </main>
   );
 };
