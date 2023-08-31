@@ -10,6 +10,7 @@
   justify-content: flex-start;
   gap: 8px;
   padding: 32px;
+  background: $color-white;
 
   @include onTablet {
     width: 272px;
