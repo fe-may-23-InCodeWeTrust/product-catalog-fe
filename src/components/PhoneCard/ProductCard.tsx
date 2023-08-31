@@ -2,8 +2,6 @@ import styles from './ProductCard.module.scss';
 import React from 'react';
 
 export const Card: React.FC = () => {
-  console.log(styles);
-
   return (
     <div className={styles['phone-card']}>
       <div className={styles['phone-card__image-container']}>
