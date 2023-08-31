@@ -18,7 +18,7 @@
   }
 
   @include onDesktop {
-    padding: 32px 152px;
+    padding: 32px 24px;
   }
 
   &__logo {
@@ -49,7 +49,6 @@
     }
 
     &__item {
-      font-size: 12px;
       line-height: 11px;
     }
   }
@@ -65,7 +64,6 @@
     }
 
     &__label {
-      font-size: 12px;
       font-weight: 600;
       margin-right: 16px;
     }
