@@ -3,10 +3,10 @@
 @import '../../styles/utils/reset';
 @import '../../styles/fonts';
 
-.container {
+.cart_container {
   font-family: 'Mont', sans-serif;
   width: 288px;
-  margin: 0 auto;
+  margin: 40px auto 0;
 
   @include onTablet {
     width: 592px;
@@ -144,6 +144,7 @@
 .quantity {
   font-size: 16px;
   margin-inline: 10px;
+  margin-bottom: -8px;
 }
 
 .btn-round {
@@ -151,14 +152,19 @@
   border-radius: 50%;
   width: 32px;
   height: 32px;
+  margin-top: -8px;
   text-align: center;
   font-weight: bold;
+  cursor: pointer;
   background-color: #fff;
   transition: all 0.5s;
 
   &:hover:not([disabled]) {
-    background-color: $color-elements;
     border: 1px solid $color-primary;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -213,6 +219,7 @@
   color: #fff;
   font-size: 18px;
   outline: none;
+  cursor: pointer;
   background-color: $color-accent;
   border: 1px solid $color-accent;
   border-radius: 25px;

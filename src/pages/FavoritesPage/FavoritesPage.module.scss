@@ -1,7 +1,4 @@
-@import '../../styles/utils/_mixins.scss';
-@import '../../styles/utils/_variables.scss';
-@import '../../styles/utils/reset';
-@import '../../styles/fonts';
+@import '../../styles/utils';
 
 .container {
   padding: 24px 16px;
@@ -34,6 +31,7 @@
     font-family: 'Mont', sans-serif;
     position: absolute;
     left: 48px;
+    top: 11%;
     font-weight: 600;
     pointer-events: none;
     color: $color-secondary;
@@ -93,69 +91,8 @@ select {
   }
 }
 
-.select {
-  @include pageGrid;
-  margin: 32px 0 24px;
-
-  @include onTablet {
-    margin: 40px 0 24px;
-  }
-
-  &__sortByCategory {
-    grid-column: 1 / 3;
-
-    @include onTablet {
-      grid-column: 1 / 4;
-    }
-
-    @include onDesktop {
-      grid-column: 1 / 6;
-    }
-  }
-
-  &__sortByNumber {
-    grid-column: 3 / 5;
-
-    @include onTablet {
-      grid-column: 4 / 7;
-    }
-
-    @include onDesktop {
-      grid-column: 6 / 11;
-    }
-  }
-
-  &__sortByCategoryText {
-    grid-column: 1 / 3;
-    margin-bottom: 5px;
-    font-family: 'Mont', sans-serif;
-    font-weight: 700;
-    color: $color-secondary;
-
-    @include onTablet {
-      grid-column: 1 / 4;
-    }
-
-    @include onDesktop {
-      grid-column: 1 / 6;
-    }
-  }
-
-  &__sortByNumberText {
-    grid-column: 3 / 5;
-    margin-bottom: 5px;
-    font-family: 'Mont', sans-serif;
-    font-weight: 700;
-    color: $color-secondary;
-
-    @include onTablet {
-      grid-column: 4 / 7;
-    }
-
-    @include onDesktop {
-      grid-column: 6 / 11;
-    }
-  }
+.main {
+  background-color: $color-grey-background;
 }
 
 body {
@@ -167,6 +104,11 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
   row-gap: 40px;
   column-gap: 16px;
+  margin-top: 32px;
+
+  @include onTablet {
+    margin-top: 40px;
+  }
 }
 
 .pagination {
