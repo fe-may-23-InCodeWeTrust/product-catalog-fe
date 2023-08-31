@@ -51,8 +51,8 @@ export const Header = () => (
       <div
         className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['shopping_bag-icon']}`}
       >
-        <NavLink 
-          to="cart" 
+        <NavLink
+          to="cart"
           className={styles['header-icon__shopping_bag-icon']}
         ></NavLink>
       </div>
