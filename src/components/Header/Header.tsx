@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
 import { NavLink } from 'react-router-dom';
-import { CatalogContext } from '../../context/CatalogContext';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `${styles.nav__link} ${isActive ? styles['is-active'] : ''} `;
+  `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
 
 export const Header = () => {
-  const { setCategory } = useContext(CatalogContext);
   return (
     <div className={styles['header']}>
       <div className={`${styles['header__left']} ${styles['left']}`}>
@@ -27,9 +25,6 @@ export const Header = () => {
               <NavLink
                 to="phones"
                 className={getLinkClass}
-                onClick={() => {
-                  setCategory('phones');
-                }}
               >
                 phones
               </NavLink>
@@ -38,9 +33,6 @@ export const Header = () => {
               <NavLink
                 to="tablets"
                 className={getLinkClass}
-                onClick={() => {
-                  setCategory('tablets');
-                }}
               >
                 tablets
               </NavLink>
@@ -49,9 +41,6 @@ export const Header = () => {
               <NavLink
                 to="accessories"
                 className={getLinkClass}
-                onClick={() => {
-                  setCategory('accessories');
-                }}
               >
                 accessories
               </NavLink>
