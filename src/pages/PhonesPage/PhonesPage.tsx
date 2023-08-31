@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import './PhonesPage.scss';
+import styles from './PhonesPage.module.scss';
+import '../../styles/_typography.scss';
 import Select from 'react-select';
 import { Card } from '../../components/PhoneCard';
 
@@ -39,48 +40,49 @@ export const PhonesPage = () => {
   };
 
   return (
-    <main className="main">
-      <div className="pages_container">
-        <div className="icons">
-          <a href="#home" className="icon icon--home"></a>
+      <main className={styles["main"]}>
+        <div className={styles["container"]}>
+          <div className={styles["icons"]}>
+            <a href="#home" className={`${styles['icon']} ${styles['icon--home']}`}></a>
 
-          <a href="#" className="icon icon--arrow">
-            <p className="text-small icon__text">Phones</p>
-          </a>
-        </div>
+            <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
+              <p className={`${styles['icon__text']} text-small`}>Phones</p>
+            </a>
+          </div>
 
-        <div className="arcticle">
-          <h1 className="article--title">Mobile phones</h1>
+          <div className={styles["arcticle"]}>
+            <h1 className={styles["article--title"]}>Mobile phones</h1>
 
-          <p className="text-button article--count-of-models">95 models</p>
-        </div>
+            <p className={`${styles['article--count-of-models']} text-small`}>95 models</p>
+          </div>
 
-        <div className="select">
-          <p className="text-small select__sortByCategoryText">Sort by</p>
+          <div className={styles["select"]}>
+          <p className={`${styles['select__sortByCategoryText']} text-small`}>Sort by</p>
 
-          <p className="text-small select__sortByNumberText">Items on page</p>
+          <p className={`${styles['select__sortByNumberText']} text-small`}>Items on page</p>
           <Select
-            className="select__sortByCategory"
+            className={styles["select__sortByCategory"]}
             options={categories}
             styles={CustomStyle}
             defaultValue={categories[0]}
           />
           <Select
-            className="select__sortByNumber"
+            className={styles["select__sortByNumber"]}
             options={numbers}
             styles={CustomStyle}
             defaultValue={numbers[0]}
           />
         </div>
 
-        <div className="phone_cards">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+          <div className={styles["phone_cards"]}>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
 
-        <div className="pagination">Pagination</div>
+          <div className={styles["pagination"]}>Pagination</div>
       </div>
     </main>
   );

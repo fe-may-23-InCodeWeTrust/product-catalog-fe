@@ -1,0 +1,110 @@
+@import '../../styles/utils';
+
+.container {
+  padding: 24px 16px;
+
+  @include onTablet {
+    padding: 24px 24px;
+  }
+
+  @include onDesktop {
+    margin-inline: auto;
+    padding: 24px 0;
+    max-width: 1136px;
+  }
+}
+
+.icons {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  line-height: 100%;
+}
+
+.icon {
+  display: block;
+  height: 16px;
+  width: 16px;
+  background-repeat: no-repeat;
+
+  &__text {
+    font-family: 'Mont', sans-serif;
+    position: absolute;
+    left: 48px;
+    font-weight: 600;
+    pointer-events: none;
+    color: $color-secondary;
+  }
+
+  &--home {
+    background-image: url(../../images/icons/Home.png);
+  }
+
+  &--arrow {
+    background-image: url(../../images/icons/Arrow.png);
+    pointer-events: none;
+  }
+}
+
+.article {
+  &--title {
+    font-family: 'Mont', sans-serif;
+    margin: 24px 0 0;
+    box-sizing: border-box;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    color: $color-primary;
+
+    @include onTablet {
+      font-size: 48px;
+      margin: 40px 0 0;
+    }
+  }
+
+  &--count-of-models {
+    font-family: 'Mont', sans-serif;
+    font-weight: 500;
+    margin: 8px 0 0;
+    color: $color-secondary;
+  }
+}
+
+select {
+  outline: 0;
+  font-family: 'Mont', sans-serif;
+  font-weight: 700;
+  height: 3em;
+  padding: 9px 11px 9px 12px;
+  color: black;
+  border-color: $color-secondary;
+  border-radius: 0.7em;
+  border: 1px solid $color-icons;
+  cursor: pointer;
+  line-height: normal;
+
+  option {
+    font-family: 'Mont', sans-serif;
+    color: inherit;
+    background-color: white;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+.phone_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  row-gap: 40px;
+  column-gap: 16px;
+}
+
+.pagination {
+  margin: 24px 0 0;
+
+  @include onTablet {
+    margin: 40px 0 40px;
+  }
+}
