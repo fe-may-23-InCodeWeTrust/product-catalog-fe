@@ -83,8 +83,7 @@ export const HotPrices = () => {
                   display: 'flex',
                   justifyContent: 'center',
                 }}
-              >
-              </div>
+              ></div>
             </SwiperSlide>
           ))}
         </Swiper>

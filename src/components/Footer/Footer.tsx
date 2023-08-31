@@ -17,24 +17,25 @@ export const Footer = () => {
 
       <div className={styles['footer__nav']}>
         <a
-          className={styles['footer__nav__item']}
+          className={`${styles['footer__nav__item']} text-uppercase`}
           href="https://github.com/fe-may-23-InCodeWeTrust"
         >
           Github
         </a>
-        <a className={styles['footer__nav__item']} href="#">
+        <a className={`${styles['footer__nav__item']} text-uppercase`} href="#">
           Contacts
         </a>
-        <a className={styles['footer__nav__item']} href="#">
+        <a className={`${styles['footer__nav__item']} text-uppercase`} href="#">
           Rights
         </a>
       </div>
 
-      <div className={styles['footer__go-back']}>
-        <p className={styles['footer__go-back__label']}>Back to top</p>
+      <div className={styles['footer__go-back']}
+      onClick={scrollToTop}
+      >
+        <p className={`${styles['footer__go-back__label']} text-uppercase`}>Back to top</p>
         <button
           className={styles['footer__go-back__button']}
-          onClick={scrollToTop}
         >
           <Arrow />
         </button>

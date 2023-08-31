@@ -22,26 +22,17 @@ export const Header = () => {
               </NavLink>
             </li>
             <li className={styles['nav__item']}>
-              <NavLink
-                to="phones"
-                className={getLinkClass}
-              >
+              <NavLink to="phones" className={getLinkClass}>
                 phones
               </NavLink>
             </li>
             <li className={styles['nav__item']}>
-              <NavLink
-                to="tablets"
-                className={getLinkClass}
-              >
+              <NavLink to="tablets" className={getLinkClass}>
                 tablets
               </NavLink>
             </li>
             <li className={styles['nav__item']}>
-              <NavLink
-                to="accessories"
-                className={getLinkClass}
-              >
+              <NavLink to="accessories" className={getLinkClass}>
                 accessories
               </NavLink>
             </li>
