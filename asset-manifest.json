@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/product_catalog_fe/static/css/main.7e5669ba.css",
-    "main.js": "/product_catalog_fe/static/js/main.fc15ee60.js",
-    "static/media/logo.svg": "/product_catalog_fe/static/media/logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
-    "static/media/Mont-Regular.otf": "/product_catalog_fe/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
-    "static/media/Mont-SemiBold.otf": "/product_catalog_fe/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
-    "static/media/Mont-Bold.otf": "/product_catalog_fe/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
-    "static/media/shopping-bag.svg": "/product_catalog_fe/static/media/shopping-bag.df23e4fbb25ff3701b16.svg",
-    "static/media/heart.svg": "/product_catalog_fe/static/media/heart.e2be53c2fc850b208105.svg",
-    "static/media/favourites.svg": "/product_catalog_fe/static/media/favourites.cc696932b63c19f48776.svg",
-    "static/media/Close.svg": "/product_catalog_fe/static/media/Close.cdfb6ae506fe360c9ad4.svg",
-    "static/media/menu.svg": "/product_catalog_fe/static/media/menu.73ddde2c093f9fb313b9.svg",
-    "static/media/arrow_left.svg": "/product_catalog_fe/static/media/arrow_left.7460d67936be8c4491a8.svg",
-    "index.html": "/product_catalog_fe/index.html",
-    "main.7e5669ba.css.map": "/product_catalog_fe/static/css/main.7e5669ba.css.map",
-    "main.fc15ee60.js.map": "/product_catalog_fe/static/js/main.fc15ee60.js.map"
+    "main.css": "/product-catalog-fe/static/css/main.98f8877a.css",
+    "main.js": "/product-catalog-fe/static/js/main.2c4d19d5.js",
+    "static/media/logo.svg": "/product-catalog-fe/static/media/logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
+    "static/media/Mont-Regular.otf": "/product-catalog-fe/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
+    "static/media/Mont-SemiBold.otf": "/product-catalog-fe/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
+    "static/media/Mont-Bold.otf": "/product-catalog-fe/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
+    "static/media/shopping-bag.svg": "/product-catalog-fe/static/media/shopping-bag.df23e4fbb25ff3701b16.svg",
+    "static/media/heart.svg": "/product-catalog-fe/static/media/heart.e2be53c2fc850b208105.svg",
+    "static/media/favourites.svg": "/product-catalog-fe/static/media/favourites.cc696932b63c19f48776.svg",
+    "static/media/Close.svg": "/product-catalog-fe/static/media/Close.cdfb6ae506fe360c9ad4.svg",
+    "static/media/menu.svg": "/product-catalog-fe/static/media/menu.73ddde2c093f9fb313b9.svg",
+    "static/media/arrow_left.svg": "/product-catalog-fe/static/media/arrow_left.7460d67936be8c4491a8.svg",
+    "index.html": "/product-catalog-fe/index.html",
+    "main.98f8877a.css.map": "/product-catalog-fe/static/css/main.98f8877a.css.map",
+    "main.2c4d19d5.js.map": "/product-catalog-fe/static/js/main.2c4d19d5.js.map"
   },
   "entrypoints": [
-    "static/css/main.7e5669ba.css",
-    "static/js/main.fc15ee60.js"
+    "static/css/main.98f8877a.css",
+    "static/js/main.2c4d19d5.js"
   ]
 }
