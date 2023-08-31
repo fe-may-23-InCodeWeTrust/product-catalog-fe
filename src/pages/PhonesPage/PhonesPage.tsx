@@ -40,49 +40,58 @@ export const PhonesPage = () => {
   };
 
   return (
-      <main className={styles["main"]}>
-        <div className={styles["container"]}>
-          <div className={styles["icons"]}>
-            <a href="#home" className={`${styles['icon']} ${styles['icon--home']}`}></a>
+    <main className={styles['main']}>
+      <div className={styles['container']}>
+        <div className={styles['icons']}>
+          <a
+            href="#home"
+            className={`${styles['icon']} ${styles['icon--home']}`}
+          ></a>
 
-            <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-              <p className={`${styles['icon__text']} text-small`}>Phones</p>
-            </a>
-          </div>
+          <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
+            <p className={`${styles['icon__text']} text-small`}>Phones</p>
+          </a>
+        </div>
 
-          <div className={styles["arcticle"]}>
-            <h1 className={styles["article--title"]}>Mobile phones</h1>
+        <div className={styles['arcticle']}>
+          <h1 className={styles['article--title']}>Mobile phones</h1>
 
-            <p className={`${styles['article--count-of-models']} text-small`}>95 models</p>
-          </div>
+          <p className={`${styles['article--count-of-models']} text-small`}>
+            95 models
+          </p>
+        </div>
 
-          <div className={styles["select"]}>
-          <p className={`${styles['select__sortByCategoryText']} text-small`}>Sort by</p>
+        <div className={styles['select']}>
+          <p className={`${styles['select__sortByCategoryText']} text-small`}>
+            Sort by
+          </p>
 
-          <p className={`${styles['select__sortByNumberText']} text-small`}>Items on page</p>
+          <p className={`${styles['select__sortByNumberText']} text-small`}>
+            Items on page
+          </p>
           <Select
-            className={styles["select__sortByCategory"]}
+            className={styles['select__sortByCategory']}
             options={categories}
             styles={CustomStyle}
             defaultValue={categories[0]}
           />
           <Select
-            className={styles["select__sortByNumber"]}
+            className={styles['select__sortByNumber']}
             options={numbers}
             styles={CustomStyle}
             defaultValue={numbers[0]}
           />
         </div>
 
-          <div className={styles["phone_cards"]}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+        <div className={styles['phone_cards']}>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
 
-          <div className={styles["pagination"]}>Pagination</div>
+        <div className={styles['pagination']}>Pagination</div>
       </div>
     </main>
   );
