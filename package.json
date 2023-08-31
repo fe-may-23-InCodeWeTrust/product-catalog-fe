@@ -1,6 +1,6 @@
 {
   "name": "product_catalog_fe",
-  "homepage": "https://fe-may-23-incodewetrust.github.io/product_catalog_fe/",
+  "homepage": "https://fe-may-23-incodewetrust.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,9 +18,9 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
-    "redux": "^4.2.1",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.7.4",
+    "redux": "^4.2.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
