@@ -5,7 +5,7 @@ type Props = {
 };
 
 interface ContextValues {
-  isLoading: boolean,
+  isLoading: boolean;
   category: string;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -22,7 +22,7 @@ export const CatalogProvider: React.FC<Props> = ({ children }) => {
       isLoading,
       category,
       setCategory,
-      setIsLoading
+      setIsLoading,
     }),
     [setCategory, isLoading],
   );
