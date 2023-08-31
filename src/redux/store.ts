@@ -10,7 +10,7 @@ const reducers = combineReducers({
 
 const store: Store<RootState> = createStore(
   reducers,
-  applyMiddleware(localStorageMiddleware)
+  applyMiddleware(localStorageMiddleware),
 );
 
 export type AppDispatch = typeof store.dispatch;

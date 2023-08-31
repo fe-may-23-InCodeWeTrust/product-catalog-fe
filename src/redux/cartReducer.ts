@@ -5,27 +5,25 @@ const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const REMOVE_ALL = 'REMOVE_ALL';
 
 type Product = {
-  id: number,
-  name: string,
-  category: string,
-  itemId: any,
-  fullPrice: number,
-  price: number,
-  screen: any,
-  capacity: any,
-  color: string,
-  ram: any,
-  year: number,
-  image: string,
-  count: number,
-}
+  id: number;
+  name: string;
+  category: string;
+  itemId: any;
+  fullPrice: number;
+  price: number;
+  screen: any;
+  capacity: any;
+  color: string;
+  ram: any;
+  year: number;
+  image: string;
+  count: number;
+};
 
 const getGoods = (): Product[] => {
   const savedCartData = localStorage.getItem('cart');
 
-  return savedCartData 
-    ? JSON.parse(savedCartData) 
-    : [];
+  return savedCartData ? JSON.parse(savedCartData) : [];
 };
 
 const initialState = {
@@ -39,7 +37,7 @@ const cartReducer = (state = initialState, action: any): InitialState => {
     case INCREASE_COUNT:
       return {
         ...state,
-        goods: state.goods.map(good => {
+        goods: state.goods.map((good) => {
           if (good.id === action.goodId) {
             return {
               ...good,
@@ -51,34 +49,31 @@ const cartReducer = (state = initialState, action: any): InitialState => {
         }),
       };
 
-      case DECREASE_COUNT:
-        return {
-          ...state,
-          goods: state.goods.map(good => {
-            if (good.id === action.goodId) {
-              return {
-                ...good,
-                count: Math.max(1, good.count - 1),
-              };
-            } else {
-              return good;
-            }
-          }),
-        };
+    case DECREASE_COUNT:
+      return {
+        ...state,
+        goods: state.goods.map((good) => {
+          if (good.id === action.goodId) {
+            return {
+              ...good,
+              count: Math.max(1, good.count - 1),
+            };
+          } else {
+            return good;
+          }
+        }),
+      };
 
     case ADD_TO_CART:
       return {
         ...state,
-        goods: [
-          ...state.goods,
-          action.payload,
-        ]
+        goods: [...state.goods, action.payload],
       };
 
     case REMOVE_FROM_CART:
       return {
         ...state,
-        goods: state.goods.filter(good => good.id !== action.goodId),
+        goods: state.goods.filter((good) => good.id !== action.goodId),
       };
 
     case REMOVE_ALL:
@@ -97,58 +92,58 @@ export const increaseCount = (goodId: number): IncreaseCount => {
   return {
     type: INCREASE_COUNT,
     goodId,
-  }
-}
+  };
+};
 
 export const decreaseCount = (goodId: number): DecreaseCount => {
   return {
     type: DECREASE_COUNT,
     goodId,
-  }
-}
+  };
+};
 
 export const addToCart = (product: any): AddToCart => {
   return {
     type: ADD_TO_CART,
     payload: product,
-  }
-}
+  };
+};
 
 export const removeFromCart = (goodId: number): RemoveFromCart => {
   return {
     type: REMOVE_FROM_CART,
     goodId,
-  }
-}
+  };
+};
 
 export const removeAll = (): RemoveAll => {
   return {
     type: REMOVE_ALL,
-  }
-}
+  };
+};
 
 type IncreaseCount = {
-  type: typeof INCREASE_COUNT,
-  goodId: number,
+  type: typeof INCREASE_COUNT;
+  goodId: number;
 };
 
 type DecreaseCount = {
-  type: typeof DECREASE_COUNT,
-  goodId: number,
+  type: typeof DECREASE_COUNT;
+  goodId: number;
 };
 
 type AddToCart = {
-  type: typeof ADD_TO_CART,
-  payload: Product,
+  type: typeof ADD_TO_CART;
+  payload: Product;
 };
 
 type RemoveFromCart = {
-  type: typeof REMOVE_FROM_CART,
-  goodId: number,
+  type: typeof REMOVE_FROM_CART;
+  goodId: number;
 };
 
 type RemoveAll = {
-  type: typeof REMOVE_ALL,
+  type: typeof REMOVE_ALL;
 };
 
 export default cartReducer;

@@ -2,7 +2,11 @@ import './CartPage.scss';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { decreaseCount, increaseCount, removeFromCart } from '../../redux/cartReducer';
+import {
+  decreaseCount,
+  increaseCount,
+  removeFromCart,
+} from '../../redux/cartReducer';
 
 export const CartPage = () => {
   const prevBtn = '<';
@@ -10,20 +14,20 @@ export const CartPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const total = goods
-    .map(good => good.price * good.count)
+    .map((good) => good.price * good.count)
     .reduce((a, b) => a + b, 0);
 
   const decreaseHandler = (goodId: number) => {
     dispatch(decreaseCount(goodId));
-  }
+  };
 
   const increaseHandler = (goodId: number) => {
     dispatch(increaseCount(goodId));
-  }
+  };
 
   const removeHandler = (goodId: number) => {
     dispatch(removeFromCart(goodId));
-  }
+  };
 
   return (
     <div className="container">
@@ -36,13 +40,11 @@ export const CartPage = () => {
       <h2 className="title">Cart</h2>
 
       {!goods.length ? (
-        <p>
-          There is no goods in the cart. Please, add some goods!
-        </p>
+        <p>There is no goods in the cart. Please, add some goods!</p>
       ) : (
         <div className="main-content">
           <div className="cart-goods">
-            {goods.map(good => (
+            {goods.map((good) => (
               <div className="cart-good" key={good.id}>
                 <div className="cart-good__view">
                   <span
@@ -50,15 +52,9 @@ export const CartPage = () => {
                     onClick={() => removeHandler(good.id)}
                   ></span>
 
-                  <img
-                    src={good.image}
-                    alt={good.name}
-                    className="good-img"
-                  />
+                  <img src={good.image} alt={good.name} className="good-img" />
 
-                  <span className="cart-good__title">
-                    {good.name}
-                  </span>
+                  <span className="cart-good__title">{good.name}</span>
                 </div>
 
                 <div className="cart-good__price">
@@ -71,9 +67,7 @@ export const CartPage = () => {
                       -
                     </button>
 
-                    <span className="quantity">
-                      {good.count}
-                    </span>
+                    <span className="quantity">{good.count}</span>
 
                     <button
                       className="btn-round"
@@ -83,18 +77,14 @@ export const CartPage = () => {
                     </button>
                   </div>
 
-                  <span className="good-price">
-                    ${good.price}
-                  </span>
+                  <span className="good-price">${good.price}</span>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="cart-price">
-            <div className="cart-price__number">
-              ${total}
-            </div>
+            <div className="cart-price__number">${total}</div>
 
             <div className="cart-price__quantity">
               Total for {goods.length} items
@@ -102,9 +92,7 @@ export const CartPage = () => {
 
             <div className="br"></div>
 
-            <button className="btn-block">
-              Checkout
-            </button>
+            <button className="btn-block">Checkout</button>
           </div>
         </div>
       )}
