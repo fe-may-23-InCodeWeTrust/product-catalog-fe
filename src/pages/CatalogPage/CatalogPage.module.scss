@@ -160,10 +160,6 @@ body {
   margin: 0;
 }
 
-.main {
-  background-color: $color-grey-background;
-}
-
 .phone_cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
