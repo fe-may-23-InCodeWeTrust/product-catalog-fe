@@ -104,6 +104,11 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
   row-gap: 40px;
   column-gap: 16px;
+  margin-top: 32px;
+
+  @include onTablet {
+    margin-top: 40px;
+  }
 }
 
 .pagination {
