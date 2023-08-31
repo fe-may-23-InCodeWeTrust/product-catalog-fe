@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import styles from './PhonesPage.module.scss';
+import React, { useContext } from 'react';
+import styles from './CatalogPage.module.scss';
 import '../../styles/_typography.scss';
 import Select from 'react-select';
 import { Card } from '../../components/PhoneCard';
+import { CatalogContext } from '../../context/CatalogContext';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -17,7 +18,9 @@ const numbers = [
   { value: 32, label: 32 },
 ];
 
-export const PhonesPage = () => {
+export const CatalogPage = () => {
+  const { catalogTitle, iconTitle } = useContext(CatalogContext);
+
   const CustomStyle = {
     option: (defaultStyles: object, { isFocused }: any) => ({
       ...defaultStyles,
@@ -49,12 +52,12 @@ export const PhonesPage = () => {
           ></a>
 
           <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>Phones</p>
+            <p className={`${styles['icon__text']} text-small`}>{iconTitle}</p>
           </a>
         </div>
 
         <div className={styles['arcticle']}>
-          <h1 className={styles['article--title']}>Mobile phones</h1>
+          <h1 className={styles['article--title']}>{catalogTitle}</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
             95 models
