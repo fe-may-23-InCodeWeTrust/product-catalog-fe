@@ -1,0 +1,71 @@
+@import 'src/styles';
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  gap: 19px;
+  position: relative;
+  left: -16px;
+  right: -16px;
+  width: calc(100% + 32px);
+
+  &__img {
+    width: 100%;
+  }
+
+  &__button {
+    display: none;
+  }
+
+  @include onTablet {
+    left: unset;
+    right: unset;
+    width: 100%;
+
+    &__button {
+      min-width: 32px;
+      height: auto;
+      border: 1px solid $color-icons;
+      border-radius: 48px;
+      background-color: $color-white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+
+      &:active {
+        border: 1px solid $color-primary;
+        background-color: $color-primary;
+
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+
+      &:hover {
+        border: 1px solid $color-primary;
+      }
+    }
+  }
+}
+
+.swiper {
+  padding-bottom: 20px !important;
+}
+
+.swiper-pagination {
+  bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+  width: 14px !important;
+  height: 4px !important;
+  color: $color-elements !important;
+  border-radius: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: $color-primary !important;
+}

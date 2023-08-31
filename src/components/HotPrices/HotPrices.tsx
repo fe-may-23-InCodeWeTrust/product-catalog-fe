@@ -42,6 +42,8 @@ export const HotPrices = () => {
     return 1;
   }, [width]);
 
+  console.log(activeSlide);
+
   return (
     <>
       <div className="price__nav">
@@ -55,7 +57,7 @@ export const HotPrices = () => {
             <ArrowLeft />
           </button>
           <button
-            disabled={activeSlide === arrayToCheck.length - 1}
+            disabled={activeSlide === arrayToCheck.length - slidesPerView}
             className="button__control"
             onClick={handleNextClick}
           >
@@ -74,11 +76,16 @@ export const HotPrices = () => {
           onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
         >
           {arrayToCheck.map((card) => (
-            <SwiperSlide
-              key={card}
-              // style={{maxWidth: 272, width: '100%'}}
-            >
-              <Card />
+            <SwiperSlide key={card}>
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <Card />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
