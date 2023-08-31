@@ -1,5 +1,5 @@
 import React from 'react';
-import './PhonesPage.scss';
+import styles from './PhonesPage.module.scss';
 import '../../styles/_typography.scss';
 import { Card } from '../../components/PhoneCard';
 
@@ -8,20 +8,20 @@ export const PhonesPage = () => {
     <>
       <header>Header</header>
 
-      <main className="main">
-        <div className="container">
-          <div className="icons">
-            <a href="#home" className="icon icon--home"></a>
+      <main className={styles["main"]}>
+        <div className={styles["container"]}>
+          <div className={styles["icons"]}>
+            <a href="#home" className={`${styles['icon']} ${styles['icon--home']}`}></a>
 
-            <a href="#" className="icon icon--arrow">
-              <p className="text-small icon__text">Phones</p>
+            <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
+              <p className={`${styles['icon__text']} text-small`}>Phones</p>
             </a>
           </div>
 
-          <div className="arcticle">
-            <h1 className="article--title">Mobile phones</h1>
+          <div className={styles["arcticle"]}>
+            <h1 className={styles["article--title"]}>Mobile phones</h1>
 
-            <p className="text-button article--count-of-models">95 models</p>
+            <p className={`${styles['article--count-of-models']} text-small`}>95 models</p>
           </div>
 
           <div className="select">
@@ -63,6 +63,7 @@ export const PhonesPage = () => {
           </div>
 
           <div className="phone_cards">
+            <Card />
             <Card />
             <Card />
             <Card />
