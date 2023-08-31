@@ -4,7 +4,7 @@ import React from 'react';
 
 type Props = {
   product: Product;
-}
+};
 
 export const Card: React.FC<Props> = ({ product }) => {
   return (
@@ -23,7 +23,9 @@ export const Card: React.FC<Props> = ({ product }) => {
 
       <div className={styles['phone-card__price-block']}>
         <p className={`${styles['phone-card__price']} h2`}>{product.price}$</p>
-        <p className={`${styles['phone-card__price-discount']} h2`}>{product.fullPrice}$</p>
+        <p className={`${styles['phone-card__price-discount']} h2`}>
+          {product.fullPrice}$
+        </p>
       </div>
 
       <div className={styles['phone-card__divider']}></div>

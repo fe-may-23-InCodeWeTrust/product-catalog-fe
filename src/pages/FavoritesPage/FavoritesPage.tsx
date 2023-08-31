@@ -24,8 +24,7 @@ export const FavoritesPage = () => {
           </p>
         </div>
 
-        <div className={styles['phone_cards']}>
-        </div>
+        <div className={styles['phone_cards']}></div>
 
         <div className={styles['pagination']}>Pagination</div>
       </div>
