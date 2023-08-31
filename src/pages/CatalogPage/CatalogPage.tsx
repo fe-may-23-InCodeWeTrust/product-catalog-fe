@@ -76,7 +76,7 @@ export const CatalogPage: React.FC = () => {
     setIsLoading(true);
     ProductService.getProducts(category, offset, limit, sortBy)
       .then((data) => {
-        setProducts(data);
+        setProducts(data.rows);
       }).catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
   }, [limit, offset, category, sortBy, category]);
