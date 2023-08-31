@@ -15,48 +15,45 @@ export const Header = () => {
         <div className={styles['left__logo']}>
           <img src={logo} alt="Nice Gadgets logo" className="logo" />
         </div>
-  
+
         <nav className={`${styles['left__nav']} ${styles['nav']}`}>
           <ul className={styles['nav__list']}>
             <li className={styles['nav__item']}>
-              <NavLink 
-                  to="/" 
-                  className={getLinkClass}
-              >
+              <NavLink to="/" className={getLinkClass}>
                 home
               </NavLink>
             </li>
             <li className={styles['nav__item']}>
-              <NavLink 
-                to="phones" 
+              <NavLink
+                to="phones"
                 className={getLinkClass}
                 onClick={() => {
-                  setCatalogTitle('Mobile phones')
-                  setIconTitle('Phones')
+                  setCatalogTitle('Mobile phones');
+                  setIconTitle('Phones');
                 }}
               >
                 phones
               </NavLink>
             </li>
             <li className={styles['nav__item']}>
-              <NavLink 
-                to="tablets" 
+              <NavLink
+                to="tablets"
                 className={getLinkClass}
                 onClick={() => {
-                  setCatalogTitle('Tablets')
-                  setIconTitle('Tablets')
+                  setCatalogTitle('Tablets');
+                  setIconTitle('Tablets');
                 }}
               >
                 tablets
               </NavLink>
             </li>
             <li className={styles['nav__item']}>
-              <NavLink 
-                to="accessories" 
+              <NavLink
+                to="accessories"
                 className={getLinkClass}
                 onClick={() => {
-                  setCatalogTitle('Accessories')
-                  setIconTitle('Accessories')
+                  setCatalogTitle('Accessories');
+                  setIconTitle('Accessories');
                 }}
               >
                 accessories
@@ -65,7 +62,7 @@ export const Header = () => {
           </ul>
         </nav>
       </div>
-  
+
       <div className={`${styles['header__icons']} ${styles['icons']}`}>
         <div
           className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
@@ -90,5 +87,5 @@ export const Header = () => {
         </div>
       </div>
     </div>
-  )
+  );
 };
