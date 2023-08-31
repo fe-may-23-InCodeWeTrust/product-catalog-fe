@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './CatalogPage.module.scss';
 import '../../styles/_typography.scss';
 import Select from 'react-select';
 import { Card } from '../../components/PhoneCard';
 import { CatalogContext } from '../../context/CatalogContext';
+import { Product } from '../../utils/Types/Product';
+import * as ProductService from '../../api/fetch_functions'
+import { values } from 'lodash';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -18,8 +21,18 @@ const numbers = [
   { value: 32, label: 32 },
 ];
 
-export const CatalogPage = () => {
+  type Props = {
+  category: string;
+  }
+
+export const CatalogPage: React.FC<Props> = ({ category }) => {
   const { catalogTitle, iconTitle } = useContext(CatalogContext);
+  const [offset, setOffset] = useState('0');
+  const [limit, setLimit] = useState('16')
+  const [sortBy, setSortBy] = useState('newest');
+  const [error, setError] = useState('');
+  const [order, setOrder] = useState('')
+  const [products, setProducts] = useState<Product[]>([])
 
   const CustomStyle = {
     option: (defaultStyles: object, { isFocused }: any) => ({
@@ -42,6 +55,13 @@ export const CatalogPage = () => {
     }),
   };
 
+  useEffect(() => {
+    ProductService.getProducts(category, offset, limit, sortBy)
+      .then((data) => {
+        setProducts(data);
+      }).catch(() => setError('Wrong URL - could not make a request'));
+  }, [limit, offset, category, sortBy]);
+
   return (
     <main className={styles['main']}>
       <div className={styles['container']}>
@@ -52,7 +72,7 @@ export const CatalogPage = () => {
           ></a>
 
           <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>{iconTitle}</p>
+            <p className={`${styles['icon__text']} text-small`}>{category}</p>
           </a>
         </div>
 
@@ -77,21 +97,29 @@ export const CatalogPage = () => {
             options={categories}
             styles={CustomStyle}
             defaultValue={categories[0]}
+            onChange={(event) => {
+              if (event?.value) {
+                setSortBy(event.value.toString())}
+              }
+            }
           />
           <Select
             className={styles['select__sortByNumber']}
             options={numbers}
             styles={CustomStyle}
             defaultValue={numbers[0]}
+            onChange={(event) => {
+              if (event?.value) {
+                setLimit(event.value.toString())}
+              }
+            }
           />
         </div>
 
         <div className={styles['phone_cards']}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {products.map(product => (
+            <Card key={product.id} product={product} />
+          ))}
         </div>
 
         <div className={styles['pagination']}>Pagination</div>

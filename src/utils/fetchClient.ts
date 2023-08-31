@@ -1,4 +1,4 @@
-const BASE_URL = '';
+const BASE_URL = 'https://product-catalog-be-lf4l.onrender.com/';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
