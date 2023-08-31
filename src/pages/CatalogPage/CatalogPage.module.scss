@@ -178,3 +178,10 @@ body {
     margin: 40px 0 40px;
   }
 }
+
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}

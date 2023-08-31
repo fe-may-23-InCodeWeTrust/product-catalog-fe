@@ -1,4 +1,3 @@
-import { Card } from '../../components/PhoneCard';
 import styles from './FavoritesPage.module.scss';
 import React from 'react';
 
