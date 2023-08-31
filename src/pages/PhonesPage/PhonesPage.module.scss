@@ -31,6 +31,7 @@
     font-family: 'Mont', sans-serif;
     position: absolute;
     left: 48px;
+    top: 11%;
     font-weight: 600;
     pointer-events: none;
     color: $color-secondary;
@@ -157,6 +158,10 @@ select {
 
 body {
   margin: 0;
+}
+
+.main {
+  background-color: $color-grey-background;
 }
 
 .phone_cards {
