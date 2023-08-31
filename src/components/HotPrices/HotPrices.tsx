@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 import { Navigation } from 'swiper';
@@ -84,7 +84,6 @@ export const HotPrices = () => {
                   justifyContent: 'center',
                 }}
               >
-                <Card />
               </div>
             </SwiperSlide>
           ))}
