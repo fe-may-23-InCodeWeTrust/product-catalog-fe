@@ -17,6 +17,8 @@
   }
 
   &__image-container {
+    width: 208px;
+    height: 196px;
     transition: transform 0.3s ease-in-out;
 
     &:hover {
@@ -25,8 +27,9 @@
   }
 
   &__image {
+    cursor: pointer;
     display: block;
-    width: 100%;
+    margin: 0 auto;
     height: 100%;
   }
 
@@ -49,6 +52,10 @@
   &__title {
     margin-top: 16px;
     width: 200px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__price-block {

@@ -8,7 +8,7 @@ const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} ${isActive ? styles['is-active'] : ''} `;
 
 export const Header = () => {
-  const { setCatalogTitle, setIconTitle } = useContext(CatalogContext);
+  const { setCategory } = useContext(CatalogContext);
   return (
     <div className={styles['header']}>
       <div className={`${styles['header__left']} ${styles['left']}`}>
@@ -28,8 +28,7 @@ export const Header = () => {
                 to="phones"
                 className={getLinkClass}
                 onClick={() => {
-                  setCatalogTitle('Mobile phones');
-                  setIconTitle('Phones');
+                  setCategory('phones');
                 }}
               >
                 phones
@@ -40,8 +39,7 @@ export const Header = () => {
                 to="tablets"
                 className={getLinkClass}
                 onClick={() => {
-                  setCatalogTitle('Tablets');
-                  setIconTitle('Tablets');
+                  setCategory('tablets');
                 }}
               >
                 tablets
@@ -52,8 +50,7 @@ export const Header = () => {
                 to="accessories"
                 className={getLinkClass}
                 onClick={() => {
-                  setCatalogTitle('Accessories');
-                  setIconTitle('Accessories');
+                  setCategory('accessories');
                 }}
               >
                 accessories
