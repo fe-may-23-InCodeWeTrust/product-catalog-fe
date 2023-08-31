@@ -17,7 +17,7 @@ export const FavoritesPage = () => {
           </a>
         </div>
 
-        <div className={styles['arcticle']}>
+        <div className={styles['article']}>
           <h1 className={styles['article--title']}>Favorites</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
