@@ -1,5 +1,27 @@
+@import 'src/styles';
+@import './styles/utils';
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.content_container {
+  background-color: $color-grey-background;
+}
+
+.content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @include onTablet {
+    padding: 0 24px;
+  }
+
+  @include onDesktop {
+    padding: 0 32px;
+  }
 }

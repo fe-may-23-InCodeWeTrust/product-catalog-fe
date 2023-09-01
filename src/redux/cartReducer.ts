@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const INCREASE_COUNT = 'INCREASE_COUNT';
 const DECREASE_COUNT = 'DECREASE_COUNT';
 const ADD_TO_CART = 'ADD_TO_CART';

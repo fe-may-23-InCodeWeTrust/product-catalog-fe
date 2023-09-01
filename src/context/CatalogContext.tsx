@@ -5,26 +5,21 @@ type Props = {
 };
 
 interface ContextValues {
-  catalogTitle: string;
-  iconTitle: string;
-  setCatalogTitle: React.Dispatch<React.SetStateAction<string>>;
-  setIconTitle: React.Dispatch<React.SetStateAction<string>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const CatalogContext = React.createContext({} as ContextValues);
 
 export const CatalogProvider: React.FC<Props> = ({ children }) => {
-  const [catalogTitle, setCatalogTitle] = useState('');
-  const [iconTitle, setIconTitle] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const contextValues: ContextValues = useMemo(
     () => ({
-      iconTitle,
-      catalogTitle,
-      setCatalogTitle,
-      setIconTitle,
+      isLoading,
+      setIsLoading,
     }),
-    [catalogTitle, iconTitle],
+    [isLoading],
   );
 
   return (

@@ -1,4 +1,3 @@
-import { Card } from '../../components/PhoneCard';
 import styles from './FavoritesPage.module.scss';
 import React from 'react';
 
@@ -25,13 +24,7 @@ export const FavoritesPage = () => {
           </p>
         </div>
 
-        <div className={styles['phone_cards']}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <div className={styles['phone_cards']}></div>
 
         <div className={styles['pagination']}>Pagination</div>
       </div>

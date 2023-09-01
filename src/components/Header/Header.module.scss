@@ -1,4 +1,4 @@
-@import '../../styles/utils/';
+@import '../../styles/utils';
 
 .header {
   display: flex;
@@ -54,6 +54,8 @@
 
     &__item {
       position: relative;
+      display: flex;
+      align-items: stretch;
     }
 
     &__item:not(:last-child) {
@@ -63,7 +65,11 @@
     &__link {
       color: $color-secondary;
       text-decoration: none;
-      text-transform: uppercase;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $color-primary;
+      }
     }
   }
 

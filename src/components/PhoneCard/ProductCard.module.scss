@@ -1,7 +1,8 @@
 @import '../../styles/utils';
 
 .phone-card {
-  width: 288px;
+  width: 100%;
+  max-width: 272px;
   height: 100%;
   border-radius: 8px;
   border: 0.5px #e2e6e9 solid;
@@ -13,10 +14,12 @@
   background: $color-white;
 
   @include onTablet {
-    width: 272px;
+    width: 100%;
   }
 
   &__image-container {
+    width: 208px;
+    height: 196px;
     transition: transform 0.3s ease-in-out;
 
     &:hover {
@@ -25,8 +28,9 @@
   }
 
   &__image {
+    cursor: pointer;
     display: block;
-    width: 100%;
+    margin: 0 auto;
     height: 100%;
   }
 
@@ -49,6 +53,10 @@
   &__title {
     margin-top: 16px;
     width: 200px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__price-block {
@@ -97,7 +105,7 @@
   }
 
   .add-to-favorites {
-    flex-grow: 1;
+    width: 40px;
     height: 40px;
     border-radius: 48px;
     border: 0.5px $color-icons solid;
