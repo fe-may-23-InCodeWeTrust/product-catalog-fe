@@ -1,5 +1,4 @@
-@import '../../styles/utils/'; 
-
+@import '../../styles/utils/';
 
 .phone_cards {
   display: grid;
@@ -7,7 +6,6 @@
   row-gap: 40px;
   column-gap: 16px;
 }
-
 
 .loader_container {
   grid-column: 1 / 3;

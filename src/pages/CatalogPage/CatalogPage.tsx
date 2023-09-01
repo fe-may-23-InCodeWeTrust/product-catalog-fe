@@ -102,7 +102,6 @@ export const CatalogPage: React.FC = () => {
             95 models
           </p>
         </div>
-
         <div className={styles['select']}>
           <p className={`${styles['select__sortByCategoryText']} text-small`}>
             Sort by
