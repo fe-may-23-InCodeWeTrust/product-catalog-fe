@@ -3,13 +3,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './CatalogPage.module.scss';
 import '../../styles/_typography.scss';
 import Select from 'react-select';
-import { ProductCard } from '../../components/ProductCard';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
-import { JellyTriangle } from '@uiball/loaders';
 import { CatalogContext } from '../../context/CatalogContext';
+import { ProductsList } from '../../components/ProductsList/ProductsList';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -82,80 +81,64 @@ export const CatalogPage: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, [limit, offset, category, sortBy, category]);
 
-  if (isLoading) {
-    return (
-      <div className={styles['loader_container']}>
-        <JellyTriangle size={100} speed={1.75} color="black" />
-      </div>
-    );
-  } else {
-    return (
-      <main className={styles['main']}>
-        <div className={styles['container']}>
-          <div className={styles['icons']}>
-            <a
-              href="#home"
-              className={`${styles['icon']} ${styles['icon--home']}`}
-            ></a>
+  return (
+    <main className={styles['main']}>
+      <div className={styles['container']}>
+        <div className={styles['icons']}>
+          <a
+            href="#home"
+            className={`${styles['icon']} ${styles['icon--home']}`}
+          ></a>
 
-            <a
-              href="#"
-              className={`${styles['icon']} ${styles['icon--arrow']}`}
-            >
-              <p className={`${styles['icon__text']} text-small`}>{category}</p>
-            </a>
-          </div>
-
-          <div className={styles['arcticle']}>
-            <h1 className={styles['article--title']}>{catalogTitle}</h1>
-
-            <p className={`${styles['article--count-of-models']} text-small`}>
-              95 models
-            </p>
-          </div>
-
-          <div className={styles['select']}>
-            <p className={`${styles['select__sortByCategoryText']} text-small`}>
-              Sort by
-            </p>
-
-            <p className={`${styles['select__sortByNumberText']} text-small`}>
-              Items on page
-            </p>
-            <Select
-              className={styles['select__sortByCategory']}
-              options={categories}
-              styles={CustomStyle}
-              defaultValue={categories[0]}
-              onChange={(event) => {
-                if (event?.value) {
-                  setSortBy(event.value.toString());
-                }
-              }}
-            />
-            <Select
-              className={styles['select__sortByNumber']}
-              options={numbers}
-              styles={CustomStyle}
-              defaultValue={numbers[0]}
-              onChange={(event) => {
-                if (event?.value) {
-                  setLimit(event.value.toString());
-                }
-              }}
-            />
-          </div>
-
-          {error && <div>There is some problems occured</div>}
-
-          <div className={styles['phone_cards']}>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          <Pagination currentPage={1} totalPages={10} />
+          <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
+            <p className={`${styles['icon__text']} text-small`}>{category}</p>
+          </a>
         </div>
-      </main>
-    );
-  }
+
+        <div className={styles['arcticle']}>
+          <h1 className={styles['article--title']}>{catalogTitle}</h1>
+
+          <p className={`${styles['article--count-of-models']} text-small`}>
+            95 models
+          </p>
+        </div>
+
+        <div className={styles['select']}>
+          <p className={`${styles['select__sortByCategoryText']} text-small`}>
+            Sort by
+          </p>
+
+          <p className={`${styles['select__sortByNumberText']} text-small`}>
+            Items on page
+          </p>
+          <Select
+            className={styles['select__sortByCategory']}
+            options={categories}
+            styles={CustomStyle}
+            defaultValue={categories[0]}
+            onChange={(event) => {
+              if (event?.value) {
+                setSortBy(event.value.toString());
+              }
+            }}
+          />
+          <Select
+            className={styles['select__sortByNumber']}
+            options={numbers}
+            styles={CustomStyle}
+            defaultValue={numbers[0]}
+            onChange={(event) => {
+              if (event?.value) {
+                setLimit(event.value.toString());
+              }
+            }}
+          />
+        </div>
+
+        {error && <div>There is some problems occured</div>}
+        <ProductsList products={products} />
+        <Pagination currentPage={1} totalPages={10} />
+      </div>
+    </main>
+  );
 };
