@@ -8,7 +8,7 @@ import {
 } from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
-import { Card } from '../../components/PhoneCard';
+import { ProductCard } from '../../components/ProductCard';
 
 export const FavoritesPage = () => {
   const faviritesGoods = useSelector(
@@ -54,7 +54,7 @@ export const FavoritesPage = () => {
 
         <div className={styles['phone_cards']}>
           {faviritesGoods.map((product) => (
-            <Card
+            <ProductCard
               key={product.id}
               product={product}
               onAddToCart={addProductToCart}

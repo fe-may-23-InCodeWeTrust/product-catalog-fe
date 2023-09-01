@@ -160,24 +160,10 @@ body {
   margin: 0;
 }
 
-.phone_cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
-  row-gap: 40px;
-  column-gap: 16px;
-}
-
 .pagination {
   margin: 24px 0 0;
 
   @include onTablet {
     margin: 40px 0 40px;
   }
-}
-
-.loader_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
 }

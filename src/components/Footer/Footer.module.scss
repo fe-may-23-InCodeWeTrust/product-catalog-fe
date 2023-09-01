@@ -10,6 +10,7 @@
   gap: 32px;
   border-top: 1px solid $color-elements;
   margin-top: auto;
+  background-color: $color-white;
 
   @include onTablet {
     flex-direction: row;
