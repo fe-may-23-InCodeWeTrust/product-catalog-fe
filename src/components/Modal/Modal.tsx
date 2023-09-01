@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import './Modal.scss';
 
 type Props = {
   price: number;
   onClose: () => void;
-}
+};
 
 export const Modal: React.FC<Props> = ({ price, onClose }) => {
   return (
@@ -15,12 +15,9 @@ export const Modal: React.FC<Props> = ({ price, onClose }) => {
 
       <p className="modal-buy__text">Thanks for choosing our store.</p>
 
-      <button
-        className="btn-block"
-        onClick={onClose}
-      >
+      <button className="btn-block" onClick={onClose}>
         Close
       </button>
     </div>
-  )
-}
+  );
+};

@@ -41,7 +41,7 @@ export const CartPage = () => {
   const buyGoodsHandler = () => {
     setIsBlackout(false);
     dispatch(removeAll());
-  }
+  };
 
   return (
     <div className="cart_container">
@@ -113,10 +113,7 @@ export const CartPage = () => {
 
             <div className="br"></div>
 
-            <button 
-              className="btn-block"
-              onClick={checkoutHandler}
-            >
+            <button className="btn-block" onClick={checkoutHandler}>
               Checkout
             </button>
           </div>
