@@ -11,6 +11,13 @@ import { LeapFrog } from '@uiball/loaders';
 import 'swiper/scss';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { Product } from '../../utils/Types/Product';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/favoriteReducer';
+import { addToCart } from '../../redux/cartReducer';
 
 type ProductsSliderProps = {
   title: string;
@@ -25,6 +32,25 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
 }) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+
+  const faviritesGoods = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods,
+  );
+  const dispatch = useDispatch<AppDispatch>();
+
+  const toggleFavorites = (product: Product) => {
+    const foundedGood = faviritesGoods.find((good) => good.id === product.id);
+
+    if (foundedGood) {
+      dispatch(removeFromFavorites(product.id));
+    } else {
+      dispatch(addToFavorites(product));
+    }
+  };
+
+  const addProductToCart = (product: Product) => {
+    dispatch(addToCart(product));
+  };
 
   const { width = 0 } = useWindowSize();
 
@@ -101,7 +127,11 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
                     justifyContent: 'center',
                   }}
                 >
-                  <ProductCard product={card} />
+                  <ProductCard
+                    product={card}
+                    onAddToCart={addProductToCart}
+                    onToggleFavorites={toggleFavorites}
+                  />
                 </div>
               </SwiperSlide>
             ))}
