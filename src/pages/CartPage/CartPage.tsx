@@ -73,7 +73,11 @@ export const CartPage = () => {
                     onClick={() => removeHandler(good.id)}
                   ></span>
 
-                  <img src={good.image} alt={good.name} className="good-img" />
+                  <img
+                    src={`https://product-catalog-be-lf4l.onrender.com/${good.image}`}
+                    alt={good.name}
+                    className="good-img"
+                  />
 
                   <span className="cart-good__title">{good.name}</span>
                 </div>
