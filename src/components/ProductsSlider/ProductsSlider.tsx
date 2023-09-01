@@ -49,10 +49,12 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
   };
 
   const addProductToCart = (product: Product) => {
-    dispatch(addToCart({
-      ...product,
-      count: 1,
-    }));
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
   };
 
   const { width = 0 } = useWindowSize();

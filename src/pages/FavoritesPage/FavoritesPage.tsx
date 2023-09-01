@@ -27,10 +27,12 @@ export const FavoritesPage = () => {
   };
 
   const addProductToCart = (product: Product) => {
-    dispatch(addToCart({
-      ...product,
-      count: 1,
-    }));
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
   };
 
   return (

@@ -35,10 +35,12 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
   };
 
   const addProductToCart = (product: Product) => {
-    dispatch(addToCart({
-      ...product,
-      count: 1,
-    }));
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
   };
 
   return (
