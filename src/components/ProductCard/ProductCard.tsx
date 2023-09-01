@@ -6,7 +6,7 @@ type Props = {
   product: Product;
 };
 
-export const Card: React.FC<Props> = ({ product }) => {
+export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div className={styles['phone-card']}>
       <div className={styles['phone-card__image-container']}>

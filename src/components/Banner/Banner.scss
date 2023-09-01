@@ -8,6 +8,7 @@
   left: -16px;
   right: -16px;
   width: calc(100% + 32px);
+  margin-bottom: 56px;
 
   &__img {
     width: 100%;
@@ -21,6 +22,7 @@
     left: unset;
     right: unset;
     width: 100%;
+    margin-bottom: 64px;
 
     &__button {
       min-width: 32px;
@@ -50,23 +52,27 @@
       }
     }
   }
-}
 
-.swiper {
-  padding-bottom: 20px !important;
-}
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
 
-.swiper-pagination {
-  bottom: 0 !important;
-}
+  .swiper {
+    padding-bottom: 20px !important;
+  }
 
-.swiper-pagination-bullet {
-  width: 14px !important;
-  height: 4px !important;
-  color: $color-elements !important;
-  border-radius: 0 !important;
-}
+  .swiper-pagination {
+    bottom: 0 !important;
+  }
 
-.swiper-pagination-bullet-active {
-  background: $color-primary !important;
+  .swiper-pagination-bullet {
+    width: 14px !important;
+    height: 4px !important;
+    color: $color-elements !important;
+    border-radius: 0 !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: $color-primary !important;
+  }
 }

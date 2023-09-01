@@ -1,18 +1,44 @@
 import './HomePage.scss';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Banner } from '../../components/Banner';
-import { NewModels } from '../../components/NewModels';
 import { CategoryShop } from '../../components/CategoryShop';
-import { HotPrices } from '../../components/HotPrices';
+import { ProductsSlider } from '../../components/ProductsSlider';
+import { Product } from '../../utils/Types/Product';
+import { CatalogContext } from '../../context/CatalogContext';
+import * as ProductService from '../../api/fetch_functions';
 
 export const HomePage = () => {
+  const [hotPrices, setHotPrices] = useState<Product[]>([]);
+  const [newModels, setNewModels] = useState<Product[]>([]);
+  const { isLoading, setIsLoading } = useContext(CatalogContext);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    setIsLoading(true);
+    ProductService.getNewProducts().then((data) => setNewModels(data));
+    ProductService.getHotProducts()
+      .then((data) => setHotPrices(data))
+      .catch(() => setError('Wrong URL - could not make a request'))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <div>
       <h1 className="title">Welcome to Nice Gadgets store!</h1>
       <Banner />
-      <NewModels />
+      <ProductsSlider
+        title={'Brand new models'}
+        products={newModels}
+        isLoading={isLoading}
+      />
       <CategoryShop />
-      <HotPrices />
+      <ProductsSlider
+        title={'Hot Prices'}
+        products={hotPrices}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
