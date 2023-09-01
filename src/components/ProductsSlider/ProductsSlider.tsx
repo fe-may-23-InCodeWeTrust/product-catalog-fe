@@ -107,6 +107,28 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
             ))}
           </Swiper>
         )}
+
+        <Swiper
+          onSwiper={(swiper) => {
+            setSwiper(swiper);
+          }}
+          modules={[Navigation]}
+          spaceBetween={16}
+          slidesPerView={slidesPerView}
+          onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+        >
+          {arrayToCheck.map((card) => (
+            <SwiperSlide key={card}>
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              ></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </>
   );

@@ -1,9 +1,11 @@
 @import 'src/styles';
+@import './styles/utils';
 
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: $color-grey-background;
 }
 
 .content {
