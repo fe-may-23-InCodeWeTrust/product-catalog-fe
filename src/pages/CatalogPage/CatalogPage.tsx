@@ -12,7 +12,10 @@ import { JellyTriangle } from '@uiball/loaders';
 import { CatalogContext } from '../../context/CatalogContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { addToFavorites, removeFromFavorites } from '../../redux/favoriteReducer';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
 
 const categories = [
