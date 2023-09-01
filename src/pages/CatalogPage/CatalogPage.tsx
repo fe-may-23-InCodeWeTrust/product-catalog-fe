@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './CatalogPage.module.scss';
 import '../../styles/_typography.scss';
 import Select from 'react-select';
-import { Card } from '../../components/PhoneCard';
+import { ProductCard } from '../../components/ProductCard';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
@@ -150,7 +150,7 @@ export const CatalogPage: React.FC = () => {
 
           <div className={styles['phone_cards']}>
             {products.map((product) => (
-              <Card key={product.id} product={product} />
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
           <Pagination currentPage={1} totalPages={10} />

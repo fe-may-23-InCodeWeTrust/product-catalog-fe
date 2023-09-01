@@ -11,3 +11,11 @@ export const getProducts = (
     `products?productType=${category}&offset=${offset}&limit=${limit}&order=${order}`,
   );
 };
+
+export const getHotProducts = () => {
+  return client.get<Product[]>(`products/discount`);
+};
+
+export const getNewProducts = () => {
+  return client.get<Product[]>(`products/new`);
+};
