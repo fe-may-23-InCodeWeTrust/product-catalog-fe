@@ -228,4 +228,9 @@
   &:hover {
     opacity: 0.7;
   }
+
+  &:active {
+    background-color: #fff;
+    color: $color-accent;
+  }
 }
