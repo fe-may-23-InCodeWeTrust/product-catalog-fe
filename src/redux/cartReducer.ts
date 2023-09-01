@@ -33,7 +33,10 @@ const initialState = {
 
 type InitialState = typeof initialState;
 
-const cartReducer = (state = initialState, action: ActionTypes): InitialState => {
+const cartReducer = (
+  state = initialState,
+  action: ActionTypes,
+): InitialState => {
   switch (action.type) {
     case INCREASE_COUNT:
       return {
@@ -147,7 +150,8 @@ type RemoveAll = {
   type: typeof REMOVE_ALL;
 };
 
-type ActionTypes = IncreaseCount
+type ActionTypes =
+  | IncreaseCount
   | DecreaseCount
   | AddToCart
   | RemoveFromCart

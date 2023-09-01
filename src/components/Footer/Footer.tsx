@@ -30,13 +30,11 @@ export const Footer = () => {
         </a>
       </div>
 
-      <div className={styles['footer__go-back']}
-      onClick={scrollToTop}
-      >
-        <p className={`${styles['footer__go-back__label']} text-uppercase`}>Back to top</p>
-        <button
-          className={styles['footer__go-back__button']}
-        >
+      <div className={styles['footer__go-back']} onClick={scrollToTop}>
+        <p className={`${styles['footer__go-back__label']} text-uppercase`}>
+          Back to top
+        </p>
+        <button className={styles['footer__go-back__button']}>
           <Arrow />
         </button>
       </div>

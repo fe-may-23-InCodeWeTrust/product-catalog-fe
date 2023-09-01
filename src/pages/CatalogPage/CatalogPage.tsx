@@ -10,6 +10,10 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
 import { JellyTriangle } from '@uiball/loaders';
 import { CatalogContext } from '../../context/CatalogContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { addToFavorites, removeFromFavorites } from '../../redux/favoriteReducer';
+import { addToCart } from '../../redux/cartReducer';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -31,6 +35,25 @@ export const CatalogPage: React.FC = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
+
+  const faviritesGoods = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods,
+  );
+  const dispatch = useDispatch<AppDispatch>();
+
+  const toggleFavorites = (product: Product) => {
+    const foundedGood = faviritesGoods.find((good) => good.id === product.id);
+
+    if (foundedGood) {
+      dispatch(removeFromFavorites(product.id));
+    } else {
+      dispatch(addToFavorites(product));
+    }
+  };
+
+  const addProductToCart = (product: Product) => {
+    dispatch(addToCart(product));
+  };
 
   const category = location.pathname.slice(1);
   console.log(category);
@@ -150,7 +173,12 @@ export const CatalogPage: React.FC = () => {
 
           <div className={styles['phone_cards']}>
             {products.map((product) => (
-              <Card key={product.id} product={product} />
+              <Card
+                key={product.id}
+                product={product}
+                onAddToCart={addProductToCart}
+                onToggleFavorites={toggleFavorites}
+              />
             ))}
           </div>
           <Pagination currentPage={1} totalPages={10} />

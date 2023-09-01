@@ -1,4 +1,4 @@
-import { Product } from "../utils/Types/Product";
+import { Product } from '../utils/Types/Product';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
@@ -17,7 +17,10 @@ const initialState = {
 
 type InitialState = typeof initialState;
 
-const favoriteReducer = (state = initialState, action: ActionsTypes): InitialState => {
+const favoriteReducer = (
+  state = initialState,
+  action: ActionsTypes,
+): InitialState => {
   switch (action.type) {
     case ADD_TO_FAVORITES:
       return {
@@ -29,7 +32,7 @@ const favoriteReducer = (state = initialState, action: ActionsTypes): InitialSta
       return {
         ...state,
         favoriteGoods: state.favoriteGoods.filter(
-          (good) => good.id !== action.goodId
+          (good) => good.id !== action.goodId,
         ),
       };
 
@@ -38,7 +41,6 @@ const favoriteReducer = (state = initialState, action: ActionsTypes): InitialSta
         ...state,
         favoriteGoods: [],
       };
-
 
     default:
       return state;
@@ -80,8 +82,6 @@ type RemoveAll = {
   type: typeof REMOVE_ALL_FAVORITES;
 };
 
-type ActionsTypes = AddToFavorites
-  | RemoveFromFavorites
-  | RemoveAll;
+type ActionsTypes = AddToFavorites | RemoveFromFavorites | RemoveAll;
 
 export default favoriteReducer;
