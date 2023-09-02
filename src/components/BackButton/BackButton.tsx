@@ -9,14 +9,11 @@ export const BackButton = () => {
 
   const goBack = () => {
     navigate(-1);
-  }
+  };
 
   return (
-    <button
-      className={styles['back-btn']}
-      onClick={goBack}
-    >
+    <button className={styles['back-btn']} onClick={goBack}>
       {prevBtn}&nbsp; Back
     </button>
   );
-}
+};
