@@ -10,8 +10,26 @@
   width: calc(100% + 32px);
   margin-bottom: 56px;
 
+  &__container {
+    overflow: hidden;
+    padding-top: 100%;
+    position: relative;
+    width: 100%;
+
+    @include onTablet {
+      padding-top: 39%;
+      height: auto;
+    }
+  }
+
   &__img {
     width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
   }
 
   &__button {
@@ -33,7 +51,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
 
       &:active {
         border: 1px solid $color-primary;
@@ -59,6 +77,11 @@
 
   .swiper {
     padding-bottom: 20px !important;
+    width: 100%;
+  }
+
+  .swiper-slide {
+    align-items: center;
   }
 
   .swiper-pagination {
