@@ -1,17 +1,22 @@
 import './CartPage.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import {
   decreaseCount,
   increaseCount,
   removeFromCart,
+  removeAll,
 } from '../../redux/cartReducer';
+import { BackDrop } from '../../components/BackDrop/BackDrop';
+import { Modal } from '../../components/Modal/Modal';
 
 export const CartPage = () => {
   const prevBtn = '<';
+
   const goods = useSelector((state: RootState) => state.cart.goods);
   const dispatch = useDispatch<AppDispatch>();
+  const [isBlackout, setIsBlackout] = useState(false);
 
   const total = goods
     .map((good) => good.price * good.count)
@@ -29,6 +34,15 @@ export const CartPage = () => {
     dispatch(removeFromCart(goodId));
   };
 
+  const checkoutHandler = () => {
+    setIsBlackout(true);
+  };
+
+  const buyGoodsHandler = () => {
+    setIsBlackout(false);
+    dispatch(removeAll());
+  };
+
   return (
     <div className="cart_container">
       <div>
@@ -38,6 +52,13 @@ export const CartPage = () => {
       </div>
 
       <h2 className="title">Cart</h2>
+
+      {isBlackout && (
+        <>
+          <BackDrop onClick={buyGoodsHandler} />
+          <Modal price={total} onClose={buyGoodsHandler} />
+        </>
+      )}
 
       {!goods.length ? (
         <p>There is no goods in the cart. Please, add some goods!</p>
@@ -52,7 +73,11 @@ export const CartPage = () => {
                     onClick={() => removeHandler(good.id)}
                   ></span>
 
-                  <img src={good.image} alt={good.name} className="good-img" />
+                  <img
+                    src={`https://product-catalog-be-lf4l.onrender.com/${good.image}`}
+                    alt={good.name}
+                    className="good-img"
+                  />
 
                   <span className="cart-good__title">{good.name}</span>
                 </div>
@@ -92,7 +117,9 @@ export const CartPage = () => {
 
             <div className="br"></div>
 
-            <button className="btn-block">Checkout</button>
+            <button className="btn-block" onClick={checkoutHandler}>
+              Checkout
+            </button>
           </div>
         </div>
       )}

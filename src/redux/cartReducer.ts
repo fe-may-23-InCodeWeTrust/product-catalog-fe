@@ -9,13 +9,13 @@ type Product = {
   id: number;
   name: string;
   category: string;
-  itemId: any;
+  itemId: string;
   fullPrice: number;
   price: number;
-  screen: any;
-  capacity: any;
+  screen: string;
+  capacity: string;
   color: string;
-  ram: any;
+  ram: string;
   year: number;
   image: string;
   count: number;
@@ -33,7 +33,10 @@ const initialState = {
 
 type InitialState = typeof initialState;
 
-const cartReducer = (state = initialState, action: any): InitialState => {
+const cartReducer = (
+  state = initialState,
+  action: ActionTypes,
+): InitialState => {
   switch (action.type) {
     case INCREASE_COUNT:
       return {
@@ -146,5 +149,12 @@ type RemoveFromCart = {
 type RemoveAll = {
   type: typeof REMOVE_ALL;
 };
+
+type ActionTypes =
+  | IncreaseCount
+  | DecreaseCount
+  | AddToCart
+  | RemoveFromCart
+  | RemoveAll;
 
 export default cartReducer;

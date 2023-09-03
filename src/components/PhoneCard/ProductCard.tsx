@@ -10,7 +10,7 @@ type Props = {
   onToggleFavorites: (product: Product) => void;
 };
 
-export const ProductCard: React.FC<Props> = ({
+export const Card: React.FC<Props> = ({
   product,
   onAddToCart,
   onToggleFavorites,
