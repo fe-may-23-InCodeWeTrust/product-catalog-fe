@@ -28,8 +28,6 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
 
   const { width = 0 } = useWindowSize();
 
-  const arrayToCheck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   const handleNextClick = () => {
     if (swiper) swiper.slideNext();
   };
@@ -54,8 +52,6 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
     return 1;
   }, [width]);
 
-  console.log(activeSlide);
-
   return (
     <>
       <div className="price__nav">
@@ -69,7 +65,7 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
             <ArrowLeft />
           </button>
           <button
-            disabled={activeSlide === arrayToCheck.length - slidesPerView}
+            disabled={activeSlide === products.length - slidesPerView}
             className="button__control"
             onClick={handleNextClick}
           >
@@ -107,28 +103,6 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
             ))}
           </Swiper>
         )}
-
-        <Swiper
-          onSwiper={(swiper) => {
-            setSwiper(swiper);
-          }}
-          modules={[Navigation]}
-          spaceBetween={16}
-          slidesPerView={slidesPerView}
-          onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
-        >
-          {arrayToCheck.map((card) => (
-            <SwiperSlide key={card}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              ></div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </>
   );
