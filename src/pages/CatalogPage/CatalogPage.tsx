@@ -9,6 +9,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
+import { Notification } from '../../components/Notification/Notification';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -30,6 +31,8 @@ export const CatalogPage: React.FC = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
+  const [isCartNotification, setIsCartNotification] = useState(false);
+  const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
   const category = location.pathname.slice(1);
   let catalogTitle;
@@ -133,8 +136,20 @@ export const CatalogPage: React.FC = () => {
           />
         </div>
 
+        {isCartNotification && (
+          <Notification text="The good was added to the cart" />
+        )}
+
+        {isFavoritesNotification && (
+          <Notification text="The good was added to the favorites" />
+        )}
+
         {error && <div>There is some problems occured</div>}
-        <ProductsList products={products} />
+        <ProductsList
+          products={products}
+          onAddCart={setIsCartNotification}
+          onAddFavorites={setIsFavoritesNotification}
+        />
         <Pagination currentPage={1} totalPages={10} />
       </div>
     </main>

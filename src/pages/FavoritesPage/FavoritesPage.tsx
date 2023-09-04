@@ -1,6 +1,7 @@
 import styles from './FavoritesPage.module.scss';
 import React  from 'react';
 import { ProductCard } from '../../components/ProductCard';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import {
@@ -9,12 +10,15 @@ import {
 } from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
+import { ProductCard } from '../../components/ProductCard';
+import { Notification } from '../../components/Notification/Notification';
 
 export const FavoritesPage = () => {
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
   const dispatch = useDispatch<AppDispatch>();
+  const [isCartNotification, setIsCartNotification] = useState(false);
 
   const toggleFavorites = (product: Product) => {
     const foundedGood = favoritesGoods.find((good) => good.id === product.id);
@@ -27,12 +31,17 @@ export const FavoritesPage = () => {
   };
 
   const addProductToCart = (product: Product) => {
-    dispatch(
-      addToCart({
-        ...product,
-        count: 1,
-      }),
-    );
+    setIsCartNotification(true);
+
+    setTimeout(() => {
+      setIsCartNotification(false);
+      dispatch(
+        addToCart({
+          ...product,
+          count: 1,
+        }),
+      );
+    }, 3000);
   };
 
   return (
@@ -67,6 +76,10 @@ export const FavoritesPage = () => {
             />
           ))}
         </div>
+
+        {isCartNotification && (
+          <Notification text="The good was added to the cart" />
+        )}
 
         <div className={styles['pagination']}>Pagination</div>
       </div>
