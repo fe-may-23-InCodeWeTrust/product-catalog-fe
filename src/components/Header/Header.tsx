@@ -43,28 +43,19 @@ export const Header = () => {
                 </li>
 
                 <li className={styles['nav__item']}>
-                  <NavLink
-                    to="phones"
-                    className={getLinkClass}
-                  >
+                  <NavLink to="phones" className={getLinkClass}>
                     phones
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
-                  <NavLink
-                    to="tablets"
-                    className={getLinkClass}
-                  >
+                  <NavLink to="tablets" className={getLinkClass}>
                     tablets
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
-                  <NavLink
-                    to="accessories"
-                    className={getLinkClass}
-                  >
+                  <NavLink to="accessories" className={getLinkClass}>
                     accessories
                   </NavLink>
                 </li>
@@ -92,7 +83,10 @@ export const Header = () => {
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['menu-icon']}`}
             >
-              <button className={styles['header-icon__menu-icon']} onClick={() => setIsActiveBurger(true)}></button>
+              <button
+                className={styles['header-icon__menu-icon']}
+                onClick={() => setIsActiveBurger(true)}
+              ></button>
             </div>
           </div>
         </div>
@@ -113,7 +107,9 @@ export const Header = () => {
               />
             </NavLink>
 
-            <div className={`${styles['aside__close-icon']} ${styles['close-icon']}`}>
+            <div
+              className={`${styles['aside__close-icon']} ${styles['close-icon']}`}
+            >
               <NavLink
                 to="/"
                 className={`${styles['close-icon__link']}`}
@@ -128,7 +124,9 @@ export const Header = () => {
             </div>
           </div>
 
-          <div className={`${styles['aside__burger-menu']} ${styles['burger-menu']}`}>
+          <div
+            className={`${styles['aside__burger-menu']} ${styles['burger-menu']}`}
+          >
             <nav className={`${styles['burger-menu__nav']}`}>
               <ul className={`${styles['burger-menu__list']}`}>
                 <li className={`${styles['burger-menu__item']}`}>
@@ -175,11 +173,15 @@ export const Header = () => {
           </div>
 
           <div className={`${styles['aside__bottom']}`}>
-            <div className={`${styles['aside__favourites-icon']} ${styles['favourites-icon']}`}>
+            <div
+              className={`${styles['aside__favourites-icon']} ${styles['favourites-icon']}`}
+            >
               <NavLink
                 to="favorites"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['favourites-icon__link']} ${isActive ? styles['is-active-icon'] : ''}`
+                  `${styles['favourites-icon__link']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
                 }
                 onClick={() => setIsActiveBurger(false)}
               >
@@ -190,11 +192,15 @@ export const Header = () => {
                 />
               </NavLink>
             </div>
-            <div className={`${styles['aside__shopping_bag-icon']} ${styles['shopping_bag-icon']}`}>
+            <div
+              className={`${styles['aside__shopping_bag-icon']} ${styles['shopping_bag-icon']}`}
+            >
               <NavLink
                 to="cart"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['shopping_bag-icon__link']} ${isActive ? styles['is-active-icon'] : ''}`
+                  `${styles['shopping_bag-icon__link']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
                 }
                 onClick={() => setIsActiveBurger(false)}
               >
@@ -204,42 +210,42 @@ export const Header = () => {
                   className={`${styles['shopping_bag-icon__image']}`}
                 />
               </NavLink>
-        </div>
+            </div>
 
-      <div className={`${styles['header__icons']} ${styles['icons']}`}>
-        <div
-          className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
-        >
-          <NavLink
-            to="favorites"
-            className={styles['header-icon__favourites-icon']}
-          ></NavLink>
-          {!!favoritesCount && (
-            <div className={styles['mini-count']}>
-              {favoritesCount <= 9 ? favoritesCount : '9+'}
+            <div className={`${styles['header__icons']} ${styles['icons']}`}>
+              <div
+                className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
+              >
+                <NavLink
+                  to="favorites"
+                  className={styles['header-icon__favourites-icon']}
+                ></NavLink>
+                {!!favoritesCount && (
+                  <div className={styles['mini-count']}>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
+                )}
+              </div>
+              <div
+                className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['shopping_bag-icon']}`}
+              >
+                <NavLink
+                  to="cart"
+                  className={styles['header-icon__shopping_bag-icon']}
+                ></NavLink>
+                {!!cartCount && (
+                  <div className={styles['mini-count']}>
+                    {cartCount <= 9 ? cartCount : '9+'}
+                  </div>
+                )}
+              </div>
+              <div
+                className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['menu-icon']}`}
+              >
+                <a href="#" className={styles['header-icon__menu-icon']}></a>
+              </div>
             </div>
-          )}
-        </div>
-        <div
-          className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['shopping_bag-icon']}`}
-        >
-          <NavLink
-            to="cart"
-            className={styles['header-icon__shopping_bag-icon']}
-          ></NavLink>
-          {!!cartCount && (
-            <div className={styles['mini-count']}>
-              {cartCount <= 9 ? cartCount : '9+'}
-            </div>
-          )}
-        </div>
-        <div
-          className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['menu-icon']}`}
-        >
-          <a href="#" className={styles['header-icon__menu-icon']}></a>
-        </div>
-      </div>
-       </div>
+          </div>
         </aside>
       )}
     </>

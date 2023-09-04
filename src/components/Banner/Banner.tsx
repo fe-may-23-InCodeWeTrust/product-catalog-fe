@@ -49,38 +49,37 @@ export const Banner = () => {
   }, [swiper]);
 
   return (
-<div className={styles['banner']}>
-  <button className={styles['banner__button']} onClick={handlePreviousClick}>
-    <ArrowLeft />
-  </button>
-  <Swiper
-    pagination={{ clickable: true }}
-    autoplay={{
-      delay: 5000,
-      disableOnInteraction: false,
-    }}
-    onSwiper={(swiper) => {
-      setSwiper(swiper);
-    }}
-    modules={[Autoplay, Navigation, Pagination]}
-    navigation={true}
-    loop={true}
-  >
-    {imageArray.map((i, index) => (
-      <SwiperSlide key={index}>
-        <div className={styles['banner__container']}>
-          <img
-            src={i}
-            alt="BannerImg"
-            className={styles['banner__img']}
-          />
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
-  <button className={styles['banner__button']} onClick={handleNextClick}>
-    <ArrowRight />
-  </button>
-</div>
+    <div className={styles['banner']}>
+      <button
+        className={styles['banner__button']}
+        onClick={handlePreviousClick}
+      >
+        <ArrowLeft />
+      </button>
+      <Swiper
+        pagination={{ clickable: true }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        onSwiper={(swiper) => {
+          setSwiper(swiper);
+        }}
+        modules={[Autoplay, Navigation, Pagination]}
+        navigation={true}
+        loop={true}
+      >
+        {imageArray.map((i, index) => (
+          <SwiperSlide key={index}>
+            <div className={styles['banner__container']}>
+              <img src={i} alt="BannerImg" className={styles['banner__img']} />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <button className={styles['banner__button']} onClick={handleNextClick}>
+        <ArrowRight />
+      </button>
+    </div>
   );
 };

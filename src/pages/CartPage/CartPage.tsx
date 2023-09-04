@@ -1,6 +1,6 @@
 import './CartPage.scss';
-import React, {  useState } from 'react';
-import { useDispatch, useSelector  } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import {
   decreaseCount,

@@ -20,9 +20,11 @@ export const ProductCard: React.FC<Props> = ({
     (state: RootState) => state.favorites.favoriteGoods,
   );
   const goods = useSelector((state: RootState) => state.cart.goods);
-  const addToCartButtonCondition = goods.find(good => good.id === product.id);
-  
-  const addTofavoritesButtonCondition = favoritesGoods.find(good => good.itemId === product.itemId);
+  const addToCartButtonCondition = goods.find((good) => good.id === product.id);
+
+  const addTofavoritesButtonCondition = favoritesGoods.find(
+    (good) => good.itemId === product.itemId,
+  );
   console.log(addTofavoritesButtonCondition);
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   // console.log(addTofavoritesButtonCondition)
@@ -70,7 +72,7 @@ export const ProductCard: React.FC<Props> = ({
         <button
           type="submit"
           className={classNames('text-button', `${styles['add-to-cart']}`, {
-          'added-to-cart': addToCartButtonCondition,
+            'added-to-cart': addToCartButtonCondition,
           })}
           onClick={() => onAddToCart(product)}
           disabled={!!isInCart}
