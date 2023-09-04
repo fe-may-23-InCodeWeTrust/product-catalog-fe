@@ -3,6 +3,7 @@ import styles from './ProductCard.module.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import classNames from 'classnames';
 
 type Props = {
   product: Product;
@@ -15,7 +16,18 @@ export const ProductCard: React.FC<Props> = ({
   onAddToCart,
   onToggleFavorites,
 }) => {
+  const favoritesGoods = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods,
+  );
+  const goods = useSelector((state: RootState) => state.cart.goods);
+  const addToCartButtonCondition = goods.find((good) => good.id === product.id);
+
+  const addTofavoritesButtonCondition = favoritesGoods.find(
+    (good) => good.itemId === product.itemId,
+  );
+  console.log(addTofavoritesButtonCondition);
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
+  // console.log(addTofavoritesButtonCondition)
   const isInCart = goodsFromCart.find((g) => g.id === product.id);
 
   return (
@@ -59,7 +71,9 @@ export const ProductCard: React.FC<Props> = ({
       <div className={styles['phone-card__actions']}>
         <button
           type="submit"
-          className={`${styles['add-to-cart']} text-button`}
+          className={classNames('text-button', `${styles['add-to-cart']}`, {
+            'added-to-cart': addToCartButtonCondition,
+          })}
           onClick={() => onAddToCart(product)}
           disabled={!!isInCart}
         >
@@ -67,7 +81,9 @@ export const ProductCard: React.FC<Props> = ({
         </button>
 
         <button
-          className={styles['add-to-favorites']}
+          className={classNames(styles['add-to-favorites'], {
+            'added-to-favorites': addTofavoritesButtonCondition,
+          })}
           type="submit"
           onClick={() => onToggleFavorites(product)}
         ></button>
