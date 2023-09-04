@@ -10,7 +10,9 @@ const getLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export const Header = () => {
   const cartCount = useSelector((state: RootState) => state.cart.goods.length);
-  const favoritesCount = useSelector((state: RootState) => state.favorites.favoriteGoods.length);
+  const favoritesCount = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods.length,
+  );
 
   return (
     <div className={styles['header']}>
