@@ -1,0 +1,15 @@
+@import './variables';
+
+.added-to-favorites {
+  background-image: url(../../assets/icons/added_heart.svg) !important;
+}
+
+.added-to-cart {
+  background-color: lightgray !important;
+  cursor: default !important;
+
+  &:active {
+    background-color: lightgray !important;
+    color: $color-white !important;
+  }
+}

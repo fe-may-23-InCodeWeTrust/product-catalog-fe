@@ -7,7 +7,17 @@ export const getProducts = (
   limit: string,
   order: string,
 ) => {
-  return client.get<Product[]>(
+
+  return client.get<{ count: number; rows: Product[] }>(
     `products?productType=${category}&offset=${offset}&limit=${limit}&order=${order}`,
   );
 };
+
+export const getHotProducts = () => {
+  return client.get<Product[]>(`products/discount`);
+};
+
+export const getNewProducts = () => {
+  return client.get<Product[]>(`products/new`);
+};
+

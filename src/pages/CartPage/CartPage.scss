@@ -17,12 +17,6 @@
   }
 }
 
-.back-btn {
-  text-decoration: none;
-  color: $color-secondary;
-  margin-top: 24px;
-}
-
 .arrow-left {
   width: 16px;
   height: 16px;
@@ -227,5 +221,10 @@
 
   &:hover {
     opacity: 0.7;
+  }
+
+  &:active {
+    background-color: #fff;
+    color: $color-accent;
   }
 }

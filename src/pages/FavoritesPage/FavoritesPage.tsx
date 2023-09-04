@@ -1,7 +1,47 @@
 import styles from './FavoritesPage.module.scss';
-import React from 'react';
+import { ProductCard } from '../../components/ProductCard';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/favoriteReducer';
+import { addToCart } from '../../redux/cartReducer';
+import { Product } from '../../utils/Types/Product';
+import { Notification } from '../../components/Notification/Notification';
 
 export const FavoritesPage = () => {
+  const favoritesGoods = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods,
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const [isCartNotification, setIsCartNotification] = useState(false);
+
+  const toggleFavorites = (product: Product) => {
+    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
+
+    if (foundedGood) {
+      dispatch(removeFromFavorites(product.id));
+    } else {
+      dispatch(addToFavorites(product));
+    }
+  };
+
+  const addProductToCart = (product: Product) => {
+    setIsCartNotification(true);
+
+    setTimeout(() => {
+      setIsCartNotification(false);
+      dispatch(
+        addToCart({
+          ...product,
+          count: 1,
+        }),
+      );
+    }, 3000);
+  };
+
   return (
     <main className={styles['main']}>
       <div className={styles['container']}>
@@ -24,7 +64,20 @@ export const FavoritesPage = () => {
           </p>
         </div>
 
-        <div className={styles['phone_cards']}></div>
+        <div className={styles['phone_cards']}>
+          {favoritesGoods.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={addProductToCart}
+              onToggleFavorites={toggleFavorites}
+            />
+          ))}
+        </div>
+
+        {isCartNotification && (
+          <Notification text="The good was added to the cart" />
+        )}
 
         <div className={styles['pagination']}>Pagination</div>
       </div>

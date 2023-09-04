@@ -1,0 +1,12 @@
+@import '../../styles/utils/_mixins.scss';
+@import '../../styles/utils/_variables.scss';
+@import '../../styles/utils/reset';
+@import '../../styles/fonts';
+
+.back-btn {
+  color: $color-secondary;
+  margin-top: 24px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}

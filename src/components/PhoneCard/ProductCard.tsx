@@ -1,12 +1,23 @@
 import { Product } from '../../utils/Types/Product';
 import styles from './ProductCard.module.scss';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 type Props = {
   product: Product;
+  onAddToCart: (product: Product) => void;
+  onToggleFavorites: (product: Product) => void;
 };
 
-export const Card: React.FC<Props> = ({ product }) => {
+export const Card: React.FC<Props> = ({
+  product,
+  onAddToCart,
+  onToggleFavorites,
+}) => {
+  const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
+  const isInCart = goodsFromCart.find((g) => g.id === product.id);
+
   return (
     <div className={styles['phone-card']}>
       <div className={styles['phone-card__image-container']}>
@@ -49,11 +60,17 @@ export const Card: React.FC<Props> = ({ product }) => {
         <button
           type="submit"
           className={`${styles['add-to-cart']} text-button`}
+          onClick={() => onAddToCart(product)}
+          disabled={!!isInCart}
         >
           Add to cart
         </button>
 
-        <button className={styles['add-to-favorites']} type="submit"></button>
+        <button
+          className={styles['add-to-favorites']}
+          type="submit"
+          onClick={() => onToggleFavorites(product)}
+        ></button>
       </div>
     </div>
   );
