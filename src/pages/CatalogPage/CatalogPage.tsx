@@ -9,7 +9,6 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
-import { Notification } from '../../components/Notification/Notification';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -24,7 +23,7 @@ const numbers = [
 ];
 
 export const CatalogPage: React.FC = () => {
-  const { isLoading, setIsLoading } = useContext(CatalogContext);
+  const { setIsLoading } = useContext(CatalogContext);
   const location = useLocation();
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -34,8 +33,6 @@ export const CatalogPage: React.FC = () => {
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
-  const [isCartNotification, setIsCartNotification] = useState(false);
-  const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
   const pageSortParams = searchParams.get('sortBy');
   const sortBy = pageSortParams ? pageSortParams : 'newest';
@@ -102,7 +99,7 @@ export const CatalogPage: React.FC = () => {
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => {
         setIsLoading(false);
-        window.scrollTo({top: 0});
+        window.scrollTo({ top: 0 });
       });
   }, [sortByNumber, offset, category, sortBy, category]);
 
@@ -164,19 +161,11 @@ export const CatalogPage: React.FC = () => {
             }}
           />
         </div>
-        {isCartNotification && (
-          <Notification text="The good was added to the cart" />
-        )}
-
-        {isFavoritesNotification && (
-          <Notification text="The good was added to the favorites" />
-        )}
 
         {error && <div>There is some problems occured</div>}
+
         <ProductsList
           products={products}
-          onAddCart={setIsCartNotification}
-          onAddFavorites={setIsFavoritesNotification}
         />
         <Pagination
           currentPage={currentPage}
