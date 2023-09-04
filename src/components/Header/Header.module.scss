@@ -148,12 +148,37 @@
 
   @include onTablet {
     display: flex;
+    position: relative;
     width: 48px;
     height: 48px;
   }
 
   @include onDesktop {
+    position: relative;
     width: 64px;
     height: 64px;
+  }
+}
+
+.mini-count {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+  font-size: 10px;
+  background-color: $color-accent;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  @include onTablet {
+    top: 8px;
+    right: 8px;
+  }
+
+  @include onDesktop {
+    top: 12px;
+    right: 16px;
   }
 }
