@@ -71,6 +71,11 @@ export const Header = () => {
                 to="favorites"
                 className={styles['header-icon__favourites-icon']}
               ></NavLink>
+              {!!favoritesCount && (
+                  <div className={styles['mini-count']}>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
+                )}
             </div>
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['shopping_bag-icon']}`}
@@ -79,6 +84,11 @@ export const Header = () => {
                 to="cart"
                 className={styles['header-icon__shopping_bag-icon']}
               ></NavLink>
+                {!!cartCount && (
+                  <div className={styles['mini-count']}>
+                    {cartCount <= 9 ? cartCount : '9+'}
+                  </div>
+                )}
             </div>
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['menu-icon']}`}
@@ -191,6 +201,11 @@ export const Header = () => {
                   className={`${styles['favourites-icon__image']}`}
                 />
               </NavLink>
+              {!!favoritesCount && (
+                  <div className={styles['mini-count']}>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
+                )}
             </div>
             <div
               className={`${styles['aside__shopping_bag-icon']} ${styles['shopping_bag-icon']}`}
@@ -210,40 +225,11 @@ export const Header = () => {
                   className={`${styles['shopping_bag-icon__image']}`}
                 />
               </NavLink>
-            </div>
-
-            <div className={`${styles['header__icons']} ${styles['icons']}`}>
-              <div
-                className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
-              >
-                <NavLink
-                  to="favorites"
-                  className={styles['header-icon__favourites-icon']}
-                ></NavLink>
-                {!!favoritesCount && (
-                  <div className={styles['mini-count']}>
-                    {favoritesCount <= 9 ? favoritesCount : '9+'}
-                  </div>
-                )}
-              </div>
-              <div
-                className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['shopping_bag-icon']}`}
-              >
-                <NavLink
-                  to="cart"
-                  className={styles['header-icon__shopping_bag-icon']}
-                ></NavLink>
-                {!!cartCount && (
+              {!!cartCount && (
                   <div className={styles['mini-count']}>
                     {cartCount <= 9 ? cartCount : '9+'}
                   </div>
                 )}
-              </div>
-              <div
-                className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['menu-icon']}`}
-              >
-                <a href="#" className={styles['header-icon__menu-icon']}></a>
-              </div>
             </div>
           </div>
         </aside>
