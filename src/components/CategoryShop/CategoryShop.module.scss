@@ -36,6 +36,11 @@
 }
 
 .category-card {
+  transition: transform 300ms;
+
+  &:hover {
+    transform: scale(1.05);
+  }
   &__background {
     display: flex;
     max-height: 288px;
@@ -71,4 +76,11 @@
     color: $color-secondary;
     margin-top: 4px;
   }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 272px;
 }

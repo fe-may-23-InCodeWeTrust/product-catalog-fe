@@ -1,9 +1,12 @@
-import React from 'react';
-import './CategoryShop.scss';
+import React, { useContext, useEffect } from 'react';
+import styles from './CategoryShop.module.scss';
 import phonesImg from '../../assets/icons/phones.png';
 import tabletsImg from '../../assets/icons/tablets.png';
 import accessoriesImg from '../../assets/icons/accessories.png';
 import { useNavigate } from 'react-router-dom';
+import * as ProductService from '../../api/fetch_functions';
+import { LeapFrog } from '@uiball/loaders';
+import { CatalogContext } from '../../context/CatalogContext';
 
 const defaultSize = 90;
 
@@ -11,7 +14,7 @@ const categories = [
   {
     id: 1,
     title: 'Mobile phones',
-    count: '95 models',
+    count: 0,
     img: phonesImg,
     background: '#6D6474',
     path: 'phones',
@@ -19,7 +22,7 @@ const categories = [
   {
     id: 2,
     title: 'Tablets',
-    count: '24 models',
+    count: 0,
     img: tabletsImg,
     background: '#8D8D92',
     path: 'tablets',
@@ -27,7 +30,7 @@ const categories = [
   {
     id: 3,
     title: 'Accessories',
-    count: '100 models',
+    count: 0,
     img: accessoriesImg,
     background: '#973D5F',
     path: 'accessories',
@@ -36,32 +39,57 @@ const categories = [
 
 export const CategoryShop = () => {
   const navigate = useNavigate();
+  const { isLoading, setIsLoading } = useContext(CatalogContext);
+
+  useEffect(() => {
+    setIsLoading(true);
+    categories.map((category) => {
+      ProductService.getProductsCount(category.path).then((data) => {
+        category.count = data;
+      });
+    });
+    setIsLoading(false);
+  }, []);
 
   return (
     <>
-      <h1 className="category-title">Shop by category</h1>
-      <div className="container">
-        {categories.map((category, index) => (
-          <div key={category.id} onClick={() => navigate(category.path)}>
+      <h1 className={styles['category-title']}>Shop by category</h1>
+      {isLoading ? (
+        <div className={styles['loader']}>
+          <LeapFrog size={40} speed={2.5} color="black" />
+        </div>
+      ) : (
+        <div className={styles['container']}>
+          {categories.map((category, index) => (
             <div
-              className="category-card__background"
-              style={{ background: category.background }}
+              key={category.id}
+              onClick={() => navigate(category.path)}
+              className={styles['category-card']}
             >
-              <img
-                style={{
-                  width: `${defaultSize + index * 4}%`,
-                  height: `${defaultSize + index * 4}%`,
-                }}
-                className="category-card__img"
-                src={category.img}
-                alt={category.title}
-              />
+              <div
+                className={styles['category-card__background']}
+                style={{ background: category.background }}
+              >
+                <img
+                  style={{
+                    width: `${defaultSize + index * 4}%`,
+                    height: `${defaultSize + index * 4}%`,
+                  }}
+                  className={styles['category-card__img']}
+                  src={category.img}
+                  alt={category.title}
+                />
+              </div>
+              <h2 className={styles['category-card__title']}>
+                {category.title}
+              </h2>
+              <h2 className={styles['category-card__subtitle']}>
+                {category.count} models
+              </h2>
             </div>
-            <h2 className="category-card__title">{category.title}</h2>
-            <h2 className="category-card__subtitle">{category.count}</h2>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
