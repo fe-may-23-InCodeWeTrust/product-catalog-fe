@@ -1,0 +1,19 @@
+@import '../../styles/utils/_mixins.scss';
+@import '../../styles/utils/_variables.scss';
+@import '../../styles/utils/reset';
+@import '../../styles/fonts';
+
+.notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(0, 128, 0, .8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  font-size: 18px;
+}
