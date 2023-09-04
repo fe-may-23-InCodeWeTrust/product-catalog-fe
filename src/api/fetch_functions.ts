@@ -1,4 +1,4 @@
-import { Product } from '../utils/Types/Product';
+import { Product, ProductItem } from '../utils/Types/Product';
 import { client } from '../utils/fetchClient';
 
 export const getProducts = (
@@ -18,4 +18,8 @@ export const getHotProducts = () => {
 
 export const getNewProducts = () => {
   return client.get<Product[]>(`products/new`);
+};
+
+export const getProductById = (id: string) => {
+  return client.get<{foundProduct: ProductItem, recommneded: Product[]}>(`phones/${id}`);
 };
