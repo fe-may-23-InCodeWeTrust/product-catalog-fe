@@ -1,6 +1,9 @@
+@import '../../styles/utils';
+
 .back_drop {
   z-index: 50;
-  background: rgba(7, 13, 70, 0.7);
+  background: $color-elements;
+  opacity: 80%;
   position: fixed;
   top: 0;
   left: 0;

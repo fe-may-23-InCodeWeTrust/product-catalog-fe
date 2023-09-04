@@ -9,11 +9,18 @@ type Props = {
 export const Modal: React.FC<Props> = ({ price, onClose }) => {
   return (
     <div className="modal-buy">
-      <p className="modal-buy__text">
-        You bought products totalling <span className="bold">${price}</span>.
+      <p className="text-uppercase modal-buy-text">Congratulations!</p>
+      <p className="text-uppercase modal-buy-text">
+        One nice person have got a nice gadget.
       </p>
 
-      <p className="modal-buy__text">Thanks for choosing our store.</p>
+      <p className="text-uppercase modal-buy-text">
+        The total amount of your shopping is {price}$.
+      </p>
+
+      <p className="text-uppercase modal-buy-text">
+        Have a nice day!
+      </p>
 
       <button className="btn-block" onClick={onClose}>
         Close
