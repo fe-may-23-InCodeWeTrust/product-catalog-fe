@@ -19,7 +19,7 @@ export const CatalogProvider: React.FC<Props> = ({ children }) => {
       isLoading,
       setIsLoading,
     }),
-    [isLoading],
+    [isLoading ],
   );
 
   return (

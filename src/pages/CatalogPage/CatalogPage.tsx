@@ -32,7 +32,6 @@ export const CatalogPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const category = location.pathname.slice(1);
-  console.log(category);
   let catalogTitle;
 
   switch (category) {
