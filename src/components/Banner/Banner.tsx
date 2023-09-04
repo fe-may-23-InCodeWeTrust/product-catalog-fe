@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeft } from '../../assets/icons/ArrowLeft';
 import { ArrowRight } from '../../assets/icons/ArrowRight';
 import 'swiper/scss';
-import './Banner.scss';
+import styles from './Banner.module.scss';
 import { Swiper as SwiperType } from 'swiper/types';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay, Navigation } from 'swiper';
@@ -49,34 +49,38 @@ export const Banner = () => {
   }, [swiper]);
 
   return (
-    <div className="banner">
-      <button className="banner__button" onClick={handlePreviousClick}>
-        <ArrowLeft />
-      </button>
-      <Swiper
-        pagination={{ clickable: true }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        onSwiper={(swiper) => {
-          setSwiper(swiper);
-        }}
-        modules={[Autoplay, Navigation, Pagination]}
-        navigation={true}
-        loop={true}
-      >
-        {imageArray.map((i, index) => (
-          <SwiperSlide key={index}>
-            <div className="banner__container">
-              <img src={i} alt="BannerImg" className="banner__img" />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <button className="banner__button" onClick={handleNextClick}>
-        <ArrowRight />
-      </button>
-    </div>
+<div className={styles['banner']}>
+  <button className={styles['banner__button']} onClick={handlePreviousClick}>
+    <ArrowLeft />
+  </button>
+  <Swiper
+    pagination={{ clickable: true }}
+    autoplay={{
+      delay: 5000,
+      disableOnInteraction: false,
+    }}
+    onSwiper={(swiper) => {
+      setSwiper(swiper);
+    }}
+    modules={[Autoplay, Navigation, Pagination]}
+    navigation={true}
+    loop={true}
+  >
+    {imageArray.map((i, index) => (
+      <SwiperSlide key={index}>
+        <div className={styles['banner__container']}>
+          <img
+            src={i}
+            alt="BannerImg"
+            className={styles['banner__img']}
+          />
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+  <button className={styles['banner__button']} onClick={handleNextClick}>
+    <ArrowRight />
+  </button>
+</div>
   );
 };

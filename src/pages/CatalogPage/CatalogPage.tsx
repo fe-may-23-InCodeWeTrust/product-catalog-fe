@@ -35,7 +35,6 @@ export const CatalogPage: React.FC = () => {
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
   const category = location.pathname.slice(1);
-  console.log(category);
   let catalogTitle;
 
   switch (category) {

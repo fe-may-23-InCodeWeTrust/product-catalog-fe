@@ -1,0 +1,23 @@
+.swiper {
+  padding-bottom: 20px !important;
+  width: 100%;
+}
+
+.swiper-slide {
+  align-items: center;
+}
+
+.swiper-pagination {
+  bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+  width: 14px !important;
+  height: 4px !important;
+  color: $color-elements !important;
+  border-radius: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: $color-primary !important;
+}

@@ -1,6 +1,6 @@
 import './CartPage.scss';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {  useState } from 'react';
+import { useDispatch, useSelector  } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import {
   decreaseCount,
@@ -14,6 +14,8 @@ import { BackButton } from '../../components/BackButton/BackButton';
 
 export const CartPage = () => {
   const goods = useSelector((state: RootState) => state.cart.goods);
+
+  const prevBtn = '<';
   const dispatch = useDispatch<AppDispatch>();
   const [isBlackout, setIsBlackout] = useState(false);
 
