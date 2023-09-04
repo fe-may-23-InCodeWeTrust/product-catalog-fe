@@ -1,5 +1,4 @@
 import styles from './FavoritesPage.module.scss';
-import React  from 'react';
 import { ProductCard } from '../../components/ProductCard';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +9,6 @@ import {
 } from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
-import { ProductCard } from '../../components/ProductCard';
 import { Notification } from '../../components/Notification/Notification';
 
 export const FavoritesPage = () => {

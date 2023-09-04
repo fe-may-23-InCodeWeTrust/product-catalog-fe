@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import favourites from '../../assets/icons/favourites.svg';
@@ -205,10 +204,7 @@ export const Header = () => {
                   className={`${styles['shopping_bag-icon__image']}`}
                 />
               </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        </div>
 
       <div className={`${styles['header__icons']} ${styles['icons']}`}>
         <div
@@ -243,9 +239,7 @@ export const Header = () => {
           <a href="#" className={styles['header-icon__menu-icon']}></a>
         </div>
       </div>
-    </div>
-            </div>
-          </div>
+       </div>
         </aside>
       )}
     </>
