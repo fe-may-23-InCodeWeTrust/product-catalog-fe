@@ -105,8 +105,7 @@
   }
 
   .add-to-favorites {
-    width: 40px;
-    height: 40px;
+    min-width: 40px;
     border-radius: 48px;
     border: 0.5px $color-icons solid;
     background-image: url(../../assets/icons/heart.svg);

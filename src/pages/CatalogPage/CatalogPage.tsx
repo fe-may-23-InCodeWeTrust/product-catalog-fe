@@ -9,6 +9,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
+import { Notification } from '../../components/Notification/Notification';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -99,7 +100,10 @@ export const CatalogPage: React.FC = () => {
         setTotalProducts(data.count);
       })
       .catch(() => setError('Wrong URL - could not make a request'))
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+        window.scrollTo({top: 0});
+      });
   }, [sortByNumber, offset, category, sortBy, category]);
 
   return (
@@ -160,6 +164,13 @@ export const CatalogPage: React.FC = () => {
             }}
           />
         </div>
+        {isCartNotification && (
+          <Notification text="The good was added to the cart" />
+        )}
+
+        {isFavoritesNotification && (
+          <Notification text="The good was added to the favorites" />
+        )}
 
         {error && <div>There is some problems occured</div>}
         <ProductsList
