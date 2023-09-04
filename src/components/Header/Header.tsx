@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 import favourites from '../../assets/icons/favourites.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
@@ -13,6 +16,10 @@ const getBurgerMenuLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.menu__link} ${isActive ? styles['is-active-menu'] : ''} `;
 
 export const Header = () => {
+  const cartCount = useSelector((state: RootState) => state.cart.goods.length);
+  const favoritesCount = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods.length,
+  );
   const [isActiveBurger, setIsActiveBurger] = useState(false);
 
   useEffect(() => {
@@ -198,6 +205,45 @@ export const Header = () => {
                   className={`${styles['shopping_bag-icon__image']}`}
                 />
               </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div className={`${styles['header__icons']} ${styles['icons']}`}>
+        <div
+          className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
+        >
+          <NavLink
+            to="favorites"
+            className={styles['header-icon__favourites-icon']}
+          ></NavLink>
+          {!!favoritesCount && (
+            <div className={styles['mini-count']}>
+              {favoritesCount <= 9 ? favoritesCount : '9+'}
+            </div>
+          )}
+        </div>
+        <div
+          className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['shopping_bag-icon']}`}
+        >
+          <NavLink
+            to="cart"
+            className={styles['header-icon__shopping_bag-icon']}
+          ></NavLink>
+          {!!cartCount && (
+            <div className={styles['mini-count']}>
+              {cartCount <= 9 ? cartCount : '9+'}
+            </div>
+          )}
+        </div>
+        <div
+          className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['menu-icon']}`}
+        >
+          <a href="#" className={styles['header-icon__menu-icon']}></a>
+        </div>
+      </div>
+    </div>
             </div>
           </div>
         </aside>

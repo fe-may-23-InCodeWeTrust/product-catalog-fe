@@ -10,10 +10,9 @@ import {
 } from '../../redux/cartReducer';
 import { BackDrop } from '../../components/BackDrop/BackDrop';
 import { Modal } from '../../components/Modal/Modal';
+import { BackButton } from '../../components/BackButton/BackButton';
 
 export const CartPage = () => {
-  const prevBtn = '<';
-
   const goods = useSelector((state: RootState) => state.cart.goods);
   const dispatch = useDispatch<AppDispatch>();
   const [isBlackout, setIsBlackout] = useState(false);
@@ -46,9 +45,7 @@ export const CartPage = () => {
   return (
     <div className="cart_container">
       <div>
-        <a href="#" className="back-btn">
-          {prevBtn}&nbsp; Back
-        </a>
+        <BackButton />
       </div>
 
       <h2 className="title">Cart</h2>
