@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product-catalog-fe/static/css/main.c1f3aede.css",
-    "main.js": "/product-catalog-fe/static/js/main.b8bcb652.js",
+    "main.css": "/product-catalog-fe/static/css/main.f0625ae8.css",
+    "main.js": "/product-catalog-fe/static/js/main.9ce0e06c.js",
     "static/media/logo.svg": "/product-catalog-fe/static/media/logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
     "static/media/Mont-Regular.otf": "/product-catalog-fe/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/product-catalog-fe/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
@@ -14,14 +14,14 @@
     "static/media/added_heart.svg": "/product-catalog-fe/static/media/added_heart.626e86579022fdf19bf1.svg",
     "static/media/heart.svg": "/product-catalog-fe/static/media/heart.f8bac7208053bc75c6fa.svg",
     "static/media/Close.svg": "/product-catalog-fe/static/media/Close.cdfb6ae506fe360c9ad495bfc61f521d.svg",
-    "static/media/menu.svg": "/product-catalog-fe/static/media/menu.73ddde2c093f9fb313b9.svg",
+    "static/media/menu.svg": "/product-catalog-fe/static/media/menu.73ddde2c093f9fb313b993eaba038f9a.svg",
     "static/media/arrow_left.svg": "/product-catalog-fe/static/media/arrow_left.7460d67936be8c4491a8.svg",
     "index.html": "/product-catalog-fe/index.html",
-    "main.c1f3aede.css.map": "/product-catalog-fe/static/css/main.c1f3aede.css.map",
-    "main.b8bcb652.js.map": "/product-catalog-fe/static/js/main.b8bcb652.js.map"
+    "main.f0625ae8.css.map": "/product-catalog-fe/static/css/main.f0625ae8.css.map",
+    "main.9ce0e06c.js.map": "/product-catalog-fe/static/js/main.9ce0e06c.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1f3aede.css",
-    "static/js/main.b8bcb652.js"
+    "static/css/main.f0625ae8.css",
+    "static/js/main.9ce0e06c.js"
   ]
 }
