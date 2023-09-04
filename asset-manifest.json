@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product-catalog-fe/static/css/main.0463d4bc.css",
-    "main.js": "/product-catalog-fe/static/js/main.b8e6c173.js",
+    "main.css": "/product-catalog-fe/static/css/main.c1f3aede.css",
+    "main.js": "/product-catalog-fe/static/js/main.b8bcb652.js",
     "static/media/logo.svg": "/product-catalog-fe/static/media/logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
     "static/media/Mont-Regular.otf": "/product-catalog-fe/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/product-catalog-fe/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
@@ -9,18 +9,19 @@
     "static/media/accessories.png": "/product-catalog-fe/static/media/accessories.4e96cc8872029891a4d1.png",
     "static/media/tablets.png": "/product-catalog-fe/static/media/tablets.88e8ea271cd54e51bcd6.png",
     "static/media/phones.png": "/product-catalog-fe/static/media/phones.d670ea16765af0daecb4.png",
-    "static/media/shopping-bag.svg": "/product-catalog-fe/static/media/shopping-bag.df23e4fbb25ff3701b16.svg",
-    "static/media/heart.svg": "/product-catalog-fe/static/media/heart.e2be53c2fc850b208105.svg",
-    "static/media/favourites.svg": "/product-catalog-fe/static/media/favourites.cc696932b63c19f48776.svg",
-    "static/media/Close.svg": "/product-catalog-fe/static/media/Close.cdfb6ae506fe360c9ad4.svg",
+    "static/media/shopping-bag.svg": "/product-catalog-fe/static/media/shopping-bag.df23e4fbb25ff3701b16978082a61721.svg",
+    "static/media/favourites.svg": "/product-catalog-fe/static/media/favourites.cc696932b63c19f487763e75a935dfcb.svg",
+    "static/media/added_heart.svg": "/product-catalog-fe/static/media/added_heart.626e86579022fdf19bf1.svg",
+    "static/media/heart.svg": "/product-catalog-fe/static/media/heart.f8bac7208053bc75c6fa.svg",
+    "static/media/Close.svg": "/product-catalog-fe/static/media/Close.cdfb6ae506fe360c9ad495bfc61f521d.svg",
     "static/media/menu.svg": "/product-catalog-fe/static/media/menu.73ddde2c093f9fb313b9.svg",
     "static/media/arrow_left.svg": "/product-catalog-fe/static/media/arrow_left.7460d67936be8c4491a8.svg",
     "index.html": "/product-catalog-fe/index.html",
-    "main.0463d4bc.css.map": "/product-catalog-fe/static/css/main.0463d4bc.css.map",
-    "main.b8e6c173.js.map": "/product-catalog-fe/static/js/main.b8e6c173.js.map"
+    "main.c1f3aede.css.map": "/product-catalog-fe/static/css/main.c1f3aede.css.map",
+    "main.b8bcb652.js.map": "/product-catalog-fe/static/js/main.b8bcb652.js.map"
   },
   "entrypoints": [
-    "static/css/main.0463d4bc.css",
-    "static/js/main.b8e6c173.js"
+    "static/css/main.c1f3aede.css",
+    "static/js/main.b8bcb652.js"
   ]
 }
