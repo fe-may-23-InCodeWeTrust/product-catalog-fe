@@ -84,9 +84,9 @@ export const Header = () => {
               </NavLink>
               {!!favoritesCount && (
                 <Link to="favorites">
-                <div className={styles['mini-count']}>
-                  {favoritesCount <= 9 ? favoritesCount : '9+'}
-                </div>
+                  <div className={styles['mini-count']}>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
                 </Link>
               )}
             </div>
@@ -109,9 +109,9 @@ export const Header = () => {
               </NavLink>
               {!!cartCount && (
                 <Link to="cart">
-                <div className={styles['mini-count']}>
-                  {cartCount <= 9 ? cartCount : '9+'}
-                </div>
+                  <div className={styles['mini-count']}>
+                    {cartCount <= 9 ? cartCount : '9+'}
+                  </div>
                 </Link>
               )}
             </div>
@@ -231,8 +231,8 @@ export const Header = () => {
               {!!favoritesCount && (
                 <Link to="favorites">
                   <div className={styles['mini-count']}>
-                  {favoritesCount <= 9 ? favoritesCount : '9+'}
-                </div>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
                 </Link>
               )}
             </div>
@@ -257,8 +257,8 @@ export const Header = () => {
               {!!cartCount && (
                 <Link to="cart">
                   <div className={styles['mini-count']}>
-                  {cartCount <= 9 ? cartCount : '9+'}
-                </div>
+                    {cartCount <= 9 ? cartCount : '9+'}
+                  </div>
                 </Link>
               )}
             </div>

@@ -109,18 +109,16 @@ export const CatalogPage: React.FC = () => {
         <div className={styles['icons']}>
           <Link
             to={'/'}
-            className={`${styles['icon']} ${styles['icon--home']}`
-          }
+            className={`${styles['icon']} ${styles['icon--home']}`}
           ></Link>
 
-          <span className={`${styles['icon']} ${styles['icon--arrow']}`}>
-          </span>
-            <Link 
-                to={`/${category}`}  
-                className={`${styles['icon__text']} text-small`}
-              >
-                {category}
-              </Link>
+          <span className={`${styles['icon']} ${styles['icon--arrow']}`}></span>
+          <Link
+            to={`/${category}`}
+            className={`${styles['icon__text']} text-small`}
+          >
+            {category}
+          </Link>
         </div>
 
         <div className={styles['arcticle']}>

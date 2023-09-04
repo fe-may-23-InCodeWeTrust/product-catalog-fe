@@ -23,8 +23,8 @@ export const CartPage = () => {
     .reduce((a, b) => a + b, 0);
 
   const goodsAmount = () => {
-     return goods.map(good => good.count).reduce((a, b) => a + b) || 0;
-  }
+    return goods.map((good) => good.count).reduce((a, b) => a + b) || 0;
+  };
 
   const decreaseHandler = (goodId: number) => {
     dispatch(decreaseCount(goodId));
@@ -114,7 +114,9 @@ export const CartPage = () => {
             <div className="cart-price__number">${total}</div>
 
             <div className="cart-price__quantity">
-              {`Total for ${goodsAmount()} ${goodsAmount() > 1 ? 'items' : 'item'}`}
+              {`Total for ${goodsAmount()} ${
+                goodsAmount() > 1 ? 'items' : 'item'
+              }`}
             </div>
 
             <div className="br"></div>
