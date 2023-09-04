@@ -28,13 +28,12 @@
   background-repeat: no-repeat;
 
   &__text {
-    font-family: 'Mont', sans-serif;
     position: absolute;
     left: 48px;
     top: 10%;
     font-weight: 600;
-    pointer-events: none;
     color: $color-secondary;
+    border-bottom: 1px solid black;
   }
 
   &--home {

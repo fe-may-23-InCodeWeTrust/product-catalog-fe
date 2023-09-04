@@ -172,13 +172,13 @@
   height: 16px;
 
   @include onTablet {
-    top: 8px;
-    right: 8px;
+    top: 24%;
+    left: 50%;
   }
 
   @include onDesktop {
-    top: 12px;
-    right: 16px;
+    top: 24%;
+    left: 50%;
   }
 }
 

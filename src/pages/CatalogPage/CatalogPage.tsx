@@ -6,7 +6,7 @@ import Select from 'react-select';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 
@@ -49,7 +49,7 @@ export const CatalogPage: React.FC = () => {
   const [sortByItems, setSortByItems] = useState(currentSortNumber);
 
   const category = location.pathname.slice(1);
-  console.log(category);
+
   let catalogTitle;
 
   switch (category) {
@@ -107,14 +107,20 @@ export const CatalogPage: React.FC = () => {
     <main className={styles['main']}>
       <div className={styles['container']}>
         <div className={styles['icons']}>
-          <a
-            href="#home"
-            className={`${styles['icon']} ${styles['icon--home']}`}
-          ></a>
+          <Link
+            to={'/'}
+            className={`${styles['icon']} ${styles['icon--home']}`
+          }
+          ></Link>
 
-          <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>{category}</p>
-          </a>
+          <span className={`${styles['icon']} ${styles['icon--arrow']}`}>
+          </span>
+            <Link 
+                to={`/${category}`}  
+                className={`${styles['icon__text']} text-small`}
+              >
+                {category}
+              </Link>
         </div>
 
         <div className={styles['arcticle']}>

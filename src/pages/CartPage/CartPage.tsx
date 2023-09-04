@@ -15,13 +15,16 @@ import { BackButton } from '../../components/BackButton/BackButton';
 export const CartPage = () => {
   const goods = useSelector((state: RootState) => state.cart.goods);
 
-  const prevBtn = '<';
   const dispatch = useDispatch<AppDispatch>();
   const [isBlackout, setIsBlackout] = useState(false);
 
   const total = goods
     .map((good) => good.price * good.count)
     .reduce((a, b) => a + b, 0);
+
+  const goodsAmount = () => {
+     return goods.map(good => good.count).reduce((a, b) => a + b) || 0;
+  }
 
   const decreaseHandler = (goodId: number) => {
     dispatch(decreaseCount(goodId));
@@ -111,7 +114,7 @@ export const CartPage = () => {
             <div className="cart-price__number">${total}</div>
 
             <div className="cart-price__quantity">
-              Total for {goods.length} items
+              {`Total for ${goodsAmount()} ${goodsAmount() > 1 ? 'items' : 'item'}`}
             </div>
 
             <div className="br"></div>
