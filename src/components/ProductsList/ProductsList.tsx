@@ -18,7 +18,11 @@ interface Props {
   onAddFavorites: (v: boolean) => void;
 }
 
-export const ProductsList: React.FC<Props> = ({ products, onAddCart, onAddFavorites }) => {
+export const ProductsList: React.FC<Props> = ({
+  products,
+  onAddCart,
+  onAddFavorites,
+}) => {
   const { isLoading } = useContext(CatalogContext);
 
   const faviritesGoods = useSelector(

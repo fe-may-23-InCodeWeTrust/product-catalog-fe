@@ -76,7 +76,7 @@ export const FavoritesPage = () => {
         </div>
 
         {isCartNotification && (
-          <Notification text='The good was added to the cart' />
+          <Notification text="The good was added to the cart" />
         )}
 
         <div className={styles['pagination']}>Pagination</div>

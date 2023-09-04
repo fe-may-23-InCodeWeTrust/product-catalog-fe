@@ -138,11 +138,11 @@ export const CatalogPage: React.FC = () => {
         </div>
 
         {isCartNotification && (
-          <Notification text='The good was added to the cart' />
+          <Notification text="The good was added to the cart" />
         )}
 
         {isFavoritesNotification && (
-          <Notification text='The good was added to the favorites' />
+          <Notification text="The good was added to the favorites" />
         )}
 
         {error && <div>There is some problems occured</div>}
