@@ -16,9 +16,7 @@ interface Props {
   products: Product[];
 }
 
-export const ProductsList: React.FC<Props> = ({
-  products
-}) => {
+export const ProductsList: React.FC<Props> = ({ products }) => {
   const { isLoading } = useContext(CatalogContext);
 
   const faviritesGoods = useSelector(
@@ -32,17 +30,17 @@ export const ProductsList: React.FC<Props> = ({
     if (foundedGood) {
       dispatch(removeFromFavorites(product.id));
     } else {
-        dispatch(addToFavorites(product));
+      dispatch(addToFavorites(product));
     }
   };
 
   const addProductToCart = (product: Product) => {
-      dispatch(
-        addToCart({
-          ...product,
-          count: 1,
-        }),
-      );
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
   };
 
   return (

@@ -164,9 +164,7 @@ export const CatalogPage: React.FC = () => {
 
         {error && <div>There is some problems occured</div>}
 
-        <ProductsList
-          products={products}
-        />
+        <ProductsList products={products} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

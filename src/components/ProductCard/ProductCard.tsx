@@ -41,7 +41,7 @@ export const ProductCard: React.FC<Props> = ({
         setIsNotification(false);
       }, 2000);
     }
-  }
+  };
 
   const notificateFaborites = () => {
     if (!addTofavoritesButtonCondition) {
@@ -51,7 +51,7 @@ export const ProductCard: React.FC<Props> = ({
     setTimeout(() => {
       setIsFavoritesNotification(false);
     }, 2000);
-  }
+  };
 
   return (
     <div className={styles['phone-card']}>
@@ -112,19 +112,19 @@ export const ProductCard: React.FC<Props> = ({
           })}
           type="submit"
           onClick={() => {
-            onToggleFavorites(product)
+            onToggleFavorites(product);
             notificateFaborites();
           }}
         ></button>
       </div>
 
       {isCartNotification && (
-          <Notification text="The good was added to the cart" />
-        )}
+        <Notification text="The good was added to the cart" />
+      )}
 
-        {isFavoritesNotification && (
-          <Notification text="The good was added to the favorites" />
-        )}
+      {isFavoritesNotification && (
+        <Notification text="The good was added to the favorites" />
+      )}
     </div>
   );
 };
