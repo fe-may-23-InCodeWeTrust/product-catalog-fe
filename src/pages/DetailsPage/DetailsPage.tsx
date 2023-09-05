@@ -90,9 +90,7 @@ export const DetailsPage = () => {
       .catch(() => setError('Wrong URL - could not make a request'));
   }
 
-  const capacity = `${product?.capacityAvailable}`
-    .slice(1, -1)
-    .split(',');
+  const capacity = `${product?.capacityAvailable}`.slice(1, -1).split(',');
 
   return (
     <main className={styles.main}>
@@ -197,22 +195,6 @@ export const DetailsPage = () => {
 
                   <div className={styles['capacity-options__buttons']}>
                     {capacity.map((size) => (
-                      // <button
-                      //   key={index}
-                      //   className={classNames(
-                      //     styles['capacity-options__option'],
-                      //     {
-                      //       [styles['capacity-options__option--selected']]:
-                      //         selectedCapacity === size,
-                      //       [styles['capacity-options__option--not-selected']]:
-                      //         selectedCapacity !== size,
-                      //     },
-                      //   )}
-                      //   onClick={() => handleCapacityClick(size)}
-                      // >
-                      //   {`${size} GB`}
-                      // </button>
-
                       <Link
                         key={size}
                         to={{ pathname: handleChangingCapacity(size) }}
@@ -226,7 +208,7 @@ export const DetailsPage = () => {
                           },
                         )}
                       >
-                       {size.replace(/(\d)([A-Za-z])/g, '$1 $2')}
+                        {size.replace(/(\d)([A-Za-z])/g, '$1 $2')}
                       </Link>
                     ))}
                   </div>
@@ -447,6 +429,6 @@ export const DetailsPage = () => {
           </>
         )}
       </div>
-    </main >
+    </main>
   );
 };
