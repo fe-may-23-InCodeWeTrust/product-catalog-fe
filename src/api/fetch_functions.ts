@@ -21,5 +21,7 @@ export const getNewProducts = () => {
 };
 
 export const getProductById = (id: string) => {
-  return client.get<{foundProduct: ProductItem, recommneded: Product[]}>(`phones/${id}`);
+  return client.get<{ foundProduct: ProductItem; recommneded: Product[] }>(
+    `phones/${id}`,
+  );
 };

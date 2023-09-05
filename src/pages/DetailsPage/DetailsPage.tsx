@@ -10,7 +10,7 @@ const images = [
   'https://eplio.com.ua/image/cache/catalog/product_1108_2_image-600x600.jpeg',
   'https://eplio.com.ua/image/cache/catalog/product_1268_2_image-1000x1000.jpeg',
   'https://www.i-parts.it/20122-home_default/grado-a-64gb-nero-iphone-11-pro-max.jpg',
-]
+];
 
 const capacity = [64, 256, 512];
 
@@ -44,16 +44,15 @@ const aboutArticles = [
       'Meet dive first diviple‑camera system to combine cutting‑edge technology widiv dive legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot dive highest‑quality video in a smartphone — diven edit widiv dive same tools you love for photos. You’ve never shot widiv anydiving like it.',
   },
   {
-    title: 'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+    title:
+      'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
     paragraph:
       'iPhone 11 Pro lets you capture videos divat are beautifully divue to life, widiv greater detail and smoodiver motion. Epic processing power means it can shoot 4K video widiv extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative condivol, too, widiv four times more scene and powerful new editing tools to play widiv.',
   },
 ];
 
-
-
 export const DetailsPage = () => {
-  const TITLE = "Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)";
+  const TITLE = 'Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)';
 
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [product, setProduct] = useState<ProductItem | null>(null);
@@ -64,14 +63,11 @@ export const DetailsPage = () => {
   };
 
   useEffect(() => {
-
-    getProductById('apple-iphone-11-128gb-black')
-    .then(data => {
+    getProductById('apple-iphone-11-128gb-black').then((data) => {
       setProduct(data.foundProduct);
       setRecommended(data.recommneded);
-    })
-  })
-
+    });
+  });
 
   return (
     <main className={styles.main}>
@@ -83,13 +79,25 @@ export const DetailsPage = () => {
             </a>
 
             <a href="#" className={styles['breadcrumb-nav__item']}>
-              <div className={styles.icon + ' ' + styles['icon--arrow-forward']}></div>
+              <div
+                className={styles.icon + ' ' + styles['icon--arrow-forward']}
+              ></div>
               <p className={styles.text + ' ' + styles['text--dark']}>Phones</p>
             </a>
 
             <a href="#" className={styles['breadcrumb-nav__item']}>
-              <div className={styles.icon + ' ' + styles['icon--arrow-forward']}></div>
-              <p className={styles.text + ' ' + styles['text--light'] + ' ' + styles['text--truncate']}>
+              <div
+                className={styles.icon + ' ' + styles['icon--arrow-forward']}
+              ></div>
+              <p
+                className={
+                  styles.text +
+                  ' ' +
+                  styles['text--light'] +
+                  ' ' +
+                  styles['text--truncate']
+                }
+              >
                 {TITLE}
               </p>
             </a>
@@ -97,7 +105,9 @@ export const DetailsPage = () => {
 
           <div className={styles['breadcrumb-nav__row']}>
             <a href="#" className={styles['breadcrumb-nav__item']}>
-              <div className={styles.icon + ' ' + styles['icon--arrow-back']}></div>
+              <div
+                className={styles.icon + ' ' + styles['icon--arrow-back']}
+              ></div>
               <p className={styles.text + ' ' + styles['text--light']}>Back</p>
             </a>
           </div>
@@ -112,10 +122,7 @@ export const DetailsPage = () => {
             </div>
             <div className={styles['gallery__small-images']}>
               {images.map((image, index) => (
-                <div
-                  key={index}
-                  className={styles['gallery__small-image']}
-                >
+                <div key={index} className={styles['gallery__small-image']}>
                   <img
                     src={image}
                     alt={`Small iPhone ${index + 1}`}
@@ -129,7 +136,9 @@ export const DetailsPage = () => {
           <div className={styles['info-container']}>
             <div className={styles['color-options']}>
               <div className={styles['color-options__text']}>
-                <p className={styles['color-options__label']}>Available colors</p>
+                <p className={styles['color-options__label']}>
+                  Available colors
+                </p>
                 <p className={styles['color-options__id']}>ID: 802390</p>
               </div>
 
@@ -144,7 +153,9 @@ export const DetailsPage = () => {
             <div className={styles.line}></div>
 
             <div className={styles['capacity-options']}>
-              <p className={styles['capacity-options__label']}>Select capacity</p>
+              <p className={styles['capacity-options__label']}>
+                Select capacity
+              </p>
 
               <div className={styles['capacity-options__buttons']}>
                 {capacity.map((size, index) => (
@@ -166,20 +177,36 @@ export const DetailsPage = () => {
             </div>
 
             <div className={`${styles['phone-card__actions']}`}>
-              <button type="submit" className={`${styles['add-to-cart']} ${styles['text-button']}`}>
+              <button
+                type="submit"
+                className={`${styles['add-to-cart']} ${styles['text-button']}`}
+              >
                 Add to cart
               </button>
 
-              <button className={styles['add-to-favorites']} type="submit"></button>
+              <button
+                className={styles['add-to-favorites']}
+                type="submit"
+              ></button>
             </div>
 
             <div className={styles['matches matches']}>
               {specifications.map((item, index) => (
                 <div key={index} className={styles.matches__row}>
-                  <div className={styles['matches__specification matches__specification--small']}>
+                  <div
+                    className={
+                      styles[
+                        'matches__specification matches__specification--small'
+                      ]
+                    }
+                  >
                     {item.specification}
                   </div>
-                  <div className={styles['matches__value matches__value--small']}>{item.value}</div>
+                  <div
+                    className={styles['matches__value matches__value--small']}
+                  >
+                    {item.value}
+                  </div>
                 </div>
               ))}
             </div>
@@ -193,9 +220,14 @@ export const DetailsPage = () => {
             <div className={styles.line}></div>
 
             {aboutArticles.map((article, index) => (
-              <article key={index} className={`${styles['section__article']} ${styles['article']}`}>
+              <article
+                key={index}
+                className={`${styles['section__article']} ${styles['article']}`}
+              >
                 <h4 className={styles['article__title']}>{article.title}</h4>
-                <p className={styles['article__paragraph']}>{article.paragraph}</p>
+                <p className={styles['article__paragraph']}>
+                  {article.paragraph}
+                </p>
               </article>
             ))}
           </section>
@@ -205,10 +237,14 @@ export const DetailsPage = () => {
 
             <div className={styles.line}></div>
 
-            <div className={`${styles['section__matches']} ${styles['matches']}`}>
+            <div
+              className={`${styles['section__matches']} ${styles['matches']}`}
+            >
               {specificationsWide.map((item, index) => (
                 <div key={index} className={styles['matches__row']}>
-                  <div className={styles['matches__specification']}>{item.specification}</div>
+                  <div className={styles['matches__specification']}>
+                    {item.specification}
+                  </div>
                   <div className={styles['matches__value']}>{item.value}</div>
                 </div>
               ))}
@@ -216,9 +252,7 @@ export const DetailsPage = () => {
           </section>
         </div>
 
-
         <h2></h2>
-
       </div>
     </main>
   );
