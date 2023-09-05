@@ -29,5 +29,3 @@ export const getProductById = (path: string) => {
 export const getProductByItemId = (id: string) => {
   return client.get<Product>(`products/${id}`);
 };
-
-

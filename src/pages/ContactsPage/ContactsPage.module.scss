@@ -1,0 +1,124 @@
+@import '../../styles/utils/_mixins.scss';
+@import '../../styles/utils/_variables.scss';
+@import '../../styles/utils/reset';
+@import '../../styles/fonts';
+
+.contacts_container {
+  font-family: 'Mont', sans-serif;
+  width: 288px;
+  margin: 40px auto 0;
+
+  @include onTablet {
+    width: 592px;
+  }
+
+  @include onDesktop {
+    width: 1136px;
+  }
+}
+
+.title {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 41px;
+  color: $color-primary;
+  margin-top: 24px;
+  margin-bottom: 48px;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  @include onDesktop {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.contacts_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contact_card {
+  width: 250px;
+  padding: 24px;
+  border: 1px solid $color-elements;
+  border-radius: 16px;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-elements;
+    border: 1px solid $color-primary;
+  }
+
+  @include onDesktop {
+    width: 350px;
+  }
+}
+
+.contact_photo {
+  width: 202px;
+  height: 202px;
+  border-radius: 50%;
+
+  @include onDesktop {
+    width: 302px;
+    height: 302px;
+  }
+}
+
+.bg-1 {
+  background-image: url('https://ca.slack-edge.com/T0PE08HSR-U050ZTXD6KB-c54741a143ee-512');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-2 {
+  background-image: url('https://ca.slack-edge.com/T0PE08HSR-U052X32SLKC-c1e6fb666ad5-512');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-3 {
+  background-image: url('https://ca.slack-edge.com/T0PE08HSR-U0516H3C665-0596da767365-512');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-4 {
+  background-image: url('https://ca.slack-edge.com/T0PE08HSR-U054EEQHDJA-95d32303d6c5-512');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-5 {
+  background-image: url('https://ca.slack-edge.com/T0PE08HSR-U0586RA2J49-e0c3fb4e30cf-512');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-6 {
+  background-image: url('https://ca.slack-edge.com/T0PE08HSR-U05656CRZLG-d48ce5d24cf3-512');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contact_name {
+  font-weight: 800;
+  font-size: 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.contact_info {
+  margin: 10px 0;
+  color: $color-secondary;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
