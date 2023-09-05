@@ -13,13 +13,15 @@ export const ContactsPage = () => {
       <h2 className={styles['title']}>Contacts</h2>
 
       <div className={styles['contacts_list']}>
-        {contacts.map(contact => (
+        {contacts.map((contact) => (
           <div key={contact.id} className={styles['contact_card']}>
-            <div className={`${styles['contact_photo']} ${styles['bg-' + contact.id]}`}></div>
+            <div
+              className={`${styles['contact_photo']} ${
+                styles['bg-' + contact.id]
+              }`}
+            ></div>
 
-            <p className={styles['contact_name']}>
-              {contact.fullName}
-            </p>
+            <p className={styles['contact_name']}>{contact.fullName}</p>
 
             <p className={styles['contact_info']}>
               <a href={contact.linkedIn}>LinkedIn</a>
@@ -37,4 +39,4 @@ export const ContactsPage = () => {
       </div>
     </div>
   );
-}
+};

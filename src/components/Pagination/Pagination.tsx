@@ -40,7 +40,10 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
   return (
     <div className={styles['pagination']}>
       {currentPage > 1 && (
-        <NavLink to={`?page=${currentPage - 1}`} className={`${styles['page-button']} ${styles['left']}`}>
+        <NavLink
+          to={`?page=${currentPage - 1}`}
+          className={`${styles['page-button']} ${styles['left']}`}
+        >
           {prevButton}
         </NavLink>
       )}
@@ -48,7 +51,10 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
       {getPageButtons()}
 
       {currentPage < totalPages && (
-        <NavLink to={`?page=${currentPage + 1}`} className={`${styles['page-button']} ${styles['right']}`}>
+        <NavLink
+          to={`?page=${currentPage + 1}`}
+          className={`${styles['page-button']} ${styles['right']}`}
+        >
           {nextButton}
         </NavLink>
       )}
