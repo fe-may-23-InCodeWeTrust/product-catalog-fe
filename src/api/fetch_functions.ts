@@ -20,8 +20,14 @@ export const getNewProducts = () => {
   return client.get<Product[]>(`products/new`);
 };
 
-export const getProductById = (id: string) => {
-  return client.get<{ foundProduct: ProductItem; recommneded: Product[] }>(
-    `phones/${id}`,
+export const getProductById = (path: string) => {
+  return client.get<{ foundProduct: ProductItem; recommended: Product[] }>(
+    `${path}`,
   );
 };
+
+export const getProductByItemId = (id: string) => {
+  return client.get<Product>(`products/${id}`);
+};
+
+

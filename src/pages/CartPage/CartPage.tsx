@@ -81,7 +81,9 @@ export const CartPage = () => {
                   />
 
                   <span className="cart-good__title">
-                    <Link to={`/${good.category}/${good.itemId}`}>{good.name}</Link>
+                    <Link to={`/${good.category}/${good.itemId}`}>
+                      {good.name}
+                    </Link>
                   </span>
                 </div>
 

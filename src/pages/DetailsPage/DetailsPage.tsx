@@ -7,6 +7,10 @@ import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
 import { LeapFrog } from '@uiball/loaders';
 import { useLocation, useParams } from 'react-router-dom';
+import { addToCart } from '../../redux/cartReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+
 
 export const DetailsPage = () => {
   const { phoneId, tabletId, accessoryId } = useParams();
@@ -14,11 +18,26 @@ export const DetailsPage = () => {
   const [colors, setColors] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [product, setProduct] = useState<ProductItem | null>(null);
+  const [productByItemId, setProductByItemId] = useState<Product | null>(null);
   const [recommended, setRecommended] = useState<Product[]>([]);
   const { isLoading, setIsLoading } = useContext(CatalogContext);
   const [error, setError] = useState('');
   const [selectedCapacity, setSelectedCapacity] = useState<number | null>(null);
   const location = useLocation();
+
+  const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
+  const isInCart = goodsFromCart.find((good) => good.id === productByItemId?.id);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const addProductToCart = (product: Product) => {
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
+  };
 
   const handleImageChange = (newImage: string) => {
     setSelectedImage(newImage);
@@ -52,7 +71,15 @@ export const DetailsPage = () => {
       })
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
-  }, [phoneId]);
+  }, []);
+
+if (product) {
+  ProductService.getProductByItemId(product.id)
+    .then((data) => {
+      setProductByItemId(data);
+    })
+    .catch(() => setError('Wrong URL - could not make a request'));
+}
 
   let capacity: string[] | number[] = `${product?.capacityAvailable}`
     .slice(1, -1)
@@ -196,6 +223,12 @@ export const DetailsPage = () => {
                   <button
                     type="submit"
                     className={`${styles['add-to-cart']} ${styles['text-button']}`}
+                    onClick={() => {
+                      if (productByItemId) {
+                        addProductToCart(productByItemId);
+                      }
+                    }}
+                    disabled={!!isInCart}
                   >
                     Add to cart
                   </button>
