@@ -1,5 +1,6 @@
 import './CartPage.scss';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import {
@@ -79,7 +80,7 @@ export const CartPage = () => {
                     className="good-img"
                   />
 
-                  <span className="cart-good__title">{good.name}</span>
+                  <Link to={`/phones/${good.itemId}`}>{good.name}</Link>
                 </div>
 
                 <div className="cart-good__price">
