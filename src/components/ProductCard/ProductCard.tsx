@@ -30,7 +30,7 @@ export const ProductCard: React.FC<Props> = ({
       </div>
 
       <h3 className={`${styles['phone-card__title']} text-body`}>
-        <Link to={`/phones/${product.itemId}`}>{product.name}</Link>
+        <Link to={`/${product.category}/${product.itemId}`}>{product.name}</Link>
       </h3>
 
       <div className={styles['phone-card__price-block']}>

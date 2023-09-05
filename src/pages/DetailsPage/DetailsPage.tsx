@@ -6,10 +6,10 @@ import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
 import { LeapFrog } from '@uiball/loaders';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 export const DetailsPage = () => {
-  const { phoneId } = useParams();
+  const { phoneId, tabletId, accessoryId } = useParams();
   const [images, setImages] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
@@ -18,6 +18,7 @@ export const DetailsPage = () => {
   const { isLoading, setIsLoading } = useContext(CatalogContext);
   const [error, setError] = useState('');
   const [selectedCapacity, setSelectedCapacity] = useState<number | null>(null);
+  const location = useLocation();
 
   const handleImageChange = (newImage: string) => {
     setSelectedImage(newImage);
@@ -30,31 +31,27 @@ export const DetailsPage = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    console.log('params', phoneId);
+    // ProductService.getProductById('apple-iphone-11-128gb-black')
+    ProductService.getProductById(location.pathname.slice(1))
+      .then((data) => {
+        setProduct(data.foundProduct);
+        setRecommended(data.recommended);
 
-    if (phoneId) {
-      // ProductService.getProductById('apple-iphone-11-128gb-black')
-      ProductService.getProductById(phoneId)
-        .then((data) => {
-          setProduct(data.foundProduct);
-          setRecommended(data.recommended);
+        console.log(data.foundProduct);
 
-          console.log(data.foundProduct);
+        const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
+        const colors = `${data.foundProduct.colorsAvailable}`
+          .slice(1, -1)
+          .split(',');
 
-          const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
-          const colors = `${data.foundProduct.colorsAvailable}`
-            .slice(1, -1)
-            .split(',');
+        setImages(images);
+        setColors(colors);
+        setSelectedImage(images[0]);
 
-          setImages(images);
-          setColors(colors);
-          setSelectedImage(images[0]);
-
-          setSelectedCapacity(parseInt(data.foundProduct.capacity));
-        })
-        .catch(() => setError('Wrong URL - could not make a request'))
-        .finally(() => setIsLoading(false));
-    }
+        setSelectedCapacity(parseInt(data.foundProduct.capacity));
+      })
+      .catch(() => setError('Wrong URL - could not make a request'))
+      .finally(() => setIsLoading(false));
   }, [phoneId]);
 
   let capacity: string[] | number[] = `${product?.capacityAvailable}`
