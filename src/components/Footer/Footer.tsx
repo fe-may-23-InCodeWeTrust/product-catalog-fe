@@ -4,7 +4,7 @@ import { Arrow } from '../../assets/icons/Arrow';
 import { ArrowDarkTheme } from '../../assets/icons/ArrowDarkTheme';
 import styles from './Footer.module.scss';
 import { useSelector } from 'react-redux';
-import whiteLogo from '../../assets/icons/Nice Gadgets.svg';
+import whiteLogo from '../../assets/icons/white-logo.svg';
 
 export const Footer = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);

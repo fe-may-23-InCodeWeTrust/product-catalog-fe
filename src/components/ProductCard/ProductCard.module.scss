@@ -42,7 +42,7 @@
   &__details {
     display: flex;
     gap: 8px;
-
+    color: $color-secondary;
     justify-content: space-between;
     font-size: 12px;
   }
@@ -58,6 +58,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: $color-primary;
   }
 
   &__price-block {
@@ -69,6 +70,7 @@
 
   &__price {
     margin-right: 8px;
+    color: $color-primary;
   }
 
   &__price-discount {
@@ -109,7 +111,7 @@
     min-width: 40px;
     border-radius: 48px;
     border: 0.5px $color-icons solid;
-    background-image: url(../../assets/icons/heart.svg);
+    background-image: $img-like;
     background-repeat: no-repeat;
     background-position: center;
     margin-left: 8px;

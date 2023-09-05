@@ -14,7 +14,7 @@
 .page-button {
   width: 32px;
   height: 32px;
-  border: 1px solid black;
+  border: 1px solid $color-elements;
   border-radius: 50%;
   text-decoration: none;
   margin: 0 4px;
@@ -24,7 +24,7 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
-  color: #333;
+  color: $color-primary;
   background-color: transparent;
   transition:
     background-color 0.3s,
@@ -41,9 +41,11 @@
 
 .is-active {
   color: #fff;
-  background-color: #000;
+  background-color: $color-accent;
+  border: 1px solid $color-accent;
 }
 
 .page-button:hover {
-  background-color: #f0f0f0;
+  color: black;
+  border: 1px solid $color-primary;
 }

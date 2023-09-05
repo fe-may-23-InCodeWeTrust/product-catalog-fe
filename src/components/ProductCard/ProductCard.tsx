@@ -28,7 +28,7 @@ export const ProductCard: React.FC<Props> = ({
   const addTofavoritesButtonCondition = favoritesGoods.find(
     (good) => good.itemId === product.itemId,
   );
-  console.log(addTofavoritesButtonCondition);
+  // console.log(addTofavoritesButtonCondition);
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   // console.log(addTofavoritesButtonCondition)
   const isInCart = goodsFromCart.find((g) => g.id === product.id);

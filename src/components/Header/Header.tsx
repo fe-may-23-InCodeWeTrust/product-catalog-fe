@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
-import whiteLogo from '../../assets/icons/whiteLogo.svg';
+import whiteLogo from '../../assets/icons/white-logo.svg';
+import whiteBag from '../../assets/icons/bag-white.svg';
+import whiteMenu from '../../assets/icons/menu-white.svg';
+import whiteClose from '../../assets/icons/close-white.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import menu from '../../assets/icons/menu.svg';
@@ -83,11 +86,19 @@ export const Header = () => {
                   }`
                 }
               >
-                <img
-                  src={favourites}
-                  alt="Favourites icon"
-                  className="favourites-icon__image"
-                />
+                {darkMode ? (
+                  <img
+                    src={favoritesWhite}
+                    alt="Favourites icon"
+                    className="favourites-icon__image"
+                  />
+                ) : (
+                  <img
+                    src={favourites}
+                    alt="Favourites icon"
+                    className="favourites-icon__image"
+                  />
+                )}
               </NavLink>
               {!!favoritesCount && (
                 <Link to="favorites">
@@ -108,11 +119,19 @@ export const Header = () => {
                   }`
                 }
               >
-                <img
-                  src={bag}
-                  alt="Shopping bag icon"
-                  className="shopping_bag-icon__image"
-                />
+                {darkMode ? (
+                  <img
+                    src={whiteBag}
+                    alt="Shopping bag icon"
+                    className="shopping_bag-icon__image"
+                  />
+                ) : (
+                  <img
+                    src={bag}
+                    alt="Shopping bag icon"
+                    className="shopping_bag-icon__image"
+                  />
+                )}
               </NavLink>
               {!!cartCount && (
                 <Link to="cart">
@@ -129,7 +148,19 @@ export const Header = () => {
                 className={styles['header-icon__menu-icon']}
                 onClick={() => setIsActiveBurger(true)}
               >
-                <img src={menu} alt="Menu icon" className="menu-icon__image" />
+                {darkMode ? (
+                  <img
+                    src={whiteMenu}
+                    alt="Menu icon"
+                    className="menu-icon__image"
+                  />
+                ) : (
+                  <img
+                    src={menu}
+                    alt="Menu icon"
+                    className="menu-icon__image"
+                  />
+                )}
               </button>
             </div>
           </div>
@@ -144,11 +175,19 @@ export const Header = () => {
               className={`${styles['aside__logo']} ${styles['logo']}`}
               onClick={() => setIsActiveBurger(false)}
             >
-              <img
-                src={logo}
-                alt="Nice Gadgets logo"
-                className={`${styles['logo__image']}`}
-              />
+              {darkMode ? (
+                <img
+                  src={whiteLogo}
+                  alt="Nice Gadgets logo"
+                  className={`${styles['logo__image']}`}
+                />
+              ) : (
+                <img
+                  src={logo}
+                  alt="Nice Gadgets logo"
+                  className={`${styles['logo__image']}`}
+                />
+              )}
             </NavLink>
 
             <div
@@ -159,11 +198,19 @@ export const Header = () => {
                 className={`${styles['close-icon__link']}`}
                 onClick={() => setIsActiveBurger(false)}
               >
-                <img
-                  src={close}
-                  alt="Close icon"
-                  className={`${styles['close-icon__image']}`}
-                />
+                {darkMode ? (
+                  <img
+                    src={whiteClose}
+                    alt="Close icon"
+                    className={`${styles['close-icon__image']}`}
+                  />
+                ) : (
+                  <img
+                    src={close}
+                    alt="Close icon"
+                    className={`${styles['close-icon__image']}`}
+                  />
+                )}
               </NavLink>
             </div>
           </div>
@@ -263,11 +310,19 @@ export const Header = () => {
                 }
                 onClick={() => setIsActiveBurger(false)}
               >
-                <img
-                  src={bag}
-                  alt="Shopping bag icon"
-                  className={`${styles['shopping_bag-icon__image']}`}
-                />
+                {darkMode ? (
+                  <img
+                    src={whiteBag}
+                    alt="Shopping bag icon"
+                    className={`${styles['shopping_bag-icon__image']}`}
+                  />
+                ) : (
+                  <img
+                    src={bag}
+                    alt="Shopping bag icon"
+                    className={`${styles['shopping_bag-icon__image']}`}
+                  />
+                )}
               </NavLink>
               {!!cartCount && (
                 <Link to="cart">

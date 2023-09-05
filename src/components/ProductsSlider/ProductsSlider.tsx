@@ -18,6 +18,8 @@ import {
   removeFromFavorites,
 } from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
+import { ArrowLeftDarkTheme } from '../../assets/icons/ArrowLeftDarkTheme';
+import { ArrowRightDarkTheme } from '../../assets/icons/ArrowRightDarkTheme';
 
 type ProductsSliderProps = {
   title: string;
@@ -32,6 +34,7 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
 }) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
 
   const faviritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
@@ -93,14 +96,14 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
             disabled={activeSlide === 0}
             onClick={handlePreviousClick}
           >
-            <ArrowLeft />
+            {darkMode ? <ArrowLeftDarkTheme /> : <ArrowLeft />}
           </button>
           <button
             disabled={activeSlide === products.length - slidesPerView}
             className={styles['button__control']}
             onClick={handleNextClick}
           >
-            <ArrowRight />
+            {darkMode ? <ArrowRightDarkTheme /> : <ArrowRight />}
           </button>
         </div>
       </div>

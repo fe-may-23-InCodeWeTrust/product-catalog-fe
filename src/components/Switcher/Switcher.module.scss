@@ -1,12 +1,15 @@
+@import 'src/styles';
+
 .switcher {
-  width: 60px;
-  background-color: #eb5757;
+  width: 40px;
+  background-color: $color-primary;
   border-radius: 20px;
   padding: 5px;
+  dorder: 1px solid $color-grey-background;
 
   &::after {
     content: '';
-    background-color: #4219d0;
+    background-color: $color-grey-background;
     display: block;
     width: 50%;
     padding-bottom: 50%;
