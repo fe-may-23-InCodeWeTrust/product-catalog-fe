@@ -1,6 +1,7 @@
 @import '../../styles/utils';
 
 .phone-card {
+  position: relative;
   width: 100%;
   max-width: 272px;
   height: 100%;
@@ -105,8 +106,7 @@
   }
 
   .add-to-favorites {
-    width: 40px;
-    height: 40px;
+    min-width: 40px;
     border-radius: 48px;
     border: 0.5px $color-icons solid;
     background-image: url(../../assets/icons/heart.svg);

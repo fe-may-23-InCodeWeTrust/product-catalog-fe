@@ -5,6 +5,15 @@
   justify-content: space-between;
   margin-bottom: 24px;
   align-items: center;
+  margin-top: 57px;
+
+  @include onTablet {
+    margin-top: 64px;
+  }
+
+  @include onDesktop {
+    margin-top: 80px;
+  }
 }
 
 .title_price {

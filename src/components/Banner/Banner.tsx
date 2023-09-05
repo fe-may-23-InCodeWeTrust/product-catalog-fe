@@ -2,20 +2,23 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeft } from '../../assets/icons/ArrowLeft';
 import { ArrowRight } from '../../assets/icons/ArrowRight';
-import BannerImg from '../../assets/icons/Banner.png';
-import BannerMobileImg from '../../assets/icons/BannerMobile.png';
 import 'swiper/scss';
-import './Banner.scss';
+import styles from './Banner.module.scss';
 import { Swiper as SwiperType } from 'swiper/types';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay, Navigation } from 'swiper';
 import 'swiper/css/autoplay';
 import { useWindowSize } from '../../hooks/useWindowSize';
-const desktopImages: string[] = [BannerImg, BannerImg, BannerImg];
+const desktopImages: string[] = [
+  'https://product-catalog-be-lf4l.onrender.com/img/Banner.png',
+  'https://curved.de/media/webp/media/cache/head_teaser/cms/2020/09/Apple-Watch-Series-6.webp?v=2023090305',
+  'https://images.frandroid.com/wp-content/uploads/2023/05/iphone-14-pro-frandroid-quinn-battick-e0o2dkbys9u-unsplash.jpg',
+];
+
 const mobileImages: string[] = [
-  BannerMobileImg,
-  BannerMobileImg,
-  BannerMobileImg,
+  'https://product-catalog-be-lf4l.onrender.com/img/BannerMobile.png',
+  'https://curved.de/media/webp/media/cache/head_teaser/cms/2020/09/Apple-Watch-Series-6.webp?v=2023090305',
+  'https://images.frandroid.com/wp-content/uploads/2023/05/iphone-14-pro-frandroid-quinn-battick-e0o2dkbys9u-unsplash.jpg',
 ];
 
 export const Banner = () => {
@@ -39,20 +42,18 @@ export const Banner = () => {
     }
   }, [width]);
 
-  console.log(imageArray);
-
   useEffect(() => {
     if (swiper && !swiper?.autoplay?.running) {
-      console.log('eeeepppp', swiper);
       swiper?.autoplay?.run();
     }
   }, [swiper]);
 
-  console.log(swiper);
-
   return (
-    <div className="banner">
-      <button className="banner__button" onClick={handlePreviousClick}>
+    <div className={styles['banner']}>
+      <button
+        className={styles['banner__button']}
+        onClick={handlePreviousClick}
+      >
         <ArrowLeft />
       </button>
       <Swiper
@@ -70,11 +71,13 @@ export const Banner = () => {
       >
         {imageArray.map((i, index) => (
           <SwiperSlide key={index}>
-            <img src={i} alt="BannerImg" className="banner__img" />
+            <div className={styles['banner__container']}>
+              <img src={i} alt="BannerImg" className={styles['banner__img']} />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <button className="banner__button" onClick={handleNextClick}>
+      <button className={styles['banner__button']} onClick={handleNextClick}>
         <ArrowRight />
       </button>
     </div>

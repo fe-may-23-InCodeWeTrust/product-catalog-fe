@@ -3,8 +3,8 @@
 .header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid $color-elements;
   background-color: $color-white;
+  box-shadow: 0px 1px 0px 0px $color-elements;
 
   &__left {
     display: flex;
@@ -94,8 +94,8 @@
 .is-active:after {
   @include onTablet {
     content: '';
-    height: 3px;
     position: absolute;
+    height: 3px;
     background-color: $color-primary;
     bottom: 0;
     left: 0;
@@ -116,20 +116,11 @@
   &__favourites-icon,
   &__shopping_bag-icon,
   &__menu-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  &__favourites-icon {
-    background-image: url('../../assets/icons/favourites.svg');
-  }
-
-  &__shopping_bag-icon {
-    background-image: url('../../assets/icons/shopping-bag.svg');
-  }
-
-  &__menu-icon {
-    background-image: url('../../assets/icons/menu.svg');
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -145,15 +136,178 @@
 .favourites-icon,
 .shopping_bag-icon {
   display: none;
+  transition: background-color 0.5s;
 
   @include onTablet {
     display: flex;
+    position: relative;
     width: 48px;
     height: 48px;
   }
 
   @include onDesktop {
+    position: relative;
     width: 64px;
     height: 64px;
   }
+}
+
+.favourites-icon:hover,
+.shopping_bag-icon:hover {
+  background-color: $color-grey-background;
+}
+
+.mini-count {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+  font-size: 10px;
+  background-color: $color-accent;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  @include onTablet {
+    top: 24%;
+    left: 50%;
+  }
+
+  @include onDesktop {
+    top: 24%;
+    left: 50%;
+  }
+}
+
+.aside {
+  background-color: #fff;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 1px 0px 0px $color-elements;
+  }
+
+  &__burger-menu {
+    min-height: calc(100vh - 48px - 88px);
+    margin-top: 24px;
+    padding: 0 16px;
+  }
+
+  &__logo {
+    width: 96px;
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__close-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -1px 0px 0px 0px $color-elements;
+  }
+
+  &__bottom {
+    display: flex;
+    box-shadow: 0px -1px 0px 0px $color-elements;
+  }
+
+  &__favourites-icon,
+  &__shopping_bag-icon {
+    position: relative;
+    width: 50%;
+    height: 64px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__shopping_bag-icon {
+    box-shadow: -1px 0px 0px 0px $color-elements;
+  }
+}
+
+.burger-menu {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+  }
+
+  &__item {
+    position: relative;
+    padding: 8px 0;
+  }
+}
+
+.logo__image {
+  width: 64px;
+  height: 22px;
+}
+
+.close-icon__link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu__link {
+  color: $color-secondary;
+  text-transform: uppercase;
+}
+
+.is-active-menu {
+  color: $color-primary;
+}
+
+.is-active-menu:after {
+  content: '';
+  height: 2px;
+  position: absolute;
+  background-color: $color-primary;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.favourites-icon__link,
+.shopping_bag-icon__link {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favourites-icon__image,
+.shopping_bag-icon__image {
+  width: 16px;
+  height: 16px;
+}
+
+.is-active-icon:after {
+  content: '';
+  height: 3px;
+  position: absolute;
+  background-color: $color-primary;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

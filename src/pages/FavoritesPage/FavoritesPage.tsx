@@ -1,5 +1,6 @@
 import styles from './FavoritesPage.module.scss';
-import React from 'react';
+import { ProductCard } from '../../components/ProductCard';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import {
@@ -8,16 +9,16 @@ import {
 } from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
-import { ProductCard } from '../../components/ProductCard';
+import { Notification } from '../../components/Notification/Notification';
 
 export const FavoritesPage = () => {
-  const faviritesGoods = useSelector(
+  const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
   const dispatch = useDispatch<AppDispatch>();
 
   const toggleFavorites = (product: Product) => {
-    const foundedGood = faviritesGoods.find((good) => good.id === product.id);
+    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
 
     if (foundedGood) {
       dispatch(removeFromFavorites(product.id));
@@ -58,7 +59,7 @@ export const FavoritesPage = () => {
         </div>
 
         <div className={styles['phone_cards']}>
-          {faviritesGoods.map((product) => (
+          {favoritesGoods.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -67,7 +68,6 @@ export const FavoritesPage = () => {
             />
           ))}
         </div>
-
         <div className={styles['pagination']}>Pagination</div>
       </div>
     </main>
