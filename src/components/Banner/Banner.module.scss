@@ -1,0 +1,77 @@
+@import 'src/styles';
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  gap: 19px;
+  position: relative;
+  left: -16px;
+  right: -16px;
+  width: calc(100% + 32px);
+  margin-bottom: 56px;
+
+  &__container {
+    overflow: hidden;
+    padding-top: 100%;
+    position: relative;
+    width: 100%;
+
+    @include onTablet {
+      padding-top: 39%;
+      height: auto;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  &__button {
+    display: none;
+  }
+
+  @include onTablet {
+    left: unset;
+    right: unset;
+    width: 100%;
+    margin-bottom: 64px;
+
+    &__button {
+      min-width: 32px;
+      height: auto;
+      border: 1px solid $color-icons;
+      border-radius: 48px;
+      background-color: $color-white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+
+      &:active {
+        border: 1px solid $color-primary;
+        background-color: $color-primary;
+
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        border: 1px solid $color-primary;
+      }
+    }
+  }
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
+}
