@@ -6,14 +6,13 @@ import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
 import { LeapFrog } from '@uiball/loaders';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 
-
 export const DetailsPage = () => {
-  const { phoneId, tabletId, accessoryId } = useParams();
+  // const { phoneId, tabletId, accessoryId } = useParams();
   const [images, setImages] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
@@ -22,11 +21,19 @@ export const DetailsPage = () => {
   const [recommended, setRecommended] = useState<Product[]>([]);
   const { isLoading, setIsLoading } = useContext(CatalogContext);
   const [error, setError] = useState('');
-  const [selectedCapacity, setSelectedCapacity] = useState<number | null>(null);
+  const [selectedCapacity, setSelectedCapacity] = useState<string>('');
   const location = useLocation();
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  const category = location.pathname.slice(1).split('/')[0];
+  const id = location.pathname.slice(1).split('/')[1];
+
+  console.log(category, id);
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
-  const isInCart = goodsFromCart.find((good) => good.id === productByItemId?.id);
+  const isInCart = goodsFromCart.find(
+    (good) => good.id === productByItemId?.id,
+  );
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -43,8 +50,10 @@ export const DetailsPage = () => {
     setSelectedImage(newImage);
   };
 
-  const handleCapacityClick = (capacity: number) => {
-    setSelectedCapacity(capacity);
+  const handleChangingCapacity = (capacity: string) => {
+    // setSelectedCapacity(parseInt(capacity));
+    return `/${category}/${product?.namespaceId}-${capacity.toLowerCase()}-${product?.color.toLowerCase()}`;
+    // return `/${category}/${product?.namespaceId}-${capacity.toLowerCase()}-black`;
   };
 
   useEffect(() => {
@@ -67,24 +76,21 @@ export const DetailsPage = () => {
         setColors(colors);
         setSelectedImage(images[0]);
 
-        setSelectedCapacity(parseInt(data.foundProduct.capacity));
+        setSelectedCapacity(data.foundProduct.capacity);
       })
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [id]);
 
-if (product) {
-  ProductService.getProductByItemId(product.id)
-    .then((data) => {
-      setProductByItemId(data);
-    })
-    .catch(() => setError('Wrong URL - could not make a request'));
-}
+  if (product) {
+    ProductService.getProductByItemId(product.id)
+      .then((data) => {
+        setProductByItemId(data);
+      })
+      .catch(() => setError('Wrong URL - could not make a request'));
+  }
 
-  let capacity: string[] | number[] = `${product?.capacityAvailable}`
-    .slice(1, -1)
-    .split(',');
-  capacity = capacity.map((item) => parseInt(item));
+  const capacity = `${product?.capacityAvailable}`.slice(1, -1).split(',');
 
   return (
     <main className={styles.main}>
@@ -188,9 +194,10 @@ if (product) {
                   </p>
 
                   <div className={styles['capacity-options__buttons']}>
-                    {capacity.map((size, index) => (
-                      <button
-                        key={index}
+                    {capacity.map((size) => (
+                      <Link
+                        key={size}
+                        to={{ pathname: handleChangingCapacity(size) }}
                         className={classNames(
                           styles['capacity-options__option'],
                           {
@@ -200,10 +207,9 @@ if (product) {
                               selectedCapacity !== size,
                           },
                         )}
-                        onClick={() => handleCapacityClick(size)}
                       >
-                        {`${size} GB`}
-                      </button>
+                        {size.replace(/(\d)([A-Za-z])/g, '$1 $2')}
+                      </Link>
                     ))}
                   </div>
                 </div>
