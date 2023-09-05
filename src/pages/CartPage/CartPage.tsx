@@ -80,7 +80,10 @@ export const CartPage = () => {
                     className="good-img"
                   />
 
-                  <Link to={`/phones/${good.itemId}`}>{good.name}</Link>
+                  <span className="cart-good__title">
+                    <Link to={`/phones/${good.itemId}`}>{good.name}</Link>
+                  </span>
+
                 </div>
 
                 <div className="cart-good__price">
