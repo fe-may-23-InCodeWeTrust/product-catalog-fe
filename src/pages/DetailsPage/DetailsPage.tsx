@@ -6,10 +6,10 @@ import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
 import { LeapFrog } from '@uiball/loaders';
+import { useParams } from 'react-router-dom';
 
 export const DetailsPage = () => {
-  const TITLE = 'Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)';
-
+  const { phoneId } = useParams();
   const [images, setImages] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
@@ -18,7 +18,6 @@ export const DetailsPage = () => {
   const { isLoading, setIsLoading } = useContext(CatalogContext);
   const [error, setError] = useState('');
   const [selectedCapacity, setSelectedCapacity] = useState<number | null>(null);
-
 
   const handleImageChange = (newImage: string) => {
     setSelectedImage(newImage);
@@ -31,28 +30,37 @@ export const DetailsPage = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    ProductService.getProductById('apple-iphone-11-128gb-black')
-      .then((data) => {
-        setProduct(data.foundProduct);
-        setRecommended(data.recommended);
+    console.log('params', phoneId);
 
-        console.log(data.foundProduct);
+    if (phoneId) {
+      // ProductService.getProductById('apple-iphone-11-128gb-black')
+      ProductService.getProductById(phoneId)
+        .then((data) => {
+          setProduct(data.foundProduct);
+          setRecommended(data.recommended);
 
-        const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
-        const colors = `${data.foundProduct.colorsAvailable}`.slice(1, -1).split(',');
+          console.log(data.foundProduct);
 
-        setImages(images);
-        setColors(colors);
-        setSelectedImage(images[0]);
+          const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
+          const colors = `${data.foundProduct.colorsAvailable}`
+            .slice(1, -1)
+            .split(',');
 
-        setSelectedCapacity(parseInt(data.foundProduct.capacity));
-      })
-      .catch(() => setError('Wrong URL - could not make a request'))
-      .finally(() => setIsLoading(false));
-  }, []);
+          setImages(images);
+          setColors(colors);
+          setSelectedImage(images[0]);
 
-  let capacity: string[] | number[] = `${product?.capacityAvailable}`.slice(1, -1).split(',');
-  capacity = capacity.map(item => parseInt(item));
+          setSelectedCapacity(parseInt(data.foundProduct.capacity));
+        })
+        .catch(() => setError('Wrong URL - could not make a request'))
+        .finally(() => setIsLoading(false));
+    }
+  }, [phoneId]);
+
+  let capacity: string[] | number[] = `${product?.capacityAvailable}`
+    .slice(1, -1)
+    .split(',');
+  capacity = capacity.map((item) => parseInt(item));
 
   return (
     <main className={styles.main}>
@@ -83,7 +91,7 @@ export const DetailsPage = () => {
                   styles['text--truncate']
                 }
               >
-                {TITLE}
+                {product?.name}
               </p>
             </a>
           </div>
@@ -99,9 +107,9 @@ export const DetailsPage = () => {
         </div>
 
         {isLoading ? (
-          <div className="loader" >
+          <div className="loader">
             <LeapFrog size={40} speed={2.5} color="black" />
-          </div >
+          </div>
         ) : (
           <>
             <h1 className={styles.title}>{product?.name}</h1>
@@ -109,7 +117,10 @@ export const DetailsPage = () => {
             <div className={styles['gallery-and-info-container']}>
               <div className={styles.gallery}>
                 <div className={styles['gallery__big-image']}>
-                  <img src={`https://product-catalog-be-lf4l.onrender.com/${selectedImage}`} alt="Big iPhone" />
+                  <img
+                    src={`https://product-catalog-be-lf4l.onrender.com/${selectedImage}`}
+                    alt="Big iPhone"
+                  />
                 </div>
                 <div className={styles['gallery__small-images']}>
                   {images.map((image, index) => (
@@ -130,16 +141,17 @@ export const DetailsPage = () => {
                     <p className={styles['color-options__label']}>
                       Available colors
                     </p>
-                    <p className={styles['color-options__id']}>{`ID: ${product?.namespaceId}`}</p>
+                    <p
+                      className={styles['color-options__id']}
+                    >{`ID: ${product?.namespaceId}`}</p>
                   </div>
 
                   <div className={styles['color-options__images']}>
                     {colors.map((color, index) => (
-                      <div 
-                      key={index}
-                      className={styles[`color-options__option--${color}`]}
-                      >
-                      </div>
+                      <div
+                        key={index}
+                        className={styles[`color-options__option--${color}`]}
+                      ></div>
                     ))}
                   </div>
                 </div>
@@ -158,9 +170,11 @@ export const DetailsPage = () => {
                         className={classNames(
                           styles['capacity-options__option'],
                           {
-                            [styles['capacity-options__option--selected']]: selectedCapacity === size,
-                            [styles['capacity-options__option--not-selected']]: selectedCapacity !== size,
-                          }
+                            [styles['capacity-options__option--selected']]:
+                              selectedCapacity === size,
+                            [styles['capacity-options__option--not-selected']]:
+                              selectedCapacity !== size,
+                          },
                         )}
                         onClick={() => handleCapacityClick(size)}
                       >
@@ -170,13 +184,15 @@ export const DetailsPage = () => {
                   </div>
                 </div>
 
-
-
                 <div className={styles.line}></div>
 
                 <div className={`${styles['phone-card__price-block']}`}>
-                  <p className={styles['phone-card__price']}>{`${product?.priceDiscount}$`}</p>
-                  <p className={styles['phone-card__price-discount']}>{`${product?.priceRegular}$`}</p>
+                  <p
+                    className={styles['phone-card__price']}
+                  >{`${product?.priceDiscount}$`}</p>
+                  <p
+                    className={styles['phone-card__price-discount']}
+                  >{`${product?.priceRegular}$`}</p>
                 </div>
 
                 <div className={`${styles['phone-card__actions']}`}>
@@ -195,23 +211,86 @@ export const DetailsPage = () => {
 
                 <div className={styles.matches}>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification'] + ' ' + styles['matches__specification--small']}>Screen</div>
-                    <div className={styles['matches__value'] + ' ' + styles['matches__value--small']}>{product?.screen}</div>
+                    <div
+                      className={
+                        styles['matches__specification'] +
+                        ' ' +
+                        styles['matches__specification--small']
+                      }
+                    >
+                      Screen
+                    </div>
+                    <div
+                      className={
+                        styles['matches__value'] +
+                        ' ' +
+                        styles['matches__value--small']
+                      }
+                    >
+                      {product?.screen}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification'] + ' ' + styles['matches__specification--small']}>Resolution</div>
-                    <div className={styles['matches__value'] + ' ' + styles['matches__value--small']}>{product?.resolution}</div>
+                    <div
+                      className={
+                        styles['matches__specification'] +
+                        ' ' +
+                        styles['matches__specification--small']
+                      }
+                    >
+                      Resolution
+                    </div>
+                    <div
+                      className={
+                        styles['matches__value'] +
+                        ' ' +
+                        styles['matches__value--small']
+                      }
+                    >
+                      {product?.resolution}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification'] + ' ' + styles['matches__specification--small']}>Processor</div>
-                    <div className={styles['matches__value'] + ' ' + styles['matches__value--small']}>{product?.processor}</div>
+                    <div
+                      className={
+                        styles['matches__specification'] +
+                        ' ' +
+                        styles['matches__specification--small']
+                      }
+                    >
+                      Processor
+                    </div>
+                    <div
+                      className={
+                        styles['matches__value'] +
+                        ' ' +
+                        styles['matches__value--small']
+                      }
+                    >
+                      {product?.processor}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification'] + ' ' + styles['matches__specification--small']}>RAM</div>
-                    <div className={styles['matches__value'] + ' ' + styles['matches__value--small']}>{product?.ram}</div>
+                    <div
+                      className={
+                        styles['matches__specification'] +
+                        ' ' +
+                        styles['matches__specification--small']
+                      }
+                    >
+                      RAM
+                    </div>
+                    <div
+                      className={
+                        styles['matches__value'] +
+                        ' ' +
+                        styles['matches__value--small']
+                      }
+                    >
+                      {product?.ram}
+                    </div>
                   </div>
                 </div>
-
               </div>
             </div>
 
@@ -226,7 +305,9 @@ export const DetailsPage = () => {
                     key={index}
                     className={`${styles['section__article']} ${styles['article']}`}
                   >
-                    <h4 className={styles['article__title']}>{article.title}</h4>
+                    <h4 className={styles['article__title']}>
+                      {article.title}
+                    </h4>
                     <p className={styles['article__paragraph']}>
                       {article.text}
                     </p>
@@ -239,38 +320,66 @@ export const DetailsPage = () => {
 
                 <div className={styles.line}></div>
 
-                <div className={`${styles['section__matches']} ${styles['matches']}`}>
+                <div
+                  className={`${styles['section__matches']} ${styles['matches']}`}
+                >
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification']}>Screen</div>
-                    <div className={styles['matches__value']}>{product?.screen}</div>
+                    <div className={styles['matches__specification']}>
+                      Screen
+                    </div>
+                    <div className={styles['matches__value']}>
+                      {product?.screen}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification']}>Resolution</div>
-                    <div className={styles['matches__value']}>{product?.resolution}</div>
+                    <div className={styles['matches__specification']}>
+                      Resolution
+                    </div>
+                    <div className={styles['matches__value']}>
+                      {product?.resolution}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification']}>Processor</div>
-                    <div className={styles['matches__value']}>{product?.processor}</div>
+                    <div className={styles['matches__specification']}>
+                      Processor
+                    </div>
+                    <div className={styles['matches__value']}>
+                      {product?.processor}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
                     <div className={styles['matches__specification']}>RAM</div>
-                    <div className={styles['matches__value']}>{product?.ram}</div>
+                    <div className={styles['matches__value']}>
+                      {product?.ram}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification']}>Built in memory</div>
-                    <div className={styles['matches__value']}>{product?.capacity}</div>
+                    <div className={styles['matches__specification']}>
+                      Built in memory
+                    </div>
+                    <div className={styles['matches__value']}>
+                      {product?.capacity}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification']}>Camera</div>
-                    <div className={styles['matches__value']}>{product?.camera}</div>
+                    <div className={styles['matches__specification']}>
+                      Camera
+                    </div>
+                    <div className={styles['matches__value']}>
+                      {product?.camera}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
                     <div className={styles['matches__specification']}>Zoom</div>
-                    <div className={styles['matches__value']}>{product?.zoom}</div>
+                    <div className={styles['matches__value']}>
+                      {product?.zoom}
+                    </div>
                   </div>
                   <div className={styles['matches__row']}>
                     <div className={styles['matches__specification']}>Cell</div>
-                    <div className={styles['matches__value']}>{product?.cell}</div>
+                    <div className={styles['matches__value']}>
+                      {product?.cell}
+                    </div>
                   </div>
                 </div>
               </section>
