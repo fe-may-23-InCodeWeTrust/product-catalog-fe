@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import menu from '../../assets/icons/menu.svg';
 import favourites from '../../assets/icons/favourites.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
@@ -30,9 +31,9 @@ export const Header = () => {
       {!isActiveBurger && (
         <div className={styles['header']}>
           <div className={`${styles['header__left']} ${styles['left']}`}>
-            <div className={styles['left__logo']}>
+            <NavLink to="/" className={styles['left__logo']}>
               <img src={logo} alt="Nice Gadgets logo" className="logo" />
-            </div>
+            </NavLink>
 
             <nav className={`${styles['left__nav']} ${styles['nav']}`}>
               <ul className={styles['nav__list']}>
@@ -69,12 +70,24 @@ export const Header = () => {
             >
               <NavLink
                 to="favorites"
-                className={styles['header-icon__favourites-icon']}
-              ></NavLink>
+                className={({ isActive }: { isActive: boolean }) =>
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
+                }
+              >
+                <img
+                  src={favourites}
+                  alt="Favourites icon"
+                  className="favourites-icon__image"
+                />
+              </NavLink>
               {!!favoritesCount && (
-                <div className={styles['mini-count']}>
-                  {favoritesCount <= 9 ? favoritesCount : '9+'}
-                </div>
+                <Link to="favorites">
+                  <div className={styles['mini-count']}>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
+                </Link>
               )}
             </div>
             <div
@@ -82,12 +95,24 @@ export const Header = () => {
             >
               <NavLink
                 to="cart"
-                className={styles['header-icon__shopping_bag-icon']}
-              ></NavLink>
+                className={({ isActive }: { isActive: boolean }) =>
+                  `${styles['header-icon__shopping_bag-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
+                }
+              >
+                <img
+                  src={bag}
+                  alt="Shopping bag icon"
+                  className="shopping_bag-icon__image"
+                />
+              </NavLink>
               {!!cartCount && (
-                <div className={styles['mini-count']}>
-                  {cartCount <= 9 ? cartCount : '9+'}
-                </div>
+                <Link to="cart">
+                  <div className={styles['mini-count']}>
+                    {cartCount <= 9 ? cartCount : '9+'}
+                  </div>
+                </Link>
               )}
             </div>
             <div
@@ -96,7 +121,9 @@ export const Header = () => {
               <button
                 className={styles['header-icon__menu-icon']}
                 onClick={() => setIsActiveBurger(true)}
-              ></button>
+              >
+                <img src={menu} alt="Menu icon" className="menu-icon__image" />
+              </button>
             </div>
           </div>
         </div>
@@ -202,9 +229,11 @@ export const Header = () => {
                 />
               </NavLink>
               {!!favoritesCount && (
-                <div className={styles['mini-count']}>
-                  {favoritesCount <= 9 ? favoritesCount : '9+'}
-                </div>
+                <Link to="favorites">
+                  <div className={styles['mini-count']}>
+                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                  </div>
+                </Link>
               )}
             </div>
             <div
@@ -226,9 +255,11 @@ export const Header = () => {
                 />
               </NavLink>
               {!!cartCount && (
-                <div className={styles['mini-count']}>
-                  {cartCount <= 9 ? cartCount : '9+'}
-                </div>
+                <Link to="cart">
+                  <div className={styles['mini-count']}>
+                    {cartCount <= 9 ? cartCount : '9+'}
+                  </div>
+                </Link>
               )}
             </div>
           </div>

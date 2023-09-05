@@ -6,7 +6,7 @@ import Select from 'react-select';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 
@@ -23,7 +23,7 @@ const numbers = [
 ];
 
 export const CatalogPage: React.FC = () => {
-  const { isLoading, setIsLoading } = useContext(CatalogContext);
+  const { setIsLoading } = useContext(CatalogContext);
   const location = useLocation();
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -33,8 +33,6 @@ export const CatalogPage: React.FC = () => {
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
-  const [isCartNotification, setIsCartNotification] = useState(false);
-  const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
   const pageSortParams = searchParams.get('sortBy');
   const sortBy = pageSortParams ? pageSortParams : 'newest';
@@ -51,7 +49,7 @@ export const CatalogPage: React.FC = () => {
   const [sortByItems, setSortByItems] = useState(currentSortNumber);
 
   const category = location.pathname.slice(1);
-  console.log(category);
+
   let catalogTitle;
 
   switch (category) {
@@ -99,21 +97,28 @@ export const CatalogPage: React.FC = () => {
         setTotalProducts(data.count);
       })
       .catch(() => setError('Wrong URL - could not make a request'))
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+        window.scrollTo({ top: 0 });
+      });
   }, [sortByNumber, offset, category, sortBy, category]);
 
   return (
     <main className={styles['main']}>
       <div className={styles['container']}>
         <div className={styles['icons']}>
-          <a
-            href="#home"
+          <Link
+            to={'/'}
             className={`${styles['icon']} ${styles['icon--home']}`}
-          ></a>
+          ></Link>
 
-          <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>{category}</p>
-          </a>
+          <span className={`${styles['icon']} ${styles['icon--arrow']}`}></span>
+          <Link
+            to={`/${category}`}
+            className={`${styles['icon__text']} text-small`}
+          >
+            {category}
+          </Link>
         </div>
 
         <div className={styles['arcticle']}>
@@ -162,11 +167,8 @@ export const CatalogPage: React.FC = () => {
         </div>
 
         {error && <div>There is some problems occured</div>}
-        <ProductsList
-          products={products}
-          onAddCart={setIsCartNotification}
-          onAddFavorites={setIsFavoritesNotification}
-        />
+
+        <ProductsList products={products} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

@@ -1,4 +1,4 @@
-import { Product } from '../utils/Types/Product';
+import { Product, ProductItem } from '../utils/Types/Product';
 import { client } from '../utils/fetchClient';
 
 export const getProducts = (
@@ -26,4 +26,10 @@ export const getProductsCount = async (category: string) => {
   );
 
   return res.count;
+};
+
+export const getProductById = (id: string) => {
+  return client.get<{ foundProduct: ProductItem; recommneded: Product[] }>(
+    `phones/${id}`,
+  );
 };

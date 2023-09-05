@@ -1,7 +1,4 @@
-@import '../../styles/utils/_mixins.scss';
-@import '../../styles/utils/_variables.scss';
-@import '../../styles/utils/reset';
-@import '../../styles/fonts';
+@import '../../styles/utils';
 
 .cart_container {
   font-family: 'Mont', sans-serif;
@@ -168,6 +165,10 @@
 }
 
 .cart-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   width: 288px;
   height: 200px;
   padding: 24px;
@@ -201,8 +202,6 @@
   background-color: $color-elements;
   height: 1px;
   width: 100%;
-  margin-top: 24px;
-  margin-bottom: 24px;
 }
 
 .btn-block {
