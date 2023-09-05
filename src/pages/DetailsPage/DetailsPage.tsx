@@ -1,8 +1,12 @@
 // import './DetailsPage.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './DetailsPage.module.scss';
-import { getProductById } from '../../api/fetch_functions';
 import { Product, ProductItem } from '../../utils/Types/Product';
+import { ProductsSlider } from '../../components/ProductsSlider';
+import { CatalogContext } from '../../context/CatalogContext';
+import * as ProductService from '../../api/fetch_functions';
+
+
 
 const images = [
   'https://hotline.ua/img/tx/239/2391542485.jpg',
@@ -57,17 +61,24 @@ export const DetailsPage = () => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [product, setProduct] = useState<ProductItem | null>(null);
   const [recommended, setRecommended] = useState<Product[]>([]);
+  const { isLoading, setIsLoading } = useContext(CatalogContext);
+  const [error, setError] = useState('');
 
   const handleImageChange = (newImage: string) => {
     setSelectedImage(newImage);
   };
 
   useEffect(() => {
-    getProductById('apple-iphone-11-128gb-black').then((data) => {
-      setProduct(data.foundProduct);
-      setRecommended(data.recommneded);
-    });
-  });
+    setIsLoading(true);
+
+    ProductService.getProductById('apple-iphone-11-128gb-black')
+      .then((data) => {
+        setProduct(data.foundProduct);
+        setRecommended(data.recommended);
+      })
+      .catch(() => setError('Wrong URL - could not make a request'))
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
     <main className={styles.main}>
@@ -196,7 +207,7 @@ export const DetailsPage = () => {
                   <div
                     className={
                       styles[
-                        'matches__specification matches__specification--small'
+                      'matches__specification matches__specification--small'
                       ]
                     }
                   >
@@ -252,7 +263,12 @@ export const DetailsPage = () => {
           </section>
         </div>
 
-        <h2></h2>
+        <ProductsSlider
+          title="You may also like"
+          products={recommended}
+          isLoading={isLoading}
+        />
+
       </div>
     </main>
   );
