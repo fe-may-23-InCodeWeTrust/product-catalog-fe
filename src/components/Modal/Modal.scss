@@ -1,0 +1,52 @@
+@import '../../styles/utils/_mixins.scss';
+@import '../../styles/utils/_variables.scss';
+@import '../../styles/utils/reset';
+@import '../../styles/fonts';
+
+.modal-buy {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 100;
+  top: 40%;
+  left: 30%;
+  right: 30%;
+  min-width: 135px;
+  gap: 10px;
+  background-color: $color-grey-background;
+  border-radius: 16px;
+  margin: auto;
+  padding: 24px;
+
+  &-text {
+    text-align: center;
+  }
+}
+
+.btn-block {
+  display: block;
+  width: 50%;
+  height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  background-color: $color-accent;
+  border: 1px solid $color-accent;
+  border-radius: 25px;
+  transition: all 0.5s;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-accent;
+  }
+
+  &:active {
+    background-color: #fff;
+    color: $color-accent;
+  }
+}

@@ -6,10 +6,9 @@ import Select from 'react-select';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
-import { Notification } from '../../components/Notification/Notification';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -24,18 +23,33 @@ const numbers = [
 ];
 
 export const CatalogPage: React.FC = () => {
-  const { isLoading, setIsLoading } = useContext(CatalogContext);
+  const { setIsLoading } = useContext(CatalogContext);
   const location = useLocation();
-  const [offset, setOffset] = useState('0');
-  const [limit, setLimit] = useState('16');
-  const [sortBy, setSortBy] = useState('newest');
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
-  const [isCartNotification, setIsCartNotification] = useState(false);
-  const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const pageParams = searchParams.get('page');
+  const currentPage = pageParams ? +pageParams : 1;
+  const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
+
+  const pageSortParams = searchParams.get('sortBy');
+  const sortBy = pageSortParams ? pageSortParams : 'newest';
+
+  const currentSortText =
+    categories.find((category) => category.value === sortBy) || categories[0];
+  const [sortByText, setSortByText] = useState(currentSortText);
+
+  const itemsPerPage = searchParams.get('items');
+  const sortByNumber = itemsPerPage ? itemsPerPage : '16';
+
+  const currentSortNumber =
+    numbers.find((number) => number.value === +sortByNumber) || numbers[0];
+  const [sortByItems, setSortByItems] = useState(currentSortNumber);
 
   const category = location.pathname.slice(1);
-  console.log(category);
+
   let catalogTitle;
 
   switch (category) {
@@ -76,33 +90,42 @@ export const CatalogPage: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    ProductService.getProducts(category, offset, limit, sortBy)
+    ProductService.getProducts(category, offset, sortByNumber, sortBy)
       .then((data) => {
         setProducts(data.rows);
+        setTotalPages(Math.ceil(data.count / +sortByNumber));
+        setTotalProducts(data.count);
       })
       .catch(() => setError('Wrong URL - could not make a request'))
-      .finally(() => setIsLoading(false));
-  }, [limit, offset, category, sortBy, category]);
+      .finally(() => {
+        setIsLoading(false);
+        window.scrollTo({ top: 0 });
+      });
+  }, [sortByNumber, offset, category, sortBy, category]);
 
   return (
     <main className={styles['main']}>
       <div className={styles['container']}>
         <div className={styles['icons']}>
-          <a
-            href="#home"
+          <Link
+            to={'/'}
             className={`${styles['icon']} ${styles['icon--home']}`}
-          ></a>
+          ></Link>
 
-          <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>{category}</p>
-          </a>
+          <span className={`${styles['icon']} ${styles['icon--arrow']}`}></span>
+          <Link
+            to={`/${category}`}
+            className={`${styles['icon__text']} text-small`}
+          >
+            {category}
+          </Link>
         </div>
 
         <div className={styles['arcticle']}>
           <h1 className={styles['article--title']}>{catalogTitle}</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
-            95 models
+            {`${totalProducts} models`}
           </p>
         </div>
         <div className={styles['select']}>
@@ -113,45 +136,47 @@ export const CatalogPage: React.FC = () => {
           <p className={`${styles['select__sortByNumberText']} text-small`}>
             Items on page
           </p>
+
           <Select
             className={styles['select__sortByCategory']}
             options={categories}
             styles={CustomStyle}
-            defaultValue={categories[0]}
+            defaultValue={sortByText}
             onChange={(event) => {
               if (event?.value) {
-                setSortBy(event.value.toString());
+                setSearchParams(
+                  `?page=1&sortBy=${event.value.toString()}&items=${sortByNumber}`,
+                );
               }
+              setOffset('0');
             }}
           />
           <Select
             className={styles['select__sortByNumber']}
             options={numbers}
             styles={CustomStyle}
-            defaultValue={numbers[0]}
+            defaultValue={sortByItems}
             onChange={(event) => {
               if (event?.value) {
-                setLimit(event.value.toString());
+                setSearchParams(
+                  `?page=${currentPage}&sortBy=${sortBy}&items=${event.value.toString()}`,
+                );
               }
             }}
           />
         </div>
 
-        {isCartNotification && (
-          <Notification text="The good was added to the cart" />
-        )}
-
-        {isFavoritesNotification && (
-          <Notification text="The good was added to the favorites" />
-        )}
-
         {error && <div>There is some problems occured</div>}
-        <ProductsList
-          products={products}
-          onAddCart={setIsCartNotification}
-          onAddFavorites={setIsFavoritesNotification}
+
+        <ProductsList products={products} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handleOffset={setOffset}
+          limit={+sortByNumber}
+          sortBy={sortBy}
+          sortByNumber={sortByNumber}
         />
-        <Pagination currentPage={1} totalPages={10} />
       </div>
     </main>
   );

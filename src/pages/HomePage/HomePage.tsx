@@ -26,7 +26,7 @@ export const HomePage = () => {
 
   return (
     <div>
-      <h1 className="home-page-title">Welcome to Nice Gadgets store!</h1>
+      <h1 className="home-page-title">Buy nice, be nice</h1>
       <Banner />
       <ProductsSlider
         title={'Brand new models'}

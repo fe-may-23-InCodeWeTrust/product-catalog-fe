@@ -14,15 +14,9 @@ import { addToCart } from '../../redux/cartReducer';
 
 interface Props {
   products: Product[];
-  onAddCart: (v: boolean) => void;
-  onAddFavorites: (v: boolean) => void;
 }
 
-export const ProductsList: React.FC<Props> = ({
-  products,
-  onAddCart,
-  onAddFavorites,
-}) => {
+export const ProductsList: React.FC<Props> = ({ products }) => {
   const { isLoading } = useContext(CatalogContext);
 
   const faviritesGoods = useSelector(
@@ -36,26 +30,17 @@ export const ProductsList: React.FC<Props> = ({
     if (foundedGood) {
       dispatch(removeFromFavorites(product.id));
     } else {
-      onAddFavorites(true);
-      setTimeout(() => {
-        onAddFavorites(false);
-        dispatch(addToFavorites(product));
-      }, 3000);
+      dispatch(addToFavorites(product));
     }
   };
 
   const addProductToCart = (product: Product) => {
-    onAddCart(true);
-
-    setTimeout(() => {
-      onAddCart(false);
-      dispatch(
-        addToCart({
-          ...product,
-          count: 1,
-        }),
-      );
-    }, 3000);
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
   };
 
   return (
