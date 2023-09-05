@@ -1,14 +1,43 @@
-$color-primary: #0f0f11;
-$color-secondary: #89939a;
-$color-icons: #b4bdc3;
-$color-elements: #e2e6e9;
-$color-white: #ffffff;
-$color-grey-background: #fafbfc;
-$color-red: #eb5757;
+.dark {
+  --color-primary: #f1f2f9;
+  --color-secondary: #75767f;
+  --color-icons: #4a4d58;
+  --color-grey-background: #1c2f44;
+  --color-elements: #3b3e4a;
+  --color-white: #1a2b49;
+  --color-secondary-accent: #eb5757;
+  --color-accent: #905bff;
+}
+
+.light {
+  --color-primary: #0f0f11;
+  --color-secondary: #89939a;
+  --color-icons: #b4bdc3;
+  --color-grey-background: #fafbfc;
+  --color-elements: #e2e6e9;
+  --color-white: #ffffff;
+  --color-secondary-accent: #f4ba47;
+  --color-accent: #4219d0;
+}
+$color-primary: var(--color-primary);
+$color-secondary: var(--color-secondary);
+$color-icons: var(--color-icons);
+$color-grey-background: var(--color-grey-background);
+$color-elements: var(--color-elements);
+$color-white: var(--color-white);
+$color-secondary-accent: var(--color-secondary-accent);
+$color-accent: var(--color-accent);
 $color-green: #27ae60;
-$color-accent: #4219d0;
-$color-secondary-accent: #f4ba47;
 
 $tablet-min-width: 640px;
 $expanded-tablet-min-with: 768px;
 $desktop-min-width: 1200px;
+
+//$color-primary: #0f0f11;
+//$color-secondary: #89939a;
+//$color-icons: #b4bdc3;
+//$color-elements: #e2e6e9;
+//$color-white: #ffffff;
+//$color-grey-background: #fafbfc;
+//$color-secondary-accent: #f4ba47;
+//$color-red: #eb5757;

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Switcher.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/themeReducer';
+import classNames from 'classnames';
 
 export const Switcher = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);
@@ -13,5 +14,12 @@ export const Switcher = () => {
 
   console.log(darkMode);
 
-  return <div className={styles['switcher']} onClick={handleToggleTheme}></div>;
+  return (
+    <div
+      className={classNames(styles['switcher'], { [styles['dark']]: darkMode })}
+      onClick={() => {
+        handleToggleTheme();
+      }}
+    ></div>
+  );
 };

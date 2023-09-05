@@ -6,6 +6,7 @@ import './App.scss';
 import './styles/index.scss';
 import { Switcher } from './components/Switcher/Switcher';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 
 export const App = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);
@@ -16,7 +17,7 @@ export const App = () => {
   }, [darkMode]);
 
   return (
-    <div className="app">
+    <div className={classNames('app', darkMode ? 'dark' : 'light')}>
       <Header />
       <div className="content_container">
         <div className="content">

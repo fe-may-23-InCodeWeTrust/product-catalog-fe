@@ -1,11 +1,12 @@
 @import '../../styles/utils';
 
 .phone-card {
+  position: relative;
   width: 100%;
   max-width: 272px;
   height: 100%;
   border-radius: 8px;
-  border: 0.5px #e2e6e9 solid;
+  border: 0.5px $color-elements solid;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -35,7 +36,7 @@
   }
 
   &__divider {
-    border-bottom: 1px solid #e2e6e9;
+    border-bottom: 1px solid $color-elements;
   }
 
   &__details {
@@ -105,8 +106,7 @@
   }
 
   .add-to-favorites {
-    width: 40px;
-    height: 40px;
+    min-width: 40px;
     border-radius: 48px;
     border: 0.5px $color-icons solid;
     background-image: url(../../assets/icons/heart.svg);

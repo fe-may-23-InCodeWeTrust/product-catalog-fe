@@ -1,6 +1,7 @@
 import React from 'react';
 import logoImage from '../../images/logo.svg';
 import { Arrow } from '../../assets/icons/Arrow';
+import { ArrowDarkTheme } from '../../assets/icons/ArrowDarkTheme';
 import styles from './Footer.module.scss';
 import { useSelector } from 'react-redux';
 import whiteLogo from '../../assets/icons/Nice Gadgets.svg';
@@ -42,7 +43,7 @@ export const Footer = () => {
           Back to top
         </p>
         <button className={styles['footer__go-back__button']}>
-          <Arrow />
+          {darkMode ? <ArrowDarkTheme /> : <Arrow />}
         </button>
       </div>
     </div>

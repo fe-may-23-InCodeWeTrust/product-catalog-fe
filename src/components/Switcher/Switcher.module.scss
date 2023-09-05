@@ -13,3 +13,7 @@
     border-radius: 50%;
   }
 }
+
+.dark::after {
+  transform: translateX(100%);
+}
