@@ -2,6 +2,7 @@ import { Product } from '../../utils/Types/Product';
 import styles from './ProductCard.module.scss';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 import { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
