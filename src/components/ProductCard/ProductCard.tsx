@@ -3,6 +3,7 @@ import styles from './ProductCard.module.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -29,7 +30,7 @@ export const ProductCard: React.FC<Props> = ({
       </div>
 
       <h3 className={`${styles['phone-card__title']} text-body`}>
-        {product.name}
+        <Link to={`/phones/${product.itemId}`}>{product.name}</Link>
       </h3>
 
       <div className={styles['phone-card__price-block']}>
