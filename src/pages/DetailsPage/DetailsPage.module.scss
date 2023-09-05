@@ -1,10 +1,9 @@
 @import '../../styles/utils';
 
 $colors: (
-  beige: ColorBeige,
-  green: ColorGreen,
-  grey: ColorGrey,
-  white: ColorWhite,
+  gold: ColorGold,
+//   grey: ColorGrey,
+//   white: ColorWhite,
 );
 
 body {
@@ -311,7 +310,7 @@ body {
       display: block;
       pointer-events: none;
       flex-shrink: 0;
-      background-image: url(../../images/colors/#{$image}.png);
+      background-image: url(../../images/colors/#{$image}.svg);
     }
   }
 }
