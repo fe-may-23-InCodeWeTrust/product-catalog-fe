@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { Root } from './Root';
 import { CatalogProvider } from './context/CatalogContext';
+import './localization/i18n';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
