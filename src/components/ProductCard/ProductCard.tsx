@@ -3,7 +3,7 @@ import styles from './ProductCard.module.scss';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
 
 type Props = {
@@ -64,7 +64,9 @@ export const ProductCard: React.FC<Props> = ({
       </div>
 
       <h3 className={`${styles['phone-card__title']} text-body`}>
-        {product.name}
+        <Link to={`/${product.category}/${product.itemId}`}>
+          {product.name}
+        </Link>
       </h3>
 
       <div className={styles['phone-card__price-block']}>
