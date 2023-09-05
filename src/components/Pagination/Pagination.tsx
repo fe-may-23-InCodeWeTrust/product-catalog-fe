@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import './Pagination.scss';
+import styles from './Pagination.module.scss';
 
 type Props = {
   currentPage: number;
@@ -25,8 +25,8 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
         <NavLink
           key={i}
           to={`?page=${i}`}
-          className={classNames('page-button', {
-            'is-active': currentPage === i,
+          className={classNames(styles['page-button'], {
+            [styles['is-active']]: currentPage === i,
           })}
         >
           {i}
@@ -38,9 +38,9 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
   };
 
   return (
-    <div className="pagination">
+    <div className={styles['pagination']}>
       {currentPage > 1 && (
-        <NavLink to={`?page=${currentPage - 1}`} className="page-button left">
+        <NavLink to={`?page=${currentPage - 1}`} className={`${styles['page-button']} ${styles['left']}`}>
           {prevButton}
         </NavLink>
       )}
@@ -48,7 +48,7 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
       {getPageButtons()}
 
       {currentPage < totalPages && (
-        <NavLink to={`?page=${currentPage + 1}`} className="page-button right">
+        <NavLink to={`?page=${currentPage + 1}`} className={`${styles['page-button']} ${styles['right']}`}>
           {nextButton}
         </NavLink>
       )}

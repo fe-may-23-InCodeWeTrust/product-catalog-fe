@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.scss';
+import styles from './Modal.module.scss';
 
 type Props = {
   price: number;
@@ -8,14 +8,14 @@ type Props = {
 
 export const Modal: React.FC<Props> = ({ price, onClose }) => {
   return (
-    <div className="modal-buy">
-      <p className="modal-buy__text">
-        You bought products totalling <span className="bold">${price}</span>.
+    <div className={styles['modal-buy']}>
+      <p className={styles['modal-buy__text']}>
+        You bought products totalling <span className={styles['bold']}>${price}</span>.
       </p>
 
-      <p className="modal-buy__text">Thanks for choosing our store.</p>
+      <p className={styles['modal-buy__text']}>Thanks for choosing our store.</p>
 
-      <button className="btn-block" onClick={onClose}>
+      <button className={styles['btn-block']} onClick={onClose}>
         Close
       </button>
     </div>
