@@ -1,0 +1,15 @@
+.switcher {
+  width: 60px;
+  background-color: #eb5757;
+  border-radius: 20px;
+  padding: 5px;
+
+  &::after {
+    content: '';
+    background-color: #4219d0;
+    display: block;
+    width: 50%;
+    padding-bottom: 50%;
+    border-radius: 50%;
+  }
+}

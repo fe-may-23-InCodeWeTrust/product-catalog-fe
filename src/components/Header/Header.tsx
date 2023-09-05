@@ -7,6 +7,7 @@ import { RootState } from '../../redux/store';
 import favourites from '../../assets/icons/favourites.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
+import { Switcher } from '../Switcher/Switcher';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
