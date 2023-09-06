@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 import { Navigation } from 'swiper';
-import './ProductsSlider.scss';
+import styles from './ProductsSlider.module.scss';
 import { ArrowRight } from '../../assets/icons/ArrowRight';
 import { ArrowLeft } from '../../assets/icons/ArrowLeft';
 import { ProductCard } from '../ProductCard';
@@ -85,11 +85,11 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
 
   return (
     <>
-      <div className="price__nav">
-        <h1 className="title_price">{title}</h1>
-        <div className="button">
+      <div className={styles['price__nav']}>
+        <h1 className={styles['title_price']}>{title}</h1>
+        <div className={styles['button']}>
           <button
-            className="button__control"
+            className={styles['button__control']}
             disabled={activeSlide === 0}
             onClick={handlePreviousClick}
           >
@@ -97,16 +97,16 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
           </button>
           <button
             disabled={activeSlide === products.length - slidesPerView}
-            className="button__control"
+            className={styles['button__control']}
             onClick={handleNextClick}
           >
             <ArrowRight />
           </button>
         </div>
       </div>
-      <div className="swiper">
+      <div className={styles['swiper']}>
         {isLoading ? (
-          <div className="loader">
+          <div className={styles['loader']}>
             <LeapFrog size={40} speed={2.5} color="black" />
           </div>
         ) : (

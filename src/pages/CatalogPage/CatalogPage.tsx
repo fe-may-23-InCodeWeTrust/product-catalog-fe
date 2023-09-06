@@ -23,7 +23,7 @@ const numbers = [
 ];
 
 export const CatalogPage: React.FC = () => {
-  const { setIsLoading } = useContext(CatalogContext);
+  const { isLoading, setIsLoading } = useContext(CatalogContext);
   const location = useLocation();
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -38,15 +38,23 @@ export const CatalogPage: React.FC = () => {
   const sortBy = pageSortParams ? pageSortParams : 'newest';
 
   const currentSortText =
-    categories.find((category) => category.value === sortBy) || categories[0];
+    categories.find((category) => category.value === sortBy);
   const [sortByText, setSortByText] = useState(currentSortText);
 
   const itemsPerPage = searchParams.get('items');
   const sortByNumber = itemsPerPage ? itemsPerPage : '16';
 
   const currentSortNumber =
-    numbers.find((number) => number.value === +sortByNumber) || numbers[0];
+    numbers.find((number) => number.value === +sortByNumber);
   const [sortByItems, setSortByItems] = useState(currentSortNumber);
+
+  useEffect(() => {
+    setSortByItems(currentSortNumber);
+  }, [sortByNumber]);
+
+  useEffect(() => {
+    setSortByText(currentSortText);
+  }, [sortBy]);
 
   const category = location.pathname.slice(1);
 
@@ -114,8 +122,11 @@ export const CatalogPage: React.FC = () => {
 
           <span className={`${styles['icon']} ${styles['icon--arrow']}`}></span>
           <Link
-            to={`/${category}`}
+            to={`/${category}?page=1&sortBy=newest&items=16`}
             className={`${styles['icon__text']} text-small`}
+            onClick={() => {
+              setOffset('0');
+            }}
           >
             {category}
           </Link>
@@ -141,7 +152,7 @@ export const CatalogPage: React.FC = () => {
             className={styles['select__sortByCategory']}
             options={categories}
             styles={CustomStyle}
-            defaultValue={sortByText}
+            value={sortByText}
             onChange={(event) => {
               if (event?.value) {
                 setSearchParams(
@@ -155,7 +166,7 @@ export const CatalogPage: React.FC = () => {
             className={styles['select__sortByNumber']}
             options={numbers}
             styles={CustomStyle}
-            defaultValue={sortByItems}
+            value={sortByItems}
             onChange={(event) => {
               if (event?.value) {
                 setSearchParams(
@@ -169,14 +180,17 @@ export const CatalogPage: React.FC = () => {
         {error && <div>There is some problems occured</div>}
 
         <ProductsList products={products} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handleOffset={setOffset}
-          limit={+sortByNumber}
-          sortBy={sortBy}
-          sortByNumber={sortByNumber}
-        />
+
+        {!isLoading && 
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handleOffset={setOffset}
+            limit={+sortByNumber}
+            sortBy={sortBy}
+            sortByNumber={sortByNumber}
+          />
+        }
       </div>
     </main>
   );
