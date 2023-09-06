@@ -2,8 +2,9 @@ import { Product } from '../../utils/Types/Product';
 import styles from './ProductCard.module.scss';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import classNames from 'classnames';
+import { RootState } from '../../redux/store';
+import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
 
 type Props = {
@@ -22,15 +23,15 @@ export const ProductCard: React.FC<Props> = ({
   );
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
+
   const goods = useSelector((state: RootState) => state.cart.goods);
   const addToCartButtonCondition = goods.find((good) => good.id === product.id);
 
   const addTofavoritesButtonCondition = favoritesGoods.find(
     (good) => good.itemId === product.itemId,
   );
-  console.log(addTofavoritesButtonCondition);
+
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
-  // console.log(addTofavoritesButtonCondition)
   const isInCart = goodsFromCart.find((g) => g.id === product.id);
 
   const notificateCart = () => {
@@ -56,15 +57,19 @@ export const ProductCard: React.FC<Props> = ({
   return (
     <div className={styles['phone-card']}>
       <div className={styles['phone-card__image-container']}>
-        <img
-          src={`https://product-catalog-be-lf4l.onrender.com/${product.image}`}
-          alt="phone"
-          className={styles['phone-card__image']}
-        />
+        <Link to={`/${product.category}/${product.itemId}`}>
+          <img
+            src={`https://product-catalog-be-lf4l.onrender.com/${product.image}`}
+            alt="phone"
+            className={styles['phone-card__image']}
+          />
+        </Link>
       </div>
 
       <h3 className={`${styles['phone-card__title']} text-body`}>
-        {product.name}
+        <Link to={`/${product.category}/${product.itemId}`}>
+          {product.name}
+        </Link>
       </h3>
 
       <div className={styles['phone-card__price-block']}>

@@ -1,41 +1,23 @@
 @import '../../styles/utils';
 
-$colors: (
-  beige: ColorBeige,
-  green: ColorGreen,
-  grey: ColorGrey,
-  white: ColorWhite,
-);
-
-// $button-common-styles: (
-//     height: 32px,
-//     width: 56px,
-//     border-radius: 4px,
-//     font-size: 14px,
-//     display: flex,
-//     justify-content: center,
-//     align-items: center,
-// );
-
 body {
   margin: 0;
 }
 
 .page_container {
-  padding: 24px 16px;
-  // margin-left: 16px;
-  // margin-right: 17px;
-  // margin-top: 24px;
+  padding-top: 24px;
   position: relative;
+  margin-bottom: 56px;
 
-  // @include onTablet {
-  //     padding: 24px 24px;
-  // }
+  @include onTablet {
+    margin-bottom: 64px;
+  }
 
   @include onDesktop {
     margin-inline: auto;
     padding-top: 25px;
     max-width: 1136px;
+    margin-bottom: 81px;
   }
 }
 
@@ -139,7 +121,7 @@ body {
 .gallery-and-info-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 0;
   margin-bottom: 56px;
   width: 100%;
 
@@ -151,13 +133,11 @@ body {
 
   @include onDesktop {
     margin-bottom: 81px;
-    gap: 75px;
+    gap: 33px;
   }
 }
 
 .gallery {
-  // margin-bottom: 40px;
-
   display: flex;
   flex-direction: column;
   gap: 23px;
@@ -166,18 +146,12 @@ body {
   @include onTablet {
     flex-direction: row;
     width: 60%;
-
-    // flex: 2;
-
-    // flex-grow: 1; /* Расширяться на всю доступную ширину */
-    flex-shrink: 1; /* Уменьшаться, если не хватает места */
+    flex-shrink: 1;
   }
 
   @include onDesktop {
     gap: 27px;
     width: 50%;
-
-    // flex: 1;
   }
 
   &__big-image {
@@ -197,9 +171,6 @@ body {
       max-width: 464px;
       max-height: 464px;
       padding: 11px;
-
-      // flex-grow: 1; /* Расширяться на всю доступную ширину */
-      // flex-shrink: 1; /* Уменьшаться, если не хватает места */
     }
 
     @include onDesktop {
@@ -211,24 +182,21 @@ body {
     }
   }
 
+  &__big-image img {
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
   &__small-images {
     display: flex;
     flex-direction: row;
     gap: 8px;
+    object-fit: fill;
+    // flex-grow: 2;
 
     @include onTablet {
       flex-direction: column;
-
-      // width: auto;
-
-      // flex: 1;
-      // flex-shrink: 0;
-
-      // flex-grow: 1; /* Расширяться на всю доступную ширину */
-      // // flex-shrink: 1; /* Уменьшаться, если не хватает места */
-
-      // width: 15%;
-      // height: fit-content;
 
       width: fit-content;
       height: fit-content;
@@ -244,30 +212,28 @@ body {
     height: 49px;
     border-radius: 4px;
     border: 0.5px $color-elements solid;
-    // padding: 4px;
     box-sizing: border-box;
+    object-fit: fill;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // flex-grow: 1;
 
     @include onTablet {
       flex-direction: row;
 
-      min-width: 35px;
-      min-height: 35px;
+      width: 35px;
+      height: 35px;
+      // min-width: 35px;
+      // min-height: 35px;
 
-      width: auto;
-      height: auto;
+      // width: auto;
+      // height: auto;
 
-      // width: 100%; /* Расширяется на всю доступную ширину контейнера */
-      max-width: 80px; /* Максимальная ширина 80px */
-      max-height: 80px; /* Максимальная высота 80px */
+      max-width: 80px;
+      max-height: 80px;
 
-      // max-width: 80px;
-      // max-height: 80px;
-
-      // flex: 1;
-      // flex-shrink: 0;
-
-      flex-grow: 1; /* Расширяться на всю доступную ширину */
-      // flex-shrink: 1; /* Уменьшаться, если не хватает места */
+      // flex-grow: 2;
     }
 
     @include onDesktop {
@@ -276,7 +242,14 @@ body {
 
       border-radius: 8px;
       border: 1px $color-elements solid;
+      // flex-grow: 1;
     }
+  }
+
+  &__small-image img {
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -285,14 +258,10 @@ body {
   flex-direction: column;
 
   @include onTablet {
-    // flex-shrink: 0;
-
     width: 40%;
   }
 
   @include onDesktop {
-    // flex-shrink: 0;
-
     width: 50%;
   }
 }
@@ -301,7 +270,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  // min-width: 290px;
   margin-bottom: 24px;
 
   &__text {
@@ -334,15 +302,12 @@ body {
     gap: 8px;
   }
 
-  @each $color, $image in $colors {
-    &--#{$color} {
-      height: 32px;
-      width: 32px;
-      display: block;
-      pointer-events: none;
-      flex-shrink: 0;
-      background-image: url(../../images/colors/#{$image}.png);
-    }
+  &__option {
+    height: 32px;
+    width: 32px;
+    display: block;
+    pointer-events: none;
+    flex-shrink: 0;
   }
 }
 
@@ -357,7 +322,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  // min-width: 290px;
   margin-bottom: 24px;
   color: var(--gray-icons-placeholders, $color-icons);
   font-family: 'Mont', sans-serif;
@@ -378,26 +342,25 @@ body {
     gap: 8px;
   }
 
-  @each $capacity in 64, 256, 512 {
-    &--#{$capacity} {
-      @if $capacity ==64 {
-        background-color: $color-primary;
-        color: $color-white;
-      } @else {
-        background-color: $color-white;
-        color: $color-primary;
-        border: 1px solid $color-icons;
-      }
+  &__option {
+    height: 32px;
+    width: 56px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
-      // @include button-common-styles;
+    &--selected {
+      background-color: $color-primary;
+      color: $color-white;
+    }
 
-      height: 32px;
-      width: 56px;
-      border-radius: 4px;
-      font-size: 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &--not-selected {
+      background-color: $color-white;
+      color: $color-primary;
+      border: 1px solid $color-icons;
     }
   }
 }
@@ -525,8 +488,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  // margin-bottom: 56px;
 
   &__row {
     display: flex;
