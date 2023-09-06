@@ -48,7 +48,9 @@ export const FavoritesPage = () => {
           ></a>
 
           <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>{t('favorites')}</p>
+            <p className={`${styles['icon__text']} text-small`}>
+              {t('favorites')}
+            </p>
           </a>
         </div>
 

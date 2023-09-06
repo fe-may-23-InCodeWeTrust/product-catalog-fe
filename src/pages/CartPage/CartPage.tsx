@@ -120,8 +120,8 @@ export const CartPage = () => {
             <div className="cart-price__number">${total}</div>
 
             <div className="cart-price__quantity">
-                {`${t('totalFor')} ${goodsAmount()} ${
-                  goodsAmount() > 1 ? `${t('items')}` : `${t('item')}`
+              {`${t('totalFor')} ${goodsAmount()} ${
+                goodsAmount() > 1 ? `${t('items')}` : `${t('item')}`
               }`}
             </div>
 
