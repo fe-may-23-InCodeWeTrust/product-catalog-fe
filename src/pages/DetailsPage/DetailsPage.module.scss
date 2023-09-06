@@ -1,604 +1,559 @@
 @import '../../styles/utils';
 
 $colors: (
-    beige: ColorBeige,
-    green: ColorGreen,
-    grey: ColorGrey,
-    white: ColorWhite
+  gold: ColorGold,
+//   grey: ColorGrey,
+//   white: ColorWhite,
 );
 
-// $button-common-styles: (
-//     height: 32px,
-//     width: 56px,
-//     border-radius: 4px,
-//     font-size: 14px,
-//     display: flex,
-//     justify-content: center,
-//     align-items: center,
-// );
-
 body {
-    margin: 0;
+  margin: 0;
 }
 
 .page_container {
-    padding: 24px 16px;
-    // margin-left: 16px;
-    // margin-right: 17px;
-    // margin-top: 24px;
-    position: relative;
+  padding-top: 24px;
+  position: relative;
+  margin-bottom: 56px;
 
-    // @include onTablet {
-    //     padding: 24px 24px;
-    // }
+  @include onTablet {
+    margin-bottom: 64px;
+  }
 
-    @include onDesktop {
-        margin-inline: auto;
-        padding-top: 25px;
-        max-width: 1136px;
-    }
+  @include onDesktop {
+    margin-inline: auto;
+    padding-top: 25px;
+    max-width: 1136px;
+    margin-bottom: 81px;
+  }
 }
 
 .breadcrumb-nav {
-    position: relative;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 16px;
+
+  &__row {
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-bottom: 16px;
+    flex-direction: row;
+    gap: 8px;
+  }
 
-    &__row {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-    }
-
-    &__item {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        align-items: center;
-        justify-items: center;
-        justify-content: center;
-    }
+  &__item {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+  }
 }
 
 .icon {
-    background-repeat: no-repeat;
-    background-size: contain;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-    &--home {
-        background-image: url(../../images/icons/Home.png);
-        height: 16px;
-        width: 16px;
+  &--home {
+    background-image: url(../../images/icons/Home.png);
+    height: 16px;
+    width: 16px;
+  }
+
+  &--arrow {
+    &-forward,
+    &-back {
+      height: 16px;
+      width: 16px;
+      display: block;
+      pointer-events: none;
+      flex-shrink: 0;
     }
 
-    &--arrow {
-        &-forward, &-back {
-            height: 16px;
-            width: 16px;
-            display: block;
-            pointer-events: none;
-            flex-shrink: 0;
-        }
-
-        &-forward {
-            background-image: url(../../images/icons/Arrow.png);
-        }
-
-        &-back {
-            background-image: url(../../images/icons/ArrowBack.png);
-        }
+    &-forward {
+      background-image: url(../../images/icons/Arrow.png);
     }
+
+    &-back {
+      background-image: url(../../images/icons/ArrowBack.png);
+    }
+  }
 }
 
 .text {
-    font-family: 'Mont', sans-serif;
+  font-family: 'Mont', sans-serif;
 
-    &--light {
-        font-weight: 600;
-        font-size: 12px;
-        pointer-events: none;
-        color: $color-secondary;
-        width: fit-content;
-    }
+  &--light {
+    font-weight: 600;
+    font-size: 12px;
+    pointer-events: none;
+    color: $color-secondary;
+    width: fit-content;
+  }
 
-    &--dark {
-        color: $color-primary;
-        font-size: 12px;
-        font-weight: 700;
-    }
+  &--dark {
+    color: $color-primary;
+    font-size: 12px;
+    font-weight: 700;
+  }
 
-    &--truncate {
-        position: relative;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 1;
-        max-width: 100%;
-    }
+  &--truncate {
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    max-width: 100%;
+  }
 }
 
 .title {
-    font-family: 'Mont', sans-serif;
-    box-sizing: border-box;
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 30.8px;
-    color: $color-primary;
-    margin-bottom: 40px;
+  font-family: 'Mont', sans-serif;
+  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 30.8px;
+  color: $color-primary;
+  margin-bottom: 40px;
 
-    @include onTablet {
-        font-size: 32px;
-        line-height: 41px;
-        letter-spacing: -0.32px;
-    }
+  @include onTablet {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
 }
 
 .gallery-and-info-container {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-bottom: 56px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 56px;
+  width: 100%;
 
-    @include onTablet {
-        flex-direction: row;
-        gap: 24px;
-        margin-bottom: 64px;
-    }
+  @include onTablet {
+    flex-direction: row;
+    gap: 24px;
+    margin-bottom: 64px;
+  }
 
-    @include onDesktop {
-        margin-bottom: 81px;
-        gap: 75px;
-    }
+  @include onDesktop {
+    margin-bottom: 81px;
+    gap: 75px;
+  }
 }
 
 .gallery {
-    // margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  width: 100%;
+
+  @include onTablet {
+    flex-direction: row;
+    width: 60%;
+    flex-shrink: 1;
+  }
+
+  @include onDesktop {
+    gap: 27px;
+    width: 50%;
+  }
+
+  &__big-image {
+    width: 275px;
+    height: 275px;
 
     display: flex;
-    flex-direction: column;
-    gap: 23px;
-    width: 100%;
-
+    justify-content: center;
+    align-items: start;
 
     @include onTablet {
-        flex-direction: row;
-        width: 60%;
+      order: 2;
 
-        // flex: 2;
+      width: 100%;
+      height: 100%;
 
-        // flex-grow: 1; /* Расширяться на всю доступную ширину */
-        flex-shrink: 1; /* Уменьшаться, если не хватает места */
+      max-width: 464px;
+      max-height: 464px;
+      padding: 11px;
     }
 
     @include onDesktop {
-        gap: 27px;
-        width: 50%;
+      order: 2;
 
-        // flex: 1;
+      width: 464px;
+      height: 464px;
+      padding: 11px;
+    }
+  }
+
+  &__big-image img {
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &__small-images {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    object-fit: fill;
+
+    @include onTablet {
+      flex-direction: column;
+
+      width: fit-content;
+      height: fit-content;
     }
 
+    @include onDesktop {
+      gap: 16px;
+    }
+  }
 
-    &__big-image {
-        width: 275px;
-        height: 275px;
+  &__small-image {
+    width: 51px;
+    height: 49px;
+    border-radius: 4px;
+    border: 0.5px $color-elements solid;
+    box-sizing: border-box;
+    object-fit: fill;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        display: flex;
-        justify-content: center;
-        align-items: start;
+    @include onTablet {
+      flex-direction: row;
 
-        @include onTablet {
-            order: 2;
+      min-width: 35px;
+      min-height: 35px;
 
-            width: 100%;
-            height: 100%;
+      width: auto;
+      height: auto;
 
-            max-width: 464px;
-            max-height: 464px;
-            padding: 11px;
+      max-width: 80px;
+      max-height: 80px;
 
-            // flex-grow: 1; /* Расширяться на всю доступную ширину */
-            // flex-shrink: 1; /* Уменьшаться, если не хватает места */
-        }
-
-        @include onDesktop {
-            order: 2;
-
-            width: 464px;
-            height: 464px;
-            padding: 11px;
-        }
+      flex-grow: 1;
     }
 
-    &__small-images {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
+    @include onDesktop {
+      width: 80px;
+      height: 80px;
 
-        @include onTablet {
-            flex-direction: column;
-
-            // width: auto;
-
-            // flex: 1;
-            // flex-shrink: 0;
-
-            // flex-grow: 1; /* Расширяться на всю доступную ширину */
-            // // flex-shrink: 1; /* Уменьшаться, если не хватает места */
-
-            // width: 15%;
-            // height: fit-content;
-
-            width: fit-content;
-            height: fit-content;
-        }
-
-
-        @include onDesktop {
-            gap: 16px;
-        }
+      border-radius: 8px;
+      border: 1px $color-elements solid;
     }
+  }
 
-    &__small-image {
-        width: 51px;
-        height: 49px;
-        border-radius: 4px;
-        border: 0.5px $color-elements solid;
-        // padding: 4px;
-        box-sizing: border-box;
-
-        @include onTablet {
-            flex-direction: row;
-
-            min-width: 35px;
-            min-height: 35px;
-
-            width: auto;
-            height: auto;
-
-            // width: 100%; /* Расширяется на всю доступную ширину контейнера */
-            max-width: 80px; /* Максимальная ширина 80px */
-            max-height: 80px; /* Максимальная высота 80px */
-
-            // max-width: 80px;
-            // max-height: 80px;
-
-            // flex: 1;
-            // flex-shrink: 0;
-
-            flex-grow: 1; /* Расширяться на всю доступную ширину */
-            // flex-shrink: 1; /* Уменьшаться, если не хватает места */
-        }
-
-        @include onDesktop {
-            width: 80px;
-            height: 80px;
-
-            border-radius: 8px;
-            border: 1px $color-elements solid;
-        }
-    }
+  &__small-image img {
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
-
 .info-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    @include onTablet {
-        // flex-shrink: 0;
+  @include onTablet {
+    width: 40%;
+  }
 
-        width: 40%;
-    }
-
-    @include onDesktop {
-        // flex-shrink: 0;
-
-        width: 50%;
-    }
+  @include onDesktop {
+    width: 50%;
+  }
 }
 
 .color-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+
+  &__text {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__label {
+    color: var(--gray-secondary, $color-secondary);
+    font-family: 'Mont', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &__id {
+    color: var(--gray-icons-placeholders, $color-icons);
+    font-family: 'Mont', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+
+    position: absolute;
+    right: 0;
+  }
+
+  &__images {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
     gap: 8px;
-    // min-width: 290px;
-    margin-bottom: 24px;
+  }
 
-    &__text {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+  @each $color, $image in $colors {
+    &__option--#{$color} {
+      height: 32px;
+      width: 32px;
+      display: block;
+      pointer-events: none;
+      flex-shrink: 0;
+      background-image: url(../../images/colors/#{$image}.svg);
     }
-
-    &__label {
-        color: var(--gray-secondary, $color-secondary);
-        font-family: 'Mont', sans-serif;
-        font-size: 12px;
-        font-weight: 600;
-    }
-
-    &__id {
-        color: var(--gray-icons-placeholders, $color-icons);
-        font-family: 'Mont', sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-
-        position: absolute;
-        right: 0;
-    }
-
-    &__images {
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        gap: 8px;
-    }
-
-    @each $color,
-    $image in $colors {
-        &--#{$color} {
-            height: 32px;
-            width: 32px;
-            display: block;
-            pointer-events: none;
-            flex-shrink: 0;
-            background-image: url(../../images/colors/#{$image}.png);
-        }
-    }
+  }
 }
 
 .line::after {
-    content: "";
-    display: block;
-    border-top: 1px solid $color-elements;
-    margin-bottom: 24px;
+  content: '';
+  display: block;
+  border-top: 1px solid $color-elements;
+  margin-bottom: 24px;
 }
 
 .capacity-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    // min-width: 290px;
-    margin-bottom: 24px;
-    color: var(--gray-icons-placeholders, $color-icons);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--gray-icons-placeholders, $color-icons);
+  font-family: 'Mont', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  &__label {
+    color: var(--gray-secondary, $color-secondary);
     font-family: 'Mont', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 8px;
+  }
+
+  &__option {
+    height: 32px;
+    width: 56px;
+    border-radius: 4px;
     font-size: 14px;
-    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
-    &__label {
-        color: var(--gray-secondary, $color-secondary);
-        font-family: 'Mont', sans-serif;
-        font-size: 12px;
-        font-weight: 600;
+    &--selected {
+      background-color: $color-primary;
+      color: $color-white;
     }
 
-    &__buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        gap: 8px;
+    &--not-selected {
+      background-color: $color-white;
+      color: $color-primary;
+      border: 1px solid $color-icons;
     }
-
-    @each $capacity in 64,
-    256,
-    512 {
-        &--#{$capacity} {
-            @if $capacity ==64 {
-                background-color: $color-primary;
-                color: $color-white;
-            }
-
-            @else {
-                background-color: $color-white;
-                color: $color-primary;
-                border: 1px solid $color-icons;
-            }
-
-            // @include button-common-styles;
-
-            height: 32px;
-            width: 56px;
-            border-radius: 4px;
-            font-size: 14px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+  }
 }
 
 .phone-card {
+  width: 100%;
+  max-width: 272px;
+  height: 100%;
+  border-radius: 8px;
+  border: 0.5px $color-elements solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 32px;
+  background: $color-white;
+
+  @include onTablet {
     width: 100%;
-    max-width: 272px;
-    height: 100%;
-    border-radius: 8px;
-    border: 0.5px $color-elements solid;
+  }
+
+  &__price-block {
     display: flex;
-    flex-direction: column;
+
     justify-content: flex-start;
-    gap: 8px;
-    padding: 32px;
-    background: $color-white;
+    align-items: center;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
 
-    @include onTablet {
-        width: 100%;
-    }
+  &__price {
+    margin-right: 8px;
+    font-family: 'Mont', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
 
-    &__price-block {
-        display: flex;
+  &__price-discount {
+    color: $color-secondary;
+    text-decoration: line-through;
+    font-family: 'Mont', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+    display: flex;
+    justify-content: center;
+  }
 
-        justify-content: flex-start;
-        align-items: center;
-        margin-top: 32px;
-        margin-bottom: 16px;
-    }
-
-    &__price {
-        margin-right: 8px;
-        font-family: 'Mont', sans-serif;
-        font-size: 32px;
-        font-weight: 800;
-        line-height: 41px;
-        letter-spacing: -0.32px;
-    }
-
-    &__price-discount {
-        color: $color-secondary;
-        text-decoration: line-through;
-        font-family: 'Mont', sans-serif;
-        font-size: 22px;
-        font-weight: 500;
-        line-height: 41px;
-        letter-spacing: -0.32px;
-        display: flex;
-        justify-content: center;
-    }
-
-    &__actions {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin-bottom: 32px;
-    }
+  &__actions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
 }
 
 .product-buttons {
-    display: flex;
+  display: flex;
 }
 
 .add-to-cart {
-    height: 38px;
-    border: 0.5px solid $color-accent;
-    min-width: 160px;
-    color: $color-white;
-    text-align: center;
-    background-color: $color-accent;
-    flex-grow: 1;
-    border-radius: 48px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  height: 38px;
+  border: 0.5px solid $color-accent;
+  min-width: 160px;
+  color: $color-white;
+  text-align: center;
+  background-color: $color-accent;
+  flex-grow: 1;
+  border-radius: 48px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 
-    &:active {
-        color: $color-accent;
-        background-color: $color-white;
-        border: 0.5px solid $color-elements;
-    }
+  &:active {
+    color: $color-accent;
+    background-color: $color-white;
+    border: 0.5px solid $color-elements;
+  }
 }
 
 .add-to-favorites {
-    width: 40px;
-    height: 40px;
-    border-radius: 48px;
-    border: 0.5px $color-icons solid;
-    background-image: url(../../assets/icons/heart.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-left: 8px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 48px;
+  border: 0.5px $color-icons solid;
+  background-image: url(../../assets/icons/heart.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 8px;
+  cursor: pointer;
 
-    &:hover {
-        border: 0.5px $color-primary solid;
-    }
+  &:hover {
+    border: 0.5px $color-primary solid;
+  }
 }
 
-
 .article {
-    font-family: 'Mont', sans-serif;
+  font-family: 'Mont', sans-serif;
 
-    &__title {
-        color: var(--gray-primary, $color-primary);
+  &__title {
+    color: var(--gray-primary, $color-primary);
 
-        font-size: 16px;
-        font-weight: 700;
+    font-size: 16px;
+    font-weight: 700;
 
-        margin-top: 32px;
-        margin-bottom: 16px;
-    }
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
 
-    &__paragraph {
-        color: $color-secondary;
+  &__paragraph {
+    color: $color-secondary;
 
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 21px;
-    }
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+  }
 }
 
 .matches {
-    font-family: 'Mont', sans-serif;
-    margin-top: 30px;
+  font-family: 'Mont', sans-serif;
+  margin-top: 30px;
 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__row {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    // margin-bottom: 56px;
+  &__specification {
+    text-align: left;
+    color: var(--gray-secondary, $color-secondary);
 
-    &__row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+
+    &--small {
+      font-size: 12px;
+      font-weight: 600;
     }
+  }
 
-    &__specification {
-        text-align: left;
-        color: var(--gray-secondary, $color-secondary);
+  &__value {
+    text-align: right;
 
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 21px;
+    color: var(--gray-primary, $color-primary);
+    text-align: right;
 
-        &--small {
-            font-size: 12px;
-            font-weight: 600;
-        }
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+
+    &--small {
+      font-size: 12px;
+      font-weight: 700;
     }
-
-    &__value {
-        text-align: right;
-
-        color: var(--gray-primary, $color-primary);
-        text-align: right;
-
-
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 21px;
-
-        &--small {
-            font-size: 12px;
-            font-weight: 700;
-        }
-    }
+  }
 }
 
 .sections-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    @include onDesktop {
-        flex-direction: row;
+  @include onDesktop {
+    flex-direction: row;
 
-        gap: 64px;
-    }
+    gap: 64px;
+  }
 }
 
 .section {
-    font-family: 'Mont', sans-serif;
-    margin-bottom: 56px;
+  font-family: 'Mont', sans-serif;
+  margin-bottom: 56px;
 
-    &__title {
-        color: var(--gray-primary, $color-primary);
+  &__title {
+    color: var(--gray-primary, $color-primary);
 
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 16px;
-    }
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
 
-    @include onDesktop {
-        width: 560px;
-    }
+  @include onDesktop {
+    width: 560px;
+  }
 }
