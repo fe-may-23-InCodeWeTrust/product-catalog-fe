@@ -54,7 +54,6 @@ export const CategoryShop = () => {
     setIsLoading(false);
   }, []);
 
-
   return (
     <>
       <h1 className={styles['category-title']}>{t('shopByCategory')}</h1>

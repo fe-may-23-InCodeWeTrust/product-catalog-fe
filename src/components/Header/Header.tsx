@@ -108,7 +108,7 @@ export const Header = () => {
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >
-              <NavLink 
+              <NavLink
                 to={id ? '/' : 'signin'}
                 className={({ isActive }: { isActive: boolean }) =>
                   `${styles['header-icon__favourites-icon']} ${
