@@ -167,6 +167,7 @@ export const CatalogPage: React.FC = () => {
           onAddCart={setIsCartNotification}
           onAddFavorites={setIsFavoritesNotification}
         />
+
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
