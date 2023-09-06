@@ -17,7 +17,6 @@ export const SignUpPage = () => {
     let result;
     if (confirmPassword === password) {
       result = await ProductService.createUser(email, password, fullName);
-      console.log(result);
     } else {
       alert('Passwords do not match. Please, try one more time.');
     }
@@ -30,7 +29,9 @@ export const SignUpPage = () => {
         navigate('/signin');
       }, 3000);
     } else {
-      setMessage('Some errors');
+      if (result?.err) {
+        setMessage(result.err);
+      }
     }
   };
 
@@ -96,7 +97,7 @@ export const SignUpPage = () => {
       </div>
       {modal && (
         <div className={styles['login_form-notification']}>
-          Thanks for registering!
+          <p>{message}</p>
         </div>
       )}
     </form>

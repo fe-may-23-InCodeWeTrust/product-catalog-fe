@@ -12,6 +12,7 @@ import menu from '../../assets/icons/menu.svg';
 import languages from '../../assets/icons/languages.png';
 import favourites from '../../assets/icons/favourites.svg';
 import favoritesWhite from '../../assets/icons/favourites-white.svg';
+import account from '../../assets/icons/account-2.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
@@ -111,6 +112,24 @@ export const Header = () => {
                   placeholder="EN"
                 />
               )}
+            </div>
+            <div
+              className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
+            >
+              <NavLink
+                to="signin"
+                className={({ isActive }: { isActive: boolean }) =>
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
+                }
+              >
+                <img
+                  src={account}
+                  alt="account icon"
+                  className={styles['languages-icon__image']}
+                />
+              </NavLink>
             </div>
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}

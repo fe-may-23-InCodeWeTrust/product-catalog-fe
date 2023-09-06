@@ -23,10 +23,11 @@ export const CatalogPage: React.FC = () => {
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
-  const pageSortParams = searchParams.get('sortBy');
-  const sortBy = pageSortParams ? pageSortParams : 'newest';
-  const darkMode = useSelector((state: any) => state.theme.darkMode);
   const { t } = useTranslation();
+
+  const pageSortParams = searchParams.get('sortBy');
+  const sortBy = pageSortParams ? pageSortParams : `${t('newest')}`;
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
 
   const categories = [
     { value: 'newest', label: `${t('newest')}` },
@@ -124,7 +125,12 @@ export const CatalogPage: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    ProductService.getProducts(category, offset, sortByNumber, sortBy)
+    ProductService.getProducts(
+      category,
+      offset,
+      sortByNumber,
+      sortBy.toLowerCase(),
+    )
       .then((data) => {
         setProducts(data.rows);
         setTotalPages(Math.ceil(data.count / +sortByNumber));

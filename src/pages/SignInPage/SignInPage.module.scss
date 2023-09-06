@@ -21,6 +21,11 @@
     flex-direction: column;
   }
 
+  &-label {
+    font-weight: normal;
+    font-size: 12px;
+  }
+
   &-question {
     display: flex;
     gap: 5px;
@@ -37,17 +42,14 @@
 
   &-input {
     border: 1px solid $color-white;
-    font-size: 10px;
+    font-size: 12px;
     padding: 5px;
     line-height: 24px;
     border-radius: 3px;
 
     &::placeholder {
       opacity: 30%;
-    }
-
-    &:valid {
-      background-color: $color-accent;
+      font-size: 10px;
     }
   }
 

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
+import * as ProductProvider from '../../api/fetch_functions';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -55,6 +56,12 @@ export const ProductCard: React.FC<Props> = ({
     setTimeout(() => {
       setIsFavoritesNotification(false);
     }, 2000);
+  };
+
+  const userId = window.localStorage.getItem('userId')?.toString();
+
+  const handleFavorites = async (itemId: string) => {
+    await ProductProvider.updateFavorites(itemId, userId as string);
   };
 
   return (
@@ -111,9 +118,8 @@ export const ProductCard: React.FC<Props> = ({
           }}
           disabled={!!isInCart}
         >
-          {t('addToCart')}
+          {t(`${addToCartButtonCondition ? 'Added to cart' : 'Add to cart'}`)}
         </button>
-
         <button
           className={classNames(styles['add-to-favorites'], {
             'added-to-favorites': addTofavoritesButtonCondition,
@@ -122,6 +128,7 @@ export const ProductCard: React.FC<Props> = ({
           onClick={() => {
             onToggleFavorites(product);
             notificateFaborites();
+            handleFavorites(product.itemId);
           }}
         ></button>
       </div>

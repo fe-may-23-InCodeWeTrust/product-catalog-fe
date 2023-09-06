@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Product, ProductItem } from '../utils/Types/Product';
 import { client } from '../utils/fetchClient';
 
@@ -38,10 +39,10 @@ export const getProductByItemId = (id: string) => {
   return client.get<Product>(`products/${id}`);
 };
 
-export const getAuthenticatedUser = (email: string, password: string) => {
-  return client.get<{ token: string; user: string; favorites: Product[] }>(
+export const getAuthenticatedUser = (credentials: any) => {
+  return client.get<{ token: string; user: string; id: string }>(
     `users/login`,
-    { email, password },
+    credentials,
   );
 };
 
@@ -50,9 +51,19 @@ export const createUser = (
   password: string,
   fullName: string,
 ) => {
-  return client.post<{ message: string }>(`users/register`, {
+  return client.post<{ message?: string; err?: string }>(`users/register`, '', {
     email,
     password,
     fullName,
+  });
+};
+
+export const getFavorites = (userId: string) => {
+  return client.get<string[]>(`users?userId=${userId}`);
+};
+
+export const updateFavorites = (productId: string, userId: string) => {
+  return client.patch(`users/favorites?userId=${userId}`, '', {
+    itemId: productId,
   });
 };
