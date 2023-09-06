@@ -31,9 +31,20 @@ export const getProductByItemId = (id: string) => {
 };
 
 export const getAuthenticatedUser = (email: string, password: string) => {
-  return client.get<{token: string, user: string, favorites: Product[]}>(`users/login`, {email, password})
-}
+  return client.get<{ token: string; user: string; favorites: Product[] }>(
+    `users/login`,
+    { email, password },
+  );
+};
 
-export const createUser = (email: string, password: string, fullName: string) => {
-  return client.post<{ message: string }>(`users/register`, {email, password, fullName})
-}
+export const createUser = (
+  email: string,
+  password: string,
+  fullName: string,
+) => {
+  return client.post<{ message: string }>(`users/register`, {
+    email,
+    password,
+    fullName,
+  });
+};

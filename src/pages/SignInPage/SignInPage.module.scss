@@ -1,6 +1,5 @@
 @import '../../styles/utils';
 
-
 .login_form {
   display: flex;
   flex-direction: column;
@@ -57,7 +56,7 @@
     padding: 10px 20px;
     border-radius: 3px;
     cursor: pointer;
-    transition: all .3s linear;
+    transition: all 0.3s linear;
 
     &:hover {
       background-color: $color-secondary-accent;

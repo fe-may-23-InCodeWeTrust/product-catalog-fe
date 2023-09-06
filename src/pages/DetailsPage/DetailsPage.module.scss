@@ -121,7 +121,7 @@ body {
 .gallery-and-info-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 0;
   margin-bottom: 56px;
   width: 100%;
 
@@ -133,7 +133,7 @@ body {
 
   @include onDesktop {
     margin-bottom: 81px;
-    gap: 75px;
+    gap: 33px;
   }
 }
 

@@ -23,7 +23,7 @@ function request<T>(
     options.body = JSON.stringify(data);
     options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': token,
+      Authorization: token,
     };
   }
 
@@ -40,8 +40,11 @@ function request<T>(
 }
 
 export const client = {
-  get: <T>(url: string, data?: any, token?: any) => request<T>(url, 'GET', data, token),
-  post: <T>(url: string, data: any, token?: any) => request<T>(url, 'POST', data, token),
-  patch: <T>(url: string, data: any, token?: any) => request<T>(url, 'PATCH', data, token),
+  get: <T>(url: string, data?: any, token?: any) =>
+    request<T>(url, 'GET', data, token),
+  post: <T>(url: string, data: any, token?: any) =>
+    request<T>(url, 'POST', data, token),
+  patch: <T>(url: string, data: any, token?: any) =>
+    request<T>(url, 'PATCH', data, token),
   // delete: (url: string) => request(url, 'DELETE'),
 };
