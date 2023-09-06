@@ -29,7 +29,9 @@ export const Pagination: React.FC<Props> = ({
     pages.push(i);
   }
 
-  pages = pages.filter(page => (currentPage - 1) <= page && (page <= currentPage + 1));
+  pages = pages.filter(
+    (page) => currentPage - 1 <= page && page <= currentPage + 1,
+  );
 
   return (
     <div className={styles['pagination']}>
@@ -63,7 +65,7 @@ export const Pagination: React.FC<Props> = ({
         </>
       )}
 
-      {pages.map(page => (
+      {pages.map((page) => (
         <NavLink
           key={page}
           to={`?page=${page}&sortBy=${sortBy}&items=${sortByNumber}`}
