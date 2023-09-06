@@ -102,7 +102,12 @@ export const CatalogPage: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    ProductService.getProducts(category, offset, sortByNumber, sortBy.toLowerCase())
+    ProductService.getProducts(
+      category,
+      offset,
+      sortByNumber,
+      sortBy.toLowerCase(),
+    )
       .then((data) => {
         setProducts(data.rows);
         setTotalPages(Math.ceil(data.count / +sortByNumber));
