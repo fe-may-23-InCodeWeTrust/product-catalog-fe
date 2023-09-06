@@ -62,7 +62,7 @@ export const ProductCard: React.FC<Props> = ({
 
   const handleFavorites = async (itemId: string) => {
     await ProductProvider.updateFavorites(itemId, userId as string);
-  }
+  };
 
   // --------------------
 
@@ -131,7 +131,7 @@ export const ProductCard: React.FC<Props> = ({
           onClick={() => {
             onToggleFavorites(product);
             notificateFaborites();
-            handleFavorites(product.itemId)
+            handleFavorites(product.itemId);
           }}
         ></button>
       </div>

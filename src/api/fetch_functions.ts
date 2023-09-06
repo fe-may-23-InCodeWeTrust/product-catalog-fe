@@ -60,8 +60,10 @@ export const createUser = (
 
 export const getFavorites = (userId: string) => {
   return client.get<string[]>(`users?userId=${userId}`);
-}
+};
 
-export const updateFavorites = (productId: string, userId:string) => {
-  return client.patch(`users/favorites?userId=${userId}`, '', { itemId: productId })
-}
+export const updateFavorites = (productId: string, userId: string) => {
+  return client.patch(`users/favorites?userId=${userId}`, '', {
+    itemId: productId,
+  });
+};
