@@ -5,6 +5,7 @@ import { ArrowDarkTheme } from '../../assets/icons/ArrowDarkTheme';
 import styles from './Footer.module.scss';
 import { useSelector } from 'react-redux';
 import whiteLogo from '../../assets/icons/white-logo.svg';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);
@@ -30,9 +31,12 @@ export const Footer = () => {
         >
           Github
         </a>
-        <a className={`${styles['footer__nav__item']} text-uppercase`} href="#">
+        <Link
+          className={`${styles['footer__nav__item']} text-uppercase`}
+          to="contacts"
+        >
           Contacts
-        </a>
+        </Link>
         <a className={`${styles['footer__nav__item']} text-uppercase`} href="#">
           Rights
         </a>

@@ -9,8 +9,12 @@
   --color-accent: #939bf2;
   --color-text: #ffffff;
   --color-hover: #f0f0f0;
+
   --img-like: url(../../assets/icons/favourites-white.svg);
   --img-home: url(../../assets/icons/home-white.svg);
+  --img-arrow-left: url(../../assets/icons/arrow-white-left.svg);
+  --img-arrow-right: url(../../assets/icons/arrow-white-right.svg);
+  --img-close: url(../../assets/icons/close-white.svg);
 }
 
 .light {
@@ -24,11 +28,14 @@
   --color-accent: #4219d0;
   --color-text: #ffffff;
   --color-hover: #0f0f11;
+
   --img-like: url(../../assets/icons/heart.svg);
   --img-home: url(../../images/icons/Home.png);
+  --img-arrow-left: url(../../assets/icons/arrow-dark-left.svg);
+  --img-arrow-right: url(../../assets/icons/arrow-right.svg);
+  --img-close: url(../../assets/icons/Close.svg);
 }
-$img-like: var(--img-like);
-$img-home: var(--img-home);
+
 $color-primary: var(--color-primary);
 $color-secondary: var(--color-secondary);
 $color-icons: var(--color-icons);
@@ -40,15 +47,12 @@ $color-accent: var(--color-accent);
 $color-text: var(--color-text);
 $color-hover: var(--color-hover);
 
+$img-like: var(--img-like);
+$img-home: var(--img-home);
+$img-arrow-left: var(--img-arrow-left);
+$img-arrow-right: var(--img-arrow-right);
+$img-close: var(--img-close);
+
 $tablet-min-width: 640px;
 $expanded-tablet-min-with: 768px;
 $desktop-min-width: 1200px;
-
-//$color-primary: #0f0f11;
-//$color-secondary: #89939a;
-//$color-icons: #b4bdc3;
-//$color-elements: #e2e6e9;
-//$color-white: #ffffff;
-//$color-grey-background: #fafbfc;
-//$color-secondary-accent: #f4ba47;
-//$color-red: #eb5757;

@@ -14,14 +14,14 @@ import { ArrowLeftDarkTheme } from '../../assets/icons/ArrowLeftDarkTheme';
 import { ArrowRightDarkTheme } from '../../assets/icons/ArrowRightDarkTheme';
 const desktopImages: string[] = [
   'https://product-catalog-be-lf4l.onrender.com/img/Banner.png',
-  'https://curved.de/media/webp/media/cache/head_teaser/cms/2020/09/Apple-Watch-Series-6.webp?v=2023090305',
-  'https://images.frandroid.com/wp-content/uploads/2023/05/iphone-14-pro-frandroid-quinn-battick-e0o2dkbys9u-unsplash.jpg',
+  'https://product-catalog-be-lf4l.onrender.com/img/banner-apple%20watch.jpeg',
+  'https://product-catalog-be-lf4l.onrender.com/img/iphone-14-pro.jpg',
 ];
 
 const mobileImages: string[] = [
   'https://product-catalog-be-lf4l.onrender.com/img/BannerMobile.png',
-  'https://curved.de/media/webp/media/cache/head_teaser/cms/2020/09/Apple-Watch-Series-6.webp?v=2023090305',
-  'https://images.frandroid.com/wp-content/uploads/2023/05/iphone-14-pro-frandroid-quinn-battick-e0o2dkbys9u-unsplash.jpg',
+  'https://product-catalog-be-lf4l.onrender.com/img/banner-apple%20watch.jpeg',
+  'https://product-catalog-be-lf4l.onrender.com/img/iphone-14-pro.jpg',
 ];
 
 export const Banner = () => {

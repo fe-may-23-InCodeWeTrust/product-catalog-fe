@@ -1,10 +1,10 @@
 import React from 'react';
-import './BackDrop.scss';
+import styles from './BackDrop.module.scss';
 
 type Props = {
   onClick: () => void;
 };
 
 export const BackDrop: React.FC<Props> = ({ onClick }) => {
-  return <div className="back_drop" onClick={onClick}></div>;
+  return <div className={styles['back_drop']} onClick={onClick}></div>;
 };

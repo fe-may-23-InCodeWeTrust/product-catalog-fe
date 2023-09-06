@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import './Pagination.scss';
+import styles from './Pagination.module.scss';
 
 type Props = {
   currentPage: number;
@@ -36,8 +36,8 @@ export const Pagination: React.FC<Props> = ({
         <NavLink
           key={i}
           to={`?page=${i}&sortBy=${sortBy}&items=${sortByNumber}`}
-          className={classNames('page-button', {
-            'is-active': currentPage === i,
+          className={classNames(styles['page-button'], {
+            [styles['is-active']]: currentPage === i,
           })}
           onClick={() => {
             handleOffset(`${limit * (i - 1)}`);
@@ -52,11 +52,11 @@ export const Pagination: React.FC<Props> = ({
   };
 
   return (
-    <div className="pagination">
+    <div className={styles['pagination']}>
       {currentPage > 1 && (
         <NavLink
           to={`?page=${currentPage - 1}&sortBy=${sortBy}&items=${sortByNumber}`}
-          className="page-button left"
+          className={`${styles['page-button']} ${styles['left']}`}
           onClick={() => {
             handleOffset(`${currentPage * limit - 2 * limit}`);
           }}
@@ -70,7 +70,7 @@ export const Pagination: React.FC<Props> = ({
       {currentPage < totalPages && (
         <NavLink
           to={`?page=${currentPage + 1}&sortBy=${sortBy}&items=${sortByNumber}`}
-          className="page-button right"
+          className={`${styles['page-button']} ${styles['right']}`}
           onClick={() => {
             handleOffset(`${currentPage * limit}`);
           }}

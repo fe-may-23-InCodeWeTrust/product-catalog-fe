@@ -9,6 +9,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
+import { useSelector } from 'react-redux';
 
 const categories = [
   { value: 'newest', label: 'Newest' },
@@ -23,7 +24,7 @@ const numbers = [
 ];
 
 export const CatalogPage: React.FC = () => {
-  const { setIsLoading } = useContext(CatalogContext);
+  const { isLoading, setIsLoading } = useContext(CatalogContext);
   const location = useLocation();
   const [error, setError] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -36,17 +37,28 @@ export const CatalogPage: React.FC = () => {
 
   const pageSortParams = searchParams.get('sortBy');
   const sortBy = pageSortParams ? pageSortParams : 'newest';
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
 
-  const currentSortText =
-    categories.find((category) => category.value === sortBy) || categories[0];
+  const currentSortText = categories.find(
+    (category) => category.value === sortBy,
+  );
   const [sortByText, setSortByText] = useState(currentSortText);
 
   const itemsPerPage = searchParams.get('items');
   const sortByNumber = itemsPerPage ? itemsPerPage : '16';
 
-  const currentSortNumber =
-    numbers.find((number) => number.value === +sortByNumber) || numbers[0];
+  const currentSortNumber = numbers.find(
+    (number) => number.value === +sortByNumber,
+  );
   const [sortByItems, setSortByItems] = useState(currentSortNumber);
+
+  useEffect(() => {
+    setSortByItems(currentSortNumber);
+  }, [sortByNumber]);
+
+  useEffect(() => {
+    setSortByText(currentSortText);
+  }, [sortBy]);
 
   const category = location.pathname.slice(1);
 
@@ -88,6 +100,27 @@ export const CatalogPage: React.FC = () => {
     }),
   };
 
+  const CustomStyleDark = {
+    option: (defaultStyles: object, { isFocused }: any) => ({
+      ...defaultStyles,
+      backgroundColor: isFocused ? '#4a4d58' : '#89939a',
+      color: '#0f0f11',
+    }),
+
+    control: (defaultStyles: object) => ({
+      ...defaultStyles,
+      backgroundColor: '#89939a',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '14px',
+    }),
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
+    }),
+  };
+
   useEffect(() => {
     setIsLoading(true);
     ProductService.getProducts(category, offset, sortByNumber, sortBy)
@@ -114,8 +147,11 @@ export const CatalogPage: React.FC = () => {
 
           <span className={`${styles['icon']} ${styles['icon--arrow']}`}></span>
           <Link
-            to={`/${category}`}
+            to={`/${category}?page=1&sortBy=newest&items=16`}
             className={`${styles['icon__text']} text-small`}
+            onClick={() => {
+              setOffset('0');
+            }}
           >
             {category}
           </Link>
@@ -140,8 +176,8 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByCategory']}
             options={categories}
-            styles={CustomStyle}
-            defaultValue={sortByText}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
+            value={sortByText}
             onChange={(event) => {
               if (event?.value) {
                 setSearchParams(
@@ -154,8 +190,8 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByNumber']}
             options={numbers}
-            styles={CustomStyle}
-            defaultValue={sortByItems}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
+            value={sortByItems}
             onChange={(event) => {
               if (event?.value) {
                 setSearchParams(
@@ -169,14 +205,17 @@ export const CatalogPage: React.FC = () => {
         {error && <div>There is some problems occured</div>}
 
         <ProductsList products={products} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handleOffset={setOffset}
-          limit={+sortByNumber}
-          sortBy={sortBy}
-          sortByNumber={sortByNumber}
-        />
+
+        {!isLoading && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handleOffset={setOffset}
+            limit={+sortByNumber}
+            sortBy={sortBy}
+            sortByNumber={sortByNumber}
+          />
+        )}
       </div>
     </main>
   );

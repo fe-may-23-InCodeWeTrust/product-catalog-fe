@@ -38,11 +38,11 @@
   }
 
   &--home {
-    background-image: url(../../images/icons/Home.png);
+    background-image: $img-home;
   }
 
   &--arrow {
-    background-image: url(../../images/icons/Arrow.png);
+    background-image: $img-arrow-right;
     pointer-events: none;
   }
 }
