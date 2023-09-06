@@ -7,10 +7,11 @@ import { RootState } from '../../redux/store';
 import menu from '../../assets/icons/menu.svg';
 import languages from '../../assets/icons/languages.png';
 import favourites from '../../assets/icons/favourites.svg';
+import account from '../../assets/icons/account-2.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
-import ReactFlagsSelect from "react-flags-select";
+import ReactFlagsSelect from 'react-flags-select';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -25,7 +26,8 @@ export const Header = () => {
   );
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const [language, setLanguage] = useState('');
-  const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] = useState(false);
+  const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
+    useState(false);
   const { t, i18n } = useTranslation();
 
   const onChangeLanguage = (language: string) => {
@@ -80,8 +82,8 @@ export const Header = () => {
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['languages-icon']}`}
             >
-              <button 
-                className={styles['header-icon__languages-icon']} 
+              <button
+                className={styles['header-icon__languages-icon']}
                 onClick={() => setIsActiveLanguageSwitcher(true)}
               >
                 <img
@@ -95,8 +97,8 @@ export const Header = () => {
                   className={styles['languages__switcher']}
                   selected={language}
                   onSelect={onChangeLanguage}
-                  countries={["GB", "UA", "PL", "PT"]}
-                  customLabels={{GB: 'EN', UA: "UA", PL: "PL", PT: "PT" }}
+                  countries={['GB', 'UA', 'PL', 'PT']}
+                  customLabels={{ GB: 'EN', UA: 'UA', PL: 'PL', PT: 'PT' }}
                   placeholder="EN"
                 />
               )}
@@ -105,9 +107,29 @@ export const Header = () => {
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >
               <NavLink
+                to="signin"
+                className={({ isActive }: { isActive: boolean }) =>
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
+                }
+              >
+                <img
+                  src={account}
+                  alt="account icon"
+                  className={styles['languages-icon__image']}
+                />
+              </NavLink>
+            </div>
+            <div
+              className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
+            >
+              <NavLink
                 to="favorites"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__favourites-icon']} ${isActive ? styles['is-active-icon'] : ''}`
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
                 }
               >
                 <img
@@ -156,11 +178,7 @@ export const Header = () => {
                 className={styles['header-icon__menu-icon']}
                 onClick={() => setIsActiveBurger(true)}
               >
-                <img
-                  src={menu}
-                  alt="Menu icon"
-                  className="menu-icon__image"
-                />
+                <img src={menu} alt="Menu icon" className="menu-icon__image" />
               </button>
             </div>
           </div>

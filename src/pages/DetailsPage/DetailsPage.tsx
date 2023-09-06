@@ -186,7 +186,9 @@ export const DetailsPage = () => {
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--light']}>{t('back')}</p>
+              <p className={styles.text + ' ' + styles['text--light']}>
+                {t('back')}
+              </p>
             </a>
           </div>
         </div>
@@ -235,7 +237,7 @@ export const DetailsPage = () => {
                     {colors.map((color) => (
                       <div
                         key={color}
-                      // className={styles[`color-options__option--${color}`]}
+                        // className={styles[`color-options__option--${color}`]}
                       >
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
