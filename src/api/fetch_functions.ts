@@ -20,6 +20,15 @@ export const getNewProducts = () => {
   return client.get<Product[]>(`products/new`);
 };
 
+
+export const getProductsCount = async (category: string) => {
+  const res = await client.get<{ count: number; rows: Product[] }>(
+    `products?productType=${category}`,
+  );
+
+  return res.count;
+};
+
 export const getProductById = (path: string) => {
   return client.get<{ foundProduct: ProductItem; recommended: Product[] }>(
     `${path}`,
