@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import styles from './SignInPage.module.scss';
 import * as ProductService from '../../api/fetch_functions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const SignInPage = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    const token = ProductService.getAuthenticatedUser(email, password);
+  const handleSubmit = async () => {
 
-    console.log(token);
+      const credentials = `${email}:${password}`
+      const result = await ProductService.getAuthenticatedUser(credentials);
 
-    if(!token) {
-      window.localStorage.setItem('token', token);
-    }
+      if(result) {
+        window.localStorage.setItem('token', result.token);
+
+        setTimeout(() => {
+          navigate('/')
+        }, 2000)
+      } else {
+        alert('Something went wrong!');
+      }  
   };
 
   return (

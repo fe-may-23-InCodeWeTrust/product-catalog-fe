@@ -12,17 +12,16 @@ type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
 function request<T>(
   url: string,
-  method: RequestMethod = 'GET',
-  email?: string,
-  password?: string,
+  method: string,
+  credentials?: any, // we can send any data to the server
   data: any = null,
-  token?: any, // we can send any data to the server
-): Promise<T> {
+  token: any = null,
+  ): Promise<T> {
   const options: RequestInit = { method };
 
-  if (email && password) {
+  if (credentials) {
     options.headers = {
-      Authorization: `${email}:${password}`
+      Authorization: credentials,
     }
   }
 
@@ -31,8 +30,13 @@ function request<T>(
     options.body = JSON.stringify(data);
     options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
-      Authorization: token,
     };
+  }
+
+  if (token) {
+    options.headers = {
+      Authorization: token,
+    }
   }
 
   // we wait for testing purpose to see loaders
@@ -48,9 +52,9 @@ function request<T>(
 }
 
 export const client = {
-  get: <T>(url: string) => request<T>(url),
-  post: <T>(url: string, data: any, token?: any) =>
-    request<T>(url, 'POST', data, token),
+  get: <T>(url: string, credentials?: any, token?: any) => request<T>(url, 'GET', credentials, token),
+  post: <T>(url: string, data: any, token?: any, credentials?: any) =>
+    request<T>(url, 'POST', data, token, credentials),
   patch: <T>(url: string, data: any, token?: any) =>
     request<T>(url, 'PATCH', data, token),
   // delete: (url: string) => request(url, 'DELETE'),

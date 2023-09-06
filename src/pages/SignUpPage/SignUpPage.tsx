@@ -19,8 +19,6 @@ export const SignUpPage = () => {
       result = await ProductService.createUser(email, password, fullName);
     } else {
       alert('Passwords do not match. Please, try one more time.');
-
-      return;
     }
 
     if (result?.message) {
@@ -32,14 +30,11 @@ export const SignUpPage = () => {
       }, 3000);
     } else {
       if (result?.err) {
-        setMessage(result?.err);
-        setModal(true);
-        setTimeout(() => {
-          setModal(false);
-        }, 2000)
-      }   
+        setMessage(result.err)
+      }
     }
   };
+
 
   return (
     <form className={styles['login_form']} onSubmit={handleSubmit}>

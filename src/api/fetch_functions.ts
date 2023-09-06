@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Product, ProductItem } from '../utils/Types/Product';
 import { client } from '../utils/fetchClient';
 
@@ -20,6 +21,15 @@ export const getNewProducts = () => {
   return client.get<Product[]>(`products/new`);
 };
 
+
+export const getProductsCount = async (category: string) => {
+  const res = await client.get<{ count: number; rows: Product[] }>(
+    `products?productType=${category}`,
+  );
+
+  return res.count;
+};
+
 export const getProductById = (path: string) => {
   return client.get<{ foundProduct: ProductItem; recommended: Product[] }>(
     `${path}`,
@@ -30,9 +40,9 @@ export const getProductByItemId = (id: string) => {
   return client.get<Product>(`products/${id}`);
 };
 
-export const getAuthenticatedUser = (email: string, password: string) => {
+export const getAuthenticatedUser = (credentials: any) => {
   return client.get<{ token: string; user: string; favorites: Product[] }>(
-    `users/login`,
+    `users/login`, credentials,
   );
 };
 
@@ -41,7 +51,7 @@ export const createUser = (
   password: string,
   fullName: string,
 ) => {
-  return client.post<{ message?: string, err?: string }>(`users/register`, {
+  return client.post<{ message?: string, err?: string }>(`users/register`, '', {
     email,
     password,
     fullName,
