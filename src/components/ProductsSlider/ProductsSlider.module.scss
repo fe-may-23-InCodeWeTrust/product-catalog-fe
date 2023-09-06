@@ -21,6 +21,7 @@
   font-style: normal;
   font-weight: 800;
   line-height: 140%;
+  color: $color-primary;
 
   @include onTablet {
     font-size: 32px;
@@ -49,7 +50,7 @@
 
       svg {
         path {
-          fill: white;
+          fill: $color-white;
         }
       }
     }
