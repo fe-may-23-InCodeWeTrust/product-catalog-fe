@@ -54,8 +54,6 @@ export const DetailsPage = () => {
   const category = location.pathname.slice(1).split('/')[0];
   const id = location.pathname.slice(1).split('/')[1];
 
-  console.log(category, id);
-
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
@@ -106,10 +104,6 @@ export const DetailsPage = () => {
     return `/${category}/${product?.namespaceId}-${product?.capacity.toLowerCase()}-${color.toLowerCase()}`;
   };
 
-  {
-    console.log(product?.color, selectedColor);
-  }
-
   useEffect(() => {
     setIsLoading(true);
 
@@ -117,9 +111,6 @@ export const DetailsPage = () => {
       .then((data) => {
         setProduct(data.foundProduct);
         setRecommended(data.recommended);
-
-        console.log(data.foundProduct);
-        console.log(colorMap);
 
         const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
         const colors = `${data.foundProduct.colorsAvailable}`

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
 import { useSelector } from 'react-redux';
@@ -29,6 +29,7 @@ export const Header = () => {
   const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
     useState(false);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const onChangeLanguage = (language: string) => {
     setLanguage(language);
@@ -40,6 +41,7 @@ export const Header = () => {
     document.body.style.overflow = isActiveBurger ? 'hidden' : 'auto';
   }, [isActiveBurger]);
 
+  const id = window.localStorage.getItem('userId');
   return (
     <>
       {!isActiveBurger && (
@@ -106,8 +108,8 @@ export const Header = () => {
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >
-              <NavLink
-                to="signin"
+              <NavLink 
+                to={id ? '/' : 'signin'}
                 className={({ isActive }: { isActive: boolean }) =>
                   `${styles['header-icon__favourites-icon']} ${
                     isActive ? styles['is-active-icon'] : ''
