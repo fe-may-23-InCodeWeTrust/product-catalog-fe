@@ -7,6 +7,7 @@ import { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
 import * as ProductProvider from '../../api/fetch_functions';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   product: Product;
@@ -27,6 +28,8 @@ export const ProductCard: React.FC<Props> = ({
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
   const goods = useSelector((state: RootState) => state.cart.goods);
+  const { t } = useTranslation();
+
   const addToCartButtonCondition = goods.find((good) => good.id === product.id);
 
   const addTofavoritesButtonCondition = favoritesGoods.find(
@@ -120,9 +123,8 @@ export const ProductCard: React.FC<Props> = ({
           }}
           disabled={!!isInCart}
         >
-          {addToCartButtonCondition ? 'Added to cart' : 'Add to cart'}
+          {t(`${addToCartButtonCondition ? 'Added to cart' : 'Add to cart'}`)}
         </button>
-
         <button
           className={classNames(styles['add-to-favorites'], {
             'added-to-favorites': addTofavoritesButtonCondition,

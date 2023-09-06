@@ -12,12 +12,13 @@ import {
 import { BackDrop } from '../../components/BackDrop/BackDrop';
 import { Modal } from '../../components/Modal/Modal';
 import { BackButton } from '../../components/BackButton/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export const CartPage = () => {
   const goods = useSelector((state: RootState) => state.cart.goods);
-
   const dispatch = useDispatch<AppDispatch>();
   const [isBlackout, setIsBlackout] = useState(false);
+  const { t } = useTranslation();
 
   const total = goods
     .map((good) => good.price * good.count)
@@ -54,7 +55,7 @@ export const CartPage = () => {
         <BackButton />
       </div>
 
-      <h2 className="title">Cart</h2>
+      <h2 className="title">{t('cart')}</h2>
 
       {isBlackout && (
         <>
@@ -64,7 +65,7 @@ export const CartPage = () => {
       )}
 
       {!goods.length ? (
-        <p>There is no goods in the cart. Please, add some goods!</p>
+        <p>{t('noGoods')}</p>
       ) : (
         <div className="main-content">
           <div className="cart-goods">
@@ -119,15 +120,15 @@ export const CartPage = () => {
             <div className="cart-price__number">${total}</div>
 
             <div className="cart-price__quantity">
-              {`Total for ${goodsAmount()} ${
-                goodsAmount() > 1 ? 'items' : 'item'
+                {`${t('totalFor')} ${goodsAmount()} ${
+                  goodsAmount() > 1 ? `${t('items')}` : `${t('item')}`
               }`}
             </div>
 
             <div className="br"></div>
 
             <button className="btn-block" onClick={checkoutHandler}>
-              Checkout
+              {t('checkout')}
             </button>
           </div>
         </div>

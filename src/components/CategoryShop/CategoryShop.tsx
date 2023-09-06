@@ -7,39 +7,41 @@ import { useNavigate } from 'react-router-dom';
 import * as ProductService from '../../api/fetch_functions';
 import { LeapFrog } from '@uiball/loaders';
 import { CatalogContext } from '../../context/CatalogContext';
+import { useTranslation } from 'react-i18next';
 
 const defaultSize = 90;
 
-const categories = [
-  {
-    id: 1,
-    title: 'Mobile phones',
-    count: 0,
-    img: phonesImg,
-    background: '#6D6474',
-    path: 'phones',
-  },
-  {
-    id: 2,
-    title: 'Tablets',
-    count: 0,
-    img: tabletsImg,
-    background: '#8D8D92',
-    path: 'tablets',
-  },
-  {
-    id: 3,
-    title: 'Accessories',
-    count: 0,
-    img: accessoriesImg,
-    background: '#973D5F',
-    path: 'accessories',
-  },
-];
-
 export const CategoryShop = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { isLoading, setIsLoading } = useContext(CatalogContext);
+
+  const categories = [
+    {
+      id: 1,
+      title: `${t('mobilePhones')}`,
+      count: 0,
+      img: phonesImg,
+      background: '#6D6474',
+      path: 'phones',
+    },
+    {
+      id: 2,
+      title: `${t('tablets')}`,
+      count: 0,
+      img: tabletsImg,
+      background: '#8D8D92',
+      path: 'tablets',
+    },
+    {
+      id: 3,
+      title: `${t('accessories')}`,
+      count: 0,
+      img: accessoriesImg,
+      background: '#973D5F',
+      path: 'accessories',
+    },
+  ];
 
   useEffect(() => {
     setIsLoading(true);
@@ -53,7 +55,7 @@ export const CategoryShop = () => {
 
   return (
     <>
-      <h1 className={styles['category-title']}>Shop by category</h1>
+      <h1 className={styles['category-title']}>{t('shopByCategory')}</h1>
       {isLoading ? (
         <div className={styles['loader']}>
           <LeapFrog size={40} speed={2.5} color="black" />
@@ -84,7 +86,7 @@ export const CategoryShop = () => {
                 {category.title}
               </h2>
               <h2 className={styles['category-card__subtitle']}>
-                {category.count} models
+                {category.count} {t('models')}
               </h2>
             </div>
           ))}
