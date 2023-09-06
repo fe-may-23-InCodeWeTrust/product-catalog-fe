@@ -23,33 +23,15 @@ export const Pagination: React.FC<Props> = ({
   const prevButton = '<';
   const nextButton = '>';
 
-  const getPageButtons = () => {
-    const buttons = [];
-    const pagesToShow = 4;
-    const start = Math.floor(Math.max(1, currentPage - (pagesToShow - 1) / 2));
-    const end = Math.floor(
-      Math.min(totalPages, currentPage + (pagesToShow - 1) / 2),
-    );
+  let pages = [];
 
-    for (let i = start; i <= end; i++) {
-      buttons.push(
-        <NavLink
-          key={i}
-          to={`?page=${i}&sortBy=${sortBy}&items=${sortByNumber}`}
-          className={classNames(styles['page-button'], {
-            [styles['is-active']]: currentPage === i,
-          })}
-          onClick={() => {
-            handleOffset(`${limit * (i - 1)}`);
-          }}
-        >
-          {i}
-        </NavLink>,
-      );
-    }
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
 
-    return buttons;
-  };
+  pages = pages.filter(
+    (page) => currentPage - 1 <= page && page <= currentPage + 1,
+  );
 
   return (
     <div className={styles['pagination']}>
@@ -65,7 +47,56 @@ export const Pagination: React.FC<Props> = ({
         </NavLink>
       )}
 
-      {getPageButtons()}
+      {!pages.includes(1) && (
+        <>
+          <NavLink
+            key={1}
+            to={`?page=${1}&sortBy=${sortBy}&items=${sortByNumber}`}
+            className={classNames(styles['page-button'], {
+              [styles['is-active']]: currentPage === 1,
+            })}
+            onClick={() => {
+              handleOffset(`${limit * (1 - 1)}`);
+            }}
+          >
+            1
+          </NavLink>
+          ...
+        </>
+      )}
+
+      {pages.map((page) => (
+        <NavLink
+          key={page}
+          to={`?page=${page}&sortBy=${sortBy}&items=${sortByNumber}`}
+          className={classNames(styles['page-button'], {
+            [styles['is-active']]: currentPage === page,
+          })}
+          onClick={() => {
+            handleOffset(`${limit * (page - 1)}`);
+          }}
+        >
+          {page}
+        </NavLink>
+      ))}
+
+      {!pages.includes(totalPages) && (
+        <>
+          ...
+          <NavLink
+            key={totalPages}
+            to={`?page=${totalPages}&sortBy=${sortBy}&items=${sortByNumber}`}
+            className={classNames(styles['page-button'], {
+              [styles['is-active']]: currentPage === totalPages,
+            })}
+            onClick={() => {
+              handleOffset(`${limit * (totalPages - 1)}`);
+            }}
+          >
+            {totalPages}
+          </NavLink>
+        </>
+      )}
 
       {currentPage < totalPages && (
         <NavLink
