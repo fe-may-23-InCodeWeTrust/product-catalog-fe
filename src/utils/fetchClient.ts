@@ -13,10 +13,18 @@ type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 function request<T>(
   url: string,
   method: RequestMethod = 'GET',
+  email?: string,
+  password?: string,
   data: any = null,
-  token: any, // we can send any data to the server
+  token?: any, // we can send any data to the server
 ): Promise<T> {
   const options: RequestInit = { method };
+
+  if (email && password) {
+    options.headers = {
+      Authorization: `${email}:${password}`
+    }
+  }
 
   if (data) {
     // We add body and Content-Type only for the requests with data
@@ -40,8 +48,7 @@ function request<T>(
 }
 
 export const client = {
-  get: <T>(url: string, data?: any, token?: any) =>
-    request<T>(url, 'GET', data, token),
+  get: <T>(url: string) => request<T>(url),
   post: <T>(url: string, data: any, token?: any) =>
     request<T>(url, 'POST', data, token),
   patch: <T>(url: string, data: any, token?: any) =>

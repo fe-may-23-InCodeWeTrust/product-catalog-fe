@@ -9,6 +9,12 @@ export const SignInPage = () => {
 
   const handleSubmit = () => {
     const token = ProductService.getAuthenticatedUser(email, password);
+
+    console.log(token);
+
+    if(!token) {
+      window.localStorage.setItem('token', token);
+    }
   };
 
   return (
