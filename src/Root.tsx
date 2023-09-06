@@ -7,6 +7,8 @@ import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage';
 import { HomePage } from './pages/HomePage/HomePage';
 import { CatalogPage } from './pages/CatalogPage/CatalogPage';
 import { NotFoundPage } from './components/NotFoundPage';
+import { SignInPage } from './pages/SignInPage/SignInPage';
+import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 
 export const Root: React.FC = () => (
@@ -14,6 +16,8 @@ export const Root: React.FC = () => (
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<HomePage />} />
+        <Route path='signin' element={<SignInPage />} />
+        <Route path='signup' element={<SignUpPage />} />
 
         <Route path="phones">
           <Route index element={<CatalogPage />} />

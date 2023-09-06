@@ -1,0 +1,89 @@
+@import '../../styles/utils';
+
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+  padding: 24px;
+  gap: 16px;
+  border-radius: 8px;
+  margin: 100px auto 0;
+  border: 1px solid $color-elements;
+  background-color: $color-accent;
+  color: $color-white;
+  position: relative;
+  transition: all 1s linear;
+
+  &-box {
+    display: flex;
+    gap: 4px;
+    width: 80%;
+    flex-direction: column;
+  }
+
+  &-notification {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    color: $color-primary;
+    background-color: $color-white;
+    border: 1px solid $color-primary;
+    border-radius: 3px;
+    padding: 10%;
+    opacity: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-input {
+    border: 1px solid $color-white;
+    font-size: 10px;
+    padding: 5px;
+    line-height: 24px;
+    border-radius: 3px;
+
+    &::placeholder {
+      opacity: 30%;
+    }
+
+    &:valid {
+      background-color: $color-accent;
+    }
+  }
+
+  &-question {
+    display: flex;
+    gap: 5px;
+  }
+
+  &-text {
+    font-size: 10px;
+  }
+
+  &-link {
+    color: $color-secondary-accent;
+    font-size: 10px;
+  }
+
+  &-btn {
+    border: 1px solid $color-white;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .3s linear;
+
+    &:hover {
+      background-color: $color-secondary-accent;
+      color: $color-primary;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+}

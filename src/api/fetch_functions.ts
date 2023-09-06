@@ -29,3 +29,11 @@ export const getProductById = (path: string) => {
 export const getProductByItemId = (id: string) => {
   return client.get<Product>(`products/${id}`);
 };
+
+export const getAuthenticatedUser = (email: string, password: string) => {
+  return client.get<{token: string, user: string, favorites: Product[]}>(`users/login`, {email, password})
+}
+
+export const createUser = (email: string, password: string, fullName: string) => {
+  return client.post<{ message: string }>(`users/register`, {email, password, fullName})
+}
