@@ -47,5 +47,4 @@ export const client = {
     request<T>(url, 'POST', data, token, credentials),
   patch: <T>(url: string, data: any, token?: any) =>
     request<T>(url, 'PATCH', data, token),
-  // delete: (url: string) => request(url, 'DELETE'),
 };

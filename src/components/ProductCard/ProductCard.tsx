@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
+import * as ProductProvider from '../../api/fetch_functions';
 
 type Props = {
   product: Product;
@@ -21,6 +22,7 @@ export const ProductCard: React.FC<Props> = ({
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
+
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
@@ -53,6 +55,16 @@ export const ProductCard: React.FC<Props> = ({
       setIsFavoritesNotification(false);
     }, 2000);
   };
+
+  // -----------------
+
+  const userId = window.localStorage.getItem('userId')?.toString();
+
+  const handleFavorites = async (itemId: string) => {
+    await ProductProvider.updateFavorites(itemId, userId as string);
+  }
+
+  // --------------------
 
   return (
     <div className={styles['phone-card']}>
@@ -119,6 +131,7 @@ export const ProductCard: React.FC<Props> = ({
           onClick={() => {
             onToggleFavorites(product);
             notificateFaborites();
+            handleFavorites(product.itemId)
           }}
         ></button>
       </div>

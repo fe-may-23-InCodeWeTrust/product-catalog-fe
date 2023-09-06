@@ -40,7 +40,7 @@ export const getProductByItemId = (id: string) => {
 };
 
 export const getAuthenticatedUser = (credentials: any) => {
-  return client.get<{ token: string; user: string; favorites: Product[] }>(
+  return client.get<{ token: string; user: string; id: string }>(
     `users/login`,
     credentials,
   );
@@ -57,3 +57,11 @@ export const createUser = (
     fullName,
   });
 };
+
+export const getFavorites = (userId: string) => {
+  return client.get<string[]>(`users?userId=${userId}`);
+}
+
+export const updateFavorites = (productId: string, userId:string) => {
+  return client.patch(`users/favorites?userId=${userId}`, '', { itemId: productId })
+}

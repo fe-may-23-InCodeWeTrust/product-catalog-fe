@@ -13,7 +13,7 @@ export const SignInPage = () => {
     const result = await ProductService.getAuthenticatedUser(credentials);
 
     if (result) {
-      window.localStorage.setItem('token', result.token);
+      window.localStorage.setItem('userId', result.id);
 
       setTimeout(() => {
         navigate('/');
