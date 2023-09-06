@@ -2,15 +2,18 @@ import React from 'react';
 import styles from './ContactsPage.module.scss';
 import { contacts } from '../../utils/contacts';
 import { BackButton } from '../../components/BackButton/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export const ContactsPage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles['contacts_container']}>
       <div>
         <BackButton />
       </div>
 
-      <h2 className={styles['title']}>Contacts</h2>
+      <h2 className={styles['title']}>{t('contacts')}</h2>
 
       <div className={styles['contacts_list']}>
         {contacts.map((contact) => (

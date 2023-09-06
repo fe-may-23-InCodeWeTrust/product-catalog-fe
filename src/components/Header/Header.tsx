@@ -9,10 +9,13 @@ import whiteClose from '../../assets/icons/close-white.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import menu from '../../assets/icons/menu.svg';
+import languages from '../../assets/icons/languages.png';
 import favourites from '../../assets/icons/favourites.svg';
 import favoritesWhite from '../../assets/icons/favourites-white.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
+import { useTranslation } from 'react-i18next';
+import ReactFlagsSelect from 'react-flags-select';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -27,6 +30,16 @@ export const Header = () => {
     (state: RootState) => state.favorites.favoriteGoods.length,
   );
   const [isActiveBurger, setIsActiveBurger] = useState(false);
+  const [language, setLanguage] = useState('');
+  const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
+    useState(false);
+  const { t, i18n } = useTranslation();
+
+  const onChangeLanguage = (language: string) => {
+    setLanguage(language);
+    i18n.changeLanguage(language.toLowerCase());
+    setIsActiveLanguageSwitcher(false);
+  };
 
   useEffect(() => {
     document.body.style.overflow = isActiveBurger ? 'hidden' : 'auto';
@@ -49,25 +62,25 @@ export const Header = () => {
               <ul className={styles['nav__list']}>
                 <li className={styles['nav__item']}>
                   <NavLink to="/" className={getLinkClass}>
-                    home
+                    {t('home')}
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
                   <NavLink to="phones" className={getLinkClass}>
-                    phones
+                    {t('phones')}
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
                   <NavLink to="tablets" className={getLinkClass}>
-                    tablets
+                    {t('tablets')}
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
                   <NavLink to="accessories" className={getLinkClass}>
-                    accessories
+                    {t('accessories')}
                   </NavLink>
                 </li>
               </ul>
@@ -75,6 +88,30 @@ export const Header = () => {
           </div>
 
           <div className={`${styles['header__icons']} ${styles['icons']}`}>
+            <div
+              className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['languages-icon']}`}
+            >
+              <button
+                className={styles['header-icon__languages-icon']}
+                onClick={() => setIsActiveLanguageSwitcher(true)}
+              >
+                <img
+                  src={languages}
+                  alt="Languages icon"
+                  className={styles['languages-icon__image']}
+                />
+              </button>
+              {isActiveLanguageSwitcher && (
+                <ReactFlagsSelect
+                  className={styles['languages__switcher']}
+                  selected={language}
+                  onSelect={onChangeLanguage}
+                  countries={['GB', 'UA', 'PL', 'PT']}
+                  customLabels={{ GB: 'EN', UA: 'UA', PL: 'PL', PT: 'PT' }}
+                  placeholder="EN"
+                />
+              )}
+            </div>
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >

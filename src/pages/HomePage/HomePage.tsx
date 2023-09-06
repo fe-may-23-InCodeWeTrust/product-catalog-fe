@@ -6,12 +6,14 @@ import { ProductsSlider } from '../../components/ProductsSlider';
 import { Product } from '../../utils/Types/Product';
 import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
+import { useTranslation } from 'react-i18next';
 
 export const HomePage = () => {
   const [hotPrices, setHotPrices] = useState<Product[]>([]);
   const [newModels, setNewModels] = useState<Product[]>([]);
   const { isLoading, setIsLoading } = useContext(CatalogContext);
   const [error, setError] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,16 +28,16 @@ export const HomePage = () => {
 
   return (
     <div>
-      <h1 className="home-page-title">Buy nice, be nice</h1>
+      <h1 className="home-page-title">{t('title')}</h1>
       <Banner />
       <ProductsSlider
-        title={'Brand new models'}
+        sliderTitle={t('newModels')}
         products={newModels}
         isLoading={isLoading}
       />
       <CategoryShop />
       <ProductsSlider
-        title={'Hot Prices'}
+        sliderTitle={t('hotPrices')}
         products={hotPrices}
         isLoading={isLoading}
       />
