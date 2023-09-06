@@ -49,7 +49,7 @@ body {
   background-size: contain;
 
   &--home {
-    background-image: url(../../images/icons/Home.png);
+    background-image: $img-home;
     height: 16px;
     width: 16px;
   }
@@ -69,7 +69,7 @@ body {
     }
 
     &-back {
-      background-image: url(../../images/icons/ArrowBack.png);
+      background-image: $img-arrow-left;
     }
   }
 }
@@ -398,6 +398,7 @@ body {
     font-weight: 800;
     line-height: 41px;
     letter-spacing: -0.32px;
+    color: $color-primary;
   }
 
   &__price-discount {
@@ -448,7 +449,7 @@ body {
   height: 40px;
   border-radius: 48px;
   border: 0.5px $color-icons solid;
-  background-image: url(../../assets/icons/heart.svg);
+  background-image: $img-like;
   background-repeat: no-repeat;
   background-position: center;
   margin-left: 8px;
@@ -511,10 +512,7 @@ body {
 
   &__value {
     text-align: right;
-
     color: var(--gray-primary, $color-primary);
-    text-align: right;
-
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;

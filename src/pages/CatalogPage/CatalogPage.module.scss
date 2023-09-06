@@ -33,11 +33,11 @@
     top: 10%;
     font-weight: 600;
     color: $color-secondary;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $color-primary;
   }
 
   &--home {
-    background-image: url(../../images/icons/Home.png);
+    background-image: $img-home;
   }
 
   &--arrow {

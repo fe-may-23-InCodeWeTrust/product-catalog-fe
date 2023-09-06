@@ -9,6 +9,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 export const CatalogPage: React.FC = () => {
@@ -26,6 +27,7 @@ export const CatalogPage: React.FC = () => {
 
   const pageSortParams = searchParams.get('sortBy');
   const sortBy = pageSortParams ? pageSortParams : `${t('newest')}`;
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
 
   const categories = [
     { value: 'newest', label: `${t('newest')}` },
@@ -100,6 +102,27 @@ export const CatalogPage: React.FC = () => {
     }),
   };
 
+  const CustomStyleDark = {
+    option: (defaultStyles: object, { isFocused }: any) => ({
+      ...defaultStyles,
+      backgroundColor: isFocused ? '#4a4d58' : '#89939a',
+      color: '#0f0f11',
+    }),
+
+    control: (defaultStyles: object) => ({
+      ...defaultStyles,
+      backgroundColor: '#89939a',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '14px',
+    }),
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
+    }),
+  };
+
   useEffect(() => {
     setIsLoading(true);
     ProductService.getProducts(
@@ -160,7 +183,7 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByCategory']}
             options={categories}
-            styles={CustomStyle}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
             value={sortByText}
             onChange={(event) => {
               if (event?.value) {
@@ -174,7 +197,7 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByNumber']}
             options={numbers}
-            styles={CustomStyle}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
             value={sortByItems}
             onChange={(event) => {
               if (event?.value) {
