@@ -1,9 +1,11 @@
 import { Product } from '../../utils/Types/Product';
 import styles from './ProductCard.module.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import classNames from 'classnames';
+import { RootState } from '../../redux/store';
+import { Link } from 'react-router-dom';
+import { Notification } from '../Notification/Notification';
 
 type Props = {
   product: Product;
@@ -19,29 +21,55 @@ export const ProductCard: React.FC<Props> = ({
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
+  const [isCartNotification, setIsNotification] = useState(false);
+  const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
+
   const goods = useSelector((state: RootState) => state.cart.goods);
   const addToCartButtonCondition = goods.find((good) => good.id === product.id);
 
   const addTofavoritesButtonCondition = favoritesGoods.find(
     (good) => good.itemId === product.itemId,
   );
-  console.log(addTofavoritesButtonCondition);
+
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
-  // console.log(addTofavoritesButtonCondition)
   const isInCart = goodsFromCart.find((g) => g.id === product.id);
+
+  const notificateCart = () => {
+    if (!addToCartButtonCondition) {
+      setIsNotification(true);
+
+      setTimeout(() => {
+        setIsNotification(false);
+      }, 2000);
+    }
+  };
+
+  const notificateFaborites = () => {
+    if (!addTofavoritesButtonCondition) {
+      setIsFavoritesNotification(true);
+    }
+
+    setTimeout(() => {
+      setIsFavoritesNotification(false);
+    }, 2000);
+  };
 
   return (
     <div className={styles['phone-card']}>
       <div className={styles['phone-card__image-container']}>
-        <img
-          src={`https://product-catalog-be-lf4l.onrender.com/${product.image}`}
-          alt="phone"
-          className={styles['phone-card__image']}
-        />
+        <Link to={`/${product.category}/${product.itemId}`}>
+          <img
+            src={`https://product-catalog-be-lf4l.onrender.com/${product.image}`}
+            alt="phone"
+            className={styles['phone-card__image']}
+          />
+        </Link>
       </div>
 
       <h3 className={`${styles['phone-card__title']} text-body`}>
-        {product.name}
+        <Link to={`/${product.category}/${product.itemId}`}>
+          {product.name}
+        </Link>
       </h3>
 
       <div className={styles['phone-card__price-block']}>
@@ -74,7 +102,10 @@ export const ProductCard: React.FC<Props> = ({
           className={classNames('text-button', `${styles['add-to-cart']}`, {
             'added-to-cart': addToCartButtonCondition,
           })}
-          onClick={() => onAddToCart(product)}
+          onClick={() => {
+            onAddToCart(product);
+            notificateCart();
+          }}
           disabled={!!isInCart}
         >
           Add to cart
@@ -85,9 +116,20 @@ export const ProductCard: React.FC<Props> = ({
             'added-to-favorites': addTofavoritesButtonCondition,
           })}
           type="submit"
-          onClick={() => onToggleFavorites(product)}
+          onClick={() => {
+            onToggleFavorites(product);
+            notificateFaborites();
+          }}
         ></button>
       </div>
+
+      {isCartNotification && (
+        <Notification text="The good was added to the cart" />
+      )}
+
+      {isFavoritesNotification && (
+        <Notification text="The good was added to the favorites" />
+      )}
     </div>
   );
 };

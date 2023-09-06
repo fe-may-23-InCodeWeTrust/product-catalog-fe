@@ -16,7 +16,6 @@ export const FavoritesPage = () => {
     (state: RootState) => state.favorites.favoriteGoods,
   );
   const dispatch = useDispatch<AppDispatch>();
-  const [isCartNotification, setIsCartNotification] = useState(false);
 
   const toggleFavorites = (product: Product) => {
     const foundedGood = favoritesGoods.find((good) => good.id === product.id);
@@ -29,17 +28,12 @@ export const FavoritesPage = () => {
   };
 
   const addProductToCart = (product: Product) => {
-    setIsCartNotification(true);
-
-    setTimeout(() => {
-      setIsCartNotification(false);
-      dispatch(
-        addToCart({
-          ...product,
-          count: 1,
-        }),
-      );
-    }, 3000);
+    dispatch(
+      addToCart({
+        ...product,
+        count: 1,
+      }),
+    );
   };
 
   return (
@@ -74,11 +68,6 @@ export const FavoritesPage = () => {
             />
           ))}
         </div>
-
-        {isCartNotification && (
-          <Notification text="The good was added to the cart" />
-        )}
-
         <div className={styles['pagination']}>Pagination</div>
       </div>
     </main>

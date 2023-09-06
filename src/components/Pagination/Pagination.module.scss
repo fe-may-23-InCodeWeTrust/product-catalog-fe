@@ -1,0 +1,49 @@
+@import '../../styles/utils';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+
+  @include onTablet {
+    margin-top: 40px;
+  }
+}
+
+.page-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid black;
+  border-radius: 50%;
+  text-decoration: none;
+  margin: 0 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  background-color: transparent;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.left {
+  margin-right: 16px;
+}
+
+.right {
+  margin-left: 16px;
+}
+
+.is-active {
+  color: #fff;
+  background-color: #000;
+}
+
+.page-button:hover {
+  background-color: #f0f0f0;
+}
