@@ -10,6 +10,7 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
+import { addToFavorites, removeFromFavorites } from '../../redux/favoriteReducer';
 
 const colorMap: { [key: string]: string } = {
   gold: '#FCDBC1',
@@ -50,12 +51,32 @@ export const DetailsPage = () => {
 
   console.log(category, id);
 
+  const favoritesGoods = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods,
+  );
+
+  const addTofavoritesButtonCondition = favoritesGoods.find(
+    (good) => good.itemId === product?.id,
+  );
+
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find(
     (good) => good.id === productByItemId?.id,
   );
 
+  const addToCartButtonCondition = goodsFromCart.find((good) => good.itemId === product?.id);
+
   const dispatch = useDispatch<AppDispatch>();
+
+  const toggleFavorites = (product: Product) => {
+    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
+
+    if (foundedGood) {
+      dispatch(removeFromFavorites(product.id));
+    } else {
+      dispatch(addToFavorites(product));
+    }
+  };
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -265,21 +286,30 @@ export const DetailsPage = () => {
                 <div className={`${styles['phone-card__actions']}`}>
                   <button
                     type="submit"
-                    className={`${styles['add-to-cart']} ${styles['text-button']}`}
+                    className={classNames('text-button', `${styles['add-to-cart']}`, {
+                      'added-to-cart': addToCartButtonCondition,
+                    })}
                     onClick={() => {
                       if (productByItemId) {
                         addProductToCart(productByItemId);
                       }
+
                     }}
                     disabled={!!isInCart}
                   >
                     Add to cart
                   </button>
 
+
                   <button
-                    className={styles['add-to-favorites']}
-                    type="submit"
-                  ></button>
+          className={classNames(styles['add-to-favorites'], {
+            'added-to-favorites': addTofavoritesButtonCondition,
+          })}
+          type="submit"
+          onClick={() => {
+            toggleFavorites(productByItemId as Product);
+          }}
+        ></button>
                 </div>
 
                 <div className={styles.matches}>
