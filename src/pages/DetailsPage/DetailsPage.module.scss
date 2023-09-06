@@ -1,11 +1,5 @@
 @import '../../styles/utils';
 
-$colors: (
-  gold: ColorGold,
-//   grey: ColorGrey,
-//   white: ColorWhite,
-);
-
 body {
   margin: 0;
 }
@@ -199,6 +193,7 @@ body {
     flex-direction: row;
     gap: 8px;
     object-fit: fill;
+    // flex-grow: 2;
 
     @include onTablet {
       flex-direction: column;
@@ -222,20 +217,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    // flex-grow: 1;
 
     @include onTablet {
       flex-direction: row;
 
-      min-width: 35px;
-      min-height: 35px;
+      width: 35px;
+      height: 35px;
+      // min-width: 35px;
+      // min-height: 35px;
 
-      width: auto;
-      height: auto;
+      // width: auto;
+      // height: auto;
 
       max-width: 80px;
       max-height: 80px;
 
-      flex-grow: 1;
+      // flex-grow: 2;
     }
 
     @include onDesktop {
@@ -244,6 +242,7 @@ body {
 
       border-radius: 8px;
       border: 1px $color-elements solid;
+      // flex-grow: 1;
     }
   }
 
@@ -303,15 +302,12 @@ body {
     gap: 8px;
   }
 
-  @each $color, $image in $colors {
-    &__option--#{$color} {
-      height: 32px;
-      width: 32px;
-      display: block;
-      pointer-events: none;
-      flex-shrink: 0;
-      background-image: url(../../images/colors/#{$image}.svg);
-    }
+  &__option {
+    height: 32px;
+    width: 32px;
+    display: block;
+    pointer-events: none;
+    flex-shrink: 0;
   }
 }
 
