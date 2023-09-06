@@ -9,19 +9,18 @@ export const SignInPage = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    const credentials = `${email}:${password}`;
+    const result = await ProductService.getAuthenticatedUser(credentials);
 
-      const credentials = `${email}:${password}`
-      const result = await ProductService.getAuthenticatedUser(credentials);
+    if (result) {
+      window.localStorage.setItem('token', result.token);
 
-      if(result) {
-        window.localStorage.setItem('token', result.token);
-
-        setTimeout(() => {
-          navigate('/')
-        }, 2000)
-      } else {
-        alert('Something went wrong!');
-      }  
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } else {
+      alert('Something went wrong!');
+    }
   };
 
   return (

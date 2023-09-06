@@ -37,15 +37,17 @@ export const CatalogPage: React.FC = () => {
   const pageSortParams = searchParams.get('sortBy');
   const sortBy = pageSortParams ? pageSortParams : 'newest';
 
-  const currentSortText =
-    categories.find((category) => category.value === sortBy);
+  const currentSortText = categories.find(
+    (category) => category.value === sortBy,
+  );
   const [sortByText, setSortByText] = useState(currentSortText);
 
   const itemsPerPage = searchParams.get('items');
   const sortByNumber = itemsPerPage ? itemsPerPage : '16';
 
-  const currentSortNumber =
-    numbers.find((number) => number.value === +sortByNumber);
+  const currentSortNumber = numbers.find(
+    (number) => number.value === +sortByNumber,
+  );
   const [sortByItems, setSortByItems] = useState(currentSortNumber);
 
   useEffect(() => {
@@ -181,7 +183,7 @@ export const CatalogPage: React.FC = () => {
 
         <ProductsList products={products} />
 
-        {!isLoading && 
+        {!isLoading && (
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -190,7 +192,7 @@ export const CatalogPage: React.FC = () => {
             sortBy={sortBy}
             sortByNumber={sortByNumber}
           />
-        }
+        )}
       </div>
     </main>
   );

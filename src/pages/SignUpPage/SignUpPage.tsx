@@ -30,11 +30,10 @@ export const SignUpPage = () => {
       }, 3000);
     } else {
       if (result?.err) {
-        setMessage(result.err)
+        setMessage(result.err);
       }
     }
   };
-
 
   return (
     <form className={styles['login_form']} onSubmit={handleSubmit}>

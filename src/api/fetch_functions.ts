@@ -21,7 +21,6 @@ export const getNewProducts = () => {
   return client.get<Product[]>(`products/new`);
 };
 
-
 export const getProductsCount = async (category: string) => {
   const res = await client.get<{ count: number; rows: Product[] }>(
     `products?productType=${category}`,
@@ -42,7 +41,8 @@ export const getProductByItemId = (id: string) => {
 
 export const getAuthenticatedUser = (credentials: any) => {
   return client.get<{ token: string; user: string; favorites: Product[] }>(
-    `users/login`, credentials,
+    `users/login`,
+    credentials,
   );
 };
 
@@ -51,7 +51,7 @@ export const createUser = (
   password: string,
   fullName: string,
 ) => {
-  return client.post<{ message?: string, err?: string }>(`users/register`, '', {
+  return client.post<{ message?: string; err?: string }>(`users/register`, '', {
     email,
     password,
     fullName,
