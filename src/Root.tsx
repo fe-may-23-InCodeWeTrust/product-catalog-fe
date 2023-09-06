@@ -39,9 +39,8 @@ export const Root: React.FC = () => (
         <Route path="favorites" element={<FavoritesPage />} />
 
         <Route path="contacts" element={<ContactsPage />} />
-
       </Route>
-        <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </HashRouter>
 );

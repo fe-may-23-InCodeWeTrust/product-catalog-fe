@@ -61,7 +61,7 @@ export const ProductCard: React.FC<Props> = ({
   const userId = window.localStorage.getItem('userId')?.toString();
 
   const handleFavorites = async (itemId: string) => {
-    if(userId){
+    if (userId) {
       await ProductProvider.updateFavorites(itemId, userId as string);
     }
   };
@@ -122,18 +122,19 @@ export const ProductCard: React.FC<Props> = ({
         >
           {t(`${addToCartButtonCondition ? 'Added to cart' : 'Add to cart'}`)}
         </button>
-      {userId && 
-        <button
-          className={classNames(styles['add-to-favorites'], {
-            'added-to-favorites': addTofavoritesButtonCondition,
-          })}
-          type="submit"
-          onClick={() => {
-            onToggleFavorites(product);
-            notificateFaborites();
-            handleFavorites(product.itemId);
-          }}
-        ></button>}
+        {userId && (
+          <button
+            className={classNames(styles['add-to-favorites'], {
+              'added-to-favorites': addTofavoritesButtonCondition,
+            })}
+            type="submit"
+            onClick={() => {
+              onToggleFavorites(product);
+              notificateFaborites();
+              handleFavorites(product.itemId);
+            }}
+          ></button>
+        )}
       </div>
 
       {isCartNotification && (
