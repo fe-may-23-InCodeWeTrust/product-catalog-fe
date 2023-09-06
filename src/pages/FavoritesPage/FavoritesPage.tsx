@@ -10,12 +10,14 @@ import {
 import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
 import { Notification } from '../../components/Notification/Notification';
+import { useTranslation } from 'react-i18next';
 
 export const FavoritesPage = () => {
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const toggleFavorites = (product: Product) => {
     const foundedGood = favoritesGoods.find((good) => good.id === product.id);
@@ -46,15 +48,15 @@ export const FavoritesPage = () => {
           ></a>
 
           <a href="#" className={`${styles['icon']} ${styles['icon--arrow']}`}>
-            <p className={`${styles['icon__text']} text-small`}>Favorites</p>
+            <p className={`${styles['icon__text']} text-small`}>{t('favorites')}</p>
           </a>
         </div>
 
         <div className={styles['article']}>
-          <h1 className={styles['article--title']}>Favorites</h1>
+          <h1 className={styles['article--title']}>{t('favorites')}</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
-            95 models
+            95 {t('models')}
           </p>
         </div>
 

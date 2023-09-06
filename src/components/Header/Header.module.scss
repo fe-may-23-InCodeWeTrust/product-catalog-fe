@@ -160,9 +160,9 @@
 }
 
 .languages__switcher {
-  position: absolute;
-  top: 105%;
-  right: -5%;
+  position: absolute !important;
+  top: 105% !important;
+  right: 0% !important;
 }
 
 .languages-icon__image {

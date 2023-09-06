@@ -14,6 +14,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from '../../redux/favoriteReducer';
+import { useTranslation } from 'react-i18next';
 
 const colorMap: { [key: string]: string } = {
   gold: '#FCDBC1',
@@ -48,6 +49,7 @@ export const DetailsPage = () => {
   const [selectedCapacity, setSelectedCapacity] = useState<string>('');
   const location = useLocation();
   const [selectedColor, setSelectedColor] = useState<string>('');
+  const { t } = useTranslation();
 
   const category = location.pathname.slice(1).split('/')[0];
   const id = location.pathname.slice(1).split('/')[1];
@@ -184,7 +186,7 @@ export const DetailsPage = () => {
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--light']}>Back</p>
+              <p className={styles.text + ' ' + styles['text--light']}>{t('back')}</p>
             </a>
           </div>
         </div>
@@ -222,7 +224,7 @@ export const DetailsPage = () => {
                 <div className={styles['color-options']}>
                   <div className={styles['color-options__text']}>
                     <p className={styles['color-options__label']}>
-                      Available colors
+                      {t('availableColors')}
                     </p>
                     <p
                       className={styles['color-options__id']}
@@ -233,7 +235,7 @@ export const DetailsPage = () => {
                     {colors.map((color) => (
                       <div
                         key={color}
-                        // className={styles[`color-options__option--${color}`]}
+                      // className={styles[`color-options__option--${color}`]}
                       >
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
@@ -274,7 +276,7 @@ export const DetailsPage = () => {
 
                 <div className={styles['capacity-options']}>
                   <p className={styles['capacity-options__label']}>
-                    Select capacity
+                    {t('selectCapacity')}
                   </p>
 
                   <div className={styles['capacity-options__buttons']}>
@@ -326,7 +328,7 @@ export const DetailsPage = () => {
                     }}
                     disabled={!!isInCart}
                   >
-                    Add to cart
+                    {t('addToCart')}
                   </button>
 
                   <button
@@ -427,7 +429,7 @@ export const DetailsPage = () => {
 
             <div className={styles['sections-container']}>
               <section className={styles['section']}>
-                <h3 className={styles['section__title']}>About</h3>
+                <h3 className={styles['section__title']}>{t('about')}</h3>
 
                 <div className={styles.line}></div>
 
@@ -447,7 +449,7 @@ export const DetailsPage = () => {
               </section>
 
               <section className={styles['section']}>
-                <h4 className={styles['section__title']}>Tech specs</h4>
+                <h4 className={styles['section__title']}>{t('techSpecs')}</h4>
 
                 <div className={styles.line}></div>
 
@@ -517,7 +519,7 @@ export const DetailsPage = () => {
             </div>
 
             <ProductsSlider
-              title="You may also like"
+              sliderTitle={t('youMayAlsoLike')}
               products={recommended}
               isLoading={isLoading}
             />
