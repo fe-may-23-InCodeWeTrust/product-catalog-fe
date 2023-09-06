@@ -2,12 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
+import whiteLogo from '../../assets/icons/white-logo.svg';
+import whiteBag from '../../assets/icons/bag-white.svg';
+import whiteMenu from '../../assets/icons/menu-white.svg';
+import whiteClose from '../../assets/icons/close-white.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import menu from '../../assets/icons/menu.svg';
+import languages from '../../assets/icons/languages.png';
 import favourites from '../../assets/icons/favourites.svg';
+import favoritesWhite from '../../assets/icons/favourites-white.svg';
+import account from '../../assets/icons/account-2.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
+import { useTranslation } from 'react-i18next';
+import ReactFlagsSelect from 'react-flags-select';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -16,11 +25,22 @@ const getBurgerMenuLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.menu__link} ${isActive ? styles['is-active-menu'] : ''} `;
 
 export const Header = () => {
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
   const cartCount = useSelector((state: RootState) => state.cart.goods.length);
   const favoritesCount = useSelector(
     (state: RootState) => state.favorites.favoriteGoods.length,
   );
   const [isActiveBurger, setIsActiveBurger] = useState(false);
+  const [language, setLanguage] = useState('');
+  const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
+    useState(false);
+  const { t, i18n } = useTranslation();
+
+  const onChangeLanguage = (language: string) => {
+    setLanguage(language);
+    i18n.changeLanguage(language.toLowerCase());
+    setIsActiveLanguageSwitcher(false);
+  };
 
   useEffect(() => {
     document.body.style.overflow = isActiveBurger ? 'hidden' : 'auto';
@@ -32,32 +52,36 @@ export const Header = () => {
         <div className={styles['header']}>
           <div className={`${styles['header__left']} ${styles['left']}`}>
             <NavLink to="/" className={styles['left__logo']}>
-              <img src={logo} alt="Nice Gadgets logo" className="logo" />
+              {darkMode ? (
+                <img src={whiteLogo} alt="Nice Gadgets logo" className="logo" />
+              ) : (
+                <img src={logo} alt="Nice Gadgets logo" className="logo" />
+              )}
             </NavLink>
 
             <nav className={`${styles['left__nav']} ${styles['nav']}`}>
               <ul className={styles['nav__list']}>
                 <li className={styles['nav__item']}>
                   <NavLink to="/" className={getLinkClass}>
-                    home
+                    {t('home')}
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
                   <NavLink to="phones" className={getLinkClass}>
-                    phones
+                    {t('phones')}
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
                   <NavLink to="tablets" className={getLinkClass}>
-                    tablets
+                    {t('tablets')}
                   </NavLink>
                 </li>
 
                 <li className={styles['nav__item']}>
                   <NavLink to="accessories" className={getLinkClass}>
-                    accessories
+                    {t('accessories')}
                   </NavLink>
                 </li>
               </ul>
@@ -65,6 +89,48 @@ export const Header = () => {
           </div>
 
           <div className={`${styles['header__icons']} ${styles['icons']}`}>
+            <div
+              className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['languages-icon']}`}
+            >
+              <button
+                className={styles['header-icon__languages-icon']}
+                onClick={() => setIsActiveLanguageSwitcher(true)}
+              >
+                <img
+                  src={languages}
+                  alt="Languages icon"
+                  className={styles['languages-icon__image']}
+                />
+              </button>
+              {isActiveLanguageSwitcher && (
+                <ReactFlagsSelect
+                  className={styles['languages__switcher']}
+                  selected={language}
+                  onSelect={onChangeLanguage}
+                  countries={['GB', 'UA', 'PL', 'PT']}
+                  customLabels={{ GB: 'EN', UA: 'UA', PL: 'PL', PT: 'PT' }}
+                  placeholder="EN"
+                />
+              )}
+            </div>
+            <div
+              className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
+            >
+              <NavLink
+                to="signin"
+                className={({ isActive }: { isActive: boolean }) =>
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
+                  }`
+                }
+              >
+                <img
+                  src={account}
+                  alt="account icon"
+                  className={styles['languages-icon__image']}
+                />
+              </NavLink>
+            </div>
             <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >
@@ -76,11 +142,19 @@ export const Header = () => {
                   }`
                 }
               >
-                <img
-                  src={favourites}
-                  alt="Favourites icon"
-                  className="favourites-icon__image"
-                />
+                {darkMode ? (
+                  <img
+                    src={favoritesWhite}
+                    alt="Favourites icon"
+                    className="favourites-icon__image"
+                  />
+                ) : (
+                  <img
+                    src={favourites}
+                    alt="Favourites icon"
+                    className="favourites-icon__image"
+                  />
+                )}
               </NavLink>
               {!!favoritesCount && (
                 <Link to="favorites">
@@ -101,11 +175,19 @@ export const Header = () => {
                   }`
                 }
               >
-                <img
-                  src={bag}
-                  alt="Shopping bag icon"
-                  className="shopping_bag-icon__image"
-                />
+                {darkMode ? (
+                  <img
+                    src={whiteBag}
+                    alt="Shopping bag icon"
+                    className="shopping_bag-icon__image"
+                  />
+                ) : (
+                  <img
+                    src={bag}
+                    alt="Shopping bag icon"
+                    className="shopping_bag-icon__image"
+                  />
+                )}
               </NavLink>
               {!!cartCount && (
                 <Link to="cart">
@@ -122,7 +204,19 @@ export const Header = () => {
                 className={styles['header-icon__menu-icon']}
                 onClick={() => setIsActiveBurger(true)}
               >
-                <img src={menu} alt="Menu icon" className="menu-icon__image" />
+                {darkMode ? (
+                  <img
+                    src={whiteMenu}
+                    alt="Menu icon"
+                    className="menu-icon__image"
+                  />
+                ) : (
+                  <img
+                    src={menu}
+                    alt="Menu icon"
+                    className="menu-icon__image"
+                  />
+                )}
               </button>
             </div>
           </div>
@@ -137,11 +231,19 @@ export const Header = () => {
               className={`${styles['aside__logo']} ${styles['logo']}`}
               onClick={() => setIsActiveBurger(false)}
             >
-              <img
-                src={logo}
-                alt="Nice Gadgets logo"
-                className={`${styles['logo__image']}`}
-              />
+              {darkMode ? (
+                <img
+                  src={whiteLogo}
+                  alt="Nice Gadgets logo"
+                  className={`${styles['logo__image']}`}
+                />
+              ) : (
+                <img
+                  src={logo}
+                  alt="Nice Gadgets logo"
+                  className={`${styles['logo__image']}`}
+                />
+              )}
             </NavLink>
 
             <div
@@ -152,11 +254,19 @@ export const Header = () => {
                 className={`${styles['close-icon__link']}`}
                 onClick={() => setIsActiveBurger(false)}
               >
-                <img
-                  src={close}
-                  alt="Close icon"
-                  className={`${styles['close-icon__image']}`}
-                />
+                {darkMode ? (
+                  <img
+                    src={whiteClose}
+                    alt="Close icon"
+                    className={`${styles['close-icon__image']}`}
+                  />
+                ) : (
+                  <img
+                    src={close}
+                    alt="Close icon"
+                    className={`${styles['close-icon__image']}`}
+                  />
+                )}
               </NavLink>
             </div>
           </div>
@@ -222,11 +332,19 @@ export const Header = () => {
                 }
                 onClick={() => setIsActiveBurger(false)}
               >
-                <img
-                  src={favourites}
-                  alt="Favourites icon"
-                  className={`${styles['favourites-icon__image']}`}
-                />
+                {darkMode ? (
+                  <img
+                    src={favoritesWhite}
+                    alt="Favourites icon"
+                    className={`${styles['favourites-icon__image']}`}
+                  />
+                ) : (
+                  <img
+                    src={favourites}
+                    alt="Favourites icon"
+                    className={`${styles['favourites-icon__image']}`}
+                  />
+                )}
               </NavLink>
               {!!favoritesCount && (
                 <Link to="favorites">
@@ -248,11 +366,19 @@ export const Header = () => {
                 }
                 onClick={() => setIsActiveBurger(false)}
               >
-                <img
-                  src={bag}
-                  alt="Shopping bag icon"
-                  className={`${styles['shopping_bag-icon__image']}`}
-                />
+                {darkMode ? (
+                  <img
+                    src={whiteBag}
+                    alt="Shopping bag icon"
+                    className={`${styles['shopping_bag-icon__image']}`}
+                  />
+                ) : (
+                  <img
+                    src={bag}
+                    alt="Shopping bag icon"
+                    className={`${styles['shopping_bag-icon__image']}`}
+                  />
+                )}
               </NavLink>
               {!!cartCount && (
                 <Link to="cart">

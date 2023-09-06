@@ -18,20 +18,25 @@ import {
   removeFromFavorites,
 } from '../../redux/favoriteReducer';
 import { addToCart } from '../../redux/cartReducer';
+import { ArrowLeftDarkTheme } from '../../assets/icons/ArrowLeftDarkTheme';
+import { ArrowRightDarkTheme } from '../../assets/icons/ArrowRightDarkTheme';
+import { useTranslation } from 'react-i18next';
 
 type ProductsSliderProps = {
-  title: string;
+  sliderTitle: string;
   products: Product[];
   isLoading: boolean;
 };
 
 export const ProductsSlider: React.FC<ProductsSliderProps> = ({
-  title,
+  sliderTitle,
   products,
   isLoading,
 }) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
+  const { t } = useTranslation();
 
   const faviritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
@@ -86,21 +91,21 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
   return (
     <>
       <div className={styles['price__nav']}>
-        <h1 className={styles['title_price']}>{title}</h1>
+        <h1 className={styles['title_price']}>{sliderTitle}</h1>
         <div className={styles['button']}>
           <button
             className={styles['button__control']}
             disabled={activeSlide === 0}
             onClick={handlePreviousClick}
           >
-            <ArrowLeft />
+            {darkMode ? <ArrowLeftDarkTheme /> : <ArrowLeft />}
           </button>
           <button
             disabled={activeSlide === products.length - slidesPerView}
             className={styles['button__control']}
             onClick={handleNextClick}
           >
-            <ArrowRight />
+            {darkMode ? <ArrowRightDarkTheme /> : <ArrowRight />}
           </button>
         </div>
       </div>

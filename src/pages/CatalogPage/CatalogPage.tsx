@@ -9,18 +9,8 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
-
-const categories = [
-  { value: 'newest', label: 'Newest' },
-  { value: 'popular', label: 'Popular' },
-  { value: 'cheapest', label: 'Cheapest' },
-];
-
-const numbers = [
-  { value: 16, label: 16 },
-  { value: 24, label: 24 },
-  { value: 32, label: 32 },
-];
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const CatalogPage: React.FC = () => {
   const { isLoading, setIsLoading } = useContext(CatalogContext);
@@ -33,9 +23,23 @@ export const CatalogPage: React.FC = () => {
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
+  const { t } = useTranslation();
 
   const pageSortParams = searchParams.get('sortBy');
-  const sortBy = pageSortParams ? pageSortParams : 'newest';
+  const sortBy = pageSortParams ? pageSortParams : `${t('newest')}`;
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
+
+  const categories = [
+    { value: 'newest', label: `${t('newest')}` },
+    { value: 'popular', label: `${t('popular')}` },
+    { value: 'cheapest', label: `${t('cheapest')}` },
+  ];
+
+  const numbers = [
+    { value: 16, label: 16 },
+    { value: 24, label: 24 },
+    { value: 32, label: 32 },
+  ];
 
   const currentSortText = categories.find(
     (category) => category.value === sortBy,
@@ -64,13 +68,13 @@ export const CatalogPage: React.FC = () => {
 
   switch (category) {
     case 'accessories':
-      catalogTitle = 'Accesories';
+      catalogTitle = `${t('accessories')}`;
       break;
     case 'tablets':
-      catalogTitle = 'Tablets';
+      catalogTitle = `${t('tablets')}`;
       break;
     case 'phones':
-      catalogTitle = 'Mobile phones';
+      catalogTitle = `${t('phones')}`;
       break;
     default:
       '';
@@ -98,9 +102,35 @@ export const CatalogPage: React.FC = () => {
     }),
   };
 
+  const CustomStyleDark = {
+    option: (defaultStyles: object, { isFocused }: any) => ({
+      ...defaultStyles,
+      backgroundColor: isFocused ? '#4a4d58' : '#89939a',
+      color: '#0f0f11',
+    }),
+
+    control: (defaultStyles: object) => ({
+      ...defaultStyles,
+      backgroundColor: '#89939a',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '14px',
+    }),
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
+    }),
+  };
+
   useEffect(() => {
     setIsLoading(true);
-    ProductService.getProducts(category, offset, sortByNumber, sortBy)
+    ProductService.getProducts(
+      category,
+      offset,
+      sortByNumber,
+      sortBy.toLowerCase(),
+    )
       .then((data) => {
         setProducts(data.rows);
         setTotalPages(Math.ceil(data.count / +sortByNumber));
@@ -138,22 +168,22 @@ export const CatalogPage: React.FC = () => {
           <h1 className={styles['article--title']}>{catalogTitle}</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
-            {`${totalProducts} models`}
+            {`${totalProducts} ${t('models')}`}
           </p>
         </div>
         <div className={styles['select']}>
           <p className={`${styles['select__sortByCategoryText']} text-small`}>
-            Sort by
+            {t('sortBy')}
           </p>
 
           <p className={`${styles['select__sortByNumberText']} text-small`}>
-            Items on page
+            {t('itemsOnPage')}
           </p>
 
           <Select
             className={styles['select__sortByCategory']}
             options={categories}
-            styles={CustomStyle}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
             value={sortByText}
             onChange={(event) => {
               if (event?.value) {
@@ -167,7 +197,7 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByNumber']}
             options={numbers}
-            styles={CustomStyle}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
             value={sortByItems}
             onChange={(event) => {
               if (event?.value) {

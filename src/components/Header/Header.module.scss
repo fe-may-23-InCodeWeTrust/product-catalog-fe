@@ -113,14 +113,17 @@
   justify-content: center;
   box-shadow: -1px 0px 0px 0px $color-elements;
 
+  &__languages-icon,
   &__favourites-icon,
   &__shopping_bag-icon,
+  &__account-icon,
   &__menu-icon {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 }
 
@@ -133,8 +136,10 @@
   }
 }
 
+.languages-icon,
 .favourites-icon,
-.shopping_bag-icon {
+.shopping_bag-icon,
+.account-icon {
   display: none;
   transition: background-color 0.5s;
 
@@ -152,8 +157,25 @@
   }
 }
 
+.languages-icon {
+  position: relative;
+}
+
+.languages__switcher {
+  position: absolute !important;
+  top: 105% !important;
+  right: 0% !important;
+}
+
+.languages-icon__image {
+  width: 16px;
+  height: 16px;
+}
+
+.languages-icon:hover,
 .favourites-icon:hover,
-.shopping_bag-icon:hover {
+.shopping_bag-icon:hover,
+.account-icon {
   background-color: $color-grey-background;
 }
 
@@ -310,4 +332,8 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.header-account-icon img {
+  max-width: 40%;
 }

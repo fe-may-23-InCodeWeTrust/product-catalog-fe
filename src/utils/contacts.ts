@@ -3,7 +3,7 @@ import { Contact } from './Types/Contact';
 export const contacts: Contact[] = [
   {
     id: 1,
-    fullName: 'Oleksandr Cheban',
+    fullName: 'Alex Cheban',
     linkedIn: 'https://www.linkedin.com/in/oleksandr-cheban-832ba5237/',
     gitHub: 'https://github.com/cebanoleksandr',
     email: 'cebanoleksandr@gmail.com',
