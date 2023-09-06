@@ -40,8 +40,8 @@ export const Root: React.FC = () => (
 
         <Route path="contacts" element={<ContactsPage />} />
 
-        <Route path="*" element={<NotFoundPage />} />
       </Route>
+        <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </HashRouter>
 );
