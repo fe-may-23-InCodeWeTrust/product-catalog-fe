@@ -1,9 +1,15 @@
-const themeMode = localStorage.getItem('darkMode');
 export const toggleTheme = () => ({
   type: 'TOGGLE_THEME',
 });
+
+const getTheme = (): boolean => {
+  const currentTheme = localStorage.getItem('darkMode');
+
+  return currentTheme ? JSON.parse(currentTheme) : false;
+};
+
 const initialState = {
-  darkMode: themeMode,
+  darkMode: getTheme(),
 };
 
 const themeReducer = (state = initialState, action: any) => {

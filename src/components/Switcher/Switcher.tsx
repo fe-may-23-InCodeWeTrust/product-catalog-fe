@@ -9,7 +9,7 @@ export const Switcher = () => {
   const dispatch = useDispatch();
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
-    localStorage.setItem('darkMode', `${!darkMode}`);
+    // localStorage.setItem('darkMode', `${!darkMode}`);
   };
 
   console.log(darkMode);
