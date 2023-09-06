@@ -10,7 +10,10 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { addToFavorites, removeFromFavorites } from '../../redux/favoriteReducer';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/favoriteReducer';
 
 const colorMap: { [key: string]: string } = {
   gold: '#FCDBC1',
@@ -64,7 +67,9 @@ export const DetailsPage = () => {
     (good) => good.id === productByItemId?.id,
   );
 
-  const addToCartButtonCondition = goodsFromCart.find((good) => good.itemId === product?.id);
+  const addToCartButtonCondition = goodsFromCart.find(
+    (good) => good.itemId === product?.id,
+  );
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -99,8 +104,9 @@ export const DetailsPage = () => {
     return `/${category}/${product?.namespaceId}-${product?.capacity.toLowerCase()}-${color.toLowerCase()}`;
   };
 
-  {console.log(product?.color, selectedColor)}
-
+  {
+    console.log(product?.color, selectedColor);
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -229,20 +235,40 @@ export const DetailsPage = () => {
                         key={color}
                         // className={styles[`color-options__option--${color}`]}
                       >
-                        <Link
-                          to={{ pathname: handleChangingColor(color) }}
-                        >
-                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2" y="2" width="28" height="28" rx="14" fill={colorMap[color]} stroke="white" strokeWidth="2" />
-                            <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke={selectedColor === color ? "#0F0F11" : "#E2E6E9"} />
+                        <Link to={{ pathname: handleChangingColor(color) }}>
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              x="2"
+                              y="2"
+                              width="28"
+                              height="28"
+                              rx="14"
+                              fill={colorMap[color]}
+                              stroke="white"
+                              strokeWidth="2"
+                            />
+                            <rect
+                              x="0.5"
+                              y="0.5"
+                              width="31"
+                              height="31"
+                              rx="15.5"
+                              stroke={
+                                selectedColor === color ? '#0F0F11' : '#E2E6E9'
+                              }
+                            />
                           </svg>
                         </Link>
                       </div>
                     ))}
                   </div>
                 </div>
-
-                
 
                 <div className={styles.line}></div>
 
@@ -286,30 +312,32 @@ export const DetailsPage = () => {
                 <div className={`${styles['phone-card__actions']}`}>
                   <button
                     type="submit"
-                    className={classNames('text-button', `${styles['add-to-cart']}`, {
-                      'added-to-cart': addToCartButtonCondition,
-                    })}
+                    className={classNames(
+                      'text-button',
+                      `${styles['add-to-cart']}`,
+                      {
+                        'added-to-cart': addToCartButtonCondition,
+                      },
+                    )}
                     onClick={() => {
                       if (productByItemId) {
                         addProductToCart(productByItemId);
                       }
-
                     }}
                     disabled={!!isInCart}
                   >
                     Add to cart
                   </button>
 
-
                   <button
-          className={classNames(styles['add-to-favorites'], {
-            'added-to-favorites': addTofavoritesButtonCondition,
-          })}
-          type="submit"
-          onClick={() => {
-            toggleFavorites(productByItemId as Product);
-          }}
-        ></button>
+                    className={classNames(styles['add-to-favorites'], {
+                      'added-to-favorites': addTofavoritesButtonCondition,
+                    })}
+                    type="submit"
+                    onClick={() => {
+                      toggleFavorites(productByItemId as Product);
+                    }}
+                  ></button>
                 </div>
 
                 <div className={styles.matches}>

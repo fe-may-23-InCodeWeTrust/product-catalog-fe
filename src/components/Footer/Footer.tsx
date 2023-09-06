@@ -23,7 +23,10 @@ export const Footer = () => {
         >
           Github
         </a>
-        <Link className={`${styles['footer__nav__item']} text-uppercase`} to='contacts'>
+        <Link
+          className={`${styles['footer__nav__item']} text-uppercase`}
+          to="contacts"
+        >
           Contacts
         </Link>
         <a className={`${styles['footer__nav__item']} text-uppercase`} href="#">

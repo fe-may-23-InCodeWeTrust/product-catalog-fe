@@ -24,7 +24,6 @@ export const ProductCard: React.FC<Props> = ({
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
-  
   const goods = useSelector((state: RootState) => state.cart.goods);
   const addToCartButtonCondition = goods.find((good) => good.id === product.id);
 
@@ -59,11 +58,11 @@ export const ProductCard: React.FC<Props> = ({
     <div className={styles['phone-card']}>
       <div className={styles['phone-card__image-container']}>
         <Link to={`/${product.category}/${product.itemId}`}>
-        <img
-          src={`https://product-catalog-be-lf4l.onrender.com/${product.image}`}
-          alt="phone"
-          className={styles['phone-card__image']}
-        />
+          <img
+            src={`https://product-catalog-be-lf4l.onrender.com/${product.image}`}
+            alt="phone"
+            className={styles['phone-card__image']}
+          />
         </Link>
       </div>
 
