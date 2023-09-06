@@ -12,13 +12,13 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 16px 64px;
+  padding: 0 16px 44px;
 
   @include onTablet {
-    padding: 0 24px 64px;
+    padding: 0 24px 44px;
   }
 
   @include onDesktop {
-    padding: 0 32px 80px;
+    padding: 0 32px 60px;
   }
 }

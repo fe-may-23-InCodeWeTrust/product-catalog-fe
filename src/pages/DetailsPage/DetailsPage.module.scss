@@ -1,12 +1,5 @@
 @import '../../styles/utils';
 
-$colors: (
-  beige: ColorBeige,
-  green: ColorGreen,
-  grey: ColorGrey,
-  white: ColorWhite,
-);
-
 body {
   margin: 0;
 }
@@ -128,7 +121,7 @@ body {
 .gallery-and-info-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 0;
   margin-bottom: 56px;
   width: 100%;
 
@@ -140,7 +133,7 @@ body {
 
   @include onDesktop {
     margin-bottom: 81px;
-    gap: 75px;
+    gap: 33px;
   }
 }
 
@@ -200,6 +193,7 @@ body {
     flex-direction: row;
     gap: 8px;
     object-fit: fill;
+    // flex-grow: 2;
 
     @include onTablet {
       flex-direction: column;
@@ -223,20 +217,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    // flex-grow: 1;
 
     @include onTablet {
       flex-direction: row;
 
-      min-width: 35px;
-      min-height: 35px;
+      width: 35px;
+      height: 35px;
+      // min-width: 35px;
+      // min-height: 35px;
 
-      width: auto;
-      height: auto;
+      // width: auto;
+      // height: auto;
 
       max-width: 80px;
       max-height: 80px;
 
-      flex-grow: 1;
+      // flex-grow: 2;
     }
 
     @include onDesktop {
@@ -245,6 +242,7 @@ body {
 
       border-radius: 8px;
       border: 1px $color-elements solid;
+      // flex-grow: 1;
     }
   }
 
@@ -304,15 +302,12 @@ body {
     gap: 8px;
   }
 
-  @each $color, $image in $colors {
-    &__option--#{$color} {
-      height: 32px;
-      width: 32px;
-      display: block;
-      pointer-events: none;
-      flex-shrink: 0;
-      background-image: url(../../images/colors/#{$image}.png);
-    }
+  &__option {
+    height: 32px;
+    width: 32px;
+    display: block;
+    pointer-events: none;
+    flex-shrink: 0;
   }
 }
 

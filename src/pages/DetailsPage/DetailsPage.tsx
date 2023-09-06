@@ -10,6 +10,30 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/favoriteReducer';
+
+const colorMap: { [key: string]: string } = {
+  gold: '#FCDBC1',
+  midnightgreen: '#5F7170',
+  spacegray: '#4C4C4C',
+  coral: '#FF7F50',
+  silver: '#F0F0F0',
+  black: '#0F0F11',
+  green: '#CAEBCA',
+  yellow: '#ECEC7F',
+  white: '#f0f0f0',
+  purple: '#C7ACC7',
+  red: '#D45050',
+  spaceblack: '#0E0E10',
+  midnight: '#191970',
+  sierrablue: '#1887A0',
+  graphite: '#333333',
+  blue: '#6699CC',
+  pink: '#FFC0CB',
+};
 
 export const DetailsPage = () => {
   // const { phoneId, tabletId, accessoryId } = useParams();
@@ -23,19 +47,41 @@ export const DetailsPage = () => {
   const [error, setError] = useState('');
   const [selectedCapacity, setSelectedCapacity] = useState<string>('');
   const location = useLocation();
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState<string>('');
 
   const category = location.pathname.slice(1).split('/')[0];
   const id = location.pathname.slice(1).split('/')[1];
 
   console.log(category, id);
 
+  const favoritesGoods = useSelector(
+    (state: RootState) => state.favorites.favoriteGoods,
+  );
+
+  const addTofavoritesButtonCondition = favoritesGoods.find(
+    (good) => good.itemId === product?.id,
+  );
+
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find(
     (good) => good.id === productByItemId?.id,
   );
 
+  const addToCartButtonCondition = goodsFromCart.find(
+    (good) => good.itemId === product?.id,
+  );
+
   const dispatch = useDispatch<AppDispatch>();
+
+  const toggleFavorites = (product: Product) => {
+    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
+
+    if (foundedGood) {
+      dispatch(removeFromFavorites(product.id));
+    } else {
+      dispatch(addToFavorites(product));
+    }
+  };
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -51,21 +97,27 @@ export const DetailsPage = () => {
   };
 
   const handleChangingCapacity = (capacity: string) => {
-    // setSelectedCapacity(parseInt(capacity));
     return `/${category}/${product?.namespaceId}-${capacity.toLowerCase()}-${product?.color.toLowerCase()}`;
-    // return `/${category}/${product?.namespaceId}-${capacity.toLowerCase()}-black`;
   };
+
+  const handleChangingColor = (color: string) => {
+    return `/${category}/${product?.namespaceId}-${product?.capacity.toLowerCase()}-${color.toLowerCase()}`;
+  };
+
+  {
+    console.log(product?.color, selectedColor);
+  }
 
   useEffect(() => {
     setIsLoading(true);
 
-    // ProductService.getProductById('apple-iphone-11-128gb-black')
     ProductService.getProductById(location.pathname.slice(1))
       .then((data) => {
         setProduct(data.foundProduct);
         setRecommended(data.recommended);
 
         console.log(data.foundProduct);
+        console.log(colorMap);
 
         const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
         const colors = `${data.foundProduct.colorsAvailable}`
@@ -75,6 +127,7 @@ export const DetailsPage = () => {
         setImages(images);
         setColors(colors);
         setSelectedImage(images[0]);
+        setSelectedColor(data.foundProduct.color);
 
         setSelectedCapacity(data.foundProduct.capacity);
       })
@@ -177,11 +230,42 @@ export const DetailsPage = () => {
                   </div>
 
                   <div className={styles['color-options__images']}>
-                    {colors.map((color, index) => (
+                    {colors.map((color) => (
                       <div
-                        key={index}
-                        className={styles[`color-options__option--${color}`]}
-                      ></div>
+                        key={color}
+                        // className={styles[`color-options__option--${color}`]}
+                      >
+                        <Link to={{ pathname: handleChangingColor(color) }}>
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              x="2"
+                              y="2"
+                              width="28"
+                              height="28"
+                              rx="14"
+                              fill={colorMap[color]}
+                              stroke="white"
+                              strokeWidth="2"
+                            />
+                            <rect
+                              x="0.5"
+                              y="0.5"
+                              width="31"
+                              height="31"
+                              rx="15.5"
+                              stroke={
+                                selectedColor === color ? '#0F0F11' : '#E2E6E9'
+                              }
+                            />
+                          </svg>
+                        </Link>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -228,7 +312,13 @@ export const DetailsPage = () => {
                 <div className={`${styles['phone-card__actions']}`}>
                   <button
                     type="submit"
-                    className={`${styles['add-to-cart']} ${styles['text-button']}`}
+                    className={classNames(
+                      'text-button',
+                      `${styles['add-to-cart']}`,
+                      {
+                        'added-to-cart': addToCartButtonCondition,
+                      },
+                    )}
                     onClick={() => {
                       if (productByItemId) {
                         addProductToCart(productByItemId);
@@ -240,8 +330,13 @@ export const DetailsPage = () => {
                   </button>
 
                   <button
-                    className={styles['add-to-favorites']}
+                    className={classNames(styles['add-to-favorites'], {
+                      'added-to-favorites': addTofavoritesButtonCondition,
+                    })}
                     type="submit"
+                    onClick={() => {
+                      toggleFavorites(productByItemId as Product);
+                    }}
                   ></button>
                 </div>
 
