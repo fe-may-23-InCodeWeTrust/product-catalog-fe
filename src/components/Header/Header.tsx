@@ -317,6 +317,9 @@ export const Header = () => {
               >
                 <NavLink
                   to={id ? '/' : 'signin'}
+                  onClick={() => {
+                    setIsActiveBurger(false);
+                  }}
                   className={({ isActive }: { isActive: boolean }) =>
                     `${styles['account-icon__link']} ${
                       isActive ? styles['is-active-icon'] : ''
