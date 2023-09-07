@@ -61,7 +61,7 @@
   &-question {
     display: flex;
     gap: 5px;
-    color: $color-primary
+    color: $color-primary;
   }
 
   &-text {
@@ -83,9 +83,7 @@
     transition: all 0.3s linear;
 
     &:hover {
-      
       color: $color-primary;
-      
     }
 
     &:active {

@@ -109,7 +109,7 @@ export const DetailsPage = () => {
       })
       .catch(() => {
         setError('Wrong URL - could not make a request');
-        navigate('/');
+        navigate('/*');
       })
       .finally(() => setIsLoading(false));
 
