@@ -10,10 +10,12 @@ import whiteClose from '../../assets/icons/close-white.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import menu from '../../assets/icons/menu.svg';
-import languages from '../../assets/icons/languages.png';
+import languages from '../../assets/icons/languages-dark.svg';
+import languagesWhite from '../../assets/icons/languages-white.svg';
 import favourites from '../../assets/icons/favourites.svg';
 import favoritesWhite from '../../assets/icons/favourites-white.svg';
-import account from '../../assets/icons/account-2.svg';
+import account from '../../assets/icons/user-dark.svg';
+import accountWhite from '../../assets/icons/user-white.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
@@ -99,11 +101,19 @@ export const Header = () => {
                 className={styles['header-icon__languages-icon']}
                 onClick={() => setIsActiveLanguageSwitcher(true)}
               >
-                <img
-                  src={languages}
-                  alt="Languages icon"
-                  className={styles['languages-icon__image']}
-                />
+                {darkMode ? (
+                  <img
+                    src={languagesWhite}
+                    alt="Languages icon"
+                    className={styles['languages-icon__image']}
+                  />
+                ) : (
+                  <img
+                    src={languages}
+                    alt="Languages icon"
+                    className={styles['languages-icon__image']}
+                  />
+                )}
               </button>
               {isActiveLanguageSwitcher && (
                 <ReactFlagsSelect
@@ -127,11 +137,19 @@ export const Header = () => {
                   }`
                 }
               >
-                <img
-                  src={account}
-                  alt="account icon"
-                  className={styles['languages-icon__image']}
-                />
+                {darkMode ? (
+                  <img
+                    src={accountWhite}
+                    alt="account icon"
+                    className={styles['languages-icon__image']}
+                  />
+                ) : (
+                  <img
+                    src={account}
+                    alt="account icon"
+                    className={styles['languages-icon__image']}
+                  />
+                )}
               </NavLink>
             </div>
             <div
