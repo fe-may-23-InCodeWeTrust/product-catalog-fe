@@ -79,7 +79,10 @@ const Favorites = () => {
               ))}
           </div>
         ) : (
-          'No goods'
+          <div className={styles['empty-favs']}>
+            <img  className={styles['empty-favs']} />
+            <p className={styles['empty-favs_text']}>Press 💛 to add items to favorites</p>
+          </div>
         )}
         {/* <Pagination
             currentPage={currentPage}

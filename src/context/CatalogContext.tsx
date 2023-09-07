@@ -25,7 +25,7 @@ export const CatalogProvider: React.FC<Props> = ({ children }) => {
         setFavoritesCount(data);
       });
     }
-  });
+  }, []);
 
   const contextValues: ContextValues = useMemo(
     () => ({

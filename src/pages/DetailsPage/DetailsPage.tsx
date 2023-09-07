@@ -10,10 +10,6 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from '../../redux/favoriteReducer';
 import { useTranslation } from 'react-i18next';
 
 const colorMap: { [key: string]: string } = {
@@ -50,22 +46,16 @@ export const DetailsPage = () => {
   const location = useLocation();
   const [selectedColor, setSelectedColor] = useState<string>('');
   const { t } = useTranslation();
-
+  const { favoritesCount } = useContext(CatalogContext)
   const category = location.pathname.slice(1).split('/')[0];
-  const id = location.pathname.slice(1).split('/')[1];
 
   const handleGoBack = () => {
     window.history.back();
   };
 
-  const favoritesGoods = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods,
+  const addTofavoritesButtonCondition = favoritesCount.find(
+    (good) => good === product?.id,
   );
-
-  const addTofavoritesButtonCondition = false;
-  // const addTofavoritesButtonCondition = favoritesGoods.find(
-  //   (good) => good.itemId === product.itemId,
-  // );
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find(
@@ -78,15 +68,6 @@ export const DetailsPage = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const toggleFavorites = (product: Product) => {
-    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
-
-    if (foundedGood) {
-      dispatch(removeFromFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -131,17 +112,25 @@ export const DetailsPage = () => {
       })
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
-  }, [id]);
 
-  if (product) {
-    ProductService.getProductByItemId(product.id)
+      const id = location.pathname.slice(1).split('/')[1];
+
+      ProductService.getProductByItemId(id)
       .then((data) => {
         setProductByItemId(data as Product);
       })
       .catch(() => setError('Wrong URL - could not make a request'));
-  }
+  }, []);
 
   const capacity = `${product?.capacityAvailable}`.slice(1, -1).split(',');
+
+  const userId = window.localStorage.getItem('userId')?.toString();
+
+  const handleFavorites = async (itemId: string) => {
+    if (userId) {
+      await ProductService.updateFavorites(itemId, userId as string);
+    }
+  };
 
   return (
     <main className={styles.main}>
@@ -336,15 +325,16 @@ export const DetailsPage = () => {
                     {t('addToCart')}
                   </button>
 
-                  <button
+                  {userId &&
+                    <button
                     className={classNames(styles['add-to-favorites'], {
                       'added-to-favorites': addTofavoritesButtonCondition,
                     })}
                     type="submit"
                     onClick={() => {
-                      toggleFavorites(productByItemId as Product);
+                      handleFavorites(product?.id as string);
                     }}
-                  ></button>
+                    ></button>}
                 </div>
 
                 <div className={styles.matches}>
