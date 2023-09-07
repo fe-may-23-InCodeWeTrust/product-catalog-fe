@@ -104,7 +104,7 @@ export const Header = () => {
                     alt="Languages icon"
                     className={styles['languages-icon__image']}
                   />
-                  ) : (
+                ) : (
                   <img
                     src={languages}
                     alt="Languages icon"
@@ -140,7 +140,7 @@ export const Header = () => {
                     alt="account icon"
                     className={styles['languages-icon__image']}
                   />
-                  ) : (
+                ) : (
                   <img
                     src={account}
                     alt="account icon"
