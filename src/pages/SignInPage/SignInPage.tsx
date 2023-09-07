@@ -25,10 +25,7 @@ export const SignInPage = () => {
   };
 
   return (
-    <form
-      className={styles['login_form']}
-      onSubmit={handleSubmit}
-    >
+    <form className={styles['login_form']} onSubmit={handleSubmit}>
       <h3>Sign In</h3>
 
       <div className={styles['login_form-box']}>
