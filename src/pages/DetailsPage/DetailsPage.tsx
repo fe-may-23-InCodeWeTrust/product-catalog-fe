@@ -190,7 +190,8 @@ export const DetailsPage = () => {
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
               <p className={styles.text + ' ' + styles['text--light']}>
-                {t('back')}
+                {/* {t('back')} */}
+                Back
               </p>
             </a>
           </div>

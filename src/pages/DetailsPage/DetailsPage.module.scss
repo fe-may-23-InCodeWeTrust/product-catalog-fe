@@ -55,6 +55,7 @@ body {
   }
 
   &--arrow {
+
     &-forward,
     &-back {
       height: 16px;
@@ -73,6 +74,13 @@ body {
     }
   }
 }
+
+// p {
+//   margin: 0; /* Сбросить все отступы для параграфов */
+//   padding: 0; /* Сбросить внутренние отступы (padding), если они были установлены */
+//   line-height: 100%; /* Задать высоту строки (можете изменить значение по своему усмотрению) */
+//   vertical-align: bottom; /* Выравнивание по вертикали по центру (можете выбрать другое значение, если необходимо) */
+// }
 
 .text {
   font-family: 'Mont', sans-serif;
@@ -121,7 +129,7 @@ body {
 .gallery-and-info-container {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 40px;
   margin-bottom: 56px;
   width: 100%;
 
