@@ -551,3 +551,19 @@ body {
     width: 560px;
   }
 }
+
+.loader_container {
+  grid-column: 1 / 3;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include onTablet {
+    grid-column: 1 / 4;
+  }
+
+  @include onDesktop {
+    grid-column: 1 / 6;
+  }
+}
