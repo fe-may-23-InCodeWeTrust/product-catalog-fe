@@ -131,7 +131,7 @@ export const DetailsPage = () => {
   if (product) {
     ProductService.getProductByItemId(product.id)
       .then((data) => {
-        setProductByItemId(data);
+        setProductByItemId(data as Product);
       })
       .catch(() => setError('Wrong URL - could not make a request'));
   }

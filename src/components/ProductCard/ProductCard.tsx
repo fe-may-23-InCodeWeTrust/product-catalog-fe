@@ -1,6 +1,6 @@
 import { Product } from '../../utils/Types/Product';
 import styles from './ProductCard.module.scss';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { RootState } from '../../redux/store';
@@ -8,21 +8,18 @@ import { Link } from 'react-router-dom';
 import { Notification } from '../Notification/Notification';
 import * as ProductProvider from '../../api/fetch_functions';
 import { useTranslation } from 'react-i18next';
+import { CatalogContext } from '../../context/CatalogContext';
 
 type Props = {
   product: Product;
   onAddToCart: (product: Product) => void;
-  onToggleFavorites: (product: Product) => void;
 };
 
 export const ProductCard: React.FC<Props> = ({
   product,
   onAddToCart,
-  onToggleFavorites,
 }) => {
-  const favoritesGoods = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods,
-  );
+  const { favoritesCount }  = useContext(CatalogContext); 
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
@@ -31,8 +28,8 @@ export const ProductCard: React.FC<Props> = ({
 
   const addToCartButtonCondition = goods.find((good) => good.id === product.id);
 
-  const addTofavoritesButtonCondition = favoritesGoods.find(
-    (good) => good.itemId === product.itemId,
+  const addTofavoritesButtonCondition = favoritesCount.find(
+    (good) => good === product.itemId,
   );
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
@@ -129,7 +126,6 @@ export const ProductCard: React.FC<Props> = ({
             })}
             type="submit"
             onClick={() => {
-              onToggleFavorites(product);
               notificateFaborites();
               handleFavorites(product.itemId);
             }}
