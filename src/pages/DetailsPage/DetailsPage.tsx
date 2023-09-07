@@ -48,6 +48,8 @@ export const DetailsPage = () => {
   const { favoritesCount } = useContext(CatalogContext);
   const category = location.pathname.slice(1).split('/')[0];
 
+  const id = location.pathname.slice(1).split('/')[1];
+
   const handleGoBack = () => {
     window.history.back();
   };
@@ -111,14 +113,12 @@ export const DetailsPage = () => {
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
 
-    const id = location.pathname.slice(1).split('/')[1];
-
     ProductService.getProductByItemId(id)
       .then((data) => {
         setProductByItemId(data as Product);
       })
       .catch(() => setError('Wrong URL - could not make a request'));
-  }, []);
+  }, [id]);
 
   const capacity = `${product?.capacityAvailable}`.slice(1, -1).split(',');
 
