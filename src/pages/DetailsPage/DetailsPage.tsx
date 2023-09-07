@@ -315,7 +315,7 @@ export const DetailsPage = () => {
                     }}
                     disabled={!!isInCart}
                   >
-                    {t('addToCart')}
+        {addToCartButtonCondition ? t('addToCart') : t('addedToCart')}
                   </button>
 
                   {userId && (
