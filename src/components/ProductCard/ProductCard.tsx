@@ -114,7 +114,10 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
           }}
           disabled={!!isInCart}
         >
-        {addToCartButtonCondition ? t('addToCart') : t('addedToCart')}
+        {addToCartButtonCondition
+          ? t('addedToCart')
+          : t('addToCart')
+        }
         </button>
         {userId && (
           <button

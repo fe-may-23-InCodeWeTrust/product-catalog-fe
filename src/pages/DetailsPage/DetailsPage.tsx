@@ -6,7 +6,7 @@ import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
 import { JellyTriangle } from '@uiball/loaders';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -45,6 +45,7 @@ export const DetailsPage = () => {
   const location = useLocation();
   const [selectedColor, setSelectedColor] = useState<string>('');
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { favoritesCount } = useContext(CatalogContext);
   const category = location.pathname.slice(1).split('/')[0];
 
@@ -110,7 +111,10 @@ export const DetailsPage = () => {
 
         setSelectedCapacity(data.foundProduct.capacity);
       })
-      .catch(() => setError('Wrong URL - could not make a request'))
+      .catch(() => {
+        setError('Wrong URL - could not make a request');
+        navigate('/');
+      })
       .finally(() => setIsLoading(false));
 
     ProductService.getProductByItemId(id)
@@ -315,7 +319,10 @@ export const DetailsPage = () => {
                     }}
                     disabled={!!isInCart}
                   >
-        {addToCartButtonCondition ? t('addToCart') : t('addedToCart')}
+                    {addToCartButtonCondition
+                      ? t('addedToCart')
+                      : t('addToCart')
+                    }
                   </button>
 
                   {userId && (
