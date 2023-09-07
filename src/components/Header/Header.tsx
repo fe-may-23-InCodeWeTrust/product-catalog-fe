@@ -17,6 +17,7 @@ import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import ReactFlagsSelect from 'react-flags-select';
+import * as ProductProvider from '../../api/fetch_functions';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -27,15 +28,13 @@ const getBurgerMenuLinkClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);
   const cartCount = useSelector((state: RootState) => state.cart.goods.length);
-  const favoritesCount = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods.length,
-  );
+  const [favoritesCount, setFavoritesCount] = useState<number>(0);
+
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const [language, setLanguage] = useState('');
   const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
     useState(false);
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
 
   const onChangeLanguage = (language: string) => {
     setLanguage(language);
@@ -46,6 +45,17 @@ export const Header = () => {
   useEffect(() => {
     document.body.style.overflow = isActiveBurger ? 'hidden' : 'auto';
   }, [isActiveBurger]);
+
+  useEffect(() => {
+    const userId = window.localStorage.getItem('userId');
+    if (userId) {
+      ProductProvider.getFavorites(userId)
+      .then(data => {
+        setFavoritesCount(data.length);
+      })
+      
+    }
+  })
 
   const id = window.localStorage.getItem('userId');
   return (

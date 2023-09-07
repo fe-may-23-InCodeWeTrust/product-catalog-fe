@@ -12,8 +12,6 @@ export const Switcher = () => {
     // localStorage.setItem('darkMode', `${!darkMode}`);
   };
 
-  console.log(darkMode);
-
   return (
     <div
       className={classNames(styles['switcher'], { [styles['dark']]: darkMode })}
