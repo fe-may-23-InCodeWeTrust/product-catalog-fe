@@ -126,13 +126,16 @@ export const DetailsPage = () => {
 
   const handleFavorites = async (itemId: string) => {
     if (userId) {
-      await ProductService.updateFavorites(itemId, userId as string).finally(() => setFavoritesCount((prev) => {
-        if (!prev.includes(itemId)) {
-        return  [...prev, itemId]
-      } else {
-        return prev.filter(good => good !== itemId);
-      }
-      }));
+      await ProductService.updateFavorites(itemId, userId as string).finally(
+        () =>
+          setFavoritesCount((prev) => {
+            if (!prev.includes(itemId)) {
+              return [...prev, itemId];
+            } else {
+              return prev.filter((good) => good !== itemId);
+            }
+          }),
+      );
     }
   };
 
