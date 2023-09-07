@@ -18,15 +18,15 @@ export const CatalogProvider: React.FC<Props> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState<string[]>([]);
 
-  useEffect(() => {
-    const userId = window.localStorage.getItem('userId');
+  // useEffect(() => {
+  //   const userId = window.localStorage.getItem('userId');
 
-    if (userId) {
-      ProductProvider.getFavorites(userId).then((data) => {
-        setFavoritesCount(data);
-      });
-    }
-  }, [favoritesCount]);
+  //   if (userId) {
+  //     ProductProvider.getFavorites(userId).then((data) => {
+  //       setFavoritesCount(data);
+  //     });
+  //   }
+  // }, [favoritesCount]);
 
   const contextValues: ContextValues = useMemo(
     () => ({

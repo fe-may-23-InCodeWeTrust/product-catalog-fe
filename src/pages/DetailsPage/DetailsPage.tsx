@@ -46,14 +46,10 @@ export const DetailsPage = () => {
   const [selectedColor, setSelectedColor] = useState<string>('');
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { favoritesCount } = useContext(CatalogContext);
+  const { favoritesCount, setFavoritesCount } = useContext(CatalogContext);
   const category = location.pathname.slice(1).split('/')[0];
 
   const id = location.pathname.slice(1).split('/')[1];
-
-  const handleGoBack = () => {
-    window.history.back();
-  };
 
   const addTofavoritesButtonCondition = favoritesCount.find(
     (good) => good === product?.id,
@@ -130,7 +126,13 @@ export const DetailsPage = () => {
 
   const handleFavorites = async (itemId: string) => {
     if (userId) {
-      await ProductService.updateFavorites(itemId, userId as string);
+      await ProductService.updateFavorites(itemId, userId as string).finally(() => setFavoritesCount((prev) => {
+        if (!prev.includes(itemId)) {
+        return  [...prev, itemId]
+      } else {
+        return prev.filter(good => good !== itemId);
+      }
+      }));
     }
   };
 
@@ -172,16 +174,15 @@ export const DetailsPage = () => {
           </div>
 
           <div className={styles['breadcrumb-nav__row']}>
-            <a
-              href="#"
+            <Link
+              to={`/${location.pathname.slice(1).split('/')[0]}`}
               className={styles['breadcrumb-nav__item']}
-              onClick={handleGoBack}
             >
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
               <p className={styles.text + ' ' + styles['text--light']}>Back</p>
-            </a>
+            </Link>
           </div>
         </div>
 
