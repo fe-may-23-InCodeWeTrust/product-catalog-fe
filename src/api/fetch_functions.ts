@@ -36,7 +36,7 @@ export const getProductById = (path: string) => {
 };
 
 export const getProductByItemId = (id: string) => {
-  return client.get<Product>(`products/${id}`);
+  return client.get<Product | Product[]>(`products/${id}`);
 };
 
 export const getAuthenticatedUser = (credentials: any) => {

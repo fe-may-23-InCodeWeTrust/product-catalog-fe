@@ -24,15 +24,15 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  const toggleFavorites = (product: Product) => {
-    const foundedGood = faviritesGoods.find((good) => good.id === product.id);
+  // const toggleFavorites = (product: Product) => {
+  //   const foundedGood = faviritesGoods.find((good) => good.id === product.id);
 
-    if (foundedGood) {
-      dispatch(removeFromFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
+  //   if (foundedGood) {
+  //     dispatch(removeFromFavorites(product.id));
+  //   } else {
+  //     dispatch(addToFavorites(product));
+  //   }
+  // };
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -55,7 +55,6 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
             key={product.id}
             product={product}
             onAddToCart={addProductToCart}
-            onToggleFavorites={toggleFavorites}
           />
         ))
       )}
