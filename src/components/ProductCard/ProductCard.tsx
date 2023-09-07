@@ -23,7 +23,6 @@ export const ProductCard: React.FC<Props> = ({
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
-
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
@@ -59,15 +58,13 @@ export const ProductCard: React.FC<Props> = ({
     }, 2000);
   };
 
-  // -----------------
-
   const userId = window.localStorage.getItem('userId')?.toString();
 
   const handleFavorites = async (itemId: string) => {
-    await ProductProvider.updateFavorites(itemId, userId as string);
+    if (userId) {
+      await ProductProvider.updateFavorites(itemId, userId as string);
+    }
   };
-
-  // --------------------
 
   return (
     <div className={styles['phone-card']}>
@@ -125,17 +122,19 @@ export const ProductCard: React.FC<Props> = ({
         >
           {t(`${addToCartButtonCondition ? 'Added to cart' : 'Add to cart'}`)}
         </button>
-        <button
-          className={classNames(styles['add-to-favorites'], {
-            'added-to-favorites': addTofavoritesButtonCondition,
-          })}
-          type="submit"
-          onClick={() => {
-            onToggleFavorites(product);
-            notificateFaborites();
-            handleFavorites(product.itemId);
-          }}
-        ></button>
+        {userId && (
+          <button
+            className={classNames(styles['add-to-favorites'], {
+              'added-to-favorites': addTofavoritesButtonCondition,
+            })}
+            type="submit"
+            onClick={() => {
+              onToggleFavorites(product);
+              notificateFaborites();
+              handleFavorites(product.itemId);
+            }}
+          ></button>
+        )}
       </div>
 
       {isCartNotification && (

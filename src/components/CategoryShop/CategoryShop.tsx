@@ -20,7 +20,7 @@ export const CategoryShop = () => {
     {
       id: 1,
       title: `${t('mobilePhones')}`,
-      count: 0,
+      count: 124,
       img: phonesImg,
       background: '#6D6474',
       path: 'phones',
@@ -28,7 +28,7 @@ export const CategoryShop = () => {
     {
       id: 2,
       title: `${t('tablets')}`,
-      count: 0,
+      count: 34,
       img: tabletsImg,
       background: '#8D8D92',
       path: 'tablets',
@@ -36,7 +36,7 @@ export const CategoryShop = () => {
     {
       id: 3,
       title: `${t('accessories')}`,
-      count: 0,
+      count: 36,
       img: accessoriesImg,
       background: '#973D5F',
       path: 'accessories',
@@ -48,6 +48,7 @@ export const CategoryShop = () => {
     categories.map((category) => {
       ProductService.getProductsCount(category.path).then((data) => {
         category.count = data;
+        console.log(data);
       });
     });
     setIsLoading(false);

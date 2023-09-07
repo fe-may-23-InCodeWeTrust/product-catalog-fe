@@ -50,6 +50,7 @@
     &__item {
       line-height: 11px;
       transition: all 0.3s ease;
+      color: $color-secondary;
 
       &:hover {
         color: $color-primary;
@@ -69,7 +70,7 @@
 
     &__label {
       margin-right: 16px;
-      transition: all 0.3 ease;
+      transition: all 0.3s ease;
 
       &:hover {
         color: $color-primary;
@@ -93,7 +94,7 @@
 
         svg {
           path {
-            fill: white;
+            fill: $color-white;
           }
         }
       }

@@ -65,7 +65,7 @@ export const CartPage = () => {
       )}
 
       {!goods.length ? (
-        <p>{t('noGoods')}</p>
+        <p className="no-goods">{t('noGoods')}</p>
       ) : (
         <div className="main-content">
           <div className="cart-goods">

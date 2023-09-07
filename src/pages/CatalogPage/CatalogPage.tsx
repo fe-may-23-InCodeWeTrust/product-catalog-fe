@@ -29,9 +29,6 @@ export const CatalogPage: React.FC = () => {
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
   const { t } = useTranslation();
 
-  const pageSortParams = searchParams.get('sortBy');
-  const sortBy = pageSortParams ? pageSortParams : 'newest';
-
   const categories = [
     { value: 'newest', label: `${t('newest')}` },
     { value: 'popular', label: `${t('popular')}` },
@@ -44,6 +41,8 @@ export const CatalogPage: React.FC = () => {
     { value: 32, label: 32 },
   ];
 
+  const pageSortParams = searchParams.get('sortBy');
+  const sortBy = pageSortParams ? pageSortParams : 'newest';
   const currentSortText = categories.find(
     (category) => category.value === sortBy,
   );

@@ -13,6 +13,8 @@ export const localStorageMiddleware =
         'favorites',
         JSON.stringify(state.favorites.favoriteGoods),
       );
+    } else if (action.type === 'TOGGLE_THEME') {
+      localStorage.setItem('darkMode', JSON.stringify(state.theme.darkMode));
     } else {
       localStorage.setItem('cart', JSON.stringify(state.cart.goods));
     }
