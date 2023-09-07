@@ -47,7 +47,6 @@ export const CategoryShop = () => {
     setIsLoading(true);
     categories.current.map((category) => {
       ProductService.getProductsCount(category.path).then((data) => {
-        console.log(data);
         category.count = data;
       });
     });

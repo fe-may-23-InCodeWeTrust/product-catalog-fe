@@ -507,12 +507,6 @@ export const DetailsPage = () => {
                       {product?.zoom}
                     </div>
                   </div>
-                  <div className={styles['matches__row']}>
-                    <div className={styles['matches__specification']}>Cell</div>
-                    <div className={styles['matches__value']}>
-                      {product?.cell}
-                    </div>
-                  </div>
                 </div>
               </section>
             </div>
