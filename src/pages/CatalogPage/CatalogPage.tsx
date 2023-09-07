@@ -105,7 +105,7 @@ export const CatalogPage: React.FC = () => {
   const CustomStyleDark = {
     option: (defaultStyles: object, { isFocused }: any) => ({
       ...defaultStyles,
-      backgroundColor: isFocused ? '#4a4d58' : '#89939a',
+      backgroundColor: isFocused ? '#FAFBFC' : '#89939a',
       color: '#0f0f11',
     }),
 

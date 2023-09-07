@@ -123,6 +123,8 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
             spaceBetween={16}
             slidesPerView={slidesPerView}
             onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+            // noSwiping={true}
+            allowTouchMove={false}
           >
             {products.map((card) => (
               <SwiperSlide key={card.id}>
