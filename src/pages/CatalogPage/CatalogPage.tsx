@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
+import { useSelector } from 'react-redux';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
@@ -21,6 +22,7 @@ export const CatalogPage: React.FC = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
 
   useEffect(() => {
     setOffset(`${(currentPage - 1) * 16}`);
@@ -104,6 +106,27 @@ export const CatalogPage: React.FC = () => {
     }),
   };
 
+  const CustomStyleDark = {
+    option: (defaultStyles: object, { isFocused }: any) => ({
+      ...defaultStyles,
+      backgroundColor: isFocused ? '#4a4d58' : '#89939a',
+      color: '#0f0f11',
+    }),
+
+    control: (defaultStyles: object) => ({
+      ...defaultStyles,
+      backgroundColor: '#89939a',
+      borderRaduis: '8px',
+      border: '0.5px solid #89939A',
+      cursor: 'pointer',
+      fontSize: '14px',
+    }),
+    singleValue: (defaultStyles: object) => ({
+      ...defaultStyles,
+      color: '#0f0f11',
+    }),
+  };
+
   useEffect(() => {
     setIsLoading(true);
     ProductService.getProducts(
@@ -161,7 +184,7 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByCategory']}
             options={categories}
-            styles={CustomStyle}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
             value={sortByText}
             onChange={(event) => {
               if (event?.value) {
@@ -175,7 +198,7 @@ export const CatalogPage: React.FC = () => {
           <Select
             className={styles['select__sortByNumber']}
             options={numbers}
-            styles={CustomStyle}
+            styles={darkMode ? CustomStyleDark : CustomStyle}
             value={sortByItems}
             onChange={(event) => {
               if (event?.value) {
