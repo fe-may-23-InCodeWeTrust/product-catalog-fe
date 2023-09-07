@@ -45,7 +45,7 @@ export const DetailsPage = () => {
   const location = useLocation();
   const [selectedColor, setSelectedColor] = useState<string>('');
   const { t } = useTranslation();
-  const { favoritesCount } = useContext(CatalogContext)
+  const { favoritesCount } = useContext(CatalogContext);
   const category = location.pathname.slice(1).split('/')[0];
 
   const handleGoBack = () => {
@@ -66,7 +66,6 @@ export const DetailsPage = () => {
   );
 
   const dispatch = useDispatch<AppDispatch>();
-
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -112,9 +111,9 @@ export const DetailsPage = () => {
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
 
-      const id = location.pathname.slice(1).split('/')[1];
+    const id = location.pathname.slice(1).split('/')[1];
 
-      ProductService.getProductByItemId(id)
+    ProductService.getProductByItemId(id)
       .then((data) => {
         setProductByItemId(data as Product);
       })
@@ -177,9 +176,7 @@ export const DetailsPage = () => {
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--light']}>
-                Back
-              </p>
+              <p className={styles.text + ' ' + styles['text--light']}>Back</p>
             </a>
           </div>
         </div>
@@ -226,9 +223,7 @@ export const DetailsPage = () => {
 
                   <div className={styles['color-options__images']}>
                     {colors.map((color) => (
-                      <div
-                        key={color}
-                      >
+                      <div key={color}>
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
                             width="32"
@@ -323,16 +318,17 @@ export const DetailsPage = () => {
                     {t('addToCart')}
                   </button>
 
-                  {userId &&
+                  {userId && (
                     <button
-                    className={classNames(styles['add-to-favorites'], {
-                      'added-to-favorites': addTofavoritesButtonCondition,
-                    })}
-                    type="submit"
-                    onClick={() => {
-                      handleFavorites(product?.id as string);
-                    }}
-                    ></button>}
+                      className={classNames(styles['add-to-favorites'], {
+                        'added-to-favorites': addTofavoritesButtonCondition,
+                      })}
+                      type="submit"
+                      onClick={() => {
+                        handleFavorites(product?.id as string);
+                      }}
+                    ></button>
+                  )}
                 </div>
 
                 <div className={styles.matches}>

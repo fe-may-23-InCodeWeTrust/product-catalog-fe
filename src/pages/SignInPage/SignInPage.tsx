@@ -9,7 +9,7 @@ export const SignInPage = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     const credentials = `${email}:${password}`;
     const result = await ProductService.getAuthenticatedUser(credentials);
 
@@ -24,26 +24,11 @@ export const SignInPage = () => {
     }
   };
 
-  const handleKeyPress = async (e: React.KeyboardEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (e.key === 'Enter') {
-      const credentials = `${email}:${password}`;
-      const result = await ProductService.getAuthenticatedUser(credentials);
-  
-      if (result) {
-        window.localStorage.setItem('userId', result.id);
-  
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
-      } else {
-        alert('Something went wrong!');
-      }
-    }
-  };
-
   return (
-    <form className={styles['login_form']} onKeyDown={handleKeyPress} onSubmit={handleSubmit}>
+    <form
+      className={styles['login_form']}
+      onSubmit={handleSubmit}
+    >
       <h3>Sign In</h3>
 
       <div className={styles['login_form-box']}>
