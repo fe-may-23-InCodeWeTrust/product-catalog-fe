@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styles from './CategoryShop.module.scss';
 import phonesImg from '../../assets/icons/phones.png';
 import tabletsImg from '../../assets/icons/tablets.png';
@@ -16,7 +16,7 @@ export const CategoryShop = () => {
   const { t } = useTranslation();
   const { isLoading, setIsLoading } = useContext(CatalogContext);
 
-  const categories = [
+  const categories = useRef([
     {
       id: 1,
       title: `${t('mobilePhones')}`,
@@ -41,12 +41,13 @@ export const CategoryShop = () => {
       background: '#973D5F',
       path: 'accessories',
     },
-  ];
+  ]);
 
   useEffect(() => {
     setIsLoading(true);
-    categories.map((category) => {
+    categories.current.map((category) => {
       ProductService.getProductsCount(category.path).then((data) => {
+        console.log(data);
         category.count = data;
       });
     });
@@ -62,7 +63,7 @@ export const CategoryShop = () => {
         </div>
       ) : (
         <div className={styles['container']}>
-          {categories.map((category, index) => (
+          {categories.current.map((category, index) => (
             <div
               key={category.id}
               onClick={() => navigate(category.path)}
