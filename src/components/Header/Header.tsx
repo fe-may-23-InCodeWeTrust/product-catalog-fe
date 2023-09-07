@@ -21,6 +21,7 @@ import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import ReactFlagsSelect from 'react-flags-select';
 import { CatalogContext } from '../../context/CatalogContext';
+import { Switcher } from '../Switcher/Switcher';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -95,6 +96,12 @@ export const Header = () => {
 
           <div className={`${styles['header__icons']} ${styles['icons']}`}>
             <div
+              className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['switcher-icon']}`}
+            >
+              <Switcher />
+            </div>
+
+            <div
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['languages-icon']}`}
             >
               <button
@@ -132,8 +139,7 @@ export const Header = () => {
               <NavLink
                 to={id ? '/' : 'signin'}
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__favourites-icon']} ${
-                    isActive ? styles['is-active-icon'] : ''
+                  `${styles['header-icon__favourites-icon']} ${isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
@@ -158,8 +164,7 @@ export const Header = () => {
               <NavLink
                 to="favorites"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__favourites-icon']} ${
-                    isActive ? styles['is-active-icon'] : ''
+                  `${styles['header-icon__favourites-icon']} ${isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
@@ -191,8 +196,7 @@ export const Header = () => {
               <NavLink
                 to="cart"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__shopping_bag-icon']} ${
-                    isActive ? styles['is-active-icon'] : ''
+                  `${styles['header-icon__shopping_bag-icon']} ${isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
@@ -267,28 +271,92 @@ export const Header = () => {
               )}
             </NavLink>
 
-            <div
-              className={`${styles['aside__close-icon']} ${styles['close-icon']}`}
-            >
-              <NavLink
-                to="/"
-                className={`${styles['close-icon__link']}`}
-                onClick={() => setIsActiveBurger(false)}
+            <div className={`${styles['aside__icons']}`}>
+              <div
+                className={`${styles['aside__switcher-icon']} ${styles['switcher-icon']}`}
               >
-                {darkMode ? (
-                  <img
-                    src={whiteClose}
-                    alt="Close icon"
-                    className={`${styles['close-icon__image']}`}
-                  />
-                ) : (
-                  <img
-                    src={close}
-                    alt="Close icon"
-                    className={`${styles['close-icon__image']}`}
+                <Switcher />
+              </div>
+              <div
+                className={`${styles['aside__languages-icon']} ${styles['languages-icon']}`}
+              >
+                <button
+                  className={styles['languages-icon__button']}
+                  onClick={() => setIsActiveLanguageSwitcher(true)}
+                >
+                  {darkMode ? (
+                    <img
+                      src={languagesWhite}
+                      alt="Languages icon"
+                      className={styles['languages-icon__image']}
+                    />
+                  ) : (
+                    <img
+                      src={languages}
+                      alt="Languages icon"
+                        className={styles['languages-icon__image']}
+                    />
+                  )}
+                </button>
+                {isActiveLanguageSwitcher && (
+                  <ReactFlagsSelect
+                    className={styles['aside__languages-switcher']}
+                    selected={language}
+                    onSelect={onChangeLanguage}
+                    countries={['GB', 'UA', 'PL', 'PT']}
+                    customLabels={{ GB: 'EN', UA: 'UA', PL: 'PL', PT: 'PT' }}
+                    placeholder="EN"
                   />
                 )}
-              </NavLink>
+              </div>
+              <div
+                className={`${styles['aside__account-icon']} ${styles['account-icon']}`}
+              >
+                <NavLink
+                  to={id ? '/' : 'signin'}
+                  className={({ isActive }: { isActive: boolean }) =>
+                    `${styles['account-icon__link']} ${isActive ? styles['is-active-icon'] : ''
+                    }`
+                  }
+                >
+                  {darkMode ? (
+                    <img
+                      src={accountWhite}
+                      alt="Account icon"
+                      className={styles['account-icon__image']}
+                    />
+                  ) : (
+                    <img
+                      src={account}
+                      alt="Account icon"
+                      className={styles['account-icon__image']}
+                    />
+                  )}
+                </NavLink>
+              </div>
+              <div
+                className={`${styles['aside__close-icon']} ${styles['close-icon']}`}
+              >
+                <NavLink
+                  to="/"
+                  className={`${styles['close-icon__link']}`}
+                  onClick={() => setIsActiveBurger(false)}
+                >
+                  {darkMode ? (
+                    <img
+                      src={whiteClose}
+                      alt="Close icon"
+                      className={`${styles['close-icon__image']}`}
+                    />
+                  ) : (
+                    <img
+                      src={close}
+                      alt="Close icon"
+                      className={`${styles['close-icon__image']}`}
+                    />
+                  )}
+                </NavLink>
+              </div>
             </div>
           </div>
 
@@ -303,7 +371,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    home
+                    {t('home')}
                   </NavLink>
                 </li>
 
@@ -313,7 +381,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    phones
+                    {t('phones')}
                   </NavLink>
                 </li>
 
@@ -323,7 +391,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    tablets
+                    {t('tablets')}
                   </NavLink>
                 </li>
 
@@ -333,7 +401,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    accessories
+                    {t('accessories')}
                   </NavLink>
                 </li>
               </ul>
@@ -347,8 +415,7 @@ export const Header = () => {
               <NavLink
                 to="favorites"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['favourites-icon__link']} ${
-                    isActive ? styles['is-active-icon'] : ''
+                  `${styles['favourites-icon__link']} ${isActive ? styles['is-active-icon'] : ''
                   }`
                 }
                 onClick={() => setIsActiveBurger(false)}
@@ -381,8 +448,7 @@ export const Header = () => {
               <NavLink
                 to="cart"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['shopping_bag-icon__link']} ${
-                    isActive ? styles['is-active-icon'] : ''
+                  `${styles['shopping_bag-icon__link']} ${isActive ? styles['is-active-icon'] : ''
                   }`
                 }
                 onClick={() => setIsActiveBurger(false)}

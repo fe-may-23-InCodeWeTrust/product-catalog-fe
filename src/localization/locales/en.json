@@ -7,6 +7,8 @@
   "title": "Buy nice, be nice",
   "newModels": "Brand new models",
   "addToCart": "Add to cart",
+  "toTheCart": "The good was added to the cart",
+  "toTheFavorites": "The good was added to the favorites",
   "addedToCart": "Added to cart",
   "shopByCategory": "Shop by category",
   "mobilePhones": "Mobile phones",
@@ -32,5 +34,9 @@
   "totalFor": "Total for",
   "item": "item",
   "items": "items",
-  "checkout": "Checkout"
+  "checkout": "Checkout",
+  "oneNice": "One nice person has got a nice gadget.",
+  "totalAmount": "The total amount of your shopping is",
+  "niceDay": "Have a nice day!",
+  "close": "Close"
 }

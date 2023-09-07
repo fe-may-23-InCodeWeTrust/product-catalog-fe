@@ -24,7 +24,6 @@ export const App = () => {
           <Outlet />
         </div>
       </div>
-      <Switcher />
       <Footer />
     </div>
   );
