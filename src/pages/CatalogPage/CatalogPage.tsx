@@ -21,11 +21,16 @@ export const CatalogPage: React.FC = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
+
+  useEffect(() => {
+    setOffset(`${(currentPage - 1) * 16}`);
+  }, [currentPage]);
+
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
   const { t } = useTranslation();
 
   const pageSortParams = searchParams.get('sortBy');
-  const sortBy = pageSortParams ? pageSortParams : `${t('newest')}`;
+  const sortBy = pageSortParams ? pageSortParams : 'newest';
 
   const categories = [
     { value: 'newest', label: `${t('newest')}` },
@@ -54,11 +59,11 @@ export const CatalogPage: React.FC = () => {
 
   useEffect(() => {
     setSortByItems(currentSortNumber);
-  }, [sortByNumber]);
+  }, [sortByNumber, t]);
 
   useEffect(() => {
     setSortByText(currentSortText);
-  }, [sortBy]);
+  }, [sortBy, t]);
 
   const category = location.pathname.slice(1);
 
@@ -133,9 +138,6 @@ export const CatalogPage: React.FC = () => {
           <Link
             to={`/${category}?page=1&sortBy=newest&items=16`}
             className={`${styles['icon__text']} text-small`}
-            onClick={() => {
-              setOffset('0');
-            }}
           >
             {category}
           </Link>
