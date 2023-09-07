@@ -12,7 +12,7 @@ export const ContactsPage = () => {
       top: 0,
       behavior: 'smooth',
     });
-  }, [])
+  }, []);
 
   return (
     <div className={styles['contacts_container']}>
