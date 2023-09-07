@@ -7,7 +7,7 @@ import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
 import { useTranslation } from 'react-i18next';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductProvider from '../../api/fetch_functions';
 
@@ -17,6 +17,8 @@ const Favorites = () => {
 
   const { favoritesCount } = useContext(CatalogContext);
   const [favoriteGoods, setFavoriteGoods] = useState<Product[]>([]);
+  const navigate = useNavigate()
+  const userId = window.localStorage.getItem('userId');
   // const [searchParams, setSearchParams] = useSearchParams();
   // const [totalPages, setTotalPages] = useState(0);
   // const pageParams = searchParams.get('page');
@@ -28,6 +30,9 @@ const Favorites = () => {
   // }, [numberOfItems]);
 
   useEffect(() => {
+    if (!userId) {
+      navigate('/singin');
+    }
     Promise.all(
       favoritesCount.map((good) => ProductProvider.getProductByItemId(good)),
     ).then((data) => setFavoriteGoods(data as Product[]));
