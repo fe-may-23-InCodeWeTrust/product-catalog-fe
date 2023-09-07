@@ -6,10 +6,10 @@ import Select from 'react-select';
 import { Product } from '../../utils/Types/Product';
 import * as ProductService from '../../api/fetch_functions';
 import { Pagination } from '../../components/Pagination/Pagination';
+import { useSelector } from 'react-redux';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { CatalogContext } from '../../context/CatalogContext';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 export const CatalogPage: React.FC = () => {
@@ -22,12 +22,14 @@ export const CatalogPage: React.FC = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? +pageParams : 1;
+  const darkMode = useSelector((state: any) => state.theme.darkMode);
+
+  useEffect(() => {
+    setOffset(`${(currentPage - 1) * 16}`);
+  }, [currentPage]);
+
   const [offset, setOffset] = useState(`${(currentPage - 1) * 16}`);
   const { t } = useTranslation();
-
-  const pageSortParams = searchParams.get('sortBy');
-  const sortBy = pageSortParams ? pageSortParams : `${t('newest')}`;
-  const darkMode = useSelector((state: any) => state.theme.darkMode);
 
   const categories = [
     { value: 'newest', label: `${t('newest')}` },
@@ -41,6 +43,8 @@ export const CatalogPage: React.FC = () => {
     { value: 32, label: 32 },
   ];
 
+  const pageSortParams = searchParams.get('sortBy');
+  const sortBy = pageSortParams ? pageSortParams : 'newest';
   const currentSortText = categories.find(
     (category) => category.value === sortBy,
   );
@@ -56,11 +60,11 @@ export const CatalogPage: React.FC = () => {
 
   useEffect(() => {
     setSortByItems(currentSortNumber);
-  }, [sortByNumber]);
+  }, [sortByNumber, t]);
 
   useEffect(() => {
     setSortByText(currentSortText);
-  }, [sortBy]);
+  }, [sortBy, t]);
 
   const category = location.pathname.slice(1);
 
@@ -156,9 +160,6 @@ export const CatalogPage: React.FC = () => {
           <Link
             to={`/${category}?page=1&sortBy=newest&items=16`}
             className={`${styles['icon__text']} text-small`}
-            onClick={() => {
-              setOffset('0');
-            }}
           >
             {category}
           </Link>
