@@ -58,7 +58,6 @@ export const DetailsPage = () => {
     window.history.back();
   };
 
-
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
@@ -157,7 +156,10 @@ export const DetailsPage = () => {
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-forward']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--dark']}> {t(`${category}`)}</p>
+              <p className={styles.text + ' ' + styles['text--dark']}>
+                {' '}
+                {t(`${category}`)}
+              </p>
             </a>
 
             <div className={styles['breadcrumb-nav__item']}>
@@ -179,10 +181,10 @@ export const DetailsPage = () => {
           </div>
 
           <div className={styles['breadcrumb-nav__row']}>
-            <a 
-            href="#" 
-            className={styles['breadcrumb-nav__item']}
-            onClick={handleGoBack}
+            <a
+              href="#"
+              className={styles['breadcrumb-nav__item']}
+              onClick={handleGoBack}
             >
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
@@ -231,14 +233,14 @@ export const DetailsPage = () => {
                     </p>
                     <p
                       className={styles['color-options__id']}
-                    >{`ID: ${product?.namespaceId}`}</p>
+                    >{`ID: ${productByItemId?.id}`}</p>
                   </div>
 
                   <div className={styles['color-options__images']}>
                     {colors.map((color) => (
                       <div
                         key={color}
-                      // className={styles[`color-options__option--${color}`]}
+                        // className={styles[`color-options__option--${color}`]}
                       >
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
