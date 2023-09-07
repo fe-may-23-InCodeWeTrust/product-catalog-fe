@@ -37,7 +37,6 @@ export const CatalogProvider: React.FC<Props> = ({ children }) => {
     [isLoading, favoritesCount],
   );
 
-
   return (
     <CatalogContext.Provider value={contextValues}>
       {children}

@@ -28,10 +28,10 @@ const Favorites = () => {
   // }, [numberOfItems]);
 
   useEffect(() => {
-      Promise.all(favoritesCount.map(good => ProductProvider.getProductByItemId(good)))
-        .then(data => setFavoriteGoods(data as Product[]))
+    Promise.all(
+      favoritesCount.map((good) => ProductProvider.getProductByItemId(good)),
+    ).then((data) => setFavoriteGoods(data as Product[]));
   }, [favoritesCount]);
-
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -62,21 +62,25 @@ const Favorites = () => {
           <h1 className={styles['article--title']}>{t('favorites')}</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
-            {numberOfItems > 0 ? numberOfItems : ''} {numberOfItems > 0 ? (t('models')) : ''}
+            {numberOfItems > 0 ? numberOfItems : ''}{' '}
+            {numberOfItems > 0 ? t('models') : ''}
           </p>
         </div>
 
-        {numberOfItems ?         
-        <div className={styles['phone_cards']}>
-          {favoriteGoods.length > 0 &&           favoriteGoods.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addProductToCart}
-            />
-          ))}
-        </div>
-        : 'No goods'}
+        {numberOfItems ? (
+          <div className={styles['phone_cards']}>
+            {favoriteGoods.length > 0 &&
+              favoriteGoods.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={addProductToCart}
+                />
+              ))}
+          </div>
+        ) : (
+          'No goods'
+        )}
         {/* <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

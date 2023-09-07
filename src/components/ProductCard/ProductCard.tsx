@@ -15,11 +15,8 @@ type Props = {
   onAddToCart: (product: Product) => void;
 };
 
-export const ProductCard: React.FC<Props> = ({
-  product,
-  onAddToCart,
-}) => {
-  const { favoritesCount }  = useContext(CatalogContext); 
+export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
+  const { favoritesCount } = useContext(CatalogContext);
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 

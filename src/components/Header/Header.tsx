@@ -48,7 +48,6 @@ export const Header = () => {
     document.body.style.overflow = isActiveBurger ? 'hidden' : 'auto';
   }, [isActiveBurger]);
 
-
   const id = window.localStorage.getItem('userId');
   return (
     <>
