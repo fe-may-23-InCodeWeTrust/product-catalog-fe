@@ -61,7 +61,7 @@ export const Pagination: React.FC<Props> = ({
           >
             1
           </NavLink>
-          ...
+          <span className={styles['dots']}>...</span>
         </>
       )}
 
@@ -82,7 +82,7 @@ export const Pagination: React.FC<Props> = ({
 
       {!pages.includes(totalPages) && (
         <>
-          ...
+          <span className={styles['dots']}>...</span>
           <NavLink
             key={totalPages}
             to={`?page=${totalPages}&sortBy=${sortBy}&items=${sortByNumber}`}
