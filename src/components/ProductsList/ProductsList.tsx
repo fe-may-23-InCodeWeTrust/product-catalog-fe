@@ -19,20 +19,7 @@ interface Props {
 export const ProductsList: React.FC<Props> = ({ products }) => {
   const { isLoading } = useContext(CatalogContext);
 
-  const faviritesGoods = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods,
-  );
   const dispatch = useDispatch<AppDispatch>();
-
-  // const toggleFavorites = (product: Product) => {
-  //   const foundedGood = faviritesGoods.find((good) => good.id === product.id);
-
-  //   if (foundedGood) {
-  //     dispatch(removeFromFavorites(product.id));
-  //   } else {
-  //     dispatch(addToFavorites(product));
-  //   }
-  // };
 
   const addProductToCart = (product: Product) => {
     dispatch(

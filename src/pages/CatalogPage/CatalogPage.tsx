@@ -161,7 +161,7 @@ export const CatalogPage: React.FC = () => {
             to={`/${category}?page=1&sortBy=newest&items=16`}
             className={`${styles['icon__text']} text-small`}
           >
-            {category}
+            {category.charAt(0).toUpperCase() + category.slice(1)}
           </Link>
         </div>
 

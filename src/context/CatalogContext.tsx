@@ -20,12 +20,13 @@ export const CatalogProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const userId = window.localStorage.getItem('userId');
+
     if (userId) {
       ProductProvider.getFavorites(userId).then((data) => {
         setFavoritesCount(data);
       });
     }
-  }, []);
+  }, [favoritesCount]);
 
   const contextValues: ContextValues = useMemo(
     () => ({

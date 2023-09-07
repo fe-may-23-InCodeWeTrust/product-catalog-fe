@@ -71,26 +71,6 @@
   }
 }
 
-select {
-  outline: 0;
-  font-family: 'Mont', sans-serif;
-  font-weight: 700;
-  height: 3em;
-  padding: 9px 11px 9px 12px;
-  color: black;
-  border-color: $color-secondary;
-  border-radius: 0.7em;
-  border: 1px solid $color-icons;
-  cursor: pointer;
-  line-height: normal;
-
-  option {
-    font-family: 'Mont', sans-serif;
-    color: inherit;
-    background-color: white;
-  }
-}
-
 .main {
   background-color: $color-grey-background;
 }
