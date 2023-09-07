@@ -7,6 +7,8 @@
   "title": "Compre bem, seja legal",
   "newModels": "Novos modelos",
   "addToCart": "Adicionar ao carrinho",
+  "toTheCart": "O produto foi adicionado ao carrinho",
+  "toTheFavorites": "O produto foi adicionado aos favoritos",
   "addedToCart": "Adicionado ao carrinho",
   "shopByCategory": "Compre por categoria",
   "mobilePhones": "Celulares",
@@ -31,5 +33,9 @@
   "totalFor": "Total para",
   "item": "item",
   "items": "itens",
-  "checkout": "Confira"
+  "checkout": "Confira",
+  "oneNice": "Uma pessoa legal tem um gadget legal.",
+  "totalAmount": "O valor total de suas compras é",
+  "niceDay": "Tenha um bom dia!",
+  "close": "Fechar"
 }

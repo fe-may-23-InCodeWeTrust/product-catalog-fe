@@ -1,5 +1,6 @@
 import React from 'react';
 import './Modal.scss';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   price: number;
@@ -7,20 +8,22 @@ type Props = {
 };
 
 export const Modal: React.FC<Props> = ({ price, onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="modal-buy">
       <p className="text-uppercase modal-buy-text">
-        One nice person have got a nice gadget.
+        {t('oneNice')}
       </p>
 
       <p className="text-uppercase modal-buy-text">
-        The total amount of your shopping is {price}$.
+        {t('totalAmount')} {price}$.
       </p>
 
-      <p className="text-uppercase modal-buy-text">Have a nice day!</p>
+      <p className="text-uppercase modal-buy-text">{t('niceDay')}</p>
 
       <button className="btn-block" onClick={onClose}>
-        Close
+        {t('close')}
       </button>
     </div>
   );

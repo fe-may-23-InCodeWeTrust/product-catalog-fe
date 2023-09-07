@@ -371,7 +371,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    home
+                    {t('home')}
                   </NavLink>
                 </li>
 
@@ -381,7 +381,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    phones
+                    {t('phones')}
                   </NavLink>
                 </li>
 
@@ -391,7 +391,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    tablets
+                    {t('tablets')}
                   </NavLink>
                 </li>
 
@@ -401,7 +401,7 @@ export const Header = () => {
                     className={getBurgerMenuLinkClass}
                     onClick={() => setIsActiveBurger(false)}
                   >
-                    accessories
+                    {t('accessories')}
                   </NavLink>
                 </li>
               </ul>
