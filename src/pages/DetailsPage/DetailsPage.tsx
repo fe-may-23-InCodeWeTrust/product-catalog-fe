@@ -5,8 +5,8 @@ import { ProductsSlider } from '../../components/ProductsSlider';
 import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
-import { JellyTriangle, LeapFrog } from '@uiball/loaders';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import { JellyTriangle } from '@uiball/loaders';
+import { useLocation, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -33,7 +33,6 @@ const colorMap: { [key: string]: string } = {
 };
 
 export const DetailsPage = () => {
-  // const { phoneId, tabletId, accessoryId } = useParams();
   const [images, setImages] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
@@ -179,7 +178,7 @@ export const DetailsPage = () => {
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
               <p className={styles.text + ' ' + styles['text--light']}>
-                {t('back')}
+                Back
               </p>
             </a>
           </div>
@@ -229,7 +228,6 @@ export const DetailsPage = () => {
                     {colors.map((color) => (
                       <div
                         key={color}
-                        // className={styles[`color-options__option--${color}`]}
                       >
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
