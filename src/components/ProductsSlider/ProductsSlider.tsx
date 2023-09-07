@@ -38,20 +38,20 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
   const darkMode = useSelector((state: any) => state.theme.darkMode);
   const { t } = useTranslation();
 
-  const faviritesGoods = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods,
-  );
+  // const faviritesGoods = useSelector(
+  //   (state: RootState) => state.favorites.favoriteGoods,
+  // );
   const dispatch = useDispatch<AppDispatch>();
 
-  const toggleFavorites = (product: Product) => {
-    const foundedGood = faviritesGoods.find((good) => good.id === product.id);
+  // const toggleFavorites = (product: Product) => {
+  //   const foundedGood = faviritesGoods.find((good) => good.id === product.id);
 
-    if (foundedGood) {
-      dispatch(removeFromFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
+  //   if (foundedGood) {
+  //     dispatch(removeFromFavorites(product.id));
+  //   } else {
+  //     dispatch(addToFavorites(product));
+  //   }
+  // };
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -123,6 +123,8 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
             spaceBetween={16}
             slidesPerView={slidesPerView}
             onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+            // noSwiping={true}
+            allowTouchMove={false}
           >
             {products.map((card) => (
               <SwiperSlide key={card.id}>
@@ -136,7 +138,7 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
                   <ProductCard
                     product={card}
                     onAddToCart={addProductToCart}
-                    onToggleFavorites={toggleFavorites}
+                    // onToggleFavorites={toggleFavorites}
                   />
                 </div>
               </SwiperSlide>

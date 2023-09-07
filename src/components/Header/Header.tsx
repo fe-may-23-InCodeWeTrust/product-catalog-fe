@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
@@ -9,14 +10,17 @@ import whiteClose from '../../assets/icons/close-white.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import menu from '../../assets/icons/menu.svg';
-import languages from '../../assets/icons/languages.png';
+import languages from '../../assets/icons/languages-dark.svg';
+import languagesWhite from '../../assets/icons/languages-white.svg';
 import favourites from '../../assets/icons/favourites.svg';
 import favoritesWhite from '../../assets/icons/favourites-white.svg';
-import account from '../../assets/icons/account-2.svg';
+import account from '../../assets/icons/user-dark.svg';
+import accountWhite from '../../assets/icons/user-white.svg';
 import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import ReactFlagsSelect from 'react-flags-select';
+import { CatalogContext } from '../../context/CatalogContext';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -27,9 +31,9 @@ const getBurgerMenuLinkClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);
   const cartCount = useSelector((state: RootState) => state.cart.goods.length);
-  const favoritesCount = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods.length,
-  );
+
+  const { favoritesCount } = useContext(CatalogContext);
+
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const [language, setLanguage] = useState('');
   const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
@@ -46,6 +50,7 @@ export const Header = () => {
     document.body.style.overflow = isActiveBurger ? 'hidden' : 'auto';
   }, [isActiveBurger]);
 
+  const id = window.localStorage.getItem('userId');
   return (
     <>
       {!isActiveBurger && (
@@ -96,11 +101,19 @@ export const Header = () => {
                 className={styles['header-icon__languages-icon']}
                 onClick={() => setIsActiveLanguageSwitcher(true)}
               >
-                <img
-                  src={languages}
-                  alt="Languages icon"
-                  className={styles['languages-icon__image']}
-                />
+                {darkMode ? (
+                  <img
+                    src={languagesWhite}
+                    alt="Languages icon"
+                    className={styles['languages-icon__image']}
+                  />
+                ) : (
+                  <img
+                    src={languages}
+                    alt="Languages icon"
+                    className={styles['languages-icon__image']}
+                  />
+                )}
               </button>
               {isActiveLanguageSwitcher && (
                 <ReactFlagsSelect
@@ -117,18 +130,26 @@ export const Header = () => {
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >
               <NavLink
-                to="signin"
+                to={id ? '/' : 'signin'}
                 className={({ isActive }: { isActive: boolean }) =>
                   `${styles['header-icon__favourites-icon']} ${
                     isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
-                <img
-                  src={account}
-                  alt="account icon"
-                  className={styles['languages-icon__image']}
-                />
+                {darkMode ? (
+                  <img
+                    src={accountWhite}
+                    alt="account icon"
+                    className={styles['languages-icon__image']}
+                  />
+                ) : (
+                  <img
+                    src={account}
+                    alt="account icon"
+                    className={styles['languages-icon__image']}
+                  />
+                )}
               </NavLink>
             </div>
             <div
@@ -156,10 +177,10 @@ export const Header = () => {
                   />
                 )}
               </NavLink>
-              {!!favoritesCount && (
+              {!!favoritesCount.length && (
                 <Link to="favorites">
                   <div className={styles['mini-count']}>
-                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                    {favoritesCount.length <= 9 ? favoritesCount.length : '9+'}
                   </div>
                 </Link>
               )}
@@ -346,10 +367,10 @@ export const Header = () => {
                   />
                 )}
               </NavLink>
-              {!!favoritesCount && (
+              {!!favoritesCount.length && (
                 <Link to="favorites">
                   <div className={styles['mini-count']}>
-                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                    {favoritesCount.length <= 9 ? favoritesCount.length : '9+'}
                   </div>
                 </Link>
               )}

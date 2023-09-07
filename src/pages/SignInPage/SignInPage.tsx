@@ -8,7 +8,8 @@ export const SignInPage = () => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const credentials = `${email}:${password}`;
     const result = await ProductService.getAuthenticatedUser(credentials);
 
@@ -24,7 +25,10 @@ export const SignInPage = () => {
   };
 
   return (
-    <form className={styles['login_form']} onSubmit={handleSubmit}>
+    <form
+      className={styles['login_form']}
+      onSubmit={handleSubmit}
+    >
       <h3>Sign In</h3>
 
       <div className={styles['login_form-box']}>

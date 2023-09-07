@@ -13,13 +13,13 @@ import { useSelector } from 'react-redux';
 import { ArrowLeftDarkTheme } from '../../assets/icons/ArrowLeftDarkTheme';
 import { ArrowRightDarkTheme } from '../../assets/icons/ArrowRightDarkTheme';
 const desktopImages: string[] = [
-  'https://product-catalog-be-lf4l.onrender.com/img/Banner.png',
+  'https://product-catalog-be-lf4l.onrender.com/img/banner-iphone-11.jpg',
   'https://product-catalog-be-lf4l.onrender.com/img/banner-apple%20watch.jpeg',
   'https://product-catalog-be-lf4l.onrender.com/img/iphone-14-pro.jpg',
 ];
 
 const mobileImages: string[] = [
-  'https://product-catalog-be-lf4l.onrender.com/img/BannerMobile.png',
+  'https://product-catalog-be-lf4l.onrender.com/img/banner-iphone-11.jpg',
   'https://product-catalog-be-lf4l.onrender.com/img/banner-apple%20watch.jpeg',
   'https://product-catalog-be-lf4l.onrender.com/img/iphone-14-pro.jpg',
 ];

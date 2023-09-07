@@ -1,33 +1,37 @@
 import styles from './FavoritesPage.module.scss';
 import { ProductCard } from '../../components/ProductCard';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../redux/store';
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from '../../redux/favoriteReducer';
+import React, { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
 import { addToCart } from '../../redux/cartReducer';
 import { Product } from '../../utils/Types/Product';
-import { Notification } from '../../components/Notification/Notification';
 import { useTranslation } from 'react-i18next';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { useSearchParams } from 'react-router-dom';
+import { CatalogContext } from '../../context/CatalogContext';
+import * as ProductProvider from '../../api/fetch_functions';
 
-export const FavoritesPage = () => {
-  const favoritesGoods = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods,
-  );
+const Favorites = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
 
-  const toggleFavorites = (product: Product) => {
-    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
+  const { favoritesCount } = useContext(CatalogContext);
+  const [favoriteGoods, setFavoriteGoods] = useState<Product[]>([]);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const [totalPages, setTotalPages] = useState(0);
+  // const pageParams = searchParams.get('page');
+  // const currentPage = pageParams ? +pageParams : 1;
 
-    if (foundedGood) {
-      dispatch(removeFromFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
+  const numberOfItems = favoritesCount.length;
+  // useEffect(() => {
+  //   setTotalPages(Math.ceil(numberOfItems / 16));
+  // }, [numberOfItems]);
+
+  useEffect(() => {
+    Promise.all(
+      favoritesCount.map((good) => ProductProvider.getProductByItemId(good)),
+    ).then((data) => setFavoriteGoods(data as Product[]));
+  }, [favoritesCount]);
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -58,22 +62,41 @@ export const FavoritesPage = () => {
           <h1 className={styles['article--title']}>{t('favorites')}</h1>
 
           <p className={`${styles['article--count-of-models']} text-small`}>
-            95 {t('models')}
+            {numberOfItems > 0 ? numberOfItems : ''}{' '}
+            {numberOfItems > 0 ? t('models') : ''}
           </p>
         </div>
 
-        <div className={styles['phone_cards']}>
-          {favoritesGoods.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addProductToCart}
-              onToggleFavorites={toggleFavorites}
-            />
-          ))}
-        </div>
-        <div className={styles['pagination']}>Pagination</div>
+        {numberOfItems ? (
+          <div className={styles['phone_cards']}>
+            {favoriteGoods.length > 0 &&
+              favoriteGoods.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={addProductToCart}
+                />
+              ))}
+          </div>
+        ) : (
+          <div className={styles['empty-favs']}>
+            <img className={styles['empty-favs']} />
+            <p className={styles['empty-favs_text']}>
+              Press 💛 to add items to favorites
+            </p>
+          </div>
+        )}
+        {/* <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handleOffset={setOffset}
+            limit={16}
+            sortBy={'newest'}
+            sortByNumber={'16'}
+          /> */}
       </div>
     </main>
   );
 };
+
+export const FavoritesPage = React.memo(Favorites);

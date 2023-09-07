@@ -5,10 +5,12 @@
   --color-grey-background: #222222;
   --color-elements: #3b3e4a;
   --color-white: #141414;
-  --color-secondary-accent: #eb5757;
+  --color-secondary-accent: #f4ba47;
   --color-accent: #939bf2;
   --color-text: #ffffff;
   --color-hover: #f0f0f0;
+  --color-selector: #89939a;
+  --color-bullet: #adb1d4;
 
   --img-like: url(../../assets/icons/favourites-white.svg);
   --img-home: url(../../assets/icons/home-white.svg);
@@ -28,9 +30,11 @@
   --color-accent: #4219d0;
   --color-text: #ffffff;
   --color-hover: #0f0f11;
+  --color-selector: #fff;
+  --color-bullet: #3b3e4a;
 
   --img-like: url(../../assets/icons/heart.svg);
-  --img-home: url(../../images/icons/Home.png);
+  --img-home: url(../../assets/icons/home-dark.svg);
   --img-arrow-left: url(../../assets/icons/arrow-dark-left.svg);
   --img-arrow-right: url(../../assets/icons/arrow-right.svg);
   --img-close: url(../../assets/icons/Close.svg);
@@ -46,6 +50,8 @@ $color-secondary-accent: var(--color-secondary-accent);
 $color-accent: var(--color-accent);
 $color-text: var(--color-text);
 $color-hover: var(--color-hover);
+$color-selector: var(--color-selector);
+$color-bullet: var(--color-bullet);
 
 $img-like: var(--img-like);
 $img-home: var(--img-home);

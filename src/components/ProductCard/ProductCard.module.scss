@@ -42,7 +42,7 @@
   &__details {
     display: flex;
     gap: 8px;
-    color: $color-secondary;
+    color: $color-primary;
     justify-content: space-between;
     font-size: 12px;
   }
@@ -110,7 +110,7 @@
   .add-to-favorites {
     min-width: 40px;
     border-radius: 48px;
-    border: 0.5px $color-icons solid;
+    border: 0.5px $color-secondary solid;
     background-image: $img-like;
     background-repeat: no-repeat;
     background-position: center;

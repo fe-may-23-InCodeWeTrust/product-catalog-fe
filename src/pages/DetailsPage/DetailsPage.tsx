@@ -5,15 +5,11 @@ import { ProductsSlider } from '../../components/ProductsSlider';
 import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
-import { LeapFrog } from '@uiball/loaders';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import { JellyTriangle } from '@uiball/loaders';
+import { useLocation, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from '../../redux/favoriteReducer';
 import { useTranslation } from 'react-i18next';
 
 const colorMap: { [key: string]: string } = {
@@ -37,7 +33,6 @@ const colorMap: { [key: string]: string } = {
 };
 
 export const DetailsPage = () => {
-  // const { phoneId, tabletId, accessoryId } = useParams();
   const [images, setImages] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
@@ -50,18 +45,15 @@ export const DetailsPage = () => {
   const location = useLocation();
   const [selectedColor, setSelectedColor] = useState<string>('');
   const { t } = useTranslation();
-
+  const { favoritesCount } = useContext(CatalogContext);
   const category = location.pathname.slice(1).split('/')[0];
-  const id = location.pathname.slice(1).split('/')[1];
 
-  console.log(category, id);
+  const handleGoBack = () => {
+    window.history.back();
+  };
 
-  const favoritesGoods = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods,
-  );
-
-  const addTofavoritesButtonCondition = favoritesGoods.find(
-    (good) => good.itemId === product?.id,
+  const addTofavoritesButtonCondition = favoritesCount.find(
+    (good) => good === product?.id,
   );
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
@@ -74,16 +66,6 @@ export const DetailsPage = () => {
   );
 
   const dispatch = useDispatch<AppDispatch>();
-
-  const toggleFavorites = (product: Product) => {
-    const foundedGood = favoritesGoods.find((good) => good.id === product.id);
-
-    if (foundedGood) {
-      dispatch(removeFromFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
 
   const addProductToCart = (product: Product) => {
     dispatch(
@@ -106,10 +88,6 @@ export const DetailsPage = () => {
     return `/${category}/${product?.namespaceId}-${product?.capacity.toLowerCase()}-${color.toLowerCase()}`;
   };
 
-  {
-    console.log(product?.color, selectedColor);
-  }
-
   useEffect(() => {
     setIsLoading(true);
 
@@ -117,9 +95,6 @@ export const DetailsPage = () => {
       .then((data) => {
         setProduct(data.foundProduct);
         setRecommended(data.recommended);
-
-        console.log(data.foundProduct);
-        console.log(colorMap);
 
         const images = `${data.foundProduct.images}`.slice(1, -1).split(',');
         const colors = `${data.foundProduct.colorsAvailable}`
@@ -135,35 +110,46 @@ export const DetailsPage = () => {
       })
       .catch(() => setError('Wrong URL - could not make a request'))
       .finally(() => setIsLoading(false));
-  }, [id]);
 
-  if (product) {
-    ProductService.getProductByItemId(product.id)
+    const id = location.pathname.slice(1).split('/')[1];
+
+    ProductService.getProductByItemId(id)
       .then((data) => {
-        setProductByItemId(data);
+        setProductByItemId(data as Product);
       })
       .catch(() => setError('Wrong URL - could not make a request'));
-  }
+  }, []);
 
   const capacity = `${product?.capacityAvailable}`.slice(1, -1).split(',');
+
+  const userId = window.localStorage.getItem('userId')?.toString();
+
+  const handleFavorites = async (itemId: string) => {
+    if (userId) {
+      await ProductService.updateFavorites(itemId, userId as string);
+    }
+  };
 
   return (
     <main className={styles.main}>
       <div className={styles.page_container}>
         <div className={styles['breadcrumb-nav']}>
           <div className={styles['breadcrumb-nav__row']}>
-            <a href="#home" className={styles['breadcrumb-nav__item']}>
+            <a href="#" className={styles['breadcrumb-nav__item']}>
               <div className={styles.icon + ' ' + styles['icon--home']}></div>
             </a>
 
-            <a href="#" className={styles['breadcrumb-nav__item']}>
+            <a href={`#${category}`} className={styles['breadcrumb-nav__item']}>
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-forward']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--dark']}>Phones</p>
+              <p className={styles.text + ' ' + styles['text--dark']}>
+                {' '}
+                {t(`${category}`)}
+              </p>
             </a>
 
-            <a href="#" className={styles['breadcrumb-nav__item']}>
+            <div className={styles['breadcrumb-nav__item']}>
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-forward']}
               ></div>
@@ -178,24 +164,26 @@ export const DetailsPage = () => {
               >
                 {product?.name}
               </p>
-            </a>
+            </div>
           </div>
 
           <div className={styles['breadcrumb-nav__row']}>
-            <a href="#" className={styles['breadcrumb-nav__item']}>
+            <a
+              href="#"
+              className={styles['breadcrumb-nav__item']}
+              onClick={handleGoBack}
+            >
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--light']}>
-                {t('back')}
-              </p>
+              <p className={styles.text + ' ' + styles['text--light']}>Back</p>
             </a>
           </div>
         </div>
 
         {isLoading ? (
-          <div className="loader">
-            <LeapFrog size={40} speed={2.5} color="black" />
+          <div className={styles['loader_container']}>
+            <JellyTriangle size={100} speed={1.75} color="black" />
           </div>
         ) : (
           <>
@@ -230,15 +218,12 @@ export const DetailsPage = () => {
                     </p>
                     <p
                       className={styles['color-options__id']}
-                    >{`ID: ${product?.namespaceId}`}</p>
+                    >{`ID: ${productByItemId?.id}`}</p>
                   </div>
 
                   <div className={styles['color-options__images']}>
                     {colors.map((color) => (
-                      <div
-                        key={color}
-                        // className={styles[`color-options__option--${color}`]}
-                      >
+                      <div key={color}>
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
                             width="32"
@@ -333,15 +318,17 @@ export const DetailsPage = () => {
                     {t('addToCart')}
                   </button>
 
-                  <button
-                    className={classNames(styles['add-to-favorites'], {
-                      'added-to-favorites': addTofavoritesButtonCondition,
-                    })}
-                    type="submit"
-                    onClick={() => {
-                      toggleFavorites(productByItemId as Product);
-                    }}
-                  ></button>
+                  {userId && (
+                    <button
+                      className={classNames(styles['add-to-favorites'], {
+                        'added-to-favorites': addTofavoritesButtonCondition,
+                      })}
+                      type="submit"
+                      onClick={() => {
+                        handleFavorites(product?.id as string);
+                      }}
+                    ></button>
+                  )}
                 </div>
 
                 <div className={styles.matches}>
