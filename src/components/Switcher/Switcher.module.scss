@@ -4,8 +4,8 @@
   width: 40px;
   background-color: $color-primary;
   border-radius: 20px;
-  padding: 5px;
-  dorder: 1px solid $color-grey-background;
+  padding: 1px;
+  border: 1px solid $color-grey-background;
 
   &::after {
     content: '';
