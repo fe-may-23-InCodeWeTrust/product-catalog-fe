@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/logo.svg';
 import whiteLogo from '../../assets/icons/white-logo.svg';
@@ -17,6 +18,7 @@ import bag from '../../assets/icons/shopping-bag.svg';
 import close from '../../assets/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import ReactFlagsSelect from 'react-flags-select';
+import { CatalogContext } from '../../context/CatalogContext';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${styles.nav__link} text-uppercase ${isActive ? styles['is-active'] : ''} `;
@@ -27,15 +29,14 @@ const getBurgerMenuLinkClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const darkMode = useSelector((state: any) => state.theme.darkMode);
   const cartCount = useSelector((state: RootState) => state.cart.goods.length);
-  const favoritesCount = useSelector(
-    (state: RootState) => state.favorites.favoriteGoods.length,
-  );
+
+  const { favoritesCount } = useContext(CatalogContext);
+
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const [language, setLanguage] = useState('');
   const [isActiveLanguageSwitcher, setIsActiveLanguageSwitcher] =
     useState(false);
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
 
   const onChangeLanguage = (language: string) => {
     setLanguage(language);
@@ -158,10 +159,10 @@ export const Header = () => {
                   />
                 )}
               </NavLink>
-              {!!favoritesCount && (
+              {!!favoritesCount.length && (
                 <Link to="favorites">
                   <div className={styles['mini-count']}>
-                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                    {favoritesCount.length <= 9 ? favoritesCount.length : '9+'}
                   </div>
                 </Link>
               )}
@@ -348,10 +349,10 @@ export const Header = () => {
                   />
                 )}
               </NavLink>
-              {!!favoritesCount && (
+              {!!favoritesCount.length && (
                 <Link to="favorites">
                   <div className={styles['mini-count']}>
-                    {favoritesCount <= 9 ? favoritesCount : '9+'}
+                    {favoritesCount.length <= 9 ? favoritesCount.length : '9+'}
                   </div>
                 </Link>
               )}
