@@ -12,9 +12,7 @@ export const Modal: React.FC<Props> = ({ price, onClose }) => {
 
   return (
     <div className="modal-buy">
-      <p className="text-uppercase modal-buy-text">
-        {t('oneNice')}
-      </p>
+      <p className="text-uppercase modal-buy-text">{t('oneNice')}</p>
 
       <p className="text-uppercase modal-buy-text">
         {t('totalAmount')} {price}$.

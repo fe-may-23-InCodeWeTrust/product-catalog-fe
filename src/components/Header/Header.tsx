@@ -139,7 +139,8 @@ export const Header = () => {
               <NavLink
                 to={id ? '/' : 'signin'}
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__favourites-icon']} ${isActive ? styles['is-active-icon'] : ''
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
@@ -164,7 +165,8 @@ export const Header = () => {
               <NavLink
                 to="favorites"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__favourites-icon']} ${isActive ? styles['is-active-icon'] : ''
+                  `${styles['header-icon__favourites-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
@@ -196,7 +198,8 @@ export const Header = () => {
               <NavLink
                 to="cart"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['header-icon__shopping_bag-icon']} ${isActive ? styles['is-active-icon'] : ''
+                  `${styles['header-icon__shopping_bag-icon']} ${
+                    isActive ? styles['is-active-icon'] : ''
                   }`
                 }
               >
@@ -294,7 +297,7 @@ export const Header = () => {
                     <img
                       src={languages}
                       alt="Languages icon"
-                        className={styles['languages-icon__image']}
+                      className={styles['languages-icon__image']}
                     />
                   )}
                 </button>
@@ -315,7 +318,8 @@ export const Header = () => {
                 <NavLink
                   to={id ? '/' : 'signin'}
                   className={({ isActive }: { isActive: boolean }) =>
-                    `${styles['account-icon__link']} ${isActive ? styles['is-active-icon'] : ''
+                    `${styles['account-icon__link']} ${
+                      isActive ? styles['is-active-icon'] : ''
                     }`
                   }
                 >
@@ -415,7 +419,8 @@ export const Header = () => {
               <NavLink
                 to="favorites"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['favourites-icon__link']} ${isActive ? styles['is-active-icon'] : ''
+                  `${styles['favourites-icon__link']} ${
+                    isActive ? styles['is-active-icon'] : ''
                   }`
                 }
                 onClick={() => setIsActiveBurger(false)}
@@ -448,7 +453,8 @@ export const Header = () => {
               <NavLink
                 to="cart"
                 className={({ isActive }: { isActive: boolean }) =>
-                  `${styles['shopping_bag-icon__link']} ${isActive ? styles['is-active-icon'] : ''
+                  `${styles['shopping_bag-icon__link']} ${
+                    isActive ? styles['is-active-icon'] : ''
                   }`
                 }
                 onClick={() => setIsActiveBurger(false)}
