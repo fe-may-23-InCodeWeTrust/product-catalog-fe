@@ -17,7 +17,7 @@ const Favorites = () => {
 
   const { favoritesCount } = useContext(CatalogContext);
   const [favoriteGoods, setFavoriteGoods] = useState<Product[]>([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const userId = window.localStorage.getItem('userId');
   // const [searchParams, setSearchParams] = useSearchParams();
   // const [totalPages, setTotalPages] = useState(0);
@@ -31,7 +31,7 @@ const Favorites = () => {
 
   useEffect(() => {
     if (!userId) {
-      navigate('/singin');
+      navigate('/signin');
     }
     Promise.all(
       favoritesCount.map((good) => ProductProvider.getProductByItemId(good)),
