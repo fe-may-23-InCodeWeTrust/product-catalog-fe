@@ -10,9 +10,10 @@
   gap: 16px;
   border-radius: 8px;
   margin: 100px auto 0;
-  border: 1px solid $color-elements;
-  background-color: $color-accent;
-  color: $color-white;
+  border: 1px solid $color-accent;
+  background-color: $color-white;
+  color: $color-accent;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
 
   &-box {
     display: flex;
@@ -29,6 +30,7 @@
   &-question {
     display: flex;
     gap: 5px;
+    color: $color-primary;
   }
 
   &-text {
@@ -41,9 +43,10 @@
   }
 
   &-input {
-    border: 1px solid $color-white;
+    border: 1px solid $color-accent;
     font-size: 12px;
     padding: 5px;
+    color: $color-primary;
     line-height: 24px;
     border-radius: 3px;
 
@@ -54,16 +57,16 @@
   }
 
   &-btn {
-    border: 1px solid $color-white;
+    border: 1px solid $color-accent;
     padding: 10px 20px;
     border-radius: 3px;
     cursor: pointer;
+    background-color: $color-secondary-accent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 10px;
     transition: all 0.3s linear;
 
     &:hover {
-      background-color: $color-secondary-accent;
       color: $color-primary;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
     }
 
     &:active {

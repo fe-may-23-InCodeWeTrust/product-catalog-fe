@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   background-color: $color-white;
-  box-shadow: 0 1px 0 0 $color-elements;
+  border-bottom: 1px solid $color-elements;
 
   &__left {
     display: flex;
@@ -136,6 +136,7 @@
   }
 }
 
+.switcher-icon,
 .languages-icon,
 .favourites-icon,
 .shopping_bag-icon,
@@ -159,6 +160,10 @@
 
 .languages-icon {
   position: relative;
+
+  &__button {
+    height: 16px;
+  }
 }
 
 .languages__switcher {
@@ -175,6 +180,7 @@
   }
 }
 
+.account-icon__image,
 .languages-icon__image {
   width: 16px;
   height: 16px;
@@ -183,7 +189,7 @@
 .languages-icon:hover,
 .favourites-icon:hover,
 .shopping_bag-icon:hover,
-.account-icon {
+.account-icon:hover {
   background-color: $color-grey-background;
 }
 
@@ -227,6 +233,16 @@
     background: $color-white;
   }
 
+  &__icons {
+    display: flex;
+  }
+
+  &__languages-switcher {
+    position: absolute !important;
+    top: 105% !important;
+    left: 87% !important;
+  }
+
   &__burger-menu {
     min-height: calc(100vh - 48px - 88px);
     margin-top: 24px;
@@ -241,6 +257,9 @@
     align-items: center;
   }
 
+  &__switcher-icon,
+  &__languages-icon,
+  &__account-icon,
   &__close-icon {
     width: 48px;
     height: 48px;

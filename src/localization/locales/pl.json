@@ -7,6 +7,9 @@
   "title": "Kupuj ładnie, bądź miły",
   "newModels": "Zupełnie nowe modele",
   "addToCart": "Dodaj do koszyka",
+  "toTheCart": "Towar został dodany do koszyka",
+  "toTheFavorites": "Towar został dodany do ulubionych",
+  "addedToCart": "Dodano do koszyka",
   "shopByCategory": "Kupuj według kategorii",
   "mobilePhones": "Telefony komórkowe",
   "hotPrices": "Gorące ceny",
@@ -31,5 +34,9 @@
   "totalFor": "Łącznie za",
   "item": "sztukę",
   "items": "pozycji",
-  "checkout": "Wymeldować się"
+  "checkout": "Wymeldować się",
+  "oneNice": "Jedna miła osoba ma fajny gadżet.",
+  "totalAmount": "Łączna kwota Twoich zakupów wynosi",
+  "niceDay": "Miłego dnia!",
+  "close": "Zamknąć"
 }

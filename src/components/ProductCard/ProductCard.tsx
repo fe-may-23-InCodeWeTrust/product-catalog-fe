@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
-  const { favoritesCount } = useContext(CatalogContext);
+  const { favoritesCount, setFavoritesCount } = useContext(CatalogContext);
   const [isCartNotification, setIsNotification] = useState(false);
   const [isFavoritesNotification, setIsFavoritesNotification] = useState(false);
 
@@ -28,6 +28,8 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
   const addTofavoritesButtonCondition = favoritesCount.find(
     (good) => good === product.itemId,
   );
+
+  console.log(favoritesCount);
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find((g) => g.id === product.id);
@@ -56,7 +58,16 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
 
   const handleFavorites = async (itemId: string) => {
     if (userId) {
-      await ProductProvider.updateFavorites(itemId, userId as string);
+      await ProductProvider.updateFavorites(itemId, userId as string).finally(
+        () =>
+          setFavoritesCount((prev) => {
+            if (!prev.includes(itemId)) {
+              return [...prev, itemId];
+            } else {
+              return prev.filter((good) => good !== itemId);
+            }
+          }),
+      );
     }
   };
 
@@ -114,7 +125,7 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
           }}
           disabled={!!isInCart}
         >
-          {t(`${addToCartButtonCondition ? 'Added to cart' : 'Add to cart'}`)}
+          {addToCartButtonCondition ? t('addedToCart') : t('addToCart')}
         </button>
         {userId && (
           <button
@@ -131,11 +142,11 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
       </div>
 
       {isCartNotification && (
-        <Notification text="The good was added to the cart" />
+        <Notification text={t('toTheCart')} />
       )}
 
       {isFavoritesNotification && (
-        <Notification text="The good was added to the favorites" />
+        <Notification text={t('toTheFavorites')} />
       )}
     </div>
   );

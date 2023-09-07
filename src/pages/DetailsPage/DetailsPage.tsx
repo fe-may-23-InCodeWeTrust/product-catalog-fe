@@ -6,7 +6,7 @@ import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
 import { JellyTriangle } from '@uiball/loaders';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -45,14 +45,11 @@ export const DetailsPage = () => {
   const location = useLocation();
   const [selectedColor, setSelectedColor] = useState<string>('');
   const { t } = useTranslation();
-  const { favoritesCount } = useContext(CatalogContext);
+  const navigate = useNavigate();
+  const { favoritesCount, setFavoritesCount } = useContext(CatalogContext);
   const category = location.pathname.slice(1).split('/')[0];
 
   const id = location.pathname.slice(1).split('/')[1];
-
-  const handleGoBack = () => {
-    window.history.back();
-  };
 
   const addTofavoritesButtonCondition = favoritesCount.find(
     (good) => good === product?.id,
@@ -110,7 +107,10 @@ export const DetailsPage = () => {
 
         setSelectedCapacity(data.foundProduct.capacity);
       })
-      .catch(() => setError('Wrong URL - could not make a request'))
+      .catch(() => {
+        setError('Wrong URL - could not make a request');
+        navigate('/*');
+      })
       .finally(() => setIsLoading(false));
 
     ProductService.getProductByItemId(id)
@@ -126,7 +126,16 @@ export const DetailsPage = () => {
 
   const handleFavorites = async (itemId: string) => {
     if (userId) {
-      await ProductService.updateFavorites(itemId, userId as string);
+      await ProductService.updateFavorites(itemId, userId as string).finally(
+        () =>
+          setFavoritesCount((prev) => {
+            if (!prev.includes(itemId)) {
+              return [...prev, itemId];
+            } else {
+              return prev.filter((good) => good !== itemId);
+            }
+          }),
+      );
     }
   };
 
@@ -168,16 +177,15 @@ export const DetailsPage = () => {
           </div>
 
           <div className={styles['breadcrumb-nav__row']}>
-            <a
-              href="#"
+            <Link
+              to={`/${location.pathname.slice(1).split('/')[0]}`}
               className={styles['breadcrumb-nav__item']}
-              onClick={handleGoBack}
             >
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
               <p className={styles.text + ' ' + styles['text--light']}>Back</p>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -315,7 +323,9 @@ export const DetailsPage = () => {
                     }}
                     disabled={!!isInCart}
                   >
-                    {t('addToCart')}
+                    {addToCartButtonCondition
+                      ? t('addedToCart')
+                      : t('addToCart')}
                   </button>
 
                   {userId && (
