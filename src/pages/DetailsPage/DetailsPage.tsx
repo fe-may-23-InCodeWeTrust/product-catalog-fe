@@ -5,7 +5,7 @@ import { ProductsSlider } from '../../components/ProductsSlider';
 import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductService from '../../api/fetch_functions';
 import classNames from 'classnames';
-import { LeapFrog } from '@uiball/loaders';
+import { JellyTriangle, LeapFrog } from '@uiball/loaders';
 import { useLocation, useParams, Link } from 'react-router-dom';
 import { addToCart } from '../../redux/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,13 +54,19 @@ export const DetailsPage = () => {
   const category = location.pathname.slice(1).split('/')[0];
   const id = location.pathname.slice(1).split('/')[1];
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+
   const favoritesGoods = useSelector(
     (state: RootState) => state.favorites.favoriteGoods,
   );
 
-  const addTofavoritesButtonCondition = favoritesGoods.find(
-    (good) => good.itemId === product?.id,
-  );
+  const addTofavoritesButtonCondition = false;
+  // const addTofavoritesButtonCondition = favoritesGoods.find(
+  //   (good) => good.itemId === product.itemId,
+  // );
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find(
@@ -143,18 +149,18 @@ export const DetailsPage = () => {
       <div className={styles.page_container}>
         <div className={styles['breadcrumb-nav']}>
           <div className={styles['breadcrumb-nav__row']}>
-            <a href="#home" className={styles['breadcrumb-nav__item']}>
+            <a href="#" className={styles['breadcrumb-nav__item']}>
               <div className={styles.icon + ' ' + styles['icon--home']}></div>
             </a>
 
-            <a href="#" className={styles['breadcrumb-nav__item']}>
+            <a href={`#${category}`} className={styles['breadcrumb-nav__item']}>
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-forward']}
               ></div>
-              <p className={styles.text + ' ' + styles['text--dark']}>Phones</p>
+              <p className={styles.text + ' ' + styles['text--dark']}> {t(`${category}`)}</p>
             </a>
 
-            <a href="#" className={styles['breadcrumb-nav__item']}>
+            <div className={styles['breadcrumb-nav__item']}>
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-forward']}
               ></div>
@@ -169,11 +175,15 @@ export const DetailsPage = () => {
               >
                 {product?.name}
               </p>
-            </a>
+            </div>
           </div>
 
           <div className={styles['breadcrumb-nav__row']}>
-            <a href="#" className={styles['breadcrumb-nav__item']}>
+            <a 
+            href="#" 
+            className={styles['breadcrumb-nav__item']}
+            onClick={handleGoBack}
+            >
               <div
                 className={styles.icon + ' ' + styles['icon--arrow-back']}
               ></div>
@@ -185,8 +195,8 @@ export const DetailsPage = () => {
         </div>
 
         {isLoading ? (
-          <div className="loader">
-            <LeapFrog size={40} speed={2.5} color="black" />
+          <div className={styles['loader_container']}>
+            <JellyTriangle size={100} speed={1.75} color="black" />
           </div>
         ) : (
           <>
@@ -228,7 +238,7 @@ export const DetailsPage = () => {
                     {colors.map((color) => (
                       <div
                         key={color}
-                        // className={styles[`color-options__option--${color}`]}
+                      // className={styles[`color-options__option--${color}`]}
                       >
                         <Link to={{ pathname: handleChangingColor(color) }}>
                           <svg
