@@ -193,7 +193,6 @@ body {
     flex-direction: row;
     gap: 8px;
     object-fit: fill;
-    // flex-grow: 2;
 
     @include onTablet {
       flex-direction: column;
@@ -217,23 +216,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    // flex-grow: 1;
 
     @include onTablet {
       flex-direction: row;
 
       width: 35px;
       height: 35px;
-      // min-width: 35px;
-      // min-height: 35px;
-
-      // width: auto;
-      // height: auto;
 
       max-width: 80px;
       max-height: 80px;
 
-      // flex-grow: 2;
     }
 
     @include onDesktop {
@@ -242,7 +234,6 @@ body {
 
       border-radius: 8px;
       border: 1px $color-elements solid;
-      // flex-grow: 1;
     }
   }
 
