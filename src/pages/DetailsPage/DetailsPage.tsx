@@ -62,10 +62,9 @@ export const DetailsPage = () => {
     (state: RootState) => state.favorites.favoriteGoods,
   );
 
-  const addTofavoritesButtonCondition = false;
-  // const addTofavoritesButtonCondition = favoritesGoods.find(
-  //   (good) => good.itemId === product.itemId,
-  // );
+  const addTofavoritesButtonCondition = favoritesGoods.find(
+    (good) => good.itemId === product.itemId,
+  );
 
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find(
