@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import styles from './SignUpPage.module.scss';
 import * as ProductService from '../../api/fetch_functions';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const SignUpPage = () => {
   const [fullName, setFullName] = useState('');
@@ -11,6 +12,7 @@ export const SignUpPage = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ export const SignUpPage = () => {
     if (confirmPassword === password) {
       result = await ProductService.createUser(email, password, fullName);
     } else {
-      alert('Passwords do not match. Please, try one more time.');
+      alert(t('notMatchPasswords'));
     }
 
     if (result?.message) {
@@ -37,62 +39,62 @@ export const SignUpPage = () => {
 
   return (
     <form className={styles['login_form']} onSubmit={handleSubmit}>
-      <h3>Sign Up</h3>
+      <h3>{t('signUp')}</h3>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>Your name</label>
+        <label className={styles['login_form-label']}>{t('yourName')}</label>
         <input
           type="text"
           className={styles['login_form-input']}
-          placeholder="Enter your name"
+          placeholder={t('enterYourName')}
           onChange={(e) => setFullName(e.target.value)}
           required
         />
       </div>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>Email address</label>
+        <label className={styles['login_form-label']}>{t('emailAddress')}</label>
         <input
           type="email"
           className={styles['login_form-input']}
-          placeholder="Enter email"
+          placeholder={t('enterEmail')}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>Password</label>
+        <label className={styles['login_form-label']}>{t('password')}</label>
         <input
           type="password"
           className={styles['login_form-input']}
-          placeholder="Enter password"
+          placeholder={t('enterPassword')}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>Confirm password</label>
+        <label className={styles['login_form-label']}>{t('confirmPassword')}</label>
         <input
           type="password"
           className={styles['login_form-input']}
-          placeholder="Please repeat password"
+          placeholder={t('repeatPassword')}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </div>
 
       <div className={styles['login_form-question']}>
-        <p className={styles['login_form-text']}>{`Already registered?`}</p>
+        <p className={styles['login_form-text']}>{t('alreadyRegistered')}</p>
         <Link to={'../signin'} className={styles['login_form-link']}>
-          Log In
+          {t('logIn')}
         </Link>
       </div>
 
       <div>
         <button type="submit" className={styles['login_form-btn']}>
-          Submit
+          {t('submit')}
         </button>
       </div>
       {modal && (

@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './NotFoundPage.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleBackHomeBtn = () => {
     navigate('/');
@@ -12,14 +14,14 @@ export const NotFoundPage = () => {
   return (
     <div className={styles['body']}>
       <div className={styles['text']}>
-        <div>Opps..</div>
+        <div>{t('opps')}</div>
         <hr></hr>
-        <div>It is a space where nothing exists</div>
+        <div>{t('nothingExists')}</div>
       </div>
 
       <div className={styles['back-home']}>
         <button onClick={handleBackHomeBtn} className={styles['back-home-btn']}>
-          Back Home
+          {t('backHome')}
         </button>
       </div>
 

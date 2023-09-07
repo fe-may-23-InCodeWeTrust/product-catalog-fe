@@ -187,6 +187,7 @@
   height: 16px;
 }
 
+.switcher-icon:hover,
 .languages-icon:hover,
 .favourites-icon:hover,
 .shopping_bag-icon:hover,
@@ -242,6 +243,14 @@
     position: absolute !important;
     top: 105% !important;
     left: 87% !important;
+
+    & ul {
+        background: $color-selector;
+      }
+    
+    & button {
+      background: $color-selector;
+    }
   }
 
   &__burger-menu {
