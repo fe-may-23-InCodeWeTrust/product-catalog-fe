@@ -29,8 +29,6 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
     (good) => good === product.itemId,
   );
 
-  console.log(favoritesCount);
-
   const goodsFromCart = useSelector((state: RootState) => state.cart.goods);
   const isInCart = goodsFromCart.find((g) => g.id === product.id);
 

@@ -40,7 +40,10 @@ export const Footer = () => {
         >
           {t('contacts')}
         </Link>
-        <a className={`${styles['footer__nav__item']} text-uppercase`} href="https://www.freeprivacypolicy.com/live/19a89ed9-6946-42f4-b34c-8f488bcdcf5d">
+        <a
+          className={`${styles['footer__nav__item']} text-uppercase`}
+          href="https://www.freeprivacypolicy.com/live/19a89ed9-6946-42f4-b34c-8f488bcdcf5d"
+        >
           {t('rights')}
         </a>
       </div>
