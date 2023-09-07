@@ -11,6 +11,7 @@
   border-top: 1px solid $color-elements;
   margin-top: auto;
   background-color: $color-white;
+  transition: 0.5s;
 
   @include onTablet {
     flex-direction: row;

@@ -141,13 +141,9 @@ export const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
         )}
       </div>
 
-      {isCartNotification && (
-        <Notification text={t('toTheCart')} />
-      )}
+      {isCartNotification && <Notification text={t('toTheCart')} />}
 
-      {isFavoritesNotification && (
-        <Notification text={t('toTheFavorites')} />
-      )}
+      {isFavoritesNotification && <Notification text={t('toTheFavorites')} />}
     </div>
   );
 };
