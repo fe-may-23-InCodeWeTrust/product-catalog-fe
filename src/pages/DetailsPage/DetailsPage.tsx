@@ -321,8 +321,7 @@ export const DetailsPage = () => {
                   >
                     {addToCartButtonCondition
                       ? t('addedToCart')
-                      : t('addToCart')
-                    }
+                      : t('addToCart')}
                   </button>
 
                   {userId && (
