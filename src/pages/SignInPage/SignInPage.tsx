@@ -31,7 +31,9 @@ export const SignInPage = () => {
       <h3>{t('signIn')}</h3>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>{t('emailAddress')}</label>
+        <label className={styles['login_form-label']}>
+          {t('emailAddress')}
+        </label>
         <input
           type="email"
           className={styles['login_form-input']}

@@ -53,7 +53,9 @@ export const SignUpPage = () => {
       </div>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>{t('emailAddress')}</label>
+        <label className={styles['login_form-label']}>
+          {t('emailAddress')}
+        </label>
         <input
           type="email"
           className={styles['login_form-input']}
@@ -75,7 +77,9 @@ export const SignUpPage = () => {
       </div>
 
       <div className={styles['login_form-box']}>
-        <label className={styles['login_form-label']}>{t('confirmPassword')}</label>
+        <label className={styles['login_form-label']}>
+          {t('confirmPassword')}
+        </label>
         <input
           type="password"
           className={styles['login_form-input']}
