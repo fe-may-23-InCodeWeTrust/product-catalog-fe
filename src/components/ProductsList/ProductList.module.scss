@@ -1,10 +1,18 @@
 @import '../../styles/utils/';
 
 .phone_cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
-  row-gap: 40px;
-  column-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  @include onTablet {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+    row-gap: 40px;
+    column-gap: 16px;
+  }
 }
 
 .loader_container {
