@@ -3,6 +3,8 @@
 .user-container {
   padding: 24px 16px;
   display: flex;
+  width: 100%;
+  margin: 0 auto;
   color: $color-primary;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +30,6 @@
 
   @include onDesktop {
     flex-direction: row;
-    justify-content: space-between;
     align-items: normal;
   }
 
@@ -36,7 +37,6 @@
     display: flex;
     flex-direction: column;
     gap: 80px;
-    width: 100%;
   }
 
   &-credentials {
@@ -89,7 +89,7 @@
   transition: background-color 0.3s;
 
   @include onDesktop {
-    width: 10%;
+    width: 50%;
     margin-top: auto;
   }
 
