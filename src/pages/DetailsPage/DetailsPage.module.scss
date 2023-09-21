@@ -159,7 +159,7 @@ body {
 
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
 
     @include onTablet {
       order: 2;

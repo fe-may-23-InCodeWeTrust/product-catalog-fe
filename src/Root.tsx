@@ -10,6 +10,7 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { SignInPage } from './pages/SignInPage/SignInPage';
 import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
+import UserPage from './pages/UserPage/UserPage';
 
 export const Root: React.FC = () => (
   <HashRouter>
@@ -18,6 +19,7 @@ export const Root: React.FC = () => (
         <Route index element={<HomePage />} />
         <Route path="signin" element={<SignInPage />} />
         <Route path="signup" element={<SignUpPage />} />
+        <Route path="user" element={<UserPage />} />
 
         <Route path="phones">
           <Route index element={<CatalogPage />} />

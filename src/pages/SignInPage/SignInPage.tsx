@@ -15,11 +15,11 @@ export const SignInPage = () => {
     const credentials = `${email}:${password}`;
     const result = await ProductService.getAuthenticatedUser(credentials);
 
-    if (result) {
+    if (result.id) {
       window.localStorage.setItem('userId', result.id);
 
       setTimeout(() => {
-        navigate('/');
+        navigate('/user');
       }, 2000);
     } else {
       alert(t('wentWrong'));

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import * as ProductProvider from '../api/fetch_functions';
+// import * as ProductProvider from '../api/fetch_functions';
 
 type Props = {
   children: React.ReactNode;
@@ -17,16 +17,6 @@ export const CatalogContext = React.createContext({} as ContextValues);
 export const CatalogProvider: React.FC<Props> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState<string[]>([]);
-
-  // useEffect(() => {
-  //   const userId = window.localStorage.getItem('userId');
-
-  //   if (userId) {
-  //     ProductProvider.getFavorites(userId).then((data) => {
-  //       setFavoritesCount(data);
-  //     });
-  //   }
-  // }, [favoritesCount]);
 
   const contextValues: ContextValues = useMemo(
     () => ({

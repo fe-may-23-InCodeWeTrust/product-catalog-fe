@@ -1,0 +1,104 @@
+@import '../../styles/utils';
+
+.user-container {
+  padding: 24px 16px;
+  display: flex;
+  color: $color-primary;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  @include onTablet {
+    padding: 24px 24px;
+  }
+
+  @include onDesktop {
+    margin-inline: auto;
+    padding: 54px 0 0;
+    max-width: 1136px;
+  }
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  @include onDesktop {
+    flex-direction: row;  
+    justify-content: space-between;
+    align-items: normal;
+  }
+
+  &-data {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    width: 100%;
+  }
+
+  &-credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  &-name {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
+    @include onDesktop {
+      justify-content: flex-start;
+    }
+  }
+
+  &-email {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
+
+  @include onDesktop {
+    justify-content: flex-start;
+  }
+  }
+}
+
+.user-img {
+  width: 50%;
+
+  @include onDesktop {
+    width: 20%;
+  }
+}
+
+
+.btn-log-out {
+  max-height: 38px;
+  border: 0.5px solid $color-accent;
+  width: 100%;
+  height: 50px;
+  color: $color-white;
+  text-align: center;
+  background-color: $color-accent;
+  flex-grow: 1;
+  font-size: 15px;
+  border-radius: 48px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  @include onDesktop {
+    width: 10%;
+    margin-top: auto;
+  }
+
+  &:active {
+    color: $color-accent;
+    background-color: $color-white;
+    border: 0.5px solid $color-elements;
+  }
+}

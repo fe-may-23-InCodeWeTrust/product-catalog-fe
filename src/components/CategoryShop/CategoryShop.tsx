@@ -45,11 +45,13 @@ export const CategoryShop = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    Promise.all(categories.current.map((category) => {
-      ProductService.getProductsCount(category.path).then((data) => {
-        category.count = data;
-      });
-    }))
+    Promise.all(
+      categories.current.map((category) => {
+        ProductService.getProductsCount(category.path).then((data) => {
+          category.count = data;
+        });
+      }),
+    );
     setIsLoading(false);
   }, []);
 

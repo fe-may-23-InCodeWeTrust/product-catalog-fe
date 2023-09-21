@@ -137,7 +137,7 @@ export const Header = () => {
               className={`${styles['icons__icon']} ${styles['header-icon']} ${styles['favourites-icon']}`}
             >
               <NavLink
-                to={id ? '/' : 'signin'}
+                to={id ? '/user' : 'signin'}
                 className={({ isActive }: { isActive: boolean }) =>
                   `${styles['header-icon__favourites-icon']} ${
                     isActive ? styles['is-active-icon'] : ''
@@ -316,7 +316,7 @@ export const Header = () => {
                 className={`${styles['aside__account-icon']} ${styles['account-icon']}`}
               >
                 <NavLink
-                  to={id ? '/' : 'signin'}
+                  to={id ? '/user' : 'signin'}
                   onClick={() => {
                     setIsActiveBurger(false);
                   }}
@@ -344,8 +344,7 @@ export const Header = () => {
               <div
                 className={`${styles['aside__close-icon']} ${styles['close-icon']}`}
               >
-                <NavLink
-                  to="/"
+                <a
                   className={`${styles['close-icon__link']}`}
                   onClick={() => setIsActiveBurger(false)}
                 >
@@ -362,7 +361,7 @@ export const Header = () => {
                       className={`${styles['close-icon__image']}`}
                     />
                   )}
-                </NavLink>
+                </a>
               </div>
             </div>
           </div>
