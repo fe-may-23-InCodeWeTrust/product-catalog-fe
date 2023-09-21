@@ -64,7 +64,7 @@ export const getFavorites = (userId: string) => {
 
 export const getUserData = (userId: string) => {
   return client.get(`users/${userId}`);
-}
+};
 
 export const updateFavorites = (productId: string, userId: string) => {
   return client.patch(`users/favorites?userId=${userId}`, '', {

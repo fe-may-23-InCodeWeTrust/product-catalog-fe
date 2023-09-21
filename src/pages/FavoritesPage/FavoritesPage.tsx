@@ -15,7 +15,7 @@ const Favorites = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
 
-  const { favoritesCount } = useContext(CatalogContext);
+  const { favoritesCount, setFavoritesCount } = useContext(CatalogContext);
   const [favoriteGoods, setFavoriteGoods] = useState<Product[]>([]);
   const navigate = useNavigate();
   const userId = window.localStorage.getItem('userId');
@@ -33,6 +33,11 @@ const Favorites = () => {
     if (!userId) {
       navigate('/signin');
     }
+
+    ProductProvider.getFavorites(userId as string).then((data) => {
+      setFavoritesCount(data);
+    });
+
     Promise.all(
       favoritesCount.map((good) => ProductProvider.getProductByItemId(good)),
     ).then((data) => setFavoriteGoods(data as Product[]));

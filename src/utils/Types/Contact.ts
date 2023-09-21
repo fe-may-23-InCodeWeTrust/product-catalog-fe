@@ -1,4 +1,4 @@
-import { Product } from "./Product";
+import { Product } from './Product';
 
 export type Contact = {
   id: number;
@@ -9,9 +9,9 @@ export type Contact = {
 };
 
 export type User = {
-  "id": string
-  "email": string
-  "password": string,
-  "fullName": string,
-  "favorites": Product[]
-}
+  id: string;
+  email: string;
+  password: string;
+  fullName: string;
+  favorites: Product[];
+};
