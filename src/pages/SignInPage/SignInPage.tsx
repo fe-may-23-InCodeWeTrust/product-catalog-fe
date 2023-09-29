@@ -20,21 +20,26 @@ export const SignInPage = () => {
 
     if (result.id) {
       window.localStorage.setItem('userId', result.id);
-        setIsLoading(false);
-        navigate('/user');
+      setIsLoading(false);
+      navigate('/user');
     } else {
+      setIsLoading(false);
       alert(t('wentWrong'));
     }
+
+    setIsLoading(false);
   };
 
   return (
     <form className={styles['login_form']} onSubmit={handleSubmit}>
-            {isLoading ? (
+      {isLoading ? (
         <div className={styles['loader']}>
           <LeapFrog size={40} speed={2.5} color="black" />
         </div>
       ) : (
-      <><h3>{t('signIn')}</h3><div className={styles['login_form-box']}>
+        <>
+          <h3>{t('signIn')}</h3>
+          <div className={styles['login_form-box']}>
             <label className={styles['login_form-label']}>
               {t('emailAddress')}
             </label>
@@ -43,26 +48,34 @@ export const SignInPage = () => {
               className={styles['login_form-input']}
               placeholder={t('enterEmail')}
               onChange={(e) => setEmail(e.target.value)}
-              required />
-          </div><div className={styles['login_form-box']}>
-              <label className={styles['login_form-label']}>{t('password')}</label>
-              <input
-                type="password"
-                className={styles['login_form-input']}
-                placeholder={t('enterPassword')}
-                onChange={(e) => setPassword(e.target.value)}
-                required />
-            </div><div className={styles['login_form-question']}>
-              <p className={styles['login_form-text']}>{t('noAccount')}</p>
-              <Link to={'../signup'} className={styles['login_form-link']}>
-                {t('register')}
-              </Link>
-            </div><div className="d-grid">
-              <button type="submit" className={styles['login_form-btn']}>
-                {t('submit')}
-              </button>
-            </div></>) 
-      }
+              required
+            />
+          </div>
+          <div className={styles['login_form-box']}>
+            <label className={styles['login_form-label']}>
+              {t('password')}
+            </label>
+            <input
+              type="password"
+              className={styles['login_form-input']}
+              placeholder={t('enterPassword')}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles['login_form-question']}>
+            <p className={styles['login_form-text']}>{t('noAccount')}</p>
+            <Link to={'../signup'} className={styles['login_form-link']}>
+              {t('register')}
+            </Link>
+          </div>
+          <div className="d-grid">
+            <button type="submit" className={styles['login_form-btn']}>
+              {t('submit')}
+            </button>
+          </div>
+        </>
+      )}
     </form>
   );
 };

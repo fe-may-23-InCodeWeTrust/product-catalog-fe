@@ -1,6 +1,10 @@
 @import 'src/styles';
 @import './styles/utils';
 
+iframe {
+  display: none;
+}
+
 .app {
   min-height: 100vh;
   display: flex;
