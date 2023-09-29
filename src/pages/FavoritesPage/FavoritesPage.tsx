@@ -41,7 +41,7 @@ const Favorites = () => {
     Promise.all(
       favoritesCount.map((good) => ProductProvider.getProductByItemId(good)),
     ).then((data) => setFavoriteGoods(data as Product[]));
-  }, [favoritesCount]);
+  }, [numberOfItems]);
 
   const addProductToCart = (product: Product) => {
     dispatch(
