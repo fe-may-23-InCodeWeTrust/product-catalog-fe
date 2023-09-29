@@ -22,12 +22,13 @@ const UserPage = () => {
       .then((data) => data.json())
       .then((data) => setUser(data));
 
-    ProductProvider.getFavorites(id as string).then((data) => {
-      setFavoritesCount(data);
-    })
-    .finally(() => {
-      setIsLoading(false);
-    })
+    ProductProvider.getFavorites(id as string)
+      .then((data) => {
+        setFavoritesCount(data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   const handleLogOut = () => {
@@ -38,7 +39,7 @@ const UserPage = () => {
 
   return (
     <div className={styles['user-container']}>
-            {isLoading ? (
+      {isLoading ? (
         <div className={styles['loader']}>
           <LeapFrog size={40} speed={2.5} color="black" />
         </div>

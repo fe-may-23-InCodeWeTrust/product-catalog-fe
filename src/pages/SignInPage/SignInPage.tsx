@@ -26,8 +26,6 @@ export const SignInPage = () => {
       setIsLoading(false);
       alert(t('wentWrong'));
     }
-
-    setIsLoading(false);
   };
 
   return (
