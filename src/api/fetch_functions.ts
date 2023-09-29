@@ -40,7 +40,7 @@ export const getProductByItemId = (id: string) => {
 };
 
 export const getAuthenticatedUser = (credentials: any) => {
-  return client.get<{ token: string; user: string; id: string }>(
+  return client.get<{ token: string; user: string; id: string; err?: string }>(
     `users/login`,
     credentials,
   );

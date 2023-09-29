@@ -9,6 +9,8 @@ export const SignInPage = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -22,9 +24,16 @@ export const SignInPage = () => {
       window.localStorage.setItem('userId', result.id);
       setIsLoading(false);
       navigate('/user');
-    } else {
+    }  
+    if (result.err) {
       setIsLoading(false);
-      alert(t('wentWrong'));
+      setMessage(result.err);
+      setModal(true);
+      
+      setTimeout(() => {
+        setModal(false);
+        setMessage('');
+      }, 2000)
     }
   };
 
@@ -72,6 +81,11 @@ export const SignInPage = () => {
               {t('submit')}
             </button>
           </div>
+          {modal && (
+            <div className={styles['login_form-notification']}>
+              <p>{message}</p>
+            </div>
+          )}
         </>
       )}
     </form>
