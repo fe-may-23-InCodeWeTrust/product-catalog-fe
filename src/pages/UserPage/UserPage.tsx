@@ -32,33 +32,35 @@ const UserPage = () => {
 
   return (
     <div className={styles['user-container']}>
-      <div className={styles['user-info']}>
-        <div className={styles['user-img']}>
-          <img
-            src="https://w7.pngwing.com/pngs/34/886/png-transparent-female-woman-girl-computer-icons-svg-face-people-logo.png"
-            alt=""
-          />
-        </div>
-        <div className={styles['user-info-data']}>
-          <div className={styles['user-info-credentials']}>
-            <div className={styles['user-info-name']}>
-              <div className={styles['user-info-name-label']}>Name:</div>
-              <div className={styles['user-info-name-text']}>
-                {user?.fullName}
+      {user && (
+              <div className={styles['user-info']}>
+              <div className={styles['user-img']}>
+                <img
+                  src="https://w7.pngwing.com/pngs/34/886/png-transparent-female-woman-girl-computer-icons-svg-face-people-logo.png"
+                  alt=""
+                />
+              </div>
+              <div className={styles['user-info-data']}>
+                <div className={styles['user-info-credentials']}>
+                  <div className={styles['user-info-name']}>
+                    <div className={styles['user-info-name-label']}>Name:</div>
+                    <div className={styles['user-info-name-text']}>
+                      {user?.fullName}
+                    </div>
+                  </div>
+                  <div className={styles['user-info-email']}>
+                    <div className={styles['user-info-email-label']}>Email:</div>
+                    <div className={styles['user-info-email-text']}>
+                      {user?.email}
+                    </div>
+                  </div>
+                </div>
+                <button onClick={handleLogOut} className={styles['btn-log-out']}>
+                  Log Out
+                </button>
               </div>
             </div>
-            <div className={styles['user-info-email']}>
-              <div className={styles['user-info-email-label']}>Email:</div>
-              <div className={styles['user-info-email-text']}>
-                {user?.email}
-              </div>
-            </div>
-          </div>
-          <button onClick={handleLogOut} className={styles['btn-log-out']}>
-            Log Out
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

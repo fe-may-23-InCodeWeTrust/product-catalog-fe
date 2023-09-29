@@ -59,9 +59,9 @@ export const Header = () => {
           <div className={`${styles['header__left']} ${styles['left']}`}>
             <NavLink to="/" className={styles['left__logo']}>
               {darkMode ? (
-                <img src={whiteLogo} alt="Nice Gadgets logo" className="logo" />
+                <img src={whiteLogo} alt="Nice Gadgets logo" className={styles['logo']} />
               ) : (
-                <img src={logo} alt="Nice Gadgets logo" className="logo" />
+                <img src={logo} alt="Nice Gadgets logo" className={styles['logo']} />
               )}
             </NavLink>
 
