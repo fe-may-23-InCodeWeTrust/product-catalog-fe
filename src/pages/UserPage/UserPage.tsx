@@ -4,14 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../../utils/Types/Contact';
 import { CatalogContext } from '../../context/CatalogContext';
 import * as ProductProvider from '../../api/fetch_functions';
+import { LeapFrog } from '@uiball/loaders';
 
 const UserPage = () => {
   const [user, setUser] = useState<User>();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { setFavoritesCount } = useContext(CatalogContext);
 
   useEffect(() => {
     const id = localStorage.getItem('userId');
+    setIsLoading(true);
     if (!id) {
       navigate('/signin');
     }
@@ -21,7 +24,10 @@ const UserPage = () => {
 
     ProductProvider.getFavorites(id as string).then((data) => {
       setFavoritesCount(data);
-    });
+    })
+    .finally(() => {
+      setIsLoading(false);
+    })
   }, []);
 
   const handleLogOut = () => {
@@ -32,7 +38,11 @@ const UserPage = () => {
 
   return (
     <div className={styles['user-container']}>
-      {user && (
+            {isLoading ? (
+        <div className={styles['loader']}>
+          <LeapFrog size={40} speed={2.5} color="black" />
+        </div>
+      ) : (
         <div className={styles['user-info']}>
           <div className={styles['user-img']}>
             <img
